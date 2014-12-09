@@ -1,0 +1,10 @@
+*.db
+*.swp
+*.pyc
+*.pyo
+*.bak
+*.log
+*.egg
+*.egg-info
+.DS_Store
+output/

@@ -14,8 +14,9 @@ DEFAULT_LANG = 'en'
 
 DEFAULT_DATE = 'fs'
 
-ARTICLE_URL = '{date:%Y}/{date:%b}/{date:%d}/{slug}.html'
-ARTICLE_SAVE_AS = '{date:%Y}/{date:%b}/{date:%d}/{slug}.html'
+ARTICLE_PATHS = ['blog']
+ARTICLE_URL = '{date:%Y}/{date:%m}/{date:%d}/{slug}.html'
+ARTICLE_SAVE_AS = '{date:%Y}/{date:%m}/{date:%d}/{slug}.html'
 YEAR_ARCHIVE_SAVE_AS = 'posts/{date:%Y}/index.html'
 MONTH_ARCHIVE_SAVE_AS = 'posts/{date:%Y}/{date:%b}/index.html'
 

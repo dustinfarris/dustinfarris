@@ -55,7 +55,7 @@ authentication then works like this:</p>
 <span class="nv">$ </span>curl -X POST -d <span class="s2">&quot;username=bob&amp;password=correct&quot;</span> localhost:8000/api-token-auth/
 <span class="o">{</span><span class="s2">&quot;token&quot;</span>: <span class="s2">&quot;abcdefg12345&quot;</span><span class="o">}</span>
 
-<span class="nv">$ </span>curl -H <span class="s2">&quot;Authorization: Token abcdefg12345&quot;</span> localhost:000/users/
+<span class="nv">$ </span>curl -H <span class="s2">&quot;Authorization: Token abcdefg12345&quot;</span> localhost:8000/users/
 <span class="o">[{</span><span class="s2">&quot;id&quot;</span>: 1, <span class="s2">&quot;username&quot;</span>: <span class="s2">&quot;bob&quot;</span>, <span class="s2">&quot;email&quot;</span>: <span class="s2">&quot;bob@example.org&quot;</span><span class="o">}]</span>
 </pre></div>
 

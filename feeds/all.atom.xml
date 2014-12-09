@@ -84,7 +84,7 @@ authentication then works like this:&lt;/p&gt;
 &lt;span class="nv"&gt;$ &lt;/span&gt;curl -X POST -d &lt;span class="s2"&gt;&amp;quot;username=bob&amp;amp;password=correct&amp;quot;&lt;/span&gt; localhost:8000/api-token-auth/
 &lt;span class="o"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;token&amp;quot;&lt;/span&gt;: &lt;span class="s2"&gt;&amp;quot;abcdefg12345&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;}&lt;/span&gt;
 
-&lt;span class="nv"&gt;$ &lt;/span&gt;curl -H &lt;span class="s2"&gt;&amp;quot;Authorization: Token abcdefg12345&amp;quot;&lt;/span&gt; localhost:000/users/
+&lt;span class="nv"&gt;$ &lt;/span&gt;curl -H &lt;span class="s2"&gt;&amp;quot;Authorization: Token abcdefg12345&amp;quot;&lt;/span&gt; localhost:8000/users/
 &lt;span class="o"&gt;[{&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;id&amp;quot;&lt;/span&gt;: 1, &lt;span class="s2"&gt;&amp;quot;username&amp;quot;&lt;/span&gt;: &lt;span class="s2"&gt;&amp;quot;bob&amp;quot;&lt;/span&gt;, &lt;span class="s2"&gt;&amp;quot;email&amp;quot;&lt;/span&gt;: &lt;span class="s2"&gt;&amp;quot;bob@example.org&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;}]&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 

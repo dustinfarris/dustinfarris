@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>"Setting up a PostgreSQL Server with Gentoo"</title>
+        <link rel="stylesheet" href="http://dustinfarris.com/theme/css/main.css" />
+        <link href="http://dustinfarris.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Dustin Farris Atom Feed" />
+
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="http://dustinfarris.com/">Dustin Farris </a></h1>
+                <nav><ul>
+                    <li class="active"><a href="http://dustinfarris.com/category/blog.html">blog</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="http://dustinfarris.com/2012/07/06/setting-up-a-postgresql-server-with-gentoo.html" rel="bookmark"
+           title="Permalink to "Setting up a PostgreSQL Server with Gentoo"">"Setting up a PostgreSQL Server with Gentoo"</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2012-07-06T00:00:00+02:00">
+                Published: Fri 06 July 2012
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://dustinfarris.com/author/dustin-farris.html">Dustin Farris</a>
+        </address>
+<p>In <a href="http://dustinfarris.com/category/blog.html">blog</a>. </p>
+<p>tags: <a href="http://dustinfarris.com/tag/gentoo.html">Gentoo</a> </p>
+</footer><!-- /.post-info -->      <p>Setting up a database server is usually the first step when deploying a web framework stack.  This is the second of <a href="http://dustinfarris.com/tag/setting-up-gentoo-postgres-and-django/">three documents</a> showing how to get Django up and running with Gentoo.</p>
+<p><a id="contents"></a></p>
+<h2>Contents</h2>
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#prerequisites">Prerequisites</a></li>
+<li><a href="#firewall">Firewall</a></li>
+<li><a href="#install-postgres">Install Postgres</a></li>
+<li><a href="#install-postgis-extensions">Install PostGIS Extensions</a></li>
+<li><a href="#create-super-users">Create Super Users</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul>
+<p><a id="introduction"></a></p>
+<h2>Introduction</h2>
+<p>Using Gentoo Linux to run PostgreSQL is a great marriage of technologies ready to meet and exceed the demands of most web applications.  Getting up and running is a breeze, and thanks to Gentoo's Portage packaging system, you can run multiple major versions of Postgres seamlessly on the same machine.  This document describes the basic PostgreSQL server installation requirements you should have in place when preparing to deploy a Django project.  Note this only describes the database <em>server</em> side of Postgres.</p>
+<p><a href="#contents">Contents</a></p>
+<p><a id="prerequisites"></a></p>
+<h2>Prerequisites</h2>
+<ul>
+<li>Gentoo Linux (see my <a href="http://dustinfarris.com/2012/2/setting-up-a-gentoo-server/">guide on setting up Gentoo</a>)</li>
+<li>Root access</li>
+</ul>
+<p><a href="#contents">Contents</a></p>
+<p><a id="firewall"></a></p>
+<h2>Firewall</h2>
+<p>If Postgres will be running on a separate server from your applications, you will have to open the Postgres port on your firewall.  If Postgres is running on the same machine as your applications, you can skip this section.</p>
+<p>Edit both <code>/etc/iptables.up.config</code> and <code>/etc/ip6tables.up.config</code> adding this line somewhere before the final "reject all" line:</p>
+<div class="highlight"><pre><span class="c"># PostgreSQL server</span>
+-A INPUT -p tcp -m state --state NEW --dport <span class="m">5432</span> -j ACCEPT
+</pre></div>
+
+
+<p>Save and restart iptables:</p>
+<div class="highlight"><pre><span class="go">iptables-restore &lt; /etc/iptables.up.config</span>
+<span class="go">ip6tables-restore &lt; /etc/ip6tables.up.config</span>
+<span class="go">/etc/init.d/iptables save</span>
+<span class="go">/etc/init.d/ip6tables save</span>
+<span class="go">/etc/init.d/iptables restart</span>
+<span class="go">/etc/init.d/ip6tables restart</span>
+</pre></div>
+
+
+<p><a href="#contents">Contents</a></p>
+<p><a id="install-postgres"></a></p>
+<h2>Install Postgres</h2>
+<p>The portage package with default USE flags is appropriate for our installation, so just emerge Postgres.</p>
+<div class="highlight"><pre><span class="go">emerge dev-db/postgresql-server</span>
+</pre></div>
+
+
+<p>Since Django and most other web frameworks are pushing everything to be UTF-8 encoded, it's best if the database server starts doing so from the beginning.  Before creating a database, find and change (or add if missing) a line in <code>/etc/conf.d/postgresql-9.1</code>.</p>
+<div class="highlight"><pre><span class="nv">PG_INITDB_OPTS</span><span class="o">=</span><span class="s2">&quot;--locale=en_US.UTF-8&quot;</span>
+</pre></div>
+
+
+<p>Now create a database.  The exact command for this depends on the version of Postgres that got installed, and portage will have outputted the command needed.  If this is lost in your console history, you can always retrieve it from the logs:</p>
+<div class="highlight"><pre><span class="go">grep &quot;config =dev-db/postgres&quot; /var/log/portage/elog/summary.log</span>
+</pre></div>
+
+
+<p>As of this writing, the current version of Postgres installed on a stable hardened profile is 9.1.4, so the command run is this:</p>
+<div class="highlight"><pre><span class="go">emerge --config =dev-db/postgresql-server-9.1.4</span>
+</pre></div>
+
+
+<p>This sets up a fresh database in <code>/var/lib/postgresql/9.1/</code> called <code>data</code>.  Now make any edits you need to <code>/etc/postgresql-9.1/postgresql.conf</code>.  The defaults are probably fine, I just make sure the following are set:</p>
+<div class="highlight"><pre><span class="nv">lc_messages</span> <span class="o">=</span> <span class="s1">&#39;en_US.UTF-8&#39;</span>
+<span class="nv">lc_monetary</span> <span class="o">=</span> <span class="s1">&#39;en_US.UTF-8&#39;</span>
+<span class="nv">lc_numeric</span> <span class="o">=</span> <span class="s1">&#39;en_US.UTF-8&#39;</span>
+<span class="nv">lc_time</span> <span class="o">=</span> <span class="s1">&#39;en_US.UTF-8&#39;</span>
+</pre></div>
+
+
+<p>Finally, if this server will be separate from the application server, you will need to explicitly tell Postgres to allow connections form your application server.  In <code>/etc/postgresql-9.1/postgresql.conf</code>, be sure that the <code>listen_addresses</code> variable contains the IP address postgres should listen on. e.g.:</p>
+<div class="highlight"><pre>listen_addresses = &#39;localhost, 192.168.0.120&#39;
+</pre></div>
+
+
+<p>Additional security-related configurations are found in <code>/etc/postgresql-9.1/pg_hba.conf</code>.  If needed, add this line toward the bottom (substituting your application server's IP address):</p>
+<div class="highlight"><pre>host  all  all  156.123.456.12  trust
+</pre></div>
+
+
+<p>Now, just start the database server and tell Gentoo to start it on boot.</p>
+<div class="highlight"><pre><span class="go">/etc/init.d/postgresql-9.1 start</span>
+<span class="go">rc-update add postgresql-9.1 default</span>
+</pre></div>
+
+
+<p><a href="#contents">Contents</a></p>
+<p><a id="install-postgis-extensions"></a></p>
+<h2>Install PostGIS Extensions</h2>
+<p><a href="http://postgis.refractions.net/">PostGIS</a> is a set of spatial extensions to support geographic objects in PostgreSQL.  There is a chance you may not need this right away, but it is extremely handy to have readily available when you do.  I recommend installing these extensions whether you foresee actually using them or not.</p>
+<p>First, install the <a href="http://www.gdal.org/">GDAL</a> dependency:</p>
+<div class="highlight"><pre><span class="go">emerge gdal -avq</span>
+</pre></div>
+
+
+<p>Before installing PostGIS, I find that it helps to "version lock" the installation as a major upgrade may break your applications without some TLC.  To do this, find the current version Portage is installing <a href="http://gentoo-portage.com/dev-db/postgis">here</a> and add an appropriate line to <code>/etc/portage/package.mask</code>.  I use PostGIS 1.5.3, but PostGIS was recently upgraded to 2.0.  This breaks my applications, so I want to hold off on that upgrade for now.  I added this line to <code>/etc/portage/package.mask</code>:</p>
+<div class="highlight"><pre>&gt;<span class="o">=</span>dev-db/postgis-2.0.0
+</pre></div>
+
+
+<p>which tells Portage not to install any version of PostGIS equal to or greater than 2.0.0.  Now, emerge PostGIS.</p>
+<div class="highlight"><pre><span class="go">emerge postgis -avq</span>
+</pre></div>
+
+
+<p>As you'll probably see in the output, PostGIS requires some painless configuration before it is ready to be installed into your database.  Find and edit these two lines in <code>/etc/postgis_dbs</code>:</p>
+<div class="highlight"><pre><span class="nv">templates</span><span class="o">=(</span><span class="s2">&quot;template_postgis&quot;</span><span class="o">)</span>
+<span class="nv">configured</span><span class="o">=</span><span class="s2">&quot;true&quot;</span>
+</pre></div>
+
+
+<p>Install PostGIS into your database; like Postgres, the exact command here depends on the exact version of PostGIS you installed.  If you forgot, just run:</p>
+<div class="highlight"><pre><span class="go">grep &quot;config =dev-db/postgis&quot; /var/log/portage/elog/summary.log</span>
+</pre></div>
+
+
+<p>For me, the command is:</p>
+<div class="highlight"><pre><span class="go">emerge --config =dev-db/postgis-1.5.3-r1</span>
+</pre></div>
+
+
+<p>With PostGIS now installed, you will will be able to create "spatially enabled" databases using <code>createdb -T template_postgis mydb</code>.  For more information, see the <a href="http://postgis.refractions.net/documentation/">PostGIS documentation</a>.</p>
+<p><a href="#contents">Contents</a></p>
+<p><a id="create-super-users"></a></p>
+<h2>Create Super Users</h2>
+<p>It makes life easier if each system user using Postgres has a corresponding Postgres superuser.  The two primary users of Postgres on my machine are <code>dustin</code> (my personal account) and <code>web</code> for web applications.</p>
+<div class="highlight"><pre><span class="go">usermod -aG postgres dustin</span>
+<span class="go">usermod -aG postgres web</span>
+<span class="go">su - postgres</span>
+<span class="go">createuser -s dustin</span>
+<span class="go">createuser -s web</span>
+</pre></div>
+
+
+<p>Now, when you switch two either of these accounts, you can run administrative commands (<code>createdb</code>, <code>dropdb</code>, etc..) painlessly.</p>
+<p><a href="#contents">Contents</a></p>
+<p><a id="conclusion"></a></p>
+<h2>Conclusion</h2>
+<p>If all went well, you now have a running PostgreSQL server ready to start accepting connections.  If you have any issues getting of the ground, feel free to comment here and/or email me.</p>
+<p><a href="#contents">Contents</a></p>
+    </div><!-- /.entry-content -->
+    <div class="comments">
+      <h2>Comments !</h2>
+      <div id="disqus_thread"></div>
+      <script type="text/javascript">
+        var disqus_shortname = 'dustinfarris';
+        var disqus_identifier = '2012/07/06/setting-up-a-postgresql-server-with-gentoo.html';
+        var disqus_url = 'http://dustinfarris.com/2012/07/06/setting-up-a-postgresql-server-with-gentoo.html';
+        (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//dustinfarris.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the comments.</noscript>
+    </div>
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>blogroll</h2>
+                        <ul>
+                            <li><a href="http://getpelican.com/">Pelican</a></li>
+                            <li><a href="http://python.org/">Python.org</a></li>
+                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+                            <li><a href="#">You can modify those links in your config file</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="http://dustinfarris.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-13275015-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+<script type="text/javascript">
+    var disqus_shortname = 'dustinfarris';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+</body>
+</html>

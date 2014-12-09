@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>"Using zClip to 'Copy to Clipboard'"</title>
+        <link rel="stylesheet" href="http://dustinfarris.com/theme/css/main.css" />
+        <link href="http://dustinfarris.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Dustin Farris Atom Feed" />
+
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="http://dustinfarris.com/">Dustin Farris </a></h1>
+                <nav><ul>
+                    <li class="active"><a href="http://dustinfarris.com/category/blog.html">blog</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="http://dustinfarris.com/2012/05/23/using-zclip-to-copy-to-clipboard.html" rel="bookmark"
+           title="Permalink to "Using zClip to 'Copy to Clipboard'"">"Using zClip to 'Copy to Clipboard'"</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2012-05-23T00:00:00+02:00">
+                Published: Wed 23 May 2012
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://dustinfarris.com/author/dustin-farris.html">Dustin Farris</a>
+        </address>
+<p>In <a href="http://dustinfarris.com/category/blog.html">blog</a>. </p>
+<p>tags: <a href="http://dustinfarris.com/tag/.html"></a> </p>
+</footer><!-- /.post-info -->      <p>I've begun using django-filer to manage site assets after years of trying to beat a square peg (django-filebrowser) through a round hole (everything else).  It's been a very rewarding transition.</p>
+<p>Part of the addiction to filebrowser was due to its integration with django-tinymce.  A long time ago, the maker of django-tinymce added a hook+widget for django-filebrowser and users have been complaining ever since.  Despite its shortcomings, though, people such as myself have continued using it because of the "this is the only way I can add images to my editor without uploading them somewhere else" mentality.</p>
+<p>Recently, however, django-tinymce and I have <a href="http://dustinfarris.com/2012/5/goodbye-tinymce/">gone our separate ways</a> leaving me with the freedom to choose a new editor, and a new way to manage media.  Enter django-filer.</p>
+<p><a href="https://github.com/stefanfoulis/django-filer">Django-filer</a> is a great alternative to django-filebrowser featuring a cleaner interface and plenty of extra bells an whistles.  I now use it to upload my assets before writing a blog.  The hard part, I found, was getting the URL of uploaded assets.  I decided to <a href="https://github.com/dustinfarris/django-filer">fork</a> the project and add a copy-to-clipboard function using the zClip library.</p>
+<p><a href="http://www.steamdev.com/zclip/">zClip</a> allows you to set up an event hook on any HTML element that copies given text to the clipboard by overlaying the element with a Flash movie.</p>
+<p>In this case, I used a span container for positioning, and then a nested span element to act as the widget:</p>
+<div class="highlight"><pre><span class="x">&lt;span style=&quot;position:relative&quot;&gt;</span>
+<span class="x">    &lt;span class=&quot;zclip&quot; data-copy=&quot;</span><span class="cp">{{</span> <span class="nv">file.url</span> <span class="cp">}}</span><span class="x">&quot;&gt;&lt;/span&gt;</span>
+<span class="x">&lt;/span&gt;</span>
+</pre></div>
+
+
+<p>Activating the widget is accomplished by adding a simple jQuery snippet in the <code>&lt;head&gt;</code>.</p>
+<div class="highlight"><pre><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;span.zclip&#39;</span><span class="p">).</span><span class="nx">zclip</span><span class="p">({</span>
+    <span class="nx">path</span><span class="o">:</span> <span class="s2">&quot;flash/ZeroClipboard.swf&quot;</span><span class="p">,</span>
+    <span class="nx">copy</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;data-copy&#39;</span><span class="p">);</span>
+    <span class="p">},</span>
+    <span class="nx">afterCopy</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">fadeOut</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">show</span><span class="p">();</span>
+            <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+
+
+<p>To make it work properly I had to add some CSS:</p>
+<div class="highlight"><pre><span class="nt">span</span><span class="nc">.zclip</span> <span class="p">{</span>
+    <span class="k">position</span><span class="o">:</span> <span class="k">absolute</span><span class="p">;</span>
+    <span class="k">top</span><span class="o">:</span> <span class="m">0</span><span class="p">;</span>
+    <span class="k">left</span><span class="o">:</span> <span class="m">0</span><span class="p">;</span>
+    <span class="k">width</span><span class="o">:</span> <span class="m">16px</span><span class="p">;</span>
+    <span class="k">height</span><span class="o">:</span> <span class="m">16px</span><span class="p">;</span>
+    <span class="k">background</span><span class="o">:</span> <span class="sx">url(&#39;../img/clip.png&#39;)</span> <span class="k">no-repeat</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Voila, I can quickly upload images and grab the URL making the disconnect from filebrowser even less bothersome:
+<img alt="Screenshot of copy to clipboard" src="http://dustinfarris.com/media/filer/2012/05/23/screen_shot_2012-05-23_at_35113_pm.png" /></p>
+    </div><!-- /.entry-content -->
+    <div class="comments">
+      <h2>Comments !</h2>
+      <div id="disqus_thread"></div>
+      <script type="text/javascript">
+        var disqus_shortname = 'dustinfarris';
+        var disqus_identifier = '2012/05/23/using-zclip-to-copy-to-clipboard.html';
+        var disqus_url = 'http://dustinfarris.com/2012/05/23/using-zclip-to-copy-to-clipboard.html';
+        (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//dustinfarris.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the comments.</noscript>
+    </div>
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>blogroll</h2>
+                        <ul>
+                            <li><a href="http://getpelican.com/">Pelican</a></li>
+                            <li><a href="http://python.org/">Python.org</a></li>
+                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+                            <li><a href="#">You can modify those links in your config file</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="http://dustinfarris.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-13275015-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+<script type="text/javascript">
+    var disqus_shortname = 'dustinfarris';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+</body>
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>"RESTful Django"</title>
+        <link rel="stylesheet" href="http://dustinfarris.com/theme/css/main.css" />
+        <link href="http://dustinfarris.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Dustin Farris Atom Feed" />
+
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="http://dustinfarris.com/">Dustin Farris </a></h1>
+                <nav><ul>
+                    <li class="active"><a href="http://dustinfarris.com/category/blog.html">blog</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="http://dustinfarris.com/2012/09/11/restful-django.html" rel="bookmark"
+           title="Permalink to "RESTful Django"">"RESTful Django"</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2012-09-11T00:00:00+02:00">
+                Published: Tue 11 September 2012
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://dustinfarris.com/author/dustin-farris.html">Dustin Farris</a>
+        </address>
+<p>In <a href="http://dustinfarris.com/category/blog.html">blog</a>. </p>
+<p>tags: <a href="http://dustinfarris.com/tag/django-rest.html">Django REST</a> </p>
+</footer><!-- /.post-info -->      <p>I've been taking a lot of time lately to determine a best practice way of incorporating a RESTful approach to Django views.  My goal is to come up with a solution so simple, using a third party library won't be necessary.</p>
+<p>As a first step, I've borrowed a lot of ideas from Rails, which makes a RESTful framework practically <a href="http://guides.rubyonrails.org/routing.html">seamless</a>.</p>
+<p>The four HTTP methods that we most need support for are GET, POST, PUT, and DELETE.  This doesn't fully cover all potential "views" though, thus some methods become ambiguous.  For instance, GET may be used to return an object, or a list of objects.</p>
+<p>An important question is how compact do we want our URL structure to be?  If we have a separate distinguishable URL for every action (not method), then the code is straight forward, but the URL structure perhaps becomes sloppy.  If we consolidate the actions into a few URL patterns, then the URL structure is cleaner, but the coding becomes complicated.  There is a tradeoff either way.</p>
+<p>I've chosen to try the latter approach, using methods to give URLs multiple actions.</p>
+<p>The primary actions I need for any basic model are:</p>
+<ul>
+<li>Create</li>
+<li>Show</li>
+<li>Show list</li>
+<li>Update</li>
+<li>Delete</li>
+</ul>
+<p>And these can all be accomplished with our 4 methods and just two URLs:</p>
+<ul>
+<li>/objects/</li>
+<li>/object/id/</li>
+</ul>
+<p>But we also want to return data in an appropriate manner for API calls, so we add JSON extensions and our URL list becomes:</p>
+<ul>
+<li>/objects/</li>
+<li>/objects.json</li>
+<li>/objects/id/</li>
+<li>/objects/id.json</li>
+</ul>
+<p>So in <code>urls.py</code> we add these two patterns.  Assuming we've namespaced our application, this will look something like:</p>
+<div class="highlight"><pre><span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;&#39;</span><span class="p">,</span>
+    <span class="n">url</span><span class="p">(</span><span class="s">r&#39;^s/$&#39;</span><span class="p">,</span> <span class="o">...</span> <span class="p">),</span>
+    <span class="n">url</span><span class="p">(</span><span class="s">r&#39;^s\.json$&#39;</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;as_json&#39;</span><span class="p">:</span> <span class="bp">True</span><span class="p">}),</span>
+    <span class="n">url</span><span class="p">(</span><span class="s">r&#39;^/(?P&lt;id&gt;\d+)/$&#39;</span><span class="p">,</span> <span class="o">...</span> <span class="p">),</span>
+    <span class="n">url</span><span class="p">(</span><span class="s">r&#39;^/(?P&lt;id&gt;\d+)\.json$&#39;</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;as_json&#39;</span><span class="p">:</span> <span class="bp">True</span><span class="p">}),</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<h2>A 4-way stop</h2>
+<p>So the difficult part becomes the views.  I decided to put a "management" view called <code>do</code> in front of the real workers to determine what the intended action is.  It polls the method used and any POST data that might point it in the right direction.  Hiding a <code>_method</code> input element in HTML pages works nicely for this when you want to call a method besides GET or POST (thanks Rails).</p>
+<div class="highlight"><pre><span class="nd">@csrf_exempt</span>
+<span class="k">def</span> <span class="nf">do</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s">&#39;POST&#39;</span><span class="p">:</span>
+        <span class="n">method</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;_method&#39;</span><span class="p">,</span> <span class="s">&#39;POST&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">method</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s">&#39;get&#39;</span><span class="p">:</span> <span class="n">_show</span><span class="p">,</span>
+        <span class="s">&#39;post&#39;</span><span class="p">:</span> <span class="n">_create</span><span class="p">,</span>
+        <span class="s">&#39;put&#39;</span><span class="p">:</span> <span class="n">_update</span><span class="p">,</span>
+        <span class="s">&#39;delete&#39;</span><span class="p">:</span> <span class="n">_destroy</span><span class="p">,</span>
+    <span class="p">}[</span><span class="n">method</span><span class="o">.</span><span class="n">lower</span><span class="p">()](</span><span class="n">request</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Now that our request is pointed in the right direction, we have to handle it appropriately.</p>
+<h2>Show</h2>
+<p>The show action is arguably the easiest to handle, we just have to determine if we are showing one object, or a list of objects.</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">_show_list</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">as_json</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">MyObject</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">as_json</span><span class="p">:</span>
+        <span class="n">objs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">queryset</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
+            <span class="n">objs</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+              <span class="n">k</span><span class="p">:</span><span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">obj</span><span class="o">.</span><span class="n">__dict__</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">is</span> <span class="ow">not</span> <span class="s">&#39;_state&#39;</span><span class="p">})</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">objs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="n">content_type</span><span class="o">=</span><span class="s">&#39;application/json&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">&#39;objects/object_list.html&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;object_list&#39;</span><span class="p">:</span> <span class="n">queryset</span><span class="p">})</span>
+
+<span class="k">def</span> <span class="nf">_show</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">as_json</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">id</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">_show_list</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">as_json</span><span class="p">)</span>
+    <span class="n">obj</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="n">MyObject</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">as_json</span><span class="p">:</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span>
+            <span class="n">k</span><span class="p">:</span><span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">obj</span><span class="o">.</span><span class="n">__dict__</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">is</span> <span class="ow">not</span> <span class="s">&#39;_state&#39;</span><span class="p">})</span>
+        <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="n">content_type</span><span class="o">=</span><span class="s">&#39;application/json&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">&#39;objects/object_detail.html&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;object&#39;</span><span class="p">:</span> <span class="n">obj</span><span class="p">})</span>
+</pre></div>
+
+
+<h2>Create</h2>
+<p>Here is a stumbling point for me.  Everything "just works" here, but not explicitly.  The "form processing" functionality Django comes out of the box with just so happens to process any such data as long is it is appropriately keyed.  I would prefer a more robust method, but for now:</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">new</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">form</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="n">form</span> <span class="o">=</span> <span class="n">form</span> <span class="ow">or</span> <span class="n">NewObjectForm</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">&#39;objects/new.html&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;form&#39;</span><span class="p">:</span> <span class="n">form</span><span class="p">})</span>
+
+<span class="k">def</span> <span class="nf">_create</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="n">form</span> <span class="o">=</span> <span class="n">NewObjectForm</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">form</span><span class="o">.</span><span class="n">is_valid</span><span class="p">():</span>
+        <span class="n">new_obj</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+        <span class="n">messages</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">&quot;New object created!&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">new_obj</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">new</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">form</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Note that we create a <code>new</code> view to display the standard HTML form for browser users.</p>
+<h2>Update</h2>
+<p>The reason I'm not completely satisfied with the way I handle the create action becomes visible here in the update action.  The same mentality applies, except we can no longer rely on Django's form data parsing--a PUT request doesn't come with request.POST; so, we have to rely on the raw data.</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">edit</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">form</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="n">obj</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="n">MyObject</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
+    <span class="n">form</span> <span class="o">=</span> <span class="n">form</span> <span class="ow">or</span> <span class="n">EditObjectForm</span><span class="p">(</span><span class="n">instance</span><span class="o">=</span><span class="n">obj</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">&#39;objects/edit.html&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;form&#39;</span><span class="p">:</span> <span class="n">form</span><span class="p">})</span>
+
+<span class="k">def</span> <span class="nf">_update</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
+    <span class="n">obj</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="n">MyObject</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s">&#39;PUT&#39;</span><span class="p">:</span>
+        <span class="n">raw_put_data</span> <span class="o">=</span> <span class="n">urlparse</span><span class="o">.</span><span class="n">parse_qs</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">raw_post_data</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">raw_put_data</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+        <span class="n">obj</span><span class="o">.</span><span class="n">attr1</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;attr1&#39;</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">attr1</span><span class="p">)</span>
+        <span class="n">obj</span><span class="o">.</span><span class="n">attr2</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;attr2&#39;</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">attr2</span><span class="p">)</span>
+        <span class="o">...</span>
+        <span class="n">obj</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="s">&quot;Success&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">form</span> <span class="o">=</span> <span class="n">EditObjectForm</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">,</span> <span class="n">instance</span><span class="o">=</span><span class="n">obj</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">form</span><span class="o">.</span><span class="n">is_valid</span><span class="p">():</span>
+            <span class="n">updated_object</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+            <span class="n">messages</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">&quot;Object edit successful.&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">updated_object</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">edit</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">form</span><span class="p">)</span>
+</pre></div>
+
+
+<h2>Delete</h2>
+<p>Last, but not least is the delete/destroy action.  I suppose this is the easiest to implement.</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">_destroy</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
+    <span class="n">obj</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="n">MyObject</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
+    <span class="n">obj</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+    <span class="n">messages</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">&quot;Object destroyed!&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">_show_list</span><span class="p">)</span>
+</pre></div>
+
+
+<p>So there's one way to get RESTfulish environment into Django.  It is far from perfect, and I haven't bothered trying to explain how to do user authentication and whatnot here since I'm still trying to wrap my head around it.  But at any rate, you should be able to runserver, and run basic HTTP methods against your data.</p>
+    </div><!-- /.entry-content -->
+    <div class="comments">
+      <h2>Comments !</h2>
+      <div id="disqus_thread"></div>
+      <script type="text/javascript">
+        var disqus_shortname = 'dustinfarris';
+        var disqus_identifier = '2012/09/11/restful-django.html';
+        var disqus_url = 'http://dustinfarris.com/2012/09/11/restful-django.html';
+        (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//dustinfarris.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the comments.</noscript>
+    </div>
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>blogroll</h2>
+                        <ul>
+                            <li><a href="http://getpelican.com/">Pelican</a></li>
+                            <li><a href="http://python.org/">Python.org</a></li>
+                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+                            <li><a href="#">You can modify those links in your config file</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="http://dustinfarris.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-13275015-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+<script type="text/javascript">
+    var disqus_shortname = 'dustinfarris';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+</body>
+</html>

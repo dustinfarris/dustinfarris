@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>"Testing APIs in Django"</title>
+        <link rel="stylesheet" href="http://dustinfarris.com/theme/css/main.css" />
+        <link href="http://dustinfarris.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Dustin Farris Atom Feed" />
+
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="http://dustinfarris.com/">Dustin Farris </a></h1>
+                <nav><ul>
+                    <li class="active"><a href="http://dustinfarris.com/category/blog.html">blog</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="http://dustinfarris.com/2013/06/23/testing-apis-in-django.html" rel="bookmark"
+           title="Permalink to "Testing APIs in Django"">"Testing APIs in Django"</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2013-06-23T00:00:00+02:00">
+                Published: Sun 23 June 2013
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://dustinfarris.com/author/dustin-farris.html">Dustin Farris</a>
+        </address>
+<p>In <a href="http://dustinfarris.com/category/blog.html">blog</a>. </p>
+<p>tags: <a href="http://dustinfarris.com/tag/django.html">[Django]</a> </p>
+</footer><!-- /.post-info -->      <p>I think anyone who has got their hands more than slightly wet with functional testing knows the pain of testing code that relies on API calls.  The usual suspects can bring your tests to a screeching halt: your network is down, the API is down, the API changed.  While knowing about any of the above is important, you likely don't want a flood of emails every time the API you use has a hiccup.</p>
+<p>Python has a few solutions to this problem.  The one I am using is also one of the simplest: <a href="https://github.com/kevin1024/vcrpy">VCR.py</a>.  It wraps any code you like and listens for HTTP requests.  It records the responses to these requests to a file and then uses the file instead of the actual HTTP request going forward.  Awesome.</p>
+<p>Not only does this eliminate the annoying test failures, it also speeds up the test suite overall.  Two wins for the price of one.</p>
+<h2>What about Behavioral Tests?</h2>
+<p>Excellent question.  Turns out wrapping Selenium tests in VCR is not a good idea because it records <em>everything</em> that is communicated over HTTP.  For Selenium that means every page request to the browser, session cookie transmission, etc..  Solution?  A little get method to replace requests.get.</p>
+<p>First a few extra settings in <code>test_settings.py</code>:</p>
+<div class="highlight"><pre><span class="n">VCR_PATH</span> <span class="o">=</span> <span class="n">join</span><span class="p">(</span><span class="n">TEST_DIR</span><span class="p">,</span> <span class="s">&#39;fixtures&#39;</span><span class="p">,</span> <span class="s">&#39;responses.yaml&#39;</span><span class="p">)</span>
+<span class="n">USE_VCR</span> <span class="o">=</span> <span class="bp">True</span>
+</pre></div>
+
+
+<p>And a get function in <code>myproject/http.py</code></p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.conf</span> <span class="kn">import</span> <span class="n">settings</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">vcr</span>
+
+
+<span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Wrap HTTP requests with VCR if we are testing.&quot;&quot;&quot;</span>
+    <span class="n">use_vcr</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">settings</span><span class="p">,</span> <span class="s">&#39;USE_VCR&#39;</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">use_vcr</span><span class="p">:</span>
+        <span class="n">vcr</span><span class="o">.</span><span class="n">patch</span><span class="o">.</span><span class="n">install</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">VCR_PATH</span><span class="p">)</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">use_vcr</span><span class="p">:</span>
+        <span class="n">vcr</span><span class="o">.</span><span class="n">patch</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">response</span>
+</pre></div>
+
+
+<p>Use this method from now on anywhere you would ordinarily use requests.get.</p>
+    </div><!-- /.entry-content -->
+    <div class="comments">
+      <h2>Comments !</h2>
+      <div id="disqus_thread"></div>
+      <script type="text/javascript">
+        var disqus_shortname = 'dustinfarris';
+        var disqus_identifier = '2013/06/23/testing-apis-in-django.html';
+        var disqus_url = 'http://dustinfarris.com/2013/06/23/testing-apis-in-django.html';
+        (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//dustinfarris.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the comments.</noscript>
+    </div>
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>blogroll</h2>
+                        <ul>
+                            <li><a href="http://getpelican.com/">Pelican</a></li>
+                            <li><a href="http://python.org/">Python.org</a></li>
+                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+                            <li><a href="#">You can modify those links in your config file</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="http://dustinfarris.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-13275015-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+<script type="text/javascript">
+    var disqus_shortname = 'dustinfarris';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+</body>
+</html>

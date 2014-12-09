@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>"Why Build a Blog with Django?"</title>
+        <link rel="stylesheet" href="http://dustinfarris.com/theme/css/main.css" />
+        <link href="http://dustinfarris.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Dustin Farris Atom Feed" />
+
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="http://dustinfarris.com/">Dustin Farris </a></h1>
+                <nav><ul>
+                    <li class="active"><a href="http://dustinfarris.com/category/blog.html">blog</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="http://dustinfarris.com/2012/05/18/why-build-a-blog-with-django.html" rel="bookmark"
+           title="Permalink to "Why Build a Blog with Django?"">"Why Build a Blog with Django?"</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2012-05-18T00:00:00+02:00">
+                Published: Fri 18 May 2012
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://dustinfarris.com/author/dustin-farris.html">Dustin Farris</a>
+        </address>
+<p>In <a href="http://dustinfarris.com/category/blog.html">blog</a>. </p>
+<p>tags: <a href="http://dustinfarris.com/tag/django.html">Django</a> </p>
+</footer><!-- /.post-info -->      <p>This question comes up a lot, both in flame wars and in rational discussion.  Why would you take time to build a blog application with Django when there are engines like WordPress that do the same thing out of the box.  Well it depends.</p>
+<p>The number one reason I think people choose Django to build a blog is because they want to learn Django.  Blogs are relatively straight forward animals.  They have an author, a title, and some sort of content.  They usually appear in chronological order on an index page of some kind, and if you're feeling feisty, that might even have "tags."</p>
+<p>But why else?  Yes, I built my blog with Django to learn Django, but I keep it that way because I can literally modify it in any way I please.  I am not dependent on a bucket of "plugins" that may or may not have the functionality I desire.  For example, let's say I have a typical blog model that looks like this:</p>
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">Entry</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">pub_date</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateTimeField</span><span class="p">(</span><span class="n">auto_now_add</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">slug</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">SlugField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">author</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">User</span><span class="p">)</span>
+    <span class="n">content</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">TextField</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">__unicode__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">title</span>
+
+    <span class="nd">@models.permalink</span>
+    <span class="k">def</span> <span class="nf">get_absolute_url</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span><span class="s">&#39;blog:detail&#39;</span><span class="p">,</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">slug</span><span class="p">])</span>
+</pre></div>
+
+
+<p>First, I'd like to point out how easy that was to make.  Second, assume I decide I want my blog to post to Twitter everytime I write a new entry.  Rather than digging for a WordPress plugin that may or may not do what I want, I can just override my save method:</p>
+<div class="highlight"><pre><span class="n">published_to_twitter</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="kn">import</span> <span class="nn">twitter</span>
+    <span class="n">api</span> <span class="o">=</span> <span class="n">twitter</span><span class="o">.</span><span class="n">Api</span><span class="p">(</span>
+            <span class="n">consumer_key</span><span class="o">=</span><span class="n">settings</span><span class="o">.</span><span class="n">TWITTER_CONSUMER_KEY</span><span class="p">,</span>
+            <span class="n">consumer_secret</span><span class="o">=</span><span class="n">settings</span><span class="o">.</span><span class="n">TWITTER_CONSUMER_SECRET</span><span class="p">,</span>
+            <span class="n">access_token_key</span><span class="o">=</span><span class="n">settings</span><span class="o">.</span><span class="n">TWITTER_ACCESS_TOKEN_KEY</span><span class="p">,</span>
+            <span class="n">access_token_secret</span><span class="o">=</span><span class="n">settings</span><span class="o">.</span><span class="n">TWITTER_ACCESS_TOKEN_SECRET</span><span class="p">)</span>
+    <span class="n">api</span><span class="o">.</span><span class="n">PostUpdate</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="s"> http://example.com</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">title</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_absolute_url</span><span class="p">()))</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">published_to_twitter</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="nb">super</span><span class="p">(</span><span class="n">Entry</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Done, and I have full control over what is going on.  From the RSS feed, to the way my blog is displayed in a list view, and a detail view, to what comment engines I want to use, to how I want my blog to be tagged and/or categorized to collaboration, <em>I am in control.</em></p>
+<p>Of course, that may not appeal to everyone, and I'll grant that no amount of internal control can trump the content you post.  But I say if you have the ability, Django is the way to go.  The learning curve is not as steep as you think, and it gives you a level of intimacy with your blog that you would not otherwise have.</p>
+    </div><!-- /.entry-content -->
+    <div class="comments">
+      <h2>Comments !</h2>
+      <div id="disqus_thread"></div>
+      <script type="text/javascript">
+        var disqus_shortname = 'dustinfarris';
+        var disqus_identifier = '2012/05/18/why-build-a-blog-with-django.html';
+        var disqus_url = 'http://dustinfarris.com/2012/05/18/why-build-a-blog-with-django.html';
+        (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//dustinfarris.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the comments.</noscript>
+    </div>
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>blogroll</h2>
+                        <ul>
+                            <li><a href="http://getpelican.com/">Pelican</a></li>
+                            <li><a href="http://python.org/">Python.org</a></li>
+                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+                            <li><a href="#">You can modify those links in your config file</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="http://dustinfarris.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-13275015-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+<script type="text/javascript">
+    var disqus_shortname = 'dustinfarris';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+</body>
+</html>

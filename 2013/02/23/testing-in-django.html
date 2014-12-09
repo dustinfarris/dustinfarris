@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>"Testing in Django"</title>
+        <link rel="stylesheet" href="http://dustinfarris.com/theme/css/main.css" />
+        <link href="http://dustinfarris.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Dustin Farris Atom Feed" />
+
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="http://dustinfarris.com/">Dustin Farris </a></h1>
+                <nav><ul>
+                    <li class="active"><a href="http://dustinfarris.com/category/blog.html">blog</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="http://dustinfarris.com/2013/02/23/testing-in-django.html" rel="bookmark"
+           title="Permalink to "Testing in Django"">"Testing in Django"</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2013-02-23T00:00:00+01:00">
+                Published: Sat 23 February 2013
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://dustinfarris.com/author/dustin-farris.html">Dustin Farris</a>
+        </address>
+<p>In <a href="http://dustinfarris.com/category/blog.html">blog</a>. </p>
+<p>tags: <a href="http://dustinfarris.com/tag/django.html">Django</a> </p>
+</footer><!-- /.post-info -->      <p>Writing tests and test-driven development has become all the rage lately; but before declaring assertions left and
+right, it's important to consider where, why, and how you will write your tests.</p>
+<p>Different frameworks have different philosophies about how to go about this but, more often than not, developers tend
+to create their own style or use the style of third-party test libraries.  While there is nothing wrong with differing
+styles, you should take care to ensure that your are being efficient and effective.</p>
+<p>This is my (by no means authoritative) take on the three important divisions of testing (unit/integration/functional)
+in Django.</p>
+<h2>Unit Tests</h2>
+<p>The most basic level of testing is unit testing.  This is where you ensure your module uses other (already tested)
+modules the way it should.  They are absolutely the least complex, no-brainer-type tests you will ever write.</p>
+<p>Think about unit tests like hooking up cars on a train.  When you hook up a car on the end of a train you'll double-
+check that it is indeed fastened to the car in front of it.  You won't recheck the entire train because you assume
+whoever hooked up the cars in front did their part ensuring everything was in place.</p>
+<p>For example, say I have a filter I call often so I put it into a module:</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">get_authors</span><span class="p">(</span><span class="n">library</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">Author</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">books__library</span><span class="o">=</span><span class="n">library</span><span class="p">)</span>
+</pre></div>
+
+
+<p>We know that Django's ORM works—it is <em>very</em> well tested—so there is no need to re-test it.  What we do need to
+test, though, is that our function utilizes the ORM the way we want.  We accomplish this with a unit test and a
+wonderful library called <a href="http://www.voidspace.org.uk/python/mock/">Mock</a>. (now
+<a href="http://docs.python.org/3/library/unittest.mock.html">included</a> in Python 3.3 and up)</p>
+<p>Installing Mock is easy with pip: <code>pip install mock</code></p>
+<p>Mock replaces a module with a fake module that intercepts calls and records them along with any arguments involved.
+Using mock in our example, we can show that our method calls <code>Author.objects.filter</code> without actually running it.</p>
+<p>The basic usage of Mock is first setting it up:</p>
+<div class="highlight"><pre><span class="n">my_mock</span> <span class="o">=</span> <span class="n">Mock</span><span class="p">(</span><span class="n">return_value</span><span class="o">=</span><span class="s">&quot;something&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>And then asserting that it was called with any number of arguments:</p>
+<div class="highlight"><pre><span class="n">my_mock</span><span class="o">.</span><span class="n">assert_called_with</span><span class="p">(</span><span class="n">myarg</span><span class="o">=</span><span class="n">myvalue</span><span class="p">)</span>
+</pre></div>
+
+
+<p>For our Django unit tests, we'll use Mock's <code>patch</code> decorator which declares a Mock for the duration of the test:</p>
+<div class="highlight"><pre><span class="nd">@patch</span><span class="p">(</span><span class="s">&#39;mymodule.mymethod&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">test_something</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mymethod_mock</span><span class="p">):</span>
+    <span class="n">do_something</span><span class="p">()</span>
+    <span class="n">mymethod_mock</span><span class="o">.</span><span class="n">assert_called_with</span><span class="p">()</span>
+</pre></div>
+
+
+<p>Here's what a unit test looks like for our example:</p>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">unittest</span>
+
+<span class="kn">import</span> <span class="nn">mock</span>
+
+<span class="kn">from</span> <span class="nn">myapp.mymodule</span> <span class="kn">import</span> <span class="n">get_authors</span>
+
+
+<span class="k">class</span> <span class="nc">GetAuthorsTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+
+    <span class="nd">@mock.patch</span><span class="p">(</span><span class="s">&#39;myapp.mymodule.Author&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">test_get_authors</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">AuthorMock</span><span class="p">):</span>
+        <span class="n">Author</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span> <span class="o">=</span> <span class="n">mock</span><span class="o">.</span><span class="n">Mock</span><span class="p">(</span><span class="n">return_value</span><span class="o">=</span><span class="s">&quot;ReturnMock&quot;</span><span class="p">)</span>
+
+        <span class="n">result</span> <span class="o">=</span> <span class="n">get_authors</span><span class="p">(</span><span class="s">&quot;library_mock&quot;</span><span class="p">)</span>
+
+        <span class="n">Author</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="o">.</span><span class="n">assert_called_with</span><span class="p">(</span><span class="n">books__library</span><span class="o">=</span><span class="s">&quot;library_mock&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="s">&quot;ReturnMock&quot;</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+</pre></div>
+
+
+<p>In summary, we:</p>
+<ul>
+<li>
+<p>"Patched" our test by mocking Author.  Note that we reference Author as and object
+    within our module, not from it's original source which probably would have been
+    something like <code>myapp.models.Author</code>.  Also note that mock patches are passed to
+    your function as arguments which can be any name you like.  I chose <code>AuthorMock</code>.</p>
+</li>
+<li>
+<p>Piggybacked another mock, <code>objects.filter</code>, on top of the AuthorMock.  You'll
+    find that mocks are very flexible once they've been created.</p>
+</li>
+<li>
+<p>Assigned a return value to the objects.filter mock.  We test for this later.</p>
+</li>
+<li>
+<p>Called the function we want to test with a dummy argument.</p>
+</li>
+<li>
+<p>Asserted that our mock was indeed called with the appropriate arguments.</p>
+</li>
+<li>
+<p>Asserted that the function did indeed return the result of that call, which in
+    this case should be the value we gave to return_value.</p>
+</li>
+</ul>
+<p>We accomplished all this without actually touching the Django ORM, but now we know for sure that when mocks are put
+aside, this function will operate correctly.</p>
+<p>Why do we do it this way?  Why not create some dummy data in the database in and see if it produces the right results.
+Well we actually will do that later, in the form of integration tests.  Unit tests have two big benefits:</p>
+<ul>
+<li>
+<p>They reduce false-positives by ensuring your code is utilizing the right code
+    rather than producing the right results (which could be right for your test, but
+    wrong in other scenarios)</p>
+</li>
+<li>
+<p>They are very, <em>very</em> fast.</p>
+</li>
+</ul>
+<p>Notice we don't even use Django's <code>TestCase</code>.  We don't need it.  For some unit tests you may, but often Python's
+<code>unittest</code> library and mock are all you need.  These tests will run insanely fast, and for that fact, you can get
+into the habit of running them periodically while you're developing.</p>
+<p>As you build your application, each building block should be unit tested.  This will increase confidence in your
+architecture especially when you add features to existing code.</p>
+<h2>Integration Tests</h2>
+<p>These are usually the most common tests that beginners right because they tend to be pretty straight-forward, and don't
+require much thought.  Integration tests essentially are meant to accomplish "if I put in input A, do I get expected
+output B?"</p>
+<p>In Django, integration tests ensure that your modules and views are generating the content you expect them to.</p>
+<p>The easiest way to write integration tests in Django is to use the <code>TestClient</code> that Django provides which allows you
+to fake browser requests and see what sort of responses you get back from you application.</p>
+<p>Say we have this very basic view:</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">blog_detail</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">blog_id</span><span class="p">):</span>
+    <span class="n">blog</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="n">Blog</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">blog_id</span><span class="p">)</span>
+    <span class="n">context</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;blog&#39;</span><span class="p">:</span> <span class="n">blog</span><span class="p">}</span>
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">&quot;blog/blog_detail.html&quot;</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+<span class="p">{</span><span class="o">%</span> <span class="n">endhighlight</span> <span class="o">%</span>
+
+<span class="n">There</span> <span class="n">are</span> <span class="n">really</span> <span class="n">two</span> <span class="n">scenarios</span> <span class="n">we</span> <span class="n">would</span> <span class="n">want</span> <span class="n">to</span> <span class="n">test</span> <span class="k">for</span> <span class="n">here</span><span class="p">:</span>
+
+<span class="mf">1.</span> <span class="n">Scenario</span> <span class="ow">in</span> <span class="n">which</span> <span class="n">the</span> <span class="n">blog</span> <span class="n">exists</span>
+<span class="mf">2.</span> <span class="n">Scenario</span> <span class="ow">in</span> <span class="n">which</span> <span class="n">the</span> <span class="n">blog</span> <span class="n">does</span> <span class="ow">not</span> <span class="n">exist</span>
+
+<span class="n">In</span> <span class="n">scenario</span> <span class="mi">1</span> <span class="n">we</span> <span class="n">would</span> <span class="n">expect</span> <span class="n">the</span> <span class="n">view</span> <span class="n">to</span> <span class="k">return</span> <span class="n">a</span> <span class="n">success</span> <span class="p">(</span><span class="mi">200</span><span class="p">)</span> <span class="n">response</span> <span class="n">after</span> <span class="n">rendering</span> <span class="n">the</span> <span class="n">blog_detail</span> <span class="n">template</span><span class="o">.</span>  <span class="n">In</span>
+<span class="n">scenario</span> <span class="mi">2</span> <span class="n">we</span> <span class="n">would</span> <span class="n">expect</span> <span class="n">the</span> <span class="n">view</span> <span class="n">to</span> <span class="k">return</span> <span class="n">a</span> <span class="ow">not</span><span class="o">-</span><span class="n">found</span> <span class="n">response</span> <span class="p">(</span><span class="mi">404</span><span class="p">)</span><span class="o">.</span>
+
+<span class="n">To</span> <span class="n">accomplish</span> <span class="n">this</span> <span class="n">we</span> <span class="n">will</span> <span class="n">use</span> <span class="n">another</span> <span class="n">common</span> <span class="n">testing</span> <span class="n">apparatus</span> <span class="n">called</span> <span class="n">a</span> <span class="n">fixture</span><span class="o">.</span>  <span class="n">The</span> <span class="n">Mock</span> <span class="n">library</span> <span class="n">provides</span> <span class="n">a</span>
+<span class="n">decorator</span> <span class="n">to</span> <span class="n">make</span> <span class="n">this</span> <span class="n">easy</span><span class="o">.</span>  <span class="n">Essentially</span><span class="p">,</span> <span class="n">you</span> <span class="n">write</span> <span class="n">an</span> <span class="n">instance</span> <span class="n">method</span> <span class="ow">in</span> <span class="n">your</span> <span class="n">test</span> <span class="n">case</span> <span class="n">that</span> <span class="n">defines</span> <span class="n">the</span> <span class="n">fixture</span><span class="o">.</span>
+<span class="n">For</span> <span class="n">example</span><span class="p">:</span>
+
+<span class="sb">``</span><span class="err">`</span><span class="n">python</span>
+<span class="nd">@fixture</span>
+<span class="k">def</span> <span class="nf">user</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s">&quot;bob&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Here is how we would write a test using Django's TestClient:</p>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">mock</span>
+
+<span class="kn">from</span> <span class="nn">django.core.urlresolvers</span> <span class="kn">import</span> <span class="n">reverse</span>
+<span class="kn">from</span> <span class="nn">django.test</span> <span class="kn">import</span> <span class="n">TestCase</span>
+
+<span class="kn">from</span> <span class="nn">myblogapp.models</span> <span class="kn">import</span> <span class="n">Blog</span>
+<span class="kn">from</span> <span class="nn">myblogapp.views</span> <span class="kn">import</span> <span class="n">blog_detail</span>
+
+
+<span class="k">class</span> <span class="nc">BlogDetailTest</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
+
+    <span class="nd">@mock.fixture</span>
+    <span class="k">def</span> <span class="nf">blog</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Blog</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+            <span class="n">title</span><span class="o">=</span><span class="s">&quot;BlogMock&quot;</span><span class="p">,</span> <span class="n">content</span><span class="o">=</span><span class="s">&quot;BlogMock&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">test_when_blog_exists</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</pre></div>
+    </div><!-- /.entry-content -->
+    <div class="comments">
+      <h2>Comments !</h2>
+      <div id="disqus_thread"></div>
+      <script type="text/javascript">
+        var disqus_shortname = 'dustinfarris';
+        var disqus_identifier = '2013/02/23/testing-in-django.html';
+        var disqus_url = 'http://dustinfarris.com/2013/02/23/testing-in-django.html';
+        (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//dustinfarris.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the comments.</noscript>
+    </div>
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>blogroll</h2>
+                        <ul>
+                            <li><a href="http://getpelican.com/">Pelican</a></li>
+                            <li><a href="http://python.org/">Python.org</a></li>
+                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+                            <li><a href="#">You can modify those links in your config file</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="http://dustinfarris.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-13275015-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+<script type="text/javascript">
+    var disqus_shortname = 'dustinfarris';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+</body>
+</html>

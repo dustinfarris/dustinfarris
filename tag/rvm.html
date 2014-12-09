@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>Dustin Farris - RVM</title>
+        <link rel="stylesheet" href="http://dustinfarris.com/theme/css/main.css" />
+        <link href="http://dustinfarris.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Dustin Farris Atom Feed" />
+
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="http://dustinfarris.com/">Dustin Farris </a></h1>
+                <nav><ul>
+                    <li><a href="http://dustinfarris.com/category/blog.html">blog</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="http://dustinfarris.com/2012/12/13/rvmrc-and-binstubs.html">".rvmrc and binstubs"</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2012-12-13T00:00:00+01:00">
+                Published: Thu 13 December 2012
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://dustinfarris.com/author/dustin-farris.html">Dustin Farris</a>
+        </address>
+<p>In <a href="http://dustinfarris.com/category/blog.html">blog</a>. </p>
+<p>tags: <a href="http://dustinfarris.com/tag/rvm.html">RVM</a> </p>
+</footer><!-- /.post-info --><p>A while ago I wrote a <a href="http://dustinfarris.com/2012/8/ractivate-the-missing-script-for-rvm/">script</a> to help manage gemsets and PATH settings when switching between Ruby projects.  It has worked very well, but I've recently learned about .rvmrc — yes, I'm still new at this.</p>
+<p>Most RoR programmers probably know that one must prefix console commands with <code>bundle exec</code> to ensure the correct binaries are used for the project you are working on.  Something like:</p>
+<div class="highlight"><pre><span class="go">bundle exec rake db:test:prepare</span>
+</pre></div>
+
+
+<p>Most RoR programmers also probably know that you can "stub" out these binaries into a project directory by installing your gems with:</p>
+<div class="highlight"><pre><span class="go">bundle install --binstubs=./bundler_stubs</span>
+</pre></div>
+
+
+<p>So, the objective is to get the bundler_stubs directory on your system path whenever you are working on the project (and off your path when you leave it).</p>
+<p>The <code>.rvmrc</code> file goes in your project's root directory and it is automatically sourced in the background when you enter the directory.  There is also an optional <code>.rvmrc</code> file in your home directory that gets called whenever you leave your project's root directory — or enter any other non-.rvmrc-containing directory for that matter.  The .rvmrc file is simply a <a href="https://rvm.io/workflow/rvmrc/">bash script</a>, so without further ado, here is an .rvmrc file for your project that will switch to a project-specific gemset and place the project's bundler_stubs directory on your path.  You only need to edit the top line:</p>
+<div class="highlight"><pre>rvm --create ruby-1.9.3-p327@projectname
+
+deactivate<span class="o">()</span>
+    <span class="k">if</span> <span class="o">[</span> -n <span class="s2">&quot;</span><span class="nv">$_OLD_VIRTUAL_PATH</span><span class="s2">&quot;</span> <span class="o">]</span> <span class="p">;</span> <span class="k">then</span>
+    <span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$_OLD_VIRTUAL_PATH</span><span class="s2">&quot;</span>
+    <span class="nb">export </span>PATH
+    <span class="nb">unset </span>_OLD_VIRTUAL_PATH
+    <span class="k">fi</span>
+
+    <span class="k">if</span> <span class="o">[</span> -n <span class="s2">&quot;</span><span class="nv">$_OLD_VIRTUAL_PS1</span><span class="s2">&quot;</span> <span class="o">]</span> <span class="p">;</span> <span class="k">then</span>
+    <span class="nv">PS1</span><span class="o">=</span><span class="s2">&quot;#_OLD_VIRTUAL_PS1&quot;</span>
+    <span class="nb">export </span>PS1
+    <span class="nb">unset </span>_OLD_VIRTUAL_PS1
+    <span class="k">fi</span>
+
+    <span class="nb">unset </span>_RUBY_PROJECT_DIR
+
+    <span class="k">if</span> <span class="o">[</span> ! <span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span> <span class="o">=</span> <span class="s2">&quot;nondestructive&quot;</span> <span class="o">]</span> <span class="p">;</span> <span class="k">then</span>
+    <span class="nb">unset</span> -f deactivate
+    <span class="k">fi</span>
+<span class="o">}</span>
+
+<span class="c"># unset irrelevant variables</span>
+deactivate nondestructive
+
+<span class="nv">_RUBY_PROJECT_DIR</span><span class="o">=</span><span class="s2">&quot;`pwd`&quot;</span>
+<span class="nb">export </span>_RUBY_PROJECT_DIR
+<span class="nv">_OLD_VIRTUAL_PATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$PATH</span><span class="s2">&quot;</span>
+<span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$_RUBY_PROJECT_DIR</span><span class="s2">/bundler_stubs:</span><span class="nv">$PATH</span><span class="s2">&quot;</span>
+<span class="nb">export </span>PATH
+
+<span class="nv">_OLD_VIRTUAL_PS1</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$PS1</span><span class="s2">&quot;</span>
+<span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;x&quot;</span> !<span class="o">=</span> x <span class="o">]</span> <span class="p">;</span> <span class="k">then</span>
+    <span class="nv">PS1</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$PS1</span><span class="s2">&quot;</span>
+<span class="k">else</span>
+    <span class="nv">PS1</span><span class="o">=</span><span class="s2">&quot;(`basename \&quot;</span><span class="nv">$_RUBY_PROJECT_DIR</span><span class="s2">\&quot;`) </span><span class="nv">$PS1</span><span class="s2">&quot;</span>
+<span class="k">fi</span>
+</pre></div>
+
+
+<p>This gives the ability to move in and out of your project's directory and your gemsets and PATH are managed seamlessly:</p>
+<p><img alt=".rvmrc script in action" src="/media/filer_public/2012/12/13/rvmscriptinaction.png" /></p><p>There are <a href="http://dustinfarris.com/2012/12/13/rvmrc-and-binstubs.html#disqus_thread">comments</a>.</p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="http://dustinfarris.com/2012/08/24/ractivate-the-missing-script-for-rvm.html" rel="bookmark"
+                           title="Permalink to ""ractivate", the Missing Script for RVM"">"&quot;ractivate&quot;, the Missing Script for RVM"</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2012-08-24T00:00:00+02:00">
+                Published: Fri 24 August 2012
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://dustinfarris.com/author/dustin-farris.html">Dustin Farris</a>
+        </address>
+<p>In <a href="http://dustinfarris.com/category/blog.html">blog</a>. </p>
+<p>tags: <a href="http://dustinfarris.com/tag/rvm.html">RVM</a> </p>
+</footer><!-- /.post-info -->                <p>When developing multiple projects in Ruby using <a href="https://rvm.io/">RVM</a>, I've found that it can be difficult to keep track of which binaries and gemsets you are using, and installing gems to the wrong gemsets can cause problems.  Inspired by <a href="http://www.virtualenv.org/en/latest/index.html">virtualenv</a>, I've created (largely copied) a script to switch between ...</p>
+                <a class="readmore" href="http://dustinfarris.com/2012/08/24/ractivate-the-missing-script-for-rvm.html">read more</a>
+<p>There are <a href="http://dustinfarris.com/2012/08/24/ractivate-the-missing-script-for-rvm.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
+                </ol><!-- /#posts-list -->
+<p class="paginator">
+    Page 1 / 1
+</p>
+                </section><!-- /#content -->
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>blogroll</h2>
+                        <ul>
+                            <li><a href="http://getpelican.com/">Pelican</a></li>
+                            <li><a href="http://python.org/">Python.org</a></li>
+                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+                            <li><a href="#">You can modify those links in your config file</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="http://dustinfarris.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-13275015-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+<script type="text/javascript">
+    var disqus_shortname = 'dustinfarris';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+</body>
+</html>

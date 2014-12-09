@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>"Authenticating Django/Ember"</title>
+        <link rel="stylesheet" href="http://dustinfarris.com/theme/css/main.css" />
+        <link href="http://dustinfarris.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Dustin Farris Atom Feed" />
+
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="http://dustinfarris.com/">Dustin Farris </a></h1>
+                <nav><ul>
+                    <li class="active"><a href="http://dustinfarris.com/category/blog.html">blog</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="http://dustinfarris.com/2013/08/24/authenticating-djangoember.html" rel="bookmark"
+           title="Permalink to "Authenticating Django/Ember"">"Authenticating Django/Ember"</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2013-08-24T00:00:00+02:00">
+                Published: Sat 24 August 2013
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://dustinfarris.com/author/dustin-farris.html">Dustin Farris</a>
+        </address>
+<p>In <a href="http://dustinfarris.com/category/blog.html">blog</a>. </p>
+<p>tags: <a href="http://dustinfarris.com/tag/django.html">[Django</a> <a href="http://dustinfarris.com/tag/ember.html">Ember]</a> </p>
+</footer><!-- /.post-info -->      <p><strong>[2013 Sep 21 Update]</strong>: I've completely refactored this solution and have done a much better job of
+implementing it and explaining it.  <a href="/2013/11/29/django-ember-authentication-is-easy.html">Check out the latest</a></p>
+<hr />
+<p>The web app rage nowadays is to implement your backend as RESTfully as possible, and use Javascript frameworks to facilitate your controller and presentation layers as a single-page application.  There is bit of a learning curve involved when adapting to the new philosophies—especially so because the frameworks are still in their infancy.</p>
+<p>Currently, I'm using Django 1.6 (beta) for the ORM, <a href="http://django-rest-framework.org/">Django Rest Framework</a> to handle HTTP requests, and <a href="http://emberjs.com/">Ember</a> on the client side.</p>
+<p>To date, the biggest hurdle I've had to jump is authenticating a user, and then polling for a currently authenticated user.  There are a <a href="http://django-rest-framework.org/api-guide/authentication.html#api-reference">few methodologies</a> that could be considered given the technologies I'm using.  They include:</p>
+<ul>
+<li>Basic Auth</li>
+<li>Token Auth</li>
+<li>Session Auth</li>
+<li>OAuth(2)</li>
+</ul>
+<p>I chose to implement <strong>Session Auth</strong> because it works with Django out of the box, and turned out to be mostly painless to implement on the Ember side.</p>
+<p>I created a <code>users</code> application in Django, partly because I needed to <a href="https://docs.djangoproject.com/en/dev/topics/auth/customizing/#extending-the-existing-user-model">extend the User model</a> to satisfy a few project requirements, and partly because I wanted to namespace the tasks involving authentication.  To keep things simple, let's say my model looked something like this:</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.contrib.auth.models</span> <span class="kn">import</span> <span class="n">AbstractUser</span>
+<span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
+
+<span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">AbstractUser</span><span class="p">):</span>
+    <span class="n">age</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">()</span>
+</pre></div>
+
+
+<p>Nothing complex.  The bulk of what we need is inherited straight out of Django.</p>
+<p>Then I made a quick serializer for DRF:</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">reset_framework</span> <span class="kn">import</span> <span class="n">serializers</span>
+<span class="kn">from</span> <span class="nn">users.models</span> <span class="kn">import</span> <span class="n">User</span>
+
+<span class="k">class</span> <span class="nc">UserSerializer</span><span class="p">(</span><span class="n">serializers</span><span class="o">.</span><span class="n">ModelSerializer</span><span class="p">):</span>
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">User</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;id&#39;</span><span class="p">,</span> <span class="s">&#39;first_name&#39;</span><span class="p">,</span> <span class="s">&#39;last_name&#39;</span><span class="p">,</span> <span class="s">&#39;email&#39;</span><span class="p">,</span> <span class="s">&#39;age&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Again, basic stuff.</p>
+<p>The tricky part was deciding how to <strong>A</strong>) authenticate the user "RESTfully" (which is really an incongruous thing to say—but for lack of better terms...), and <strong>B</strong>) return the currently authenticated user.</p>
+<p>I chose to do all of it in one view (well two including the standard DRF ViewSet), borrowing logic from a few Django built-ins like the AuthenticationForm:</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.contrib.auth</span> <span class="kn">import</span> <span class="n">login</span><span class="p">,</span> <span class="n">logout</span>
+<span class="kn">from</span> <span class="nn">django.contrib.auth.forms</span> <span class="kn">import</span> <span class="n">AuthenticationForm</span>
+<span class="kn">from</span> <span class="nn">rest_framework</span> <span class="kn">import</span> <span class="n">status</span>
+<span class="kn">from</span> <span class="nn">rest_framework.decorators</span> <span class="kn">import</span> <span class="n">api_view</span>
+<span class="kn">from</span> <span class="nn">rest_framework.response</span> <span class="kn">import</span> <span class="n">Response</span>
+
+<span class="kn">from</span> <span class="nn">users.models</span> <span class="kn">import</span> <span class="n">User</span>
+<span class="kn">from</span> <span class="nn">users.serializers</span> <span class="kn">import</span> <span class="n">UserSerializer</span>
+
+<span class="k">class</span> <span class="nc">UserViewSet</span><span class="p">(</span><span class="n">viewsets</span><span class="o">.</span><span class="n">ModelViewSet</span><span class="p">):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">User</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">UserSerializer</span>
+
+<span class="nd">@api_view</span><span class="p">([</span><span class="s">&#39;POST&#39;</span><span class="p">,</span> <span class="s">&#39;GET&#39;</span><span class="p">,</span> <span class="s">&#39;DELETE&#39;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">session</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Handle &quot;RESTful&quot; login, logout, get current user</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c"># Login</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s">&#39;POST&#39;</span><span class="p">:</span>
+        <span class="n">form</span> <span class="o">=</span> <span class="n">AuthenticationForm</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">DATA</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">form</span><span class="o">.</span><span class="n">is_valid</span><span class="p">():</span>
+            <span class="n">user</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">get_user</span><span class="p">()</span>
+            <span class="n">login</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">user</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">UserSerializer</span><span class="p">(</span><span class="n">user</span><span class="p">)</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">form</span><span class="o">.</span><span class="n">errors</span><span class="p">)</span>
+
+    <span class="c"># Logout</span>
+    <span class="k">elif</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s">&#39;DELETE&#39;</span><span class="p">:</span>
+        <span class="n">logout</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">Response</span><span class="p">({},</span> <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_204_NO_CONTENT</span><span class="p">)</span>
+
+    <span class="c"># Get currently authenticated user&#39;s id</span>
+    <span class="k">elif</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s">&#39;GET&#39;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_authenticated</span><span class="p">():</span>
+            <span class="k">return</span> <span class="n">Response</span><span class="p">({</span><span class="s">&#39;user_id&#39;</span><span class="p">:</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="p">})</span>
+        <span class="k">return</span> <span class="n">Response</span><span class="p">({},</span> <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_204_NO_CONTENT</span><span class="p">)</span>
+</pre></div>
+
+
+<p>And for completeness, here is <code>urls.py</code>:</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.conf.urls</span> <span class="kn">import</span> <span class="n">patterns</span><span class="p">,</span> <span class="n">include</span><span class="p">,</span> <span class="n">url</span>
+<span class="kn">from</span> <span class="nn">django.views.generic.base</span> <span class="kn">import</span> <span class="n">TemplateView</span>
+<span class="kn">from</span> <span class="nn">rest_framework.routers</span> <span class="kn">import</span> <span class="n">DefaultRouter</span>
+
+<span class="kn">from</span> <span class="nn">users.views</span> <span class="kn">import</span> <span class="n">UserViewSet</span>
+
+<span class="n">router</span> <span class="o">=</span> <span class="n">DefaultRouter</span><span class="p">()</span>
+<span class="n">router</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s">r&#39;users&#39;</span><span class="p">,</span> <span class="n">UserViewSet</span><span class="p">)</span>
+
+<span class="n">urlpatterns</span> <span class="o">=</span> <span class="n">patterns</span><span class="p">(</span>
+    <span class="s">&#39;&#39;</span><span class="p">,</span>
+    <span class="n">url</span><span class="p">(</span><span class="s">r&#39;api/&#39;</span><span class="p">,</span> <span class="n">include</span><span class="p">(</span><span class="n">router</span><span class="o">.</span><span class="n">urls</span><span class="p">),</span>
+    <span class="n">url</span><span class="p">(</span><span class="s">r&#39;session/&#39;</span><span class="p">,</span> <span class="s">&#39;users.views.session&#39;</span><span class="p">),</span>
+    <span class="n">url</span><span class="p">(</span><span class="s">r&#39;^&#39;</span><span class="p">,</span> <span class="n">TemplateView</span><span class="o">.</span><span class="n">as_view</span><span class="p">(</span><span class="n">template_name</span><span class="o">=</span><span class="s">&quot;site.html&quot;</span><span class="p">)),</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Now the tricky part comes in tying it all together in Ember.  Skipping the HTML5 boilerplate for brevity, here's the contents of the <code>&lt;body&gt;</code> tag inside <code>site.html</code>:</p>
+<p>{% raw %}</p>
+<div class="highlight"><pre><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/x-handlebars&quot;</span><span class="nt">&gt;</span>
+  <span class="o">&lt;</span><span class="nx">header</span><span class="o">&gt;</span>
+    <span class="p">{{</span><span class="nx">render</span> <span class="s1">&#39;session&#39;</span><span class="p">}}</span>
+  <span class="o">&lt;</span><span class="err">/header&gt;</span>
+  <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">id</span><span class="o">=</span><span class="s2">&quot;main&quot;</span><span class="o">&gt;</span>
+    <span class="p">{{</span><span class="nx">outlet</span><span class="p">}}</span>
+  <span class="o">&lt;</span><span class="err">/div&gt;</span>
+<span class="nt">&lt;/script&gt;</span>
+
+<span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/x-handlebars&quot;</span> <span class="na">data-template-name=</span><span class="s">&quot;session&quot;</span><span class="nt">&gt;</span>
+  <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">id</span><span class="o">=</span><span class="s2">&quot;user&quot;</span><span class="o">&gt;</span>
+    <span class="p">{{</span><span class="err">#</span><span class="k">if</span> <span class="nx">authenticated</span><span class="p">}}</span>
+      <span class="nx">Welcome</span> <span class="nx">back</span><span class="p">,</span> <span class="p">{{</span><span class="nx">content</span><span class="p">.</span><span class="nx">firstName</span><span class="p">}}</span><span class="o">!</span>
+      <span class="o">&lt;</span><span class="nx">a</span> <span class="nx">href</span><span class="o">=</span><span class="s2">&quot;#&quot;</span> <span class="p">{{</span><span class="nx">action</span> <span class="s1">&#39;logout&#39;</span><span class="p">}}</span><span class="o">&gt;</span><span class="nx">Logout</span><span class="o">&lt;</span><span class="err">/a&gt;</span>
+    <span class="p">{{</span><span class="k">else</span><span class="p">}}</span>
+      <span class="p">{{</span><span class="err">#</span><span class="nx">linkTo</span> <span class="s1">&#39;sessions.new&#39;</span><span class="p">}}</span><span class="nx">Login</span><span class="p">{{</span><span class="err">/linkTo}}</span>
+    <span class="p">{{</span><span class="err">/if}}</span>
+  <span class="o">&lt;</span><span class="err">/div&gt;</span>
+<span class="nt">&lt;/script&gt;</span>
+
+<span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/x-handlebars&quot;</span> <span class="na">data-template-name=</span><span class="s">&quot;sessions/new&quot;</span><span class="nt">&gt;</span>
+  <span class="o">&lt;</span><span class="nx">form</span> <span class="p">{{</span><span class="nx">action</span> <span class="s1">&#39;login&#39;</span> <span class="nx">on</span><span class="o">=</span><span class="s2">&quot;submit&quot;</span><span class="p">}}</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nx">h2</span><span class="o">&gt;</span><span class="nx">Login</span><span class="o">&lt;</span><span class="err">/h2&gt;</span>
+    <span class="p">{{</span><span class="err">#</span><span class="k">if</span> <span class="nx">allError</span><span class="p">}}</span><span class="o">&lt;</span><span class="nx">div</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&quot;error&quot;</span><span class="o">&gt;</span><span class="p">{{</span><span class="nx">allError</span><span class="p">}}</span><span class="o">&lt;</span><span class="err">/div&gt;{{/if}}</span>
+    <span class="p">{{</span><span class="err">#</span><span class="k">if</span> <span class="nx">usernameError</span><span class="p">}}</span><span class="o">&lt;</span><span class="nx">div</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&quot;error&quot;</span><span class="o">&gt;</span><span class="p">{{</span><span class="nx">usernameError</span><span class="p">}}{{</span><span class="err">/if}}</span>
+    <span class="p">{{</span><span class="nx">input</span> <span class="nx">value</span><span class="o">=</span><span class="nx">username</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span> <span class="nx">placeholder</span><span class="o">=</span><span class="s2">&quot;Username&quot;</span><span class="p">}}</span>
+    <span class="p">{{</span><span class="err">#</span><span class="k">if</span> <span class="nx">passwordError</span><span class="p">}}</span><span class="o">&lt;</span><span class="nx">div</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&quot;error&quot;</span><span class="o">&gt;</span><span class="p">{{</span><span class="nx">passwordError</span><span class="p">}}{{</span><span class="err">/if}}</span>
+    <span class="p">{{</span><span class="nx">input</span> <span class="nx">value</span><span class="o">=</span><span class="nx">password</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;password&quot;</span> <span class="nx">placeholder</span><span class="o">=</span><span class="s2">&quot;Password&quot;</span><span class="p">}}</span>
+    <span class="p">{{</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;submit&quot;</span> <span class="nx">value</span><span class="o">=</span><span class="s2">&quot;Login&quot;</span><span class="p">}}</span>
+  <span class="o">&lt;</span><span class="err">/form&gt;</span>
+<span class="nt">&lt;/script&gt;</span>
+</pre></div>
+
+
+<p>{% endraw %}</p>
+<p>Finally, in the Ember code I had to automate the check for a currently logged-in user, and provide the logic for logging in and out.  Here is <code>application.coffee</code>:</p>
+<div class="highlight"><pre><span class="c1"># Application</span>
+
+<span class="nb">window</span><span class="p">.</span><span class="nv">App = </span><span class="nx">Ember</span><span class="p">.</span><span class="nx">Application</span><span class="p">.</span><span class="nx">create</span><span class="p">()</span>
+
+
+<span class="c1"># Store</span>
+
+<span class="nv">App.Store = </span><span class="nx">DS</span><span class="p">.</span><span class="nx">DjangoRESTStore</span><span class="p">.</span><span class="nx">extend</span>
+  <span class="nv">revision: </span><span class="mi">1</span>
+  <span class="nv">adapter: </span><span class="nx">DS</span><span class="p">.</span><span class="nx">DjangoRESTAdapter</span><span class="p">.</span><span class="nx">extend</span>
+    <span class="nv">url: </span><span class="s">&#39;/api&#39;</span>
+
+
+<span class="c1"># Router</span>
+
+<span class="nx">App</span><span class="p">.</span><span class="nx">Router</span><span class="p">.</span><span class="nx">map</span> <span class="nf">-&gt;</span>
+  <span class="nx">@resource</span> <span class="s">&quot;users&quot;</span>
+  <span class="nx">@resource</span> <span class="s">&quot;sessions&quot;</span><span class="p">,</span> <span class="nf">-&gt;</span>
+    <span class="nx">@route</span> <span class="s">&quot;new&quot;</span>
+
+<span class="nv">App.ApplicationRoute = </span><span class="nx">Ember</span><span class="p">.</span><span class="nx">Route</span><span class="p">.</span><span class="nx">extend</span>
+  <span class="nv">setupController: </span><span class="nf">(controller, context) -&gt;</span>
+    <span class="nx">@controllerFor</span><span class="p">(</span><span class="s">&#39;session&#39;</span><span class="p">).</span><span class="nx">update</span><span class="p">()</span>
+
+
+<span class="c1"># Models</span>
+
+<span class="nv">App.User = </span><span class="nx">DS</span><span class="p">.</span><span class="nx">Model</span><span class="p">.</span><span class="nx">extend</span>
+  <span class="nv">firstName = </span><span class="nx">DS</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s">&#39;string&#39;</span><span class="p">)</span>
+  <span class="nv">lastName = </span><span class="nx">DS</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s">&#39;string&#39;</span><span class="p">)</span>
+  <span class="nv">email = </span><span class="nx">DS</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s">&#39;string&#39;</span><span class="p">)</span>
+  <span class="nv">age = </span><span class="nx">DS</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s">&#39;number&#39;</span><span class="p">)</span>
+
+<span class="nv">App.Session = </span><span class="nx">DS</span><span class="p">.</span><span class="nx">Model</span><span class="p">.</span><span class="nx">extend</span>
+  <span class="nv">user: </span><span class="nx">DS</span><span class="p">.</span><span class="nx">belongsTo</span><span class="p">(</span><span class="s">&#39;App.User&#39;</span><span class="p">)</span>
+
+
+<span class="c1"># Controllers</span>
+
+<span class="nv">App.ApplicationController = </span><span class="nx">Ember</span><span class="p">.</span><span class="nx">Controller</span><span class="p">.</span><span class="nx">extend</span>
+  <span class="nv">user: </span><span class="nx">Ember</span><span class="p">.</span><span class="nx">computed</span><span class="p">.</span><span class="nx">alias</span> <span class="s">&#39;controllers.session.content&#39;</span>
+
+<span class="nv">App.SessionController = </span><span class="nx">Ember</span><span class="p">.</span><span class="nx">Controller</span><span class="p">.</span><span class="nx">extend</span>
+  <span class="nv">content: </span><span class="kc">null</span>
+  <span class="nv">authenticated: </span><span class="kc">false</span>
+  <span class="nv">init: </span><span class="nf">-&gt;</span>
+    <span class="nx">@_super</span><span class="p">()</span>
+    <span class="nx">@update</span><span class="p">()</span>
+  <span class="nv">update: </span><span class="nf">-&gt;</span>
+    <span class="c1"># Check if there is a user logged in already</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s">&#39;/session/&#39;</span><span class="p">).</span><span class="nx">then</span> <span class="nf">(response) =&gt;</span>
+      <span class="k">if</span> <span class="o">!</span><span class="nx">Ember</span><span class="p">.</span><span class="nx">isEmpty</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="o">and</span> <span class="o">!</span><span class="nx">Ember</span><span class="p">.</span><span class="nx">isEmpty</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">user_id</span><span class="p">)</span>
+        <span class="nx">@set</span> <span class="s">&#39;content&#39;</span><span class="p">,</span> <span class="nx">App</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">user_id</span><span class="p">)</span>
+        <span class="nx">@set</span> <span class="s">&#39;authenticated&#39;</span><span class="p">,</span> <span class="kc">true</span>
+      <span class="k">else</span>
+        <span class="nx">@set</span> <span class="s">&#39;content&#39;</span><span class="p">,</span> <span class="kc">null</span>
+        <span class="nx">@set</span> <span class="s">&#39;authenticated&#39;</span><span class="p">,</span> <span class="kc">false</span>
+  <span class="nv">logout: </span><span class="nf">-&gt;</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">(</span><span class="nv">url: </span><span class="s">&#39;/session/&#39;</span><span class="p">,</span> <span class="nv">type: </span><span class="s">&#39;DELETE&#39;</span><span class="p">).</span><span class="nx">then</span> <span class="nf">(response) =&gt;</span>
+      <span class="nx">@controllerFor</span><span class="p">(</span><span class="s">&#39;session&#39;</span><span class="p">).</span><span class="nx">update</span><span class="p">()</span>
+      <span class="nx">@transitionToRoute</span><span class="p">(</span><span class="s">&#39;index&#39;</span><span class="p">)</span>
+
+<span class="nv">App.SessionsNewController = </span><span class="nx">Ember</span><span class="p">.</span><span class="nx">Controller</span><span class="p">.</span><span class="nx">extend</span>
+  <span class="nv">login: </span><span class="nf">-&gt;</span>
+    <span class="nv">data = </span><span class="nx">@getProperties</span> <span class="s">&#39;username&#39;</span><span class="p">,</span> <span class="s">&#39;password&#39;</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s">&#39;/session/&#39;</span><span class="p">,</span> <span class="nx">data</span><span class="p">).</span><span class="nx">then</span> <span class="nf">(response) =&gt;</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">id</span><span class="p">)</span>  <span class="c1"># Success</span>
+        <span class="nx">@controllerFor</span><span class="p">(</span><span class="s">&#39;session&#39;</span><span class="p">).</span><span class="nx">update</span><span class="p">()</span>
+        <span class="nx">@transitionToRoute</span><span class="p">(</span><span class="s">&#39;index&#39;</span><span class="p">)</span>
+      <span class="k">else</span>
+        <span class="nx">@set</span><span class="p">(</span><span class="s">&#39;allError&#39;</span><span class="p">,</span> <span class="nx">response</span><span class="p">.</span><span class="nx">__all__</span><span class="p">)</span>
+        <span class="nx">@set</span><span class="p">(</span><span class="s">&#39;usernameError&#39;</span><span class="p">,</span> <span class="nx">response</span><span class="p">.</span><span class="nx">username</span><span class="p">)</span>
+        <span class="nx">@set</span><span class="p">(</span><span class="s">&#39;passwordError&#39;</span><span class="p">,</span> <span class="nx">response</span><span class="p">.</span><span class="nx">password</span><span class="p">)</span>
+</pre></div>
+
+
+<p>There you have it.  Anywhere else in the application you can refer to <code>controllerFor('session').get('content')</code> to access the logged-in user.</p>
+    </div><!-- /.entry-content -->
+    <div class="comments">
+      <h2>Comments !</h2>
+      <div id="disqus_thread"></div>
+      <script type="text/javascript">
+        var disqus_shortname = 'dustinfarris';
+        var disqus_identifier = '2013/08/24/authenticating-djangoember.html';
+        var disqus_url = 'http://dustinfarris.com/2013/08/24/authenticating-djangoember.html';
+        (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//dustinfarris.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the comments.</noscript>
+    </div>
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>blogroll</h2>
+                        <ul>
+                            <li><a href="http://getpelican.com/">Pelican</a></li>
+                            <li><a href="http://python.org/">Python.org</a></li>
+                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+                            <li><a href="#">You can modify those links in your config file</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="http://dustinfarris.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-13275015-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+<script type="text/javascript">
+    var disqus_shortname = 'dustinfarris';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+</body>
+</html>

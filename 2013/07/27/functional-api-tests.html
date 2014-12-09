@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>"Functional API Tests"</title>
+        <link rel="stylesheet" href="http://dustinfarris.com/theme/css/main.css" />
+        <link href="http://dustinfarris.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Dustin Farris Atom Feed" />
+
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="http://dustinfarris.com/">Dustin Farris </a></h1>
+                <nav><ul>
+                    <li class="active"><a href="http://dustinfarris.com/category/blog.html">blog</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="http://dustinfarris.com/2013/07/27/functional-api-tests.html" rel="bookmark"
+           title="Permalink to "Functional API Tests"">"Functional API Tests"</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2013-07-27T00:00:00+02:00">
+                Published: Sat 27 July 2013
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://dustinfarris.com/author/dustin-farris.html">Dustin Farris</a>
+        </address>
+<p>In <a href="http://dustinfarris.com/category/blog.html">blog</a>. </p>
+<p>tags: <a href="http://dustinfarris.com/tag/django.html">[Django]</a> </p>
+</footer><!-- /.post-info -->      <p>Little is more frustrating than running your test suite and watching it fail fail fail because insert name here’s API service is lagging/down/changed/throttled. While knowing about those things has importance, the time to learn about them isn’t when you’re trying to deploy a completely unrelated feature.</p>
+<h2>Mocking to the rescue!</h2>
+<p>There are many libraries available in all languages worth a damn that allow you to short-circuit HTTP requests and insert a mock response; and your code is none the wiser. I’m particularly impressed with <a href="https://github.com/gabrielfalcao/HTTPretty">HTTPretty</a> that you can use right in your test:</p>
+<div class="highlight"><pre><span class="nd">@httpretty.activate</span>
+<span class="k">def</span> <span class="nf">test_some_awful_api</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+     <span class="n">httpretty</span><span class="o">.</span><span class="n">register_uri</span><span class="p">(</span>
+          <span class="n">httpretty</span><span class="o">.</span><span class="n">GET</span><span class="p">,</span>
+          <span class="s">&quot;http://awful-api.com/action-foo-bar&quot;</span><span class="p">,</span>
+          <span class="n">body</span><span class="o">=</span><span class="s">&#39;{&quot;success&quot;: false}&#39;</span><span class="p">,</span>
+          <span class="n">status</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
+          <span class="n">content_type</span><span class="o">=</span><span class="s">&#39;text/json&#39;</span><span class="p">)</span>
+
+     <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&quot;http://awful-api.com/action-foo-bar&quot;</span><span class="p">)</span>
+
+     <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">({</span><span class="s">&#39;success&#39;</span><span class="p">:</span> <span class="bp">False</span><span class="p">},</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
+     <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">)</span>
+</pre></div>
+
+
+<p>You can always be assured of getting the same response back regardless of awful-api’s current mood.</p>
+<h2>Great! Functional tests too?</h2>
+<p>No. So far every attempt on my part to integrate HTTPretty (or any other HTTP mocking library) with anything Selenium-related has ended either in a crash, or an unresponsive state. I’m assuming this is related to the monkey-patching these libraries do to the core Python libraries which interrupts communication with Selenium’s web driver as a side-effect.</p>
+<h2>But wait! Do we really need to mock in this case?</h2>
+<p>No! And it took me a few days of hair-pulling to finally accept this. I ended up recording all of the responses from the API I’m polling (LinkedIn) and just bypassed the call altogether when testing. Essentially, in <code>selenium_test_settings.py</code>:</p>
+<div class="highlight"><pre><span class="c"># Why Django doesn&#39;t support runtime environments out</span>
+<span class="c"># of the box yet is beyond me</span>
+<span class="n">ENVIRONMENT</span> <span class="o">=</span> <span class="s">&#39;test&#39;</span>
+</pre></div>
+
+
+<p>and in some file somewhere else (like in a fixtures module):</p>
+<div class="highlight"><pre><span class="n">responses</span> <span class="o">=</span> <span class="p">{</span>
+     <span class="s">&quot;foo-bar-action&quot;</span><span class="p">:</span> <span class="p">{</span>
+          <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="mi">12345</span><span class="p">,</span>
+          <span class="s">&quot;attitude&quot;</span><span class="p">:</span> <span class="s">&quot;cool&quot;</span><span class="p">,</span>
+     <span class="p">},</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>and finally in the actual API code:</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">run_api_command</span><span class="p">(</span><span class="n">command</span><span class="p">):</span>
+     <span class="k">if</span> <span class="n">settings</span><span class="o">.</span><span class="n">ENVIRONMENT</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&#39;test&#39;</span><span class="p">]:</span>
+          <span class="k">return</span> <span class="n">responses</span><span class="p">[</span><span class="n">command</span><span class="p">]</span>
+     <span class="k">else</span><span class="p">:</span>
+          <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&quot;</span><span class="si">%s</span><span class="s">/</span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">BASE_URL</span><span class="p">,</span> <span class="n">command</span><span class="p">))</span>
+          <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</pre></div>
+
+
+<p>I’m not a fan of modifying code just to accommodate tests. In my view, code should be, as much as possible, test agnostic. But in this case I see no other way and it has made my life less stressful which is a good thing.</p>
+    </div><!-- /.entry-content -->
+    <div class="comments">
+      <h2>Comments !</h2>
+      <div id="disqus_thread"></div>
+      <script type="text/javascript">
+        var disqus_shortname = 'dustinfarris';
+        var disqus_identifier = '2013/07/27/functional-api-tests.html';
+        var disqus_url = 'http://dustinfarris.com/2013/07/27/functional-api-tests.html';
+        (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//dustinfarris.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the comments.</noscript>
+    </div>
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>blogroll</h2>
+                        <ul>
+                            <li><a href="http://getpelican.com/">Pelican</a></li>
+                            <li><a href="http://python.org/">Python.org</a></li>
+                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+                            <li><a href="#">You can modify those links in your config file</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="http://dustinfarris.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-13275015-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+<script type="text/javascript">
+    var disqus_shortname = 'dustinfarris';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+</body>
+</html>

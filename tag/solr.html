@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>Dustin Farris - Solr</title>
+        <link rel="stylesheet" href="http://dustinfarris.com/theme/css/main.css" />
+        <link href="http://dustinfarris.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Dustin Farris Atom Feed" />
+
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="http://dustinfarris.com/">Dustin Farris </a></h1>
+                <nav><ul>
+                    <li><a href="http://dustinfarris.com/category/blog.html">blog</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="http://dustinfarris.com/2014/01/01/solr-startstop-script.html">Solr Start/Stop Script</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2014-01-01T16:20:00+01:00">
+                Published: Wed 01 January 2014
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://dustinfarris.com/author/dustin-farris.html">Dustin Farris</a>
+        </address>
+<p>In <a href="http://dustinfarris.com/category/blog.html">blog</a>. </p>
+<p>tags: <a href="http://dustinfarris.com/tag/solr.html">Solr</a> <a href="http://dustinfarris.com/tag/linux.html">Linux</a> </p>
+</footer><!-- /.post-info --><p>At some point I'm going to write a much longer post on how to set up Solr on Linux, but for now
+here's a start/stop script that works well.</p>
+<div class="highlight"><pre><span class="c">#!/bin/sh</span>
+
+<span class="c">### BEGIN INIT INFO</span>
+<span class="c"># Provides:             solr</span>
+<span class="c"># Short-Description:    starts the solr server</span>
+<span class="c"># Description:          starts solr using start-stop-daemon</span>
+<span class="c">### END INIT INFO</span>
+
+<span class="nv">SOLR_DIR</span><span class="o">=</span><span class="s2">&quot;/opt/solr/django&quot;</span>  <span class="c"># Change to your own solr directory!</span>
+<span class="nv">PID</span><span class="o">=</span><span class="s2">&quot;/run/solr/solr.pid&quot;</span>
+<span class="nv">USER</span><span class="o">=</span><span class="s2">&quot;solr&quot;</span>
+<span class="nv">DAEMON</span><span class="o">=</span><span class="s2">&quot;/usr/bin/java&quot;</span>
+<span class="nv">DAEMON_ARGS</span><span class="o">=</span><span class="s2">&quot;-server </span><span class="nv">$JAVA_OPTS</span><span class="s2"> -Dsolr.solr.home=</span><span class="nv">$SOLR_DIR</span><span class="s2">/multicore -jar start.jar&quot;</span>
+<span class="nv">NAME</span><span class="o">=</span><span class="s2">&quot;solr&quot;</span>
+<span class="nv">DESC</span><span class="o">=</span><span class="s2">&quot;solr&quot;</span>
+
+<span class="c"># Include solr configuration defaults if available</span>
+<span class="k">if</span> <span class="o">[</span> -f /etc/default/solr <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+    . /etc/default/solr
+<span class="k">fi</span>
+
+<span class="nb">test</span> -x <span class="nv">$DAEMON</span> <span class="o">||</span> <span class="nb">exit </span>0
+
+<span class="nb">set</span> -e
+
+. /lib/lsb/init-functions
+
+start<span class="o">()</span> <span class="o">{</span>
+    start-stop-daemon --start --quiet --pidfile <span class="nv">$PID</span> --make-pidfile <span class="se">\</span>
+        --chdir <span class="nv">$SOLR_DIR</span> --chuid <span class="nv">$USER</span> <span class="se">\</span>
+        --background --retry <span class="m">5</span> --exec <span class="nv">$DAEMON</span> -- <span class="nv">$DAEMON_ARGS</span>
+<span class="o">}</span>
+
+stop<span class="o">()</span> <span class="o">{</span>
+    start-stop-daemon --stop --quiet --pidfile <span class="nv">$PID</span> --retry 5
+<span class="o">}</span>
+
+<span class="k">case</span> <span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span> in
+    start<span class="o">)</span>
+        log_daemon_msg <span class="s2">&quot;Starting </span><span class="nv">$DESC</span><span class="s2">&quot;</span> <span class="s2">&quot;</span><span class="nv">$NAME</span><span class="s2">&quot;</span>
+        start
+        log_end_msg <span class="nv">$?</span>
+        <span class="p">;;</span>
+    stop<span class="o">)</span>
+        log_daemon_msg <span class="s2">&quot;Stopping </span><span class="nv">$DESC</span><span class="s2">&quot;</span> <span class="s2">&quot;</span><span class="nv">$NAME</span><span class="s2">&quot;</span>
+        stop
+        log_end_msg <span class="nv">$?</span>
+        <span class="p">;;</span>
+    restart<span class="o">)</span>
+        log_daemon_msg <span class="s2">&quot;Restarting </span><span class="nv">$DESC</span><span class="s2">&quot;</span> <span class="s2">&quot;</span><span class="nv">$NAME</span><span class="s2">&quot;</span>
+        stop
+        sleep 3
+        start
+        log_end_msg <span class="nv">$?</span>
+        <span class="p">;;</span>
+    status<span class="o">)</span>
+        status_of_proc -p <span class="nv">$PID</span> <span class="s2">&quot;</span><span class="nv">$DAEMON</span><span class="s2">&quot;</span> java
+        <span class="p">;;</span>
+    *<span class="o">)</span>
+        <span class="nb">echo</span> <span class="s2">&quot;Usage: </span><span class="nv">$NAME</span><span class="s2"> {start|stop|restart|status}&quot;</span> &gt;<span class="p">&amp;</span>2
+        <span class="nb">exit </span>1
+        <span class="p">;;</span>
+<span class="k">esac</span>
+
+<span class="nb">exit </span>0
+</pre></div><p>There are <a href="http://dustinfarris.com/2014/01/01/solr-startstop-script.html#disqus_thread">comments</a>.</p>                </article>
+<p class="paginator">
+    Page 1 / 1
+</p>
+            </aside><!-- /#featured -->
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>blogroll</h2>
+                        <ul>
+                            <li><a href="http://getpelican.com/">Pelican</a></li>
+                            <li><a href="http://python.org/">Python.org</a></li>
+                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+                            <li><a href="#">You can modify those links in your config file</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="http://dustinfarris.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-13275015-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+<script type="text/javascript">
+    var disqus_shortname = 'dustinfarris';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+</body>
+</html>

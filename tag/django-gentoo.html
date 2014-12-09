@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>Dustin Farris - Django Gentoo</title>
+        <link rel="stylesheet" href="http://dustinfarris.com/theme/css/main.css" />
+        <link href="http://dustinfarris.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Dustin Farris Atom Feed" />
+
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="http://dustinfarris.com/">Dustin Farris </a></h1>
+                <nav><ul>
+                    <li><a href="http://dustinfarris.com/category/blog.html">blog</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="http://dustinfarris.com/2012/09/29/setting-up-a-django-server-with-gentoo.html">"Setting up a Django Server with Gentoo"</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2012-09-29T00:00:00+02:00">
+                Published: Sat 29 September 2012
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://dustinfarris.com/author/dustin-farris.html">Dustin Farris</a>
+        </address>
+<p>In <a href="http://dustinfarris.com/category/blog.html">blog</a>. </p>
+<p>tags: <a href="http://dustinfarris.com/tag/django-gentoo.html">Django Gentoo</a> </p>
+</footer><!-- /.post-info --><p>This is part 3 in a 3 part series I've written on setting up a Django production site on Gentoo.  In the first 2 parts I went over basic boilerplate server setup, and database installation which can be on the same server or separated.</p>
+<p><a id="contents"></a></p>
+<h2>Contents</h2>
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#postgresql">PostgreSQL</a></li>
+<li><a href="#virtualenv-and-pip">virtualenv and pip</a></li>
+<li><a href="#gdal">GDAL</a></li>
+<li><a href="#basic-necessities">Basic Necessities</a></li>
+<li><a href="#web-user">Web User</a></li>
+<li><a href="#backups">Backups</a></li>
+<li><a href="#nginx">NGINX</a></li>
+<li><a href="#apache">Apache</a></li>
+<li><a href="#sass">SASS</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul>
+<p><a id="introduction"></a></p>
+<h2>Introduction</h2>
+<p>Django is a fantastic web framework written in Python.  It is robust, mature, and adaptable to almost any web service need.  Deploying a Django project to production can be tricky.  This guide takes you through a well-established process that I have hand-tailored to work with the Gentoo Linux operating system.</p>
+<p><a href="#contents">Table of Contents</a></p>
+<p><a id="postgresql"></a></p>
+<h2>PostgreSQL</h2>
+<p>Installing the PostgreSQL server is covered in <a href="http://dustinfarris.com/2012/7/setting-up-a-postgresql-server-with-gentoo/">part 2</a> of this series.  If you are hosting Postgres on the same server as your Django projects, you can skip this step.  Otherwise, you'll need to install the PostgreSQL client and create an environment variable pointing to the external Postgres server:</p>
+<div class="highlight"><pre><span class="go">emerge postgresql-base -avq</span>
+</pre></div>
+
+
+<p>Edit <code>/etc/bash/bashrc</code> and add the following:</p>
+<div class="highlight"><pre><span class="nb">export </span><span class="nv">PGOST</span><span class="o">=</span><span class="s2">&quot;IP of postgres server&quot;</span>
+</pre></div>
+
+
+<p><a href="#contents">Table of Contents</a></p>
+<p><a id="virtualenv-and-pip"></a></p>
+<h2>virtualenv and pip</h2>
+<p>You should already know what these are for.  If you don't, this guide is not for you.</p>
+<div class="highlight"><pre><span class="go">emerge virtualenv -avq</span>
+<span class="go">easy_install pip</span>
+</pre></div>
+
+
+<p><a href="#contents">Table of Contents</a></p>
+<p><a id="gdal"></a></p>
+<h2>GDAL</h2>
+<p>If you plan on doing any kind of geo-locating in your projects (and you inevitably will) it is good to have this library in place.</p>
+<div class="highlight"><pre><span class="go">echo &quot;sci-libs/gdal geos&quot; &gt;&gt; /etc/portage/package.use</span>
+<span class="go">emerge gdal -avq</span>
+</pre></div>
+
+
+<p><a href="#contents">Table of Contents</a></p>
+<p><a id="basic-necessities"></a></p>
+<h2>Basic Necessities</h2>
+<p>All the little things.  First, make sure you've set a proper language in your make config.  This is used later when installing pyenchant for spell-checking.  Add this to the end of <code>/etc/make.conf</code>:</p>
+<div class="highlight"><pre><span class="nv">LINGUAS</span><span class="o">=</span><span class="s2">&quot;en&quot;</span>
+</pre></div>
+
+
+<p>And a few other use flags you'll probably want:</p>
+<div class="highlight"><pre><span class="go">echo &quot;dev-vcs/subversion perl -dso&quot; &gt;&gt; /etc/portage/package.use</span>
+<span class="go">echo &quot;dev-vcs/git subversion&quot; &gt;&gt; /etc/portage/package.use</span>
+</pre></div>
+
+
+<p>Time to install everything:</p>
+<div class="highlight"><pre><span class="go">emerge sys-apps/ack mercurial subversion git pyenchant -avq</span>
+<span class="go">emerge memcached xapian xapian-bindings -avq</span>
+</pre></div>
+
+
+<p>Edit <code>/etc/conf.d/memcached</code>:</p>
+<div class="highlight"><pre><span class="nv">LISTENON</span><span class="o">=</span><span class="s2">&quot;127.0.0.1&quot;</span>
+</pre></div>
+
+
+<p>Start it and set to start on boot:</p>
+<div class="highlight"><pre><span class="go">/etc/init.d/memcached start</span>
+<span class="go">rd-update add memcached default</span>
+</pre></div>
+
+
+<p><a href="#contents">Table of Contents</a></p>
+<p><a id="web-user"></a></p>
+<h2>Web User</h2>
+<p>This is the user that will house your projects and be responsible for Apache and NGINX.</p>
+<div class="highlight"><pre><span class="go">useradd --create-home --system --home=/var/www web</span>
+<span class="go">su - web</span>
+<span class="go">cd .ssh</span>
+<span class="go">ssh-keygen -t rsa -C &quot;web@newserver&quot;</span>
+<span class="go">cd ..</span>
+</pre></div>
+
+
+<p>Add the following to <code>/var/www/.bashrc</code>:</p>
+<div class="highlight"><pre><span class="c"># Shortcut for activating a virtualenv</span>
+<span class="nb">alias </span><span class="nv">activate</span><span class="o">=</span><span class="s1">&#39;. env/bin/activate&#39;</span>
+<span class="c"># Remove all *.pyc recursively</span>
+<span class="nb">alias </span><span class="nv">pycclean</span><span class="o">=</span><span class="s1">&#39;find . -name &quot;*.pyc&quot; -exec rm {} \;&#39;</span>
+</pre></div>
+
+
+<p>And exit.</p>
+<div class="highlight"><pre><span class="go">exit</span>
+</pre></div>
+
+
+<p><a href="#contents">Table of Contents</a></p>
+<p><a id="backups"></a></p>
+<h2>Backups</h2>
+<p>Ideally you'll do this on a separate server altogether, but that may not be feasible for your situation/budget.</p>
+<div class="highlight"><pre><span class="go">useradd --create-home --system --home=/var/backups backups</span>
+<span class="go">su - backups</span>
+<span class="go">cd .ssh</span>
+<span class="go">ssh-keygen -t rsa -C &quot;backups@newserver&quot;</span>
+<span class="go">exit</span>
+<span class="go">passwd backups</span>
+</pre></div>
+
+
+<p><a href="#contents">Table of Contents</a></p>
+<p><a id="nginx"></a></p>
+<h2>NGINX</h2>
+<p>We use NGINX to serve static files.  Requests for pages/services themselves get reverse-proxied to Apache which in turn will communicate with Django via WSGI.  We don't need the whole shebang with NGINX, so add the following to <code>/etc/make.conf</code>:</p>
+<div class="highlight"><pre><span class="nv">NGINX_MODULES_HTTP</span><span class="o">=</span><span class="s2">&quot;access auth_basic autoindex browser charset empty_gif geo gzip limit_req limit_zone map memcached proxy referer rewrite split_clients ssi upstream_ip_hash userid&quot;</span>
+</pre></div>
+
+
+<p>And install the VIM syntax library for the NGINX configuration files (why this doesn't come with VIM by default is beyond me).</p>
+<div class="highlight"><pre><span class="go">echo &quot;www-servers/nginx vim-syntax&quot; &gt;&gt; /etc/portage/package.use</span>
+</pre></div>
+
+
+<p>Install NGINX.</p>
+<div class="highlight"><pre><span class="go">emerge nginx -avq</span>
+</pre></div>
+
+
+<p>You'll want a folder to store individual site configurations.  So create this.</p>
+<div class="highlight"><pre><span class="go">mkdir /etc/nginx/vhosts.d</span>
+</pre></div>
+
+
+<p>Edit <code>/etc/nginx/nginx.conf</code> to your liking, then start NGINX and set it to start on boot.</p>
+<div class="highlight"><pre><span class="go">/etc/init.d/nginx start</span>
+<span class="go">rc-update add nginx default</span>
+</pre></div>
+
+
+<p><a href="#contents">Table of Contents</a></p>
+<p><a id="apache"></a></p>
+<h2>Apache</h2>
+<p>As with NGINX, we only need parts of Apache for our purposes, so add this to <code>/etc/make.conf</code>:</p>
+<div class="highlight"><pre><span class="nv">APACHE2_MODULES</span><span class="o">=</span><span class="s2">&quot;authz_host deflate dir filter headers include log_config logio mime mime_magic negotiation unique_id vhost_alias&quot;</span>
+<span class="nv">APACHE2_MPMS</span><span class="o">=</span><span class="s2">&quot;worker&quot;</span>
+</pre></div>
+
+
+<p>If you plan on using SSL, disregard the -ssl flags, but otherwise:</p>
+<div class="highlight"><pre><span class="go">echo &quot;www-servers/apache threads -ssl&quot; &gt;&gt; /etc/portage/package.use</span>
+<span class="go">echo &quot;app-admin/apache-tools -ssl&quot; &gt;&gt; /etc/portage/package.use</span>
+</pre></div>
+
+
+<p>Install Apache and the WSGI mod.</p>
+<div class="highlight"><pre><span class="go">emerge apache mod_wsgi -avq</span>
+</pre></div>
+
+
+<p>Modify the following in <code>/etc/apache2/httpd.conf</code>:</p>
+<div class="highlight"><pre><span class="nb">User</span> web
+<span class="nb">Group</span> web
+<span class="nb">NameVirtualHost</span> <span class="m">127.0.0.1</span>:8080
+<span class="nb">Listen</span> <span class="m">8080</span>
+<span class="nb">Include</span> <span class="sx">/etc/apache2/vhosts.d/</span>*.conf
+</pre></div>
+
+
+<p>We don't need the default virtual configs that Apache comes with, so delete them.</p>
+<div class="highlight"><pre><span class="go">rm /etc/apache2/vhosts.d/*</span>
+</pre></div>
+
+
+<p>And configure Apache to only load the modules we need by editing <code>/etc/conf.d/apache2</code>:</p>
+<div class="highlight"><pre><span class="nv">APACHE2_OPTS</span><span class="o">=</span><span class="s2">&quot;-D INFO -D LANGUAGE -D WSGI&quot;</span>
+</pre></div>
+
+
+<p>Remove the unnecessary localhost directory (if it exists).</p>
+<div class="highlight"><pre><span class="go">rm -rf /var/www/localhost</span>
+</pre></div>
+
+
+<p>Start Apache and set it to start on boot.</p>
+<div class="highlight"><pre><span class="go">/etc/init.d/apache2 start</span>
+<span class="go">rc-update add apache2 default</span>
+</pre></div>
+
+
+<p><a href="#contents">Table of Contents</a></p>
+<p><a id="sass"></a></p>
+<h2>SASS</h2>
+<p>I use django_compressor in all of my projects which in turn compiles my SASS files for me.  If you use django_compressor in this way also, you'll need to install SASS.</p>
+<div class="highlight"><pre><span class="go">echo &#39;RUBY_TARGETS=&quot;ruby19&quot;&#39; &gt;&gt; /etc/make.conf</span>
+<span class="go">emerge dev-ruby/sass -avq</span>
+</pre></div>
+
+
+<p><a href="#contents">Table of Contents</a></p>
+<p><a id="conclusion"></a></p>
+<h2>Conclusion</h2>
+<p>If all went well, you now have a fully functional Django production stack.  Your projects can be git-cloned in the /var/www directory, then you simply need to set up the virtual environment, set up a database, collect static files, and symlink your apache and nginx configuration files to their respective vhosts.d folders.</p>
+<p>Don't forget to set up cron jobs for backups.</p>
+<p>If I've left anything out or failed to be clear, please let me know in the comments.</p><p>There are <a href="http://dustinfarris.com/2012/09/29/setting-up-a-django-server-with-gentoo.html#disqus_thread">comments</a>.</p>                </article>
+<p class="paginator">
+    Page 1 / 1
+</p>
+            </aside><!-- /#featured -->
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>blogroll</h2>
+                        <ul>
+                            <li><a href="http://getpelican.com/">Pelican</a></li>
+                            <li><a href="http://python.org/">Python.org</a></li>
+                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+                            <li><a href="#">You can modify those links in your config file</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="http://dustinfarris.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-13275015-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+<script type="text/javascript">
+    var disqus_shortname = 'dustinfarris';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+</body>
+</html>

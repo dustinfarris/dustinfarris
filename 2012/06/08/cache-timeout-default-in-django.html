@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>"Cache Timeout Default in Django"</title>
+        <link rel="stylesheet" href="http://dustinfarris.com/theme/css/main.css" />
+        <link href="http://dustinfarris.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Dustin Farris Atom Feed" />
+
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="http://dustinfarris.com/">Dustin Farris </a></h1>
+                <nav><ul>
+                    <li class="active"><a href="http://dustinfarris.com/category/blog.html">blog</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="http://dustinfarris.com/2012/06/08/cache-timeout-default-in-django.html" rel="bookmark"
+           title="Permalink to "Cache Timeout Default in Django"">"Cache Timeout Default in Django"</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2012-06-08T00:00:00+02:00">
+                Published: Fri 08 June 2012
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://dustinfarris.com/author/dustin-farris.html">Dustin Farris</a>
+        </address>
+<p>In <a href="http://dustinfarris.com/category/blog.html">blog</a>. </p>
+<p>tags: <a href="http://dustinfarris.com/tag/django.html">Django</a> </p>
+</footer><!-- /.post-info -->      <p>I had to break a bad habit where I always specify explicit cache timeout settings when building custom template tags.  For example, I might have a news feed for the homepage that looks something like this:</p>
+<div class="highlight"><pre>    <span class="kn">from</span> <span class="nn">django.conf</span> <span class="kn">import</span> <span class="n">settings</span>
+    <span class="kn">from</span> <span class="nn">django.core.cache</span> <span class="kn">import</span> <span class="n">cache</span>
+    <span class="kn">from</span> <span class="nn">django.template</span> <span class="kn">import</span> <span class="n">Library</span>
+
+    <span class="kn">from</span> <span class="nn">news.models</span> <span class="kn">import</span> <span class="n">Article</span>
+
+
+    <span class="n">register</span> <span class="o">=</span> <span class="n">Library</span><span class="p">()</span>
+
+
+
+    <span class="nd">@register.inclusion_tag</span><span class="p">(</span><span class="s">&#39;news/_news-feed.html&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">show_news_feed</span><span class="p">():</span>
+        <span class="sd">&quot;&quot;&quot;Display 3 most recent news articles.&quot;&quot;&quot;</span>
+        <span class="n">latest_articles</span> <span class="o">=</span> <span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;news_latest_articles&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">latest_articles</span><span class="p">:</span>
+            <span class="n">latest_articles</span> <span class="o">=</span> <span class="n">Article</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s">&#39;-pub_date&#39;</span><span class="p">)[:</span><span class="mi">3</span><span class="p">]</span>
+            <span class="n">cache</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+                <span class="s">&#39;news_latest_articles&#39;</span><span class="p">,</span>
+                <span class="n">latest_articles</span><span class="p">,</span>
+                <span class="n">settings</span><span class="o">.</span><span class="n">NEWS_LATEST_ARTICLES_TIMEOUT</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s">&#39;latest_articles&#39;</span><span class="p">:</span> <span class="n">latest_articles</span><span class="p">}</span>
+</pre></div>
+
+
+<p>Notice that I use a custom value for the timeout duration, which means somewhere in my <code>settings.py</code> I have to have:</p>
+<div class="highlight"><pre>    <span class="n">NEWS_LATEST_ARTICLES_TIMEOUT</span> <span class="o">=</span> <span class="mi">600</span>
+</pre></div>
+
+
+<p>or something like that.  However, there is a default value already available when you set up your cache backend.  Usually this looks something like this in <code>settings.py</code>:</p>
+<div class="highlight"><pre>    <span class="n">CACHES</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s">&#39;default&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;BACKEND&#39;</span><span class="p">:</span> <span class="s">&#39;django.core.cache.backends.memcached.MemcachedCache&#39;</span><span class="p">,</span>
+            <span class="s">&#39;LOCATION&#39;</span><span class="p">:</span> <span class="s">&#39;127.0.0.1:11211&#39;</span><span class="p">,</span>
+            <span class="s">&#39;KEY_PREFIX&#39;</span><span class="p">:</span> <span class="s">&#39;&#39;</span><span class="p">,</span>
+            <span class="s">&#39;TIMEOUT&#39;</span><span class="p">:</span> <span class="mi">300</span><span class="p">,</span>
+            <span class="s">&#39;VERSION&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+</pre></div>
+
+
+<p>Note the timeout value here.  This value is used as a default whenever you import the <code>cache</code> module from <code>django.core</code>.  In fact, 300 seconds is the default value <a href="https://docs.djangoproject.com/en/1.4/ref/settings/#timeout">regardless</a>, so you could even leave it out here.  Best to stay DRY unless otherwise needed.</p>
+    </div><!-- /.entry-content -->
+    <div class="comments">
+      <h2>Comments !</h2>
+      <div id="disqus_thread"></div>
+      <script type="text/javascript">
+        var disqus_shortname = 'dustinfarris';
+        var disqus_identifier = '2012/06/08/cache-timeout-default-in-django.html';
+        var disqus_url = 'http://dustinfarris.com/2012/06/08/cache-timeout-default-in-django.html';
+        (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//dustinfarris.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the comments.</noscript>
+    </div>
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>blogroll</h2>
+                        <ul>
+                            <li><a href="http://getpelican.com/">Pelican</a></li>
+                            <li><a href="http://python.org/">Python.org</a></li>
+                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+                            <li><a href="#">You can modify those links in your config file</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="http://dustinfarris.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-13275015-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+<script type="text/javascript">
+    var disqus_shortname = 'dustinfarris';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+</body>
+</html>

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>"HTML5 Navigation in Django"</title>
+        <link rel="stylesheet" href="http://dustinfarris.com/theme/css/main.css" />
+        <link href="http://dustinfarris.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Dustin Farris Atom Feed" />
+
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="http://dustinfarris.com/">Dustin Farris </a></h1>
+                <nav><ul>
+                    <li class="active"><a href="http://dustinfarris.com/category/blog.html">blog</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="http://dustinfarris.com/2012/11/29/html5-navigation-in-django.html" rel="bookmark"
+           title="Permalink to "HTML5 Navigation in Django"">"HTML5 Navigation in Django"</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2012-11-29T00:00:00+01:00">
+                Published: Thu 29 November 2012
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://dustinfarris.com/author/dustin-farris.html">Dustin Farris</a>
+        </address>
+<p>In <a href="http://dustinfarris.com/category/blog.html">blog</a>. </p>
+<p>tags: <a href="http://dustinfarris.com/tag/django-html5.html">Django HTML5</a> </p>
+</footer><!-- /.post-info -->      <p>Creating a snappy user experience can be easily obtained by implementing <a href="http://dev.w3.org/html5/spec/history.html#history">HTML5 navigation</a>.  Not only does it take less time to render only the needed Django templates, the browser has less information to digest on the response.</p>
+<p>Note that I do not use the popular method of using jQuery to request a page, then parsing out the elements I want to replace.  No, this method intelligently renders only the appropriate "snippet" templates and returns the HTML in a JSON response.</p>
+<p>I'll use <a href="http://coffeescript.org/">CoffeeScript</a>, <a href="http://jade-lang.com/">Jade</a>, and of course Python in this example.  Don't worry if you're not familiar with the first two as it is fairly easy to understand what is going on and convert to the JavaScript and HTML equivalents.</p>
+<p><a id="contents"> </a></p>
+<h2>Contents</h2>
+<ul>
+<li><a href="#planning">Planning</a></li>
+<li><a href="#templates">Templates</a></li>
+<li><a href="#response-objects">Response Objects</a></li>
+<li><a href="#views">Views</a></li>
+<li><a href="#scripting-it-together">Scripting it together</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul>
+<p><a id="planning"> </a></p>
+<h2>Planning</h2>
+<p>Before we can start building the navigation script, we need to decide which parts of the page we want to (re)load.  Take a basic (common) example:</p>
+<p><img alt="Normal web page layout" src="/media/filer_public/2012/11/29/normallayout.png" /></p>
+<p>Say the content area is what we'll be after most of the time, but sometimes maybe the sidebar changes to.  Perhaps it holds user information that would change when a user logs in or edits their profile.  To be on the safe side, we will want to refresh the <code>#main &gt; article</code> and <code>#main &gt; aside</code> containers on every navigation event.  Moving on.</p>
+<p><a id="templates"> </a></p>
+<h2>Templates</h2>
+<p>This is where we make decisions based on our "planning."  Based on our layout, we'll use a base template that looks something like this in <code>myproject/templates/base.jade</code> (in Jade):</p>
+<div class="highlight"><pre><span class="nn">!!! 5</span>
+
+<span class="nt">html</span>
+    <span class="nt">head</span>
+    <span class="nt">title</span>
+        <span class="nt">block</span> title
+        | My Project
+    <span class="nt">body</span>
+    <span class="nt">header</span>
+        <span class="nt">block</span> header
+        <span class="nt">include</span> _header
+    <span class="nf">#main</span>
+        <span class="nt">aside</span>
+        <span class="nt">include</span> _aside
+        <span class="nt">article</span>
+        <span class="nt">block</span> content
+    <span class="nt">footer</span>
+        <span class="nt">block</span> footer
+        <span class="nt">include</span> _footer
+</pre></div>
+
+
+<p>I'm leaving out the other usual stuff (jQuery, stylesheets, etc..) for brevity.  The two areas we are concerned with, again, are the 'aside' and 'article' areas under <code>#main</code>.  The aside area will probably be built with one template, in our case, <code>myproject/templates/_aside.jade</code>:</p>
+<div class="highlight"><pre><span class="nt">if</span> request.user.is_authenticated
+    <span class="nt">p</span> Welcome back!
+<span class="nt">else</span>
+    <span class="nt">p</span> You are not registered
+</pre></div>
+
+
+<p>Or something like that.  The content area is more interesting.  For every "view" we will need a full template and template snippet.  The template snippet is used for HTML5 AJAX requests, the full template for regular requests.</p>
+<p>Suppose we have a blog app/model.  Using a blog 'detail' view as an example, we will have two templates.  The first, <code>myproject/blog/templates/blog/detail.jade</code>:</p>
+<div class="highlight"><pre><span class="nt">extends</span> base
+
+<span class="nt">block</span> title
+    | {{ object.title }}
+
+<span class="nt">block</span> content
+    <span class="nt">include</span> blog/_detail
+</pre></div>
+
+
+<p>That's it, just a skeleton, and the meat goes in the snippet, <code>myproject/blog/templates/blog/_detail.jade</code>:</p>
+<p>{% raw %}</p>
+<div class="highlight"><pre><span class="nt">header</span>
+  <span class="nt">h1</span> {{ object.title }}
+    <span class="nt">p</span> Written by {{ object.author }}
+
+<span class="err">{{ </span><span class="nt">object</span><span class="nc">.content</span>|safe }}
+</pre></div>
+
+
+<p>{% endraw %}</p>
+<p><a href="#contents">Table of Contents</a></p>
+<p><a id="response-objects"> </a></p>
+<h2>Response Objects</h2>
+<p>A big part of the HTML5 navigation process is the HTTP response. As I mentioned, we will be compiling the HTML into a JSON response, and I've found it saves a lot of time to put a couple wrappers on Django's standard HttpResponse class.  (At the risk of confusion, I'm also going to throw in a 'redirect' class which will come in very handy for many people).  I like to put this in an 'http' module under my project module.  <code>myproject/http.py</code>:</p>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">json</span>
+
+<span class="kn">from</span> <span class="nn">django.http</span> <span class="kn">import</span> <span class="n">HttpResponse</span>
+<span class="kn">from</span> <span class="nn">django.template</span> <span class="kn">import</span> <span class="n">RequestContext</span>
+<span class="kn">from</span> <span class="nn">django.template.loader</span> <span class="kn">import</span> <span class="n">render_to_string</span>
+<span class="kn">from</span> <span class="nn">django.utils.encoding</span> <span class="kn">import</span> <span class="n">smart_unicode</span>
+
+
+<span class="k">class</span> <span class="nc">JsonResponse</span><span class="p">(</span><span class="n">HttpResponse</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="n">article_template</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="p">{},</span>
+        <span class="n">aside_template</span><span class="o">=</span><span class="s">&#39;_aside.jade&#39;</span><span class="p">):</span>
+    <span class="n">request_context</span> <span class="o">=</span> <span class="n">RequestContext</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+    <span class="n">content</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span>
+        <span class="s">&#39;title&#39;</span><span class="p">:</span> <span class="n">render_to_string</span><span class="p">(</span><span class="n">article_template</span><span class="p">,</span> <span class="n">request_context</span><span class="p">),</span>
+        <span class="s">&#39;article&#39;</span><span class="p">:</span> <span class="n">render_to_string</span><span class="p">(</span><span class="n">aside_template</span><span class="p">,</span> <span class="n">request_context</span><span class="p">)})</span>
+    <span class="nb">super</span><span class="p">(</span><span class="n">JsonResponse</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span>
+        <span class="n">smart_unicode</span><span class="p">(</span><span class="n">content</span><span class="p">),</span> <span class="n">content_type</span><span class="o">=</span><span class="s">&#39;application/json&#39;</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">JsonRedirect</span><span class="p">(</span><span class="n">HttpResponse</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">):</span>
+    <span class="n">content</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span>
+        <span class="s">&#39;redirect&#39;</span><span class="p">:</span> <span class="n">url</span><span class="p">})</span>
+    <span class="nb">super</span><span class="p">(</span><span class="n">JsonRedirect</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span>
+        <span class="n">smart_unicode</span><span class="p">(</span><span class="n">content</span><span class="p">),</span> <span class="n">content_type</span><span class="o">=</span><span class="s">&#39;application/json&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>The JsonResponse object will give us a JSON response containing the new pages title, sidebar content, and main content.  We'll use this later.</p>
+<p><a href="#contents">Table of Contents</a></p>
+<p><a id="views"> </a></p>
+<h2>Views</h2>
+<p>Now it's up to the view to return the appropriate response.  This part is really quite straight forward.  For our example detail view, we'll just make a minor adjustment to the Django's detail generic view. <code>myproject/blog/views.py</code>:</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">render</span>
+<span class="kn">from</span> <span class="nn">django.utils.decorators</span> <span class="kn">import</span> <span class="n">method_decorator</span>
+<span class="kn">from</span> <span class="nn">django.views.decorators.vary</span> <span class="kn">import</span> <span class="n">vary_on_headers</span>
+<span class="kn">from</span> <span class="nn">django.views.generic.detail</span> <span class="kn">import</span> <span class="n">DetailView</span>
+<span class="kn">from</span> <span class="nn">myproject.http</span> <span class="kn">import</span> <span class="n">JsonResponse</span>
+
+
+<span class="k">class</span> <span class="nc">BlogDetailView</span><span class="p">(</span><span class="n">DetailView</span><span class="p">):</span>
+
+    <span class="nd">@method_decorator</span><span class="p">(</span><span class="n">vary_on_headers</span><span class="p">(</span><span class="s">&#39;X-Requested-With&#39;</span><span class="p">))</span>
+    <span class="k">def</span> <span class="nf">dispatch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">BlogDetailView</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">dispatch</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">render_to_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">is_ajax</span><span class="p">():</span>
+        <span class="k">return</span> <span class="n">JsonResponse</span><span class="p">(</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">title</span><span class="p">,</span> <span class="s">&#39;blog/_detail.jade&#39;</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">,</span> <span class="s">&#39;blog/detail.jade&#39;</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+</pre></div>
+
+
+<p>To quickly summarize, we are determining how the page is being requested, by AJAX(HTML5), or as a normal request(not HTML5), and returning the snippet, or the full page respectively.</p>
+<p>We do a minor override on the <code>dispatch</code> method to make sure caching doesn't confuse our logic---for example if the page is requested as AJAX and Django caches the response, then the page is requested normally and Django returns the same JSON object.  The <code>vary_on_headers</code> decorator effectively gives us two cache slots for the view.</p>
+<p><a href="#contents">Table of Contents</a></p>
+<p><a id="scripting-it-together"> </a></p>
+<h2>Scripting it together</h2>
+<p>Now we take our server logic and implement it client-side.  We want to capture all 'a' clicks and run it through HTML5.  I'm including all the necessary code to make this work, which should mostly make sense if you are already familiar with how HTML5 pushState works.  (I use <a href="http://modernizr.com/">Modernizr</a> for feature detection) I'm also including a couple extra goodies like redirect handling and Google Analytics logic.  <code>myproject/static/javascripts/main.coffee</code>:</p>
+<div class="highlight"><pre><span class="c1"># Navigation handling</span>
+
+<span class="k">if</span> <span class="nx">Modernizr</span><span class="p">.</span><span class="nx">history</span>
+    <span class="c1"># Initialize history state</span>
+    <span class="nx">history</span><span class="p">.</span><span class="nx">replaceState</span>
+    <span class="nv">title: </span><span class="nb">document</span><span class="p">.</span><span class="nx">title</span>
+    <span class="nv">article: </span><span class="nx">$</span><span class="p">(</span><span class="s">&#39;#main &gt; article&#39;</span><span class="p">).</span><span class="nx">html</span><span class="p">()</span>
+    <span class="nv">aside: </span><span class="nx">$</span><span class="p">(</span><span class="s">&#39;#main &gt; aside&#39;</span><span class="p">).</span><span class="nx">html</span><span class="p">()</span>
+    <span class="p">,</span> <span class="nb">document</span><span class="p">.</span><span class="nx">title</span><span class="p">,</span> <span class="nb">window</span><span class="p">.</span><span class="nx">location</span>
+
+    <span class="c1"># Navigate to a new page</span>
+    <span class="nv">goTo = </span><span class="nf">(url) -&gt;</span>
+    <span class="c1"># First, set a query-string to prevent browsers from caching</span>
+    <span class="c1"># the JSON response.  (a known issue in Chrome)</span>
+    <span class="k">if</span> <span class="nx">url</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s">&quot;?&quot;</span><span class="p">)</span> <span class="o">is</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="nv">get_url = </span><span class="nx">url</span> <span class="o">+</span> <span class="s">&#39;?dontcacheme=1&#39;</span>
+    <span class="k">else</span>
+        <span class="nv">get_url = </span><span class="nx">url</span> <span class="o">+</span> <span class="s">&#39;&amp;dontcacheme=1&#39;</span>
+
+    <span class="c1"># Send the request and handle the response</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">get</span> <span class="nx">get_url</span><span class="p">,</span> <span class="nf">(response) -&gt;</span>
+        <span class="c1"># Are we being redirected?</span>
+        <span class="k">if</span> <span class="nx">response</span><span class="p">.</span><span class="nx">redirect</span> <span class="o">isnt</span> <span class="kc">undefined</span>
+        <span class="k">return</span> <span class="nx">goTo</span> <span class="nx">response</span><span class="p">.</span><span class="nx">redirect</span>
+        <span class="c1"># Nope, continue on</span>
+        <span class="nx">history</span><span class="p">.</span><span class="nx">pushState</span>
+        <span class="nv">title: </span><span class="nx">response</span><span class="p">.</span><span class="nx">title</span>
+        <span class="nv">article: </span><span class="nx">response</span><span class="p">.</span><span class="nx">article</span>
+        <span class="nv">aside: </span><span class="nx">response</span><span class="p">.</span><span class="nx">aside</span>
+        <span class="p">,</span> <span class="nx">response</span><span class="p">.</span><span class="nx">title</span><span class="p">,</span> <span class="nx">url</span>
+        <span class="nb">document</span><span class="p">.</span><span class="nv">title = </span><span class="nx">response</span><span class="p">.</span><span class="nx">title</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s">&#39;#main &gt; article&#39;</span><span class="p">).</span><span class="nx">html</span> <span class="nx">response</span><span class="p">.</span><span class="nx">article</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s">&#39;#main &gt; aside&#39;</span><span class="p">).</span><span class="nx">html</span> <span class="nx">response</span><span class="p">.</span><span class="nx">aside</span>
+        <span class="nx">captureNavigation</span> <span class="c1">#main</span>
+
+        <span class="c1"># Alert Google Analytics</span>
+        <span class="k">if</span> <span class="k">typeof</span> <span class="nb">window</span><span class="p">.</span><span class="nx">_gaq</span> <span class="o">isnt</span> <span class="s">&#39;undefined&#39;</span>
+        <span class="nb">window</span><span class="p">.</span><span class="nx">_gaq</span><span class="p">.</span><span class="nx">push</span> <span class="p">[</span><span class="s">&#39;_trackPageView&#39;</span><span class="p">,</span> <span class="nx">url</span><span class="p">]</span>
+
+        <span class="c1"># Make sure we start at the top</span>
+        <span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">scrollTop</span> <span class="mi">0</span>
+
+    <span class="c1"># Capture &quot;a&quot; click events.. let&#39;s do this</span>
+    <span class="nv">captureNavigation = </span><span class="nf">(parent) -&gt;</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">parent</span><span class="si">}</span><span class="s"> a:not(no-html5)&quot;</span><span class="p">).</span><span class="nx">on</span> <span class="s">&#39;click&#39;</span><span class="p">,</span> <span class="nf">-&gt;</span>
+        <span class="k">if</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s">&#39;rel&#39;</span><span class="p">)</span> <span class="o">is</span> <span class="s">&#39;external&#39;</span> <span class="o">or</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s">&#39;target&#39;</span><span class="p">)</span> <span class="o">is</span> <span class="s">&#39;_blank&#39;</span>
+        <span class="k">return</span> <span class="kc">true</span>
+        <span class="nx">goTo</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s">&#39;href&#39;</span><span class="p">))</span>
+        <span class="k">return</span> <span class="kc">false</span>
+
+    <span class="c1"># &quot;$(document).ready&quot; for non-coffeescript users ;)</span>
+    <span class="nx">$</span> <span class="nf">-&gt;</span>
+    <span class="nx">captureNavigation</span> <span class="s">&#39;body&#39;</span>
+</pre></div>
+
+
+<p>There are few things to clarify here.  First is the <code>dontcache=1</code> query-string.  This is solely to address a bug in Chrome where it will otherwise cache responses and reuse them inappropriately for future requests.</p>
+<p>Also, it is important that the <code>captureNavigation</code> function focuses only on areas that are new to the window; otherwise you end up with a stack of event handlers on some of your elements.  Tune as desired.</p>
+<p><a href="#contents">Table of Contents</a></p>
+<p><a id="conclusion"> </a></p>
+<h2>Conclusion</h2>
+<p>This gives you a slick HTML5 navigable site, and the performance bump is immediately noticeable.  It is amazing how much faster browsers parse JSON responses over HTML.</p>
+<p>There is more to consider here.  Handling forms have a couple quirks, and there's plenty of room for creativity in terms of layouts and packing extra information into the JSON responses.  Let me know in the comments if you need help with any of these.</p>
+    </div><!-- /.entry-content -->
+    <div class="comments">
+      <h2>Comments !</h2>
+      <div id="disqus_thread"></div>
+      <script type="text/javascript">
+        var disqus_shortname = 'dustinfarris';
+        var disqus_identifier = '2012/11/29/html5-navigation-in-django.html';
+        var disqus_url = 'http://dustinfarris.com/2012/11/29/html5-navigation-in-django.html';
+        (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//dustinfarris.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the comments.</noscript>
+    </div>
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>blogroll</h2>
+                        <ul>
+                            <li><a href="http://getpelican.com/">Pelican</a></li>
+                            <li><a href="http://python.org/">Python.org</a></li>
+                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+                            <li><a href="#">You can modify those links in your config file</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="http://dustinfarris.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-13275015-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+<script type="text/javascript">
+    var disqus_shortname = 'dustinfarris';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+</body>
+</html>

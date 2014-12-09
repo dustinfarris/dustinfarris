@@ -42,5 +42,16 @@ DEFAULT_PAGINATION = 10
 # Uncomment following line if you want document-relative URLs when developing
 #RELATIVE_URLS = True
 
-STATIC_PATHS = ['images', 'extra/CNAME']
-EXTRA_PATH_METADATA = {'extra/CNAME': {'path': 'CNAME'},}
+STATIC_PATHS = [
+  'images',
+  'extra/CNAME',
+  'extra/humans.txt',
+  'extra/robots.txt',
+  'extra/favicon.ico',
+]
+EXTRA_PATH_METADATA = {
+  'extra/CNAME': {'path': 'CNAME'},
+  'extra/humans.txt': {'path': 'humans.txt'},
+  'extra/robots.txt': {'path': 'robots.txt'},
+  'extra/favicon.ico': {'path': 'favicon.ico'},
+}

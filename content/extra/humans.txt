@@ -1,0 +1,7 @@
+# TEAM
+
+    Dustin Farris -- Developer/Author -- @dustinfarris
+
+# TECHNOLOGY COLOPHON
+
+    Pelican, HTML5, CSS3

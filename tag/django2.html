@@ -1,317 +1,216 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-        <meta charset="utf-8" />
-        <title>Dustin Farris - [Django</title>
-        <link rel="stylesheet" href="http://dustinfarris.com/theme/css/main.css" />
-        <link href="http://dustinfarris.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Dustin Farris Atom Feed" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dustin Farris, inveniam viam aut faciam">
 
-        <!--[if IE]>
-            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
+        <link rel="alternate"  href="http://dustinfarris.com/feeds/all.atom.xml" type="application/atom+xml" title="Dustin Farris Full Atom Feed"/>
+
+        <title>[Django tag // Dustin Farris // inveniam viam aut faciam</title>
+
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://dustinfarris.com/theme/css/pure.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 </head>
 
-<body id="index" class="home">
-        <header id="banner" class="body">
-                <h1><a href="http://dustinfarris.com/">Dustin Farris </a></h1>
-                <nav><ul>
-                    <li><a href="http://dustinfarris.com/category/blog.html">blog</a></li>
-                </ul></nav>
-        </header><!-- /#banner -->
-
-                <section id="content" class="body">
-                    <ol id="posts-list" class="hfeed" start="9">
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="http://dustinfarris.com/2012/08/08/django-model-managers-via-related.html" rel="bookmark"
-                           title="Permalink to "Django Model Managers via Related"">"Django Model Managers via Related"</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2012-08-08T00:00:00+02:00">
-                Published: Wed 08 August 2012
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="http://dustinfarris.com/author/dustin-farris.html">Dustin Farris</a>
-        </address>
-<p>In <a href="http://dustinfarris.com/category/blog.html">blog</a>. </p>
-<p>tags: <a href="http://dustinfarris.com/tag/django.html">Django</a> </p>
-</footer><!-- /.post-info -->                <p>It is fairly common practice to use a custom model manager when you have a certain field(s) that you know you will be filtering by a lot.  I found a small caveat from the traditional approach when you take related objects into account.  Take this classic example for published ...</p>
-                <a class="readmore" href="http://dustinfarris.com/2012/08/08/django-model-managers-via-related.html">read more</a>
-<p>There are <a href="http://dustinfarris.com/2012/08/08/django-model-managers-via-related.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="http://dustinfarris.com/2012/07/09/django-typography-django-typogrify.html" rel="bookmark"
-                           title="Permalink to "Django + Typography = django-typogrify"">"Django + Typography = django-typogrify"</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2012-07-09T00:00:00+02:00">
-                Published: Mon 09 July 2012
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="http://dustinfarris.com/author/dustin-farris.html">Dustin Farris</a>
-        </address>
-<p>In <a href="http://dustinfarris.com/category/blog.html">blog</a>. </p>
-<p>tags: <a href="http://dustinfarris.com/tag/django.html">Django</a> </p>
-</footer><!-- /.post-info -->                <p>Something I've put off dealing with (until today) is typography.  As a little bit of history: the typewriter forced us to sacrifice certain printed media standards because of its monospaced font.  Things like double-spacing between sentences and using straight quotes can be considered typewriter-era "hacks" so this portable machine ...</p>
-                <a class="readmore" href="http://dustinfarris.com/2012/07/09/django-typography-django-typogrify.html">read more</a>
-<p>There are <a href="http://dustinfarris.com/2012/07/09/django-typography-django-typogrify.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="http://dustinfarris.com/2012/07/05/facebook-meta-tags-using-django-and-jade.html" rel="bookmark"
-                           title="Permalink to "Facebook Meta-tags using Django and Jade"">"Facebook Meta-tags using Django and Jade"</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2012-07-05T00:00:00+02:00">
-                Published: Thu 05 July 2012
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="http://dustinfarris.com/author/dustin-farris.html">Dustin Farris</a>
-        </address>
-<p>In <a href="http://dustinfarris.com/category/blog.html">blog</a>. </p>
-<p>tags: <a href="http://dustinfarris.com/tag/django.html">Django</a> </p>
-</footer><!-- /.post-info -->                <p>I've found the Facebook doesn't do the best job of inferring general information from my blog articles on its own.  Fortunately, the folks at FB provide a name-spaced meta tag schema more commonly known as <a href="https://developers.facebook.com/docs/opengraph/">Open Graph</a>.</p>
-<p>Implementing a quick self-explanatory in a Django template <a href="http://dustinfarris.com/2012/6/django-and-jade/">using Jade</a> is ...</p>
-                <a class="readmore" href="http://dustinfarris.com/2012/07/05/facebook-meta-tags-using-django-and-jade.html">read more</a>
-<p>There are <a href="http://dustinfarris.com/2012/07/05/facebook-meta-tags-using-django-and-jade.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="http://dustinfarris.com/2012/06/08/cache-timeout-default-in-django.html" rel="bookmark"
-                           title="Permalink to "Cache Timeout Default in Django"">"Cache Timeout Default in Django"</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2012-06-08T00:00:00+02:00">
-                Published: Fri 08 June 2012
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="http://dustinfarris.com/author/dustin-farris.html">Dustin Farris</a>
-        </address>
-<p>In <a href="http://dustinfarris.com/category/blog.html">blog</a>. </p>
-<p>tags: <a href="http://dustinfarris.com/tag/django.html">Django</a> </p>
-</footer><!-- /.post-info -->                <p>I had to break a bad habit where I always specify explicit cache timeout settings when building custom template tags.  For example, I might have a news feed for the homepage that looks something like this:</p>
+<body>
+    <div class="pure-g-r" id="layout">
+        <div class="sidebar pure-u">
+            <div class="cover-img" style="background-image: url('http://dustinfarris.com/images/beach.jpg')">
+                <div class="cover-body">
+                    <header class="header">
+                        <hgroup>
+                            <img class="avatar" src="http://dustinfarris.com/images/dustin.jpeg">
+                            <h1 class="brand-main"><a href="http://dustinfarris.com">Dustin Farris</a></h1>
+                            <p class="tagline">inveniam viam aut faciam</p>
+                                <p class="social">
+                                    <a href="https://github.com/dustinfarris/">
+                                        <i class="fa fa-github fa-3x"></i>
+                                    </a>
+                                    <a href="https://twitter.com/dustinfarris">
+                                        <i class="fa fa-twitter fa-3x"></i>
+                                    </a>
+                                    <a href="/feeds/all.atom.xml">
+                                        <i class="fa fa-rss fa-3x"></i>
+                                    </a>
+                                </p>
+                        </hgroup>
+                    </header>
+                </div>
+            </div>
+        </div>
+    <div class="pure-u">
+        <div class="content">
+            <!-- A wrapper for all the blog posts -->
+            <div class="posts">
+                <h1 class="content-subhead">
+Posts tagged '[Django'                        &ndash; Page&nbsp;2
+                </h1>
+                    <section class="post">
+                        <header class="post-header">
+                            <h3><a class="post-title" href="http://dustinfarris.com/2012/08/08/django-model-managers-via-related.html">"Django Model Managers via Related"</a></h3>
+                            <p class="post-meta"><p>It is fairly common practice to use a custom model manager when you have a certain field(s) that you know you will be filtering by a lot.  I found a small caveat from the traditional approach when you take related objects into account.  Take this classic example for published ...</p></p>
+                            <p class="post-meta">
+                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Wed 08 August 2012
+                            </p>
+                        </header>
+                    </section>
+                    <section class="post">
+                        <header class="post-header">
+                            <h3><a class="post-title" href="http://dustinfarris.com/2012/07/09/django-typography-django-typogrify.html">"Django + Typography = django-typogrify"</a></h3>
+                            <p class="post-meta"><p>Something I've put off dealing with (until today) is typography.  As a little bit of history: the typewriter forced us to sacrifice certain printed media standards because of its monospaced font.  Things like double-spacing between sentences and using straight quotes can be considered typewriter-era "hacks" so this portable machine ...</p></p>
+                            <p class="post-meta">
+                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Mon 09 July 2012
+                            </p>
+                        </header>
+                    </section>
+                    <section class="post">
+                        <header class="post-header">
+                            <h3><a class="post-title" href="http://dustinfarris.com/2012/07/05/facebook-meta-tags-using-django-and-jade.html">"Facebook Meta-tags using Django and Jade"</a></h3>
+                            <p class="post-meta"><p>I've found the Facebook doesn't do the best job of inferring general information from my blog articles on its own.  Fortunately, the folks at FB provide a name-spaced meta tag schema more commonly known as <a href="https://developers.facebook.com/docs/opengraph/">Open Graph</a>.</p>
+<p>Implementing a quick self-explanatory in a Django template <a href="http://dustinfarris.com/2012/6/django-and-jade/">using Jade</a> is ...</p></p>
+                            <p class="post-meta">
+                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Thu 05 July 2012
+                            </p>
+                        </header>
+                    </section>
+                    <section class="post">
+                        <header class="post-header">
+                            <h3><a class="post-title" href="http://dustinfarris.com/2012/06/08/cache-timeout-default-in-django.html">"Cache Timeout Default in Django"</a></h3>
+                            <p class="post-meta"><p>I had to break a bad habit where I always specify explicit cache timeout settings when building custom template tags.  For example, I might have a news feed for the homepage that looks something like this:</p>
 <div class="highlight"><pre>    <span class="kn">from</span> <span class="nn">django.conf</span> <span class="kn">import</span> <span class="n">settings</span>
     <span class="kn">from</span> <span class="nn">django.core.cache</span> <span class="kn">import</span> <span class="n">cache</span>
-    <span class="kn">from</span> <span class="nn">django.template ...</span></pre></div>
-                <a class="readmore" href="http://dustinfarris.com/2012/06/08/cache-timeout-default-in-django.html">read more</a>
-<p>There are <a href="http://dustinfarris.com/2012/06/08/cache-timeout-default-in-django.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="http://dustinfarris.com/2012/06/01/django-and-jade.html" rel="bookmark"
-                           title="Permalink to "Django and Jade"">"Django and Jade"</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2012-06-01T00:00:00+02:00">
-                Published: Fri 01 June 2012
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="http://dustinfarris.com/author/dustin-farris.html">Dustin Farris</a>
-        </address>
-<p>In <a href="http://dustinfarris.com/category/blog.html">blog</a>. </p>
-<p>tags: <a href="http://dustinfarris.com/tag/django.html">Django</a> </p>
-</footer><!-- /.post-info -->                <p>This week I made an important addition to my tool kit.  In the past I've focused primarily on ways to streamline backend development using tools like django_compressor, Sentry, and Fabric.  More recently, however, I've taken a turn and began focusing on ways to bring my frontend up to ...</p>
-                <a class="readmore" href="http://dustinfarris.com/2012/06/01/django-and-jade.html">read more</a>
-<p>There are <a href="http://dustinfarris.com/2012/06/01/django-and-jade.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="http://dustinfarris.com/2012/05/18/why-build-a-blog-with-django.html" rel="bookmark"
-                           title="Permalink to "Why Build a Blog with Django?"">"Why Build a Blog with Django?"</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2012-05-18T00:00:00+02:00">
-                Published: Fri 18 May 2012
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="http://dustinfarris.com/author/dustin-farris.html">Dustin Farris</a>
-        </address>
-<p>In <a href="http://dustinfarris.com/category/blog.html">blog</a>. </p>
-<p>tags: <a href="http://dustinfarris.com/tag/django.html">Django</a> </p>
-</footer><!-- /.post-info -->                <p>This question comes up a lot, both in flame wars and in rational discussion.  Why would you take time to build a blog application with Django when there are engines like WordPress that do the same thing out of the box.  Well it depends.</p>
-<p>The number one reason I think ...</p>
-                <a class="readmore" href="http://dustinfarris.com/2012/05/18/why-build-a-blog-with-django.html">read more</a>
-<p>There are <a href="http://dustinfarris.com/2012/05/18/why-build-a-blog-with-django.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="http://dustinfarris.com/2012/05/16/importerror-cannot-import-name-indexes.html" rel="bookmark"
-                           title="Permalink to "ImportError: cannot import name indexes"">"ImportError: cannot import name indexes"</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2012-05-16T00:00:00+02:00">
-                Published: Wed 16 May 2012
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="http://dustinfarris.com/author/dustin-farris.html">Dustin Farris</a>
-        </address>
-<p>In <a href="http://dustinfarris.com/category/blog.html">blog</a>. </p>
-<p>tags: <a href="http://dustinfarris.com/tag/django.html">Django</a> </p>
-</footer><!-- /.post-info -->                <p>I'm certainly not the first person to hit this caveat with django-haystack, as
+    <span class="kn">from</span> <span class="nn">django.template ...</span></pre></div></p>
+                            <p class="post-meta">
+                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Fri 08 June 2012
+                            </p>
+                        </header>
+                    </section>
+                    <section class="post">
+                        <header class="post-header">
+                            <h3><a class="post-title" href="http://dustinfarris.com/2012/06/01/django-and-jade.html">"Django and Jade"</a></h3>
+                            <p class="post-meta"><p>This week I made an important addition to my tool kit.  In the past I've focused primarily on ways to streamline backend development using tools like django_compressor, Sentry, and Fabric.  More recently, however, I've taken a turn and began focusing on ways to bring my frontend up to ...</p></p>
+                            <p class="post-meta">
+                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Fri 01 June 2012
+                            </p>
+                        </header>
+                    </section>
+                    <section class="post">
+                        <header class="post-header">
+                            <h3><a class="post-title" href="http://dustinfarris.com/2012/05/18/why-build-a-blog-with-django.html">"Why Build a Blog with Django?"</a></h3>
+                            <p class="post-meta"><p>This question comes up a lot, both in flame wars and in rational discussion.  Why would you take time to build a blog application with Django when there are engines like WordPress that do the same thing out of the box.  Well it depends.</p>
+<p>The number one reason I think ...</p></p>
+                            <p class="post-meta">
+                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Fri 18 May 2012
+                            </p>
+                        </header>
+                    </section>
+                    <section class="post">
+                        <header class="post-header">
+                            <h3><a class="post-title" href="http://dustinfarris.com/2012/05/16/importerror-cannot-import-name-indexes.html">"ImportError: cannot import name indexes"</a></h3>
+                            <p class="post-meta"><p>I'm certainly not the first person to hit this caveat with django-haystack, as
 this error has been reported for <a href="https://github.com/toastdriven/django-haystack/issues/315">over a year</a> now. However, I had trouble finding a concise
-and reputable workaround. <a href="https://github.com/toastdriven">Daniel Lindsley</a>, the guy behind django-haystack, has alluded to a <a href="http://django-haystack.readthedocs.org/en/v1.2.7/debugging.html#import-errors-on-start-up-mentioning-handle-registrations">workaround</a> in the haystack docs, but ...</p>
-                <a class="readmore" href="http://dustinfarris.com/2012/05/16/importerror-cannot-import-name-indexes.html">read more</a>
-<p>There are <a href="http://dustinfarris.com/2012/05/16/importerror-cannot-import-name-indexes.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="http://dustinfarris.com/2012/04/13/exporting-auth-fixtures.html" rel="bookmark"
-                           title="Permalink to "Exporting `auth` Fixtures"">"Exporting `auth` Fixtures"</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2012-04-13T00:00:00+02:00">
-                Published: Fri 13 April 2012
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="http://dustinfarris.com/author/dustin-farris.html">Dustin Farris</a>
-        </address>
-<p>In <a href="http://dustinfarris.com/category/blog.html">blog</a>. </p>
-<p>tags: <a href="http://dustinfarris.com/tag/django.html">Django</a> </p>
-</footer><!-- /.post-info -->                <p>I've discovered, rather painfully, that setting up auth fixtures for testing
+and reputable workaround. <a href="https://github.com/toastdriven">Daniel Lindsley</a>, the guy behind django-haystack, has alluded to a <a href="http://django-haystack.readthedocs.org/en/v1.2.7/debugging.html#import-errors-on-start-up-mentioning-handle-registrations">workaround</a> in the haystack docs, but ...</p></p>
+                            <p class="post-meta">
+                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Wed 16 May 2012
+                            </p>
+                        </header>
+                    </section>
+                    <section class="post">
+                        <header class="post-header">
+                            <h3><a class="post-title" href="http://dustinfarris.com/2012/04/13/exporting-auth-fixtures.html">"Exporting `auth` Fixtures"</a></h3>
+                            <p class="post-meta"><p>I've discovered, rather painfully, that setting up auth fixtures for testing
 requires a little care. Problems result when South
 migrations interfere with fixture permissions.</p>
 <p>The best way to dump auth data is to use natural keys and avoid the permission
 model altogether:</p>
-<div class="highlight"><pre>./manage.py dumpdata -n auth.user auth ...</pre></div>
-                <a class="readmore" href="http://dustinfarris.com/2012/04/13/exporting-auth-fixtures.html">read more</a>
-<p>There are <a href="http://dustinfarris.com/2012/04/13/exporting-auth-fixtures.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="http://dustinfarris.com/2012/04/12/django-media-cleaning-up-your-mess.html" rel="bookmark"
-                           title="Permalink to "Django Media: Cleaning Up Your Mess"">"Django Media: Cleaning Up Your Mess"</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2012-04-12T00:00:00+02:00">
-                Published: Thu 12 April 2012
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="http://dustinfarris.com/author/dustin-farris.html">Dustin Farris</a>
-        </address>
-<p>In <a href="http://dustinfarris.com/category/blog.html">blog</a>. </p>
-<p>tags: <a href="http://dustinfarris.com/tag/django.html">Django</a> </p>
-</footer><!-- /.post-info -->                <p>Sometimes it's too easy to fire and forget when it comes to setting up
+<div class="highlight"><pre>./manage.py dumpdata -n auth.user auth ...</pre></div></p>
+                            <p class="post-meta">
+                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Fri 13 April 2012
+                            </p>
+                        </header>
+                    </section>
+                    <section class="post">
+                        <header class="post-header">
+                            <h3><a class="post-title" href="http://dustinfarris.com/2012/04/12/django-media-cleaning-up-your-mess.html">"Django Media: Cleaning Up Your Mess"</a></h3>
+                            <p class="post-meta"><p>Sometimes it's too easy to fire and forget when it comes to setting up
 FileFields in Django. Over time, a lot of media can become stale as objects
 are deleted--wasting storage space. Here is a quick way to keep your waste
-footprint down: Store assets for every object in ...</p>
-                <a class="readmore" href="http://dustinfarris.com/2012/04/12/django-media-cleaning-up-your-mess.html">read more</a>
-<p>There are <a href="http://dustinfarris.com/2012/04/12/django-media-cleaning-up-your-mess.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="http://dustinfarris.com/2012/02/26/two-subdomains-one-django.html" rel="bookmark"
-                           title="Permalink to "Two Subdomains, One Django"">"Two Subdomains, One Django"</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2012-02-26T00:00:00+01:00">
-                Published: Sun 26 February 2012
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="http://dustinfarris.com/author/dustin-farris.html">Dustin Farris</a>
-        </address>
-<p>In <a href="http://dustinfarris.com/category/blog.html">blog</a>. </p>
-<p>tags: <a href="http://dustinfarris.com/tag/django.html">Django</a> </p>
-</footer><!-- /.post-info -->                <p>I want to serve two sub-domains from the same Django project--not unheard of,
+footprint down: Store assets for every object in ...</p></p>
+                            <p class="post-meta">
+                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Thu 12 April 2012
+                            </p>
+                        </header>
+                    </section>
+                    <section class="post">
+                        <header class="post-header">
+                            <h3><a class="post-title" href="http://dustinfarris.com/2012/02/26/two-subdomains-one-django.html">"Two Subdomains, One Django"</a></h3>
+                            <p class="post-meta"><p>I want to serve two sub-domains from the same Django project--not unheard of,
 see the countless multi-lingual sites out there. My goal,
 however, is specifically to share the whole project, except for the URLs.
 In theory, I could make use of
-Django's<a href="https://docs.djangoproject.com/en/dev/ref/contrib/sites/">"sites" framework</a>. The first thing to do ...</p>
-                <a class="readmore" href="http://dustinfarris.com/2012/02/26/two-subdomains-one-django.html">read more</a>
-<p>There are <a href="http://dustinfarris.com/2012/02/26/two-subdomains-one-django.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
-            </article></li>
-                </ol><!-- /#posts-list -->
-<p class="paginator">
-        <a href="http://dustinfarris.com/tag/django.html">&laquo;</a>
-    Page 2 / 2
-</p>
-                </section><!-- /#content -->
-        <section id="extras" class="body">
-                <div class="blogroll">
-                        <h2>blogroll</h2>
-                        <ul>
-                            <li><a href="http://getpelican.com/">Pelican</a></li>
-                            <li><a href="http://python.org/">Python.org</a></li>
-                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
-                            <li><a href="#">You can modify those links in your config file</a></li>
-                        </ul>
-                </div><!-- /.blogroll -->
-                <div class="social">
-                        <h2>social</h2>
-                        <ul>
-                            <li><a href="http://dustinfarris.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+Django's<a href="https://docs.djangoproject.com/en/dev/ref/contrib/sites/">"sites" framework</a>. The first thing to do ...</p></p>
+                            <p class="post-meta">
+                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Sun 26 February 2012
+                            </p>
+                        </header>
+                    </section>
+<div class="pagination-wrapper content-subhead">
+    <div class="pagination">
+        <div class="pagination-left">
+                <a href="http://dustinfarris.com/tag/django.html"><span>&larr; Newer posts</span></a>
+        </div>
+        <span>Page 2 / 2</span>
+        <div class="pagination-right">
+        </div>
+    </div>
+</div><footer class="footer">
+    <p>&copy; Dustin Farris &ndash;
+        Built with <a href="https://github.com/PurePelicanTheme/pure-single">Pure Theme</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+</footer>            </div>
+        </div>
+    </div>
+    </div>
+    <script>
+        var $top = $('.go-top');
 
-                            <li><a href="#">You can add links in your config file</a></li>
-                            <li><a href="#">Another social link</a></li>
-                        </ul>
-                </div><!-- /.social -->
-        </section><!-- /#extras -->
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
 
-        <footer id="contentinfo" class="body">
-                <address id="about" class="vcard body">
-                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
-                </address><!-- /#about -->
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
 
-                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
-        </footer><!-- /#contentinfo -->
-
-    <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-13275015-1']);
-    _gaq.push(['_trackPageview']);
-    (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
     </script>
-<script type="text/javascript">
-    var disqus_shortname = 'dustinfarris';
-    (function () {
-        var s = document.createElement('script'); s.async = true;
-        s.type = 'text/javascript';
-        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-    }());
-</script>
+    <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker("UA-13275015-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+    </script>
+
 </body>
 </html>

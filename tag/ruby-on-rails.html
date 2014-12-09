@@ -1,426 +1,141 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-        <meta charset="utf-8" />
-        <title>Dustin Farris - Ruby on Rails]</title>
-        <link rel="stylesheet" href="http://dustinfarris.com/theme/css/main.css" />
-        <link href="http://dustinfarris.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Dustin Farris Atom Feed" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dustin Farris, inveniam viam aut faciam">
 
-        <!--[if IE]>
-            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
+        <link rel="alternate"  href="http://dustinfarris.com/feeds/all.atom.xml" type="application/atom+xml" title="Dustin Farris Full Atom Feed"/>
+
+        <title>Ruby on Rails] tag // Dustin Farris // inveniam viam aut faciam</title>
+
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://dustinfarris.com/theme/css/pure.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 </head>
 
-<body id="index" class="home">
-        <header id="banner" class="body">
-                <h1><a href="http://dustinfarris.com/">Dustin Farris </a></h1>
-                <nav><ul>
-                    <li><a href="http://dustinfarris.com/category/blog.html">blog</a></li>
-                </ul></nav>
-        </header><!-- /#banner -->
-
-            <aside id="featured" class="body">
-                <article>
-                    <h1 class="entry-title"><a href="http://dustinfarris.com/2012/08/24/virtual-hosting-rails-nginx-apache-passenger-ubuntu.html">"Virtual Hosting, Rails, NGINX, Apache, Passenger, Ubuntu"</a></h1>
-<footer class="post-info">
-        <abbr class="published" title="2012-08-24T00:00:00+02:00">
-                Published: Fri 24 August 2012
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="http://dustinfarris.com/author/dustin-farris.html">Dustin Farris</a>
-        </address>
-<p>In <a href="http://dustinfarris.com/category/blog.html">blog</a>. </p>
-<p>tags: <a href="http://dustinfarris.com/tag/ruby-on-rails.html">[Ruby on Rails]</a> </p>
-</footer><!-- /.post-info --><p>I've become a fan of <a href="https://rvm.io/">RVM</a>, which allows you to create pseudo virtual environments called "gemsets" that can be version-locked to the specific needs of your individual projects.  In Rails, deploying several of these projects to a single server can be tricky.  This tutorial describes how this can be done.</p>
-<p><a id="contents"></a></p>
-<h2>Contents</h2>
-<ul>
-<li><a href="#introduction">Introduction</a></li>
-<li><a href="#prerequisites">Prerequisites</a></li>
-<li><a href="#server-setup">Server setup</a></li>
-<li><a href="#dependencies">Dependencies</a></li>
-<li><a href="#configure-mysql">Configure MySQL</a></li>
-<li><a href="#web-user">Create Web user</a></li>
-<li><a href="#install-rvm">Install RVM</a></li>
-<li><a href="#install-passenger">Install Passenger</a></li>
-<li><a href="#configure-apache">Configure Apache</a></li>
-<li><a href="#configure-nginx">Configure NGINX</a></li>
-<li><a href="#deploy-your-project">Deploy your project</a></li>
-<li><a href="#conclusion">Conclusion</a></li>
-</ul>
-<p><a id="introduction"></a></p>
-<h2>Introduction</h2>
-<p>Setting up a server to host multiple Ruby on Rails projects requires a well thought-out strategy to ensure a responsive system that meets your various needs.  NGINX has a fantastic record for serving static content.  Apache and Passenger are workhorses that form a terrific relationship with Ruby on Rails.  We'll combine the best of these programs to serve multiple Rails projects on an Ubuntu server.</p>
-<p><a href="#contents">Table of Contents</a></p>
-<p><a id="prerequisites"></a></p>
-<h2>Prerequisites</h2>
-<p>You will need:</p>
-<ul>
-<li>Ubuntu (I am using 12.04 LTS)</li>
-<li>Root access or the ability to run <code>sudo</code> commands</li>
-<li>A Rails project (or several)</li>
-</ul>
-<p><a href="#contents">Table of Contents</a></p>
-<p><a id="server-setup"></a></p>
-<h2>Server setup</h2>
-<p>These are a few basic boiler-plate Ubuntu things you may have done already:</p>
-<div class="highlight"><pre><span class="go">locale-gen en_US.UTF-8</span>
-<span class="go">/usr/sbin/update-locale LANG=en_US.UTF-8</span>
-<span class="go">dpkg-reconfigure tzdata</span>
-<span class="go">apt-get update &amp;&amp; apt-get upgrade</span>
-<span class="go">reboot</span>
-</pre></div>
-
-
-<p><a href="#contents">Table of Contents</a></p>
-<p><a id="dependencies"></a></p>
-<h2>Dependencies</h2>
-<p>A few libraries that you'll want.  We'll also install NGINX, Apache, and MySQL here so they're in place when we configure them later.  Modify this list as needed--for example if you use subversion instead of git.</p>
-<div class="highlight"><pre><span class="go">apt-get install build-essential git-core</span>
-<span class="go">apt-get install htop libssl-dev libreadline5 libreadline5-dev curl zlib1g zlib1g-dev</span>
-<span class="go">apt-get install libcurl4-gnutls-dev libopenssl-ruby apache2-prefork-dev libapr1-dev libaprutil1-dev</span>
-<span class="go">apt-get install libxslt-dev libxml2-dev nodejs npm</span>
-<span class="go">apt-get install apache2</span>
-<span class="go">apt-get install nginx</span>
-<span class="go">apt-get install mysql-server mysql-client</span>
-</pre></div>
-
-
-<p><a href="#contents">Table of Contents</a></p>
-<p><a id="configure-mysql"></a></p>
-<h2>Configure MySQL</h2>
-<p>I like to create a <code>web</code> MySQL to coincide with the <code>web</code> system user we'll create later.  All my Rails projects use the <code>web</code> MySQL user in production.  Tune to fit your own requirements if needed.</p>
-<div class="highlight"><pre><span class="n">mysql</span> <span class="o">-</span><span class="n">u</span> <span class="n">root</span>
-
-<span class="k">CREATE</span> <span class="n">USER</span> <span class="n">web</span><span class="p">;</span>
-<span class="k">GRANT</span> <span class="k">ALL</span> <span class="k">ON</span> <span class="o">*</span><span class="p">.</span><span class="o">*</span> <span class="k">TO</span> <span class="s1">&#39;web&#39;</span><span class="p">;</span>
-<span class="n">FLUSH</span> <span class="n">PRIVILEGES</span><span class="p">;</span>
-</pre></div>
-
-
-<p><a href="#contents">Table of Contents</a></p>
-<p><a id="web-user"></a></p>
-<h2>Create Web user</h2>
-<p>We'll create a system user to contain all Rails applications in the <code>/var/www</code> directory.  Afterwords, create your RSA key needed for GitHub and others.</p>
-<div class="highlight"><pre><span class="go">rm -rf /var/www</span>
-<span class="go">adduser --system --shell=/bin/bash --home=/var/www web</span>
-<span class="go">addgroup web</span>
-<span class="go">usermod -g web web</span>
-<span class="go">su - web</span>
-<span class="go">mkdir .ssh</span>
-<span class="go">chmod 700 .ssh</span>
-<span class="go">cd .ssh</span>
-<span class="go">ssh-keygen -t rsa -C &quot;web@rails&quot;</span>
-<span class="go">cd</span>
-</pre></div>
-
-
-<p>Create the <a href="/2012/8/ractivate-the-missing-script-for-rvm/">ractivate</a> script in the web user's home directory.  Once done, add the following to <code>.bashrc</code>:</p>
-<div class="highlight"><pre><span class="nb">alias </span><span class="nv">ractivate</span><span class="o">=</span><span class="s1">&#39;source ~/.ractivate&#39;</span>
-<span class="nb">export </span><span class="nv">RAILS_ENV</span><span class="o">=</span><span class="s1">&#39;production&#39;</span>
-</pre></div>
-
-
-<p>Create <code>.gemrc</code> in the web user's home directory and add the following:</p>
-<div class="highlight"><pre>install: --no-rdoc --no-ri
-update: --no-rdoc --no-ri
-</pre></div>
-
-
-<p><a href="#contents">Table of Contents</a></p>
-<p><a id="install-rvm"></a></p>
-<h2>Install RVM</h2>
-<p>Run the following, as the web user, to install RVM.  This will take a while.</p>
-<div class="highlight"><pre><span class="go">curl -L https://get.rvm.io | bash -s stable --ruby</span>
-</pre></div>
-
-
-<p>When that finishes, install Ruby (1.9.3 for me), create a global gemset, and install bundler.</p>
-<div class="highlight"><pre><span class="go">rvm install 1.9.3 --with-openssl-dir=~/.rvm/</span>
-<span class="go">rvm gemset use 1.9.3@global --create --default</span>
-<span class="go">gem install bundler</span>
-</pre></div>
-
-
-<p><a href="#contents">Table of Contents</a></p>
-<p><a id="#install-passenger"></a></p>
-<h2>Install Passenger</h2>
-<p>Passenger acts as the liaison between Ruby and Apache.  It is very quick, easy to install, and has <a href="http://www.modrails.com/documentation.html">fantastic documentation</a>.  Install with the following command, but do not follow the instructions it gives to configure Apache.  We'll do that later in a slightly modified way to accomodate multiple gemsets.</p>
-<div class="highlight"><pre><span class="go">gem install passenger</span>
-<span class="go">rvm wrapper 1.9.3@global passenger</span>
-<span class="go">passenger-install-apache2-module</span>
-</pre></div>
-
-
-<p><a href="#contents">Table of Contents</a></p>
-<p><a id="#configure-apache"></a></p>
-<h2>Configure Apache</h2>
-<p>Now we have to make Apache work with our web user and Passenger.  Switch back to your <code>root</code> user and change the following variables in <code>/etc/apache2/envvars</code></p>
-<div class="highlight"><pre><span class="nb">export </span><span class="nv">APACHE_RUN_USER</span><span class="o">=</span>web
-<span class="nb">export </span><span class="nv">APACHE_RUN_GROUP</span><span class="o">=</span>web
-</pre></div>
-
-
-<p>To load the Passenger module, add the following to <code>/etc/apache2/httpd.conf</code>.  <strong>Modify this for the version of Ruby and Passenger you installed.</strong></p>
-<div class="highlight"><pre><span class="nb">LoadModule</span> passenger_module <span class="sx">/var/www/.rvm/gems/ruby-1.9.3-p194</span>@global/gems/passenger-3.0.15/ext/apache2/mod_passenger.so
-<span class="nb">PassengerRoot</span> <span class="sx">/var/www/.rvm/gems/ruby-1.9.3-p194</span>@global/gems/passenger-3.0.15
-<span class="nb">PassengerRuby</span> <span class="sx">/var/www/.rvm/bin/passenger_ruby</span>
-</pre></div>
-
-
-<p>Configure Apache to listen locally on port 8080 by changing the following in <code>/etc/apache2/ports.conf</code></p>
-<div class="highlight"><pre><span class="nb">NameVirtualHost</span> <span class="m">127.0.0.1</span>:8080
-<span class="nb">Listen</span> <span class="m">8080</span>
-</pre></div>
-
-
-<p>Restart Apache.</p>
-<div class="highlight"><pre><span class="go">service apache2 restart</span>
-</pre></div>
-
-
-<p><a href="#contents">Table of Contents</a></p>
-<p><a id="configure-nginx"></a></p>
-<h2>Configure NGINX</h2>
-<p>NGINX is almost ready to go out of the box; you'll just need to create a proxy configuration.  Create <code>/etc/nginx/proxy.conf</code> and paste the following:</p>
-<div class="highlight"><pre><span class="k">proxy_redirect</span> <span class="no">off</span><span class="p">;</span>
-<span class="k">proxy_set_header</span> <span class="s">Host</span> <span class="nv">$host</span><span class="p">;</span>
-<span class="k">proxy_set_header</span> <span class="s">X-Real-IP</span> <span class="nv">$remote_addr</span><span class="p">;</span>
-<span class="k">proxy_set_header</span> <span class="s">X-Forwarded-For</span> <span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
-<span class="k">proxy_set_header</span> <span class="s">X-Url-Scheme</span> <span class="nv">$scheme</span><span class="p">;</span>
-<span class="k">client_max_body_size</span> <span class="mi">10m</span><span class="p">;</span>
-<span class="k">client_body_buffer_size</span> <span class="mi">128k</span><span class="p">;</span>
-<span class="k">proxy_connect_timeout</span> <span class="mi">90</span><span class="p">;</span>
-<span class="k">proxy_send_timeout</span> <span class="mi">90</span><span class="p">;</span>
-<span class="k">proxy_read_timeout</span> <span class="mi">90</span><span class="p">;</span>
-<span class="k">proxy_buffers</span> <span class="mi">32</span> <span class="mi">4k</span><span class="p">;</span>
-
-<span class="c1"># vim: ts=4 ft=nginx</span>
-</pre></div>
-
-
-<p>Restart NGINX.</p>
-<div class="highlight"><pre><span class="go">service nginx restart</span>
-</pre></div>
-
-
-<p><a href="#contents">Table of Contents</a></p>
-<p><a id="deploy-your-project"></a></p>
-<h2>Deploy your project</h2>
-<p>Before deploying to the server you will need 3 project-specific configuration files.</p>
-<h3>Project Apache config</h3>
-<p>Create <code>/etc/apache2/sites-available/projectname.conf</code> and add the following (modified for your project):</p>
-<div class="highlight"><pre><span class="nt">&lt;VirtualHost</span> <span class="s">127.0.0.1:8080</span><span class="nt">&gt;</span>
-    <span class="nb">ServerName</span> projectname.com
-
-    <span class="nb">DocumentRoot</span> <span class="sx">/var/www/projectname/public</span>
-
-    <span class="nt">&lt;IfModule</span> <span class="s">mod_rpaf.c</span><span class="nt">&gt;</span>
-        <span class="nb">RPAFenable</span> <span class="k">On</span>
-        <span class="nb">RPAFsethostname</span> <span class="k">On</span>
-        <span class="nb">RPAFproxy_ips</span> <span class="m">127.0.0.1</span>
-    <span class="nt">&lt;/IfModule&gt;</span>
-
-    <span class="nb">LogLevel</span> <span class="k">warn</span>
-    <span class="nb">CustomLog</span> <span class="sx">/var/log/apache2/projectname.access.log</span> combined
-    <span class="nb">ErrorLog</span> <span class="sx">/var/log/apache2/projectname.error.log</span>
-<span class="nt">&lt;/VirtualHost&gt;</span>
-
-<span class="c"># vim: ft=apache</span>
-</pre></div>
-
-
-<h3>Project NGINX config</h3>
-<p>Create <code>/etc/nginx/sites-available/projectname.conf</code> and add the following (modified for your project):</p>
-<div class="highlight"><pre><span class="k">server</span> <span class="p">{</span>
-    <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span>
-    <span class="kn">server_name</span> <span class="s">projectname.com</span><span class="p">;</span>
-
-    <span class="kn">access_log</span>  <span class="s">/var/log/nginx/jdknot.access.log</span><span class="p">;</span>
-    <span class="kn">error_log</span>   <span class="s">/var/log/nginx/jdknot.error.log</span><span class="p">;</span>
-
-    <span class="kn">location</span> <span class="s">/assets</span> <span class="p">{</span>
-        <span class="kn">alias</span> <span class="s">/var/www/projectname/public/assets</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="kn">location</span> <span class="s">/</span> <span class="p">{</span>
-        <span class="kn">proxy_pass</span> <span class="s">http://localhost:8080</span><span class="p">;</span>
-        <span class="kn">include</span> <span class="s">/etc/nginx/proxy.conf</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="c1"># vim: ft=nginx</span>
-</pre></div>
-
-
-<h3>Project setup_load_paths config</h3>
-<p>This is a file you'll add to your Rails project to inform Passenger about your gemset.  On your local machine, create <code>projectname/config/setup_load_paths.rb</code> and paste the following:</p>
-<div class="highlight"><pre><span class="k">if</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;MY_RUBY_HOME&#39;</span><span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;MY_RUBY_HOME&#39;</span><span class="o">].</span><span class="n">include?</span><span class="p">(</span><span class="s1">&#39;rvm&#39;</span><span class="p">)</span>
-    <span class="k">begin</span>
-        <span class="n">rvm_path</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="no">File</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;MY_RUBY_HOME&#39;</span><span class="o">]</span><span class="p">))</span>
-        <span class="n">rvm_lib_path</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">rvm_path</span><span class="p">,</span> <span class="s1">&#39;lib&#39;</span><span class="p">)</span>
-        <span class="vg">$LOAD_PATH</span><span class="o">.</span><span class="n">unshift</span> <span class="n">rvm_lib_path</span>
-        <span class="nb">require</span> <span class="s1">&#39;rvm&#39;</span>
-        <span class="no">RVM</span><span class="o">.</span><span class="n">use_from_path!</span> <span class="no">File</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="no">File</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="bp">__FILE__</span><span class="p">))</span>
-    <span class="k">rescue</span> <span class="no">LoadError</span>
-        <span class="k">raise</span> <span class="s2">&quot;RVM ruby lib is currently unavailable.&quot;</span>
-    <span class="k">end</span>
-<span class="k">end</span>
-
-<span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;BUNDLE_GEMFILE&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">expand_path</span><span class="p">(</span><span class="s1">&#39;../Gemfile&#39;</span><span class="p">,</span> <span class="no">File</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="bp">__FILE__</span><span class="p">))</span>
-<span class="nb">require</span> <span class="s1">&#39;bundler/setup&#39;</span>
-</pre></div>
-
-
-<p>And create a rvmrc file to points to your gemset.  Create <code>projectname/.rvmrc</code> and add:</p>
-<div class="highlight"><pre>rvm 1.9.3@projectname
-</pre></div>
-
-
-<p>If you haven't already done so, commit these changes.</p>
-<div class="highlight"><pre><span class="go">git add config/setup_load_path.rb</span>
-<span class="go">git add .rvmrc</span>
-<span class="go">git commit -m &quot;Created setup_load_path and rvmrc&quot;</span>
-<span class="go">git push</span>
-</pre></div>
-
-
-<h3>Clone and setup project</h3>
-<p>Back on the server, as your web user: clone your project, setup a gemset, and prepare the database and assets:</p>
-<div class="highlight"><pre><span class="go">su - web</span>
-<span class="go">git clone git@github.com:yourname/projectname.git</span>
-<span class="go">rvm gemset create projectname</span>
-<span class="go">cd projectname</span>
-<span class="go">ractivate</span>
-<span class="go">bundle install --binstubs</span>
-<span class="go">rake db:create</span>
-<span class="go">rake db:migrate</span>
-<span class="go">rake assets:precompile</span>
-</pre></div>
-
-
-<h3>Restart Apache and NGINX</h3>
-<p>As root:</p>
-<div class="highlight"><pre><span class="go">service apache2 restart</span>
-<span class="go">service nginx restart</span>
-</pre></div>
-
-
-<p><a href="#contents">Table of Contents</a></p>
-<p><a id="conclusion"></a></p>
-<h2>Conclusion</h2>
-<p>If all went well, you should be able to load projectname.com.  If things don't work right, good places to start debugging are the log files in <code>/var/log/apache/</code> and <code>/var/log/nginx/</code>.  As always, feel free to comment or <a href="/contact/">contact me</a> if I have failed to explain anything clearly.</p>
-<p>A huge thanks to Aaron Sumner for his blog on <a href="http://everydayrails.com/2010/09/13/rvm-project-gemsets.html">using Passenger with RVM</a>.</p><p>There are <a href="http://dustinfarris.com/2012/08/24/virtual-hosting-rails-nginx-apache-passenger-ubuntu.html#disqus_thread">comments</a>.</p>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="http://dustinfarris.com/2012/08/14/rails-through-vs-django-manytomany.html" rel="bookmark"
-                           title="Permalink to "Rails 'through' vs Django 'ManyToMany'"">"Rails 'through' vs Django 'ManyToMany'"</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2012-08-14T00:00:00+02:00">
-                Published: Tue 14 August 2012
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="http://dustinfarris.com/author/dustin-farris.html">Dustin Farris</a>
-        </address>
-<p>In <a href="http://dustinfarris.com/category/blog.html">blog</a>. </p>
-<p>tags: <a href="http://dustinfarris.com/tag/django.html">[Django</a> <a href="http://dustinfarris.com/tag/ruby-on-rails.html">Ruby on Rails]</a> </p>
-</footer><!-- /.post-info -->                <p>Ok, Rails &amp; company have a lot of great points--I love RSpec--but I've noticed a few areas where Rails can improve.  Here, namely, I see a big difference in handling multiple relationships to self.</p>
+<body>
+    <div class="pure-g-r" id="layout">
+        <div class="sidebar pure-u">
+            <div class="cover-img" style="background-image: url('http://dustinfarris.com/images/beach.jpg')">
+                <div class="cover-body">
+                    <header class="header">
+                        <hgroup>
+                            <img class="avatar" src="http://dustinfarris.com/images/dustin.jpeg">
+                            <h1 class="brand-main"><a href="http://dustinfarris.com">Dustin Farris</a></h1>
+                            <p class="tagline">inveniam viam aut faciam</p>
+                                <p class="social">
+                                    <a href="https://github.com/dustinfarris/">
+                                        <i class="fa fa-github fa-3x"></i>
+                                    </a>
+                                    <a href="https://twitter.com/dustinfarris">
+                                        <i class="fa fa-twitter fa-3x"></i>
+                                    </a>
+                                    <a href="/feeds/all.atom.xml">
+                                        <i class="fa fa-rss fa-3x"></i>
+                                    </a>
+                                </p>
+                        </hgroup>
+                    </header>
+                </div>
+            </div>
+        </div>
+    <div class="pure-u">
+        <div class="content">
+            <!-- A wrapper for all the blog posts -->
+            <div class="posts">
+                <h1 class="content-subhead">
+Posts tagged 'Ruby on Rails]'                </h1>
+                    <section class="post">
+                        <header class="post-header">
+                            <h3><a class="post-title" href="http://dustinfarris.com/2012/08/24/virtual-hosting-rails-nginx-apache-passenger-ubuntu.html">"Virtual Hosting, Rails, NGINX, Apache, Passenger, Ubuntu"</a></h3>
+                            <p class="post-meta"><p>I've become a fan of <a href="https://rvm.io/">RVM</a>, which allows you to create pseudo virtual environments called "gemsets" that can be version-locked to the specific needs of your individual projects.  In Rails, deploying several of these projects to a single server can be tricky.  This tutorial describes how this can be ...</p></p>
+                            <p class="post-meta">
+                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Fri 24 August 2012
+                            </p>
+                        </header>
+                    </section>
+                    <section class="post">
+                        <header class="post-header">
+                            <h3><a class="post-title" href="http://dustinfarris.com/2012/08/14/rails-through-vs-django-manytomany.html">"Rails 'through' vs Django 'ManyToMany'"</a></h3>
+                            <p class="post-meta"><p>Ok, Rails &amp; company have a lot of great points--I love RSpec--but I've noticed a few areas where Rails can improve.  Here, namely, I see a big difference in handling multiple relationships to self.</p>
 <h2>In Rails</h2>
 <p><code>db/migrate/create_relationships.rb</code></p>
 <div class="highlight"><pre><span class="k">class</span> <span class="nc">CreateRelationships</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span>
     <span class="k">def</span> <span class="nf">change</span>
-        <span class="n">create_table</span> <span class="ss">:relationships</span> <span class="k">do</span> <span class="o">|</span><span class="n">t ...</span></pre></div>
-                <a class="readmore" href="http://dustinfarris.com/2012/08/14/rails-through-vs-django-manytomany.html">read more</a>
-<p>There are <a href="http://dustinfarris.com/2012/08/14/rails-through-vs-django-manytomany.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="http://dustinfarris.com/2012/08/10/why-ror-is-awesome-part-1-of-many.html" rel="bookmark"
-                           title="Permalink to "Why RoR is Awesome (part 1 of many)"">"Why RoR is Awesome (part 1 of many)"</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2012-08-10T00:00:00+02:00">
-                Published: Fri 10 August 2012
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="http://dustinfarris.com/author/dustin-farris.html">Dustin Farris</a>
-        </address>
-<p>In <a href="http://dustinfarris.com/category/blog.html">blog</a>. </p>
-<p>tags: <a href="http://dustinfarris.com/tag/ruby-on-rails.html">[Ruby on Rails]</a> </p>
-</footer><!-- /.post-info -->                <p>I finally took the plunge.  I'm learning Rails.  And holy shit.</p>
+        <span class="n">create_table</span> <span class="ss">:relationships</span> <span class="k">do</span> <span class="o">|</span><span class="n">t ...</span></pre></div></p>
+                            <p class="post-meta">
+                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Tue 14 August 2012
+                            </p>
+                        </header>
+                    </section>
+                    <section class="post">
+                        <header class="post-header">
+                            <h3><a class="post-title" href="http://dustinfarris.com/2012/08/10/why-ror-is-awesome-part-1-of-many.html">"Why RoR is Awesome (part 1 of many)"</a></h3>
+                            <p class="post-meta"><p>I finally took the plunge.  I'm learning Rails.  And holy shit.</p>
 <p>RoR has a philosophy of being RESTful, which means using what's already built (HTTP) rather than reinventing the wheel.</p>
 <p>I launched a "users" app using just these <em>three</em> commands taken from the tutorial I'm following:</p>
-<div class="highlight"><pre><span class="go">rails ...</span></pre></div>
-                <a class="readmore" href="http://dustinfarris.com/2012/08/10/why-ror-is-awesome-part-1-of-many.html">read more</a>
-<p>There are <a href="http://dustinfarris.com/2012/08/10/why-ror-is-awesome-part-1-of-many.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
-            </article></li>
-                </ol><!-- /#posts-list -->
-<p class="paginator">
-    Page 1 / 1
-</p>
-                </section><!-- /#content -->
-        <section id="extras" class="body">
-                <div class="blogroll">
-                        <h2>blogroll</h2>
-                        <ul>
-                            <li><a href="http://getpelican.com/">Pelican</a></li>
-                            <li><a href="http://python.org/">Python.org</a></li>
-                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
-                            <li><a href="#">You can modify those links in your config file</a></li>
-                        </ul>
-                </div><!-- /.blogroll -->
-                <div class="social">
-                        <h2>social</h2>
-                        <ul>
-                            <li><a href="http://dustinfarris.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+<div class="highlight"><pre><span class="go">rails ...</span></pre></div></p>
+                            <p class="post-meta">
+                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Fri 10 August 2012
+                            </p>
+                        </header>
+                    </section>
+<div class="pagination-wrapper content-subhead">
+    <div class="pagination">
+        <div class="pagination-left">
+                &nbsp;
+        </div>
+        <span>Page 1 / 1</span>
+        <div class="pagination-right">
+        </div>
+    </div>
+</div><footer class="footer">
+    <p>&copy; Dustin Farris &ndash;
+        Built with <a href="https://github.com/PurePelicanTheme/pure-single">Pure Theme</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+</footer>            </div>
+        </div>
+    </div>
+    </div>
+    <script>
+        var $top = $('.go-top');
 
-                            <li><a href="#">You can add links in your config file</a></li>
-                            <li><a href="#">Another social link</a></li>
-                        </ul>
-                </div><!-- /.social -->
-        </section><!-- /#extras -->
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
 
-        <footer id="contentinfo" class="body">
-                <address id="about" class="vcard body">
-                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
-                </address><!-- /#about -->
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
 
-                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
-        </footer><!-- /#contentinfo -->
-
-    <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-13275015-1']);
-    _gaq.push(['_trackPageview']);
-    (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
     </script>
-<script type="text/javascript">
-    var disqus_shortname = 'dustinfarris';
-    (function () {
-        var s = document.createElement('script'); s.async = true;
-        s.type = 'text/javascript';
-        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-    }());
-</script>
+    <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker("UA-13275015-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+    </script>
+
 </body>
 </html>

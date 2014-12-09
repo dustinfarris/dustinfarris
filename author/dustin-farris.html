@@ -1,377 +1,213 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-        <meta charset="utf-8" />
-        <title>Dustin Farris - Dustin Farris</title>
-        <link rel="stylesheet" href="http://dustinfarris.com/theme/css/main.css" />
-        <link href="http://dustinfarris.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Dustin Farris Atom Feed" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dustin Farris, inveniam viam aut faciam">
 
-        <!--[if IE]>
-            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
+        <link rel="alternate"  href="http://dustinfarris.com/feeds/all.atom.xml" type="application/atom+xml" title="Dustin Farris Full Atom Feed"/>
+
+        <title>Dustin Farris author // Dustin Farris // inveniam viam aut faciam</title>
+
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://dustinfarris.com/theme/css/pure.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 </head>
 
-<body id="index" class="home">
-        <header id="banner" class="body">
-                <h1><a href="http://dustinfarris.com/">Dustin Farris </a></h1>
-                <nav><ul>
-                    <li><a href="http://dustinfarris.com/category/blog.html">blog</a></li>
-                </ul></nav>
-        </header><!-- /#banner -->
-
-            <aside id="featured" class="body">
-                <article>
-                    <h1 class="entry-title"><a href="http://dustinfarris.com/2014/01/01/solr-startstop-script.html">Solr Start/Stop Script</a></h1>
-<footer class="post-info">
-        <abbr class="published" title="2014-01-01T16:20:00+01:00">
-                Published: Wed 01 January 2014
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="http://dustinfarris.com/author/dustin-farris.html">Dustin Farris</a>
-        </address>
-<p>In <a href="http://dustinfarris.com/category/blog.html">blog</a>. </p>
-<p>tags: <a href="http://dustinfarris.com/tag/solr.html">Solr</a> <a href="http://dustinfarris.com/tag/linux.html">Linux</a> </p>
-</footer><!-- /.post-info --><p>At some point I'm going to write a much longer post on how to set up Solr on Linux, but for now
-here's a start/stop script that works well.</p>
-<div class="highlight"><pre><span class="c">#!/bin/sh</span>
-
-<span class="c">### BEGIN INIT INFO</span>
-<span class="c"># Provides:             solr</span>
-<span class="c"># Short-Description:    starts the solr server</span>
-<span class="c"># Description:          starts solr using start-stop-daemon</span>
-<span class="c">### END INIT INFO</span>
-
-<span class="nv">SOLR_DIR</span><span class="o">=</span><span class="s2">&quot;/opt/solr/django&quot;</span>  <span class="c"># Change to your own solr directory!</span>
-<span class="nv">PID</span><span class="o">=</span><span class="s2">&quot;/run/solr/solr.pid&quot;</span>
-<span class="nv">USER</span><span class="o">=</span><span class="s2">&quot;solr&quot;</span>
-<span class="nv">DAEMON</span><span class="o">=</span><span class="s2">&quot;/usr/bin/java&quot;</span>
-<span class="nv">DAEMON_ARGS</span><span class="o">=</span><span class="s2">&quot;-server </span><span class="nv">$JAVA_OPTS</span><span class="s2"> -Dsolr.solr.home=</span><span class="nv">$SOLR_DIR</span><span class="s2">/multicore -jar start.jar&quot;</span>
-<span class="nv">NAME</span><span class="o">=</span><span class="s2">&quot;solr&quot;</span>
-<span class="nv">DESC</span><span class="o">=</span><span class="s2">&quot;solr&quot;</span>
-
-<span class="c"># Include solr configuration defaults if available</span>
-<span class="k">if</span> <span class="o">[</span> -f /etc/default/solr <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
-    . /etc/default/solr
-<span class="k">fi</span>
-
-<span class="nb">test</span> -x <span class="nv">$DAEMON</span> <span class="o">||</span> <span class="nb">exit </span>0
-
-<span class="nb">set</span> -e
-
-. /lib/lsb/init-functions
-
-start<span class="o">()</span> <span class="o">{</span>
-    start-stop-daemon --start --quiet --pidfile <span class="nv">$PID</span> --make-pidfile <span class="se">\</span>
-        --chdir <span class="nv">$SOLR_DIR</span> --chuid <span class="nv">$USER</span> <span class="se">\</span>
-        --background --retry <span class="m">5</span> --exec <span class="nv">$DAEMON</span> -- <span class="nv">$DAEMON_ARGS</span>
-<span class="o">}</span>
-
-stop<span class="o">()</span> <span class="o">{</span>
-    start-stop-daemon --stop --quiet --pidfile <span class="nv">$PID</span> --retry 5
-<span class="o">}</span>
-
-<span class="k">case</span> <span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span> in
-    start<span class="o">)</span>
-        log_daemon_msg <span class="s2">&quot;Starting </span><span class="nv">$DESC</span><span class="s2">&quot;</span> <span class="s2">&quot;</span><span class="nv">$NAME</span><span class="s2">&quot;</span>
-        start
-        log_end_msg <span class="nv">$?</span>
-        <span class="p">;;</span>
-    stop<span class="o">)</span>
-        log_daemon_msg <span class="s2">&quot;Stopping </span><span class="nv">$DESC</span><span class="s2">&quot;</span> <span class="s2">&quot;</span><span class="nv">$NAME</span><span class="s2">&quot;</span>
-        stop
-        log_end_msg <span class="nv">$?</span>
-        <span class="p">;;</span>
-    restart<span class="o">)</span>
-        log_daemon_msg <span class="s2">&quot;Restarting </span><span class="nv">$DESC</span><span class="s2">&quot;</span> <span class="s2">&quot;</span><span class="nv">$NAME</span><span class="s2">&quot;</span>
-        stop
-        sleep 3
-        start
-        log_end_msg <span class="nv">$?</span>
-        <span class="p">;;</span>
-    status<span class="o">)</span>
-        status_of_proc -p <span class="nv">$PID</span> <span class="s2">&quot;</span><span class="nv">$DAEMON</span><span class="s2">&quot;</span> java
-        <span class="p">;;</span>
-    *<span class="o">)</span>
-        <span class="nb">echo</span> <span class="s2">&quot;Usage: </span><span class="nv">$NAME</span><span class="s2"> {start|stop|restart|status}&quot;</span> &gt;<span class="p">&amp;</span>2
-        <span class="nb">exit </span>1
-        <span class="p">;;</span>
-<span class="k">esac</span>
-
-<span class="nb">exit </span>0
-</pre></div><p>There are <a href="http://dustinfarris.com/2014/01/01/solr-startstop-script.html#disqus_thread">comments</a>.</p>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="http://dustinfarris.com/2013/11/29/djangoember-token-authentication.html" rel="bookmark"
-                           title="Permalink to "Django/Ember Token Authentication"">"Django/Ember Token Authentication"</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2013-11-29T00:00:00+01:00">
-                Published: Fri 29 November 2013
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="http://dustinfarris.com/author/dustin-farris.html">Dustin Farris</a>
-        </address>
-<p>In <a href="http://dustinfarris.com/category/blog.html">blog</a>. </p>
-<p>tags: <a href="http://dustinfarris.com/tag/django.html">Django</a> <a href="http://dustinfarris.com/tag/ember.html">Ember</a> </p>
-</footer><!-- /.post-info -->                <p>"Authentication can be a real headache. Thankfully, Django REST Framework and Ember have taken care of the heavy-lifting already."</p>
-                <a class="readmore" href="http://dustinfarris.com/2013/11/29/djangoember-token-authentication.html">read more</a>
-<p>There are <a href="http://dustinfarris.com/2013/11/29/djangoember-token-authentication.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="http://dustinfarris.com/2013/09/21/djangoember-authentication-is-easy.html" rel="bookmark"
-                           title="Permalink to "Django/Ember Authentication is Easy"">"Django/Ember Authentication is Easy"</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2013-09-21T00:00:00+02:00">
-                Published: Sat 21 September 2013
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="http://dustinfarris.com/author/dustin-farris.html">Dustin Farris</a>
-        </address>
-<p>In <a href="http://dustinfarris.com/category/blog.html">blog</a>. </p>
-<p>tags: <a href="http://dustinfarris.com/tag/django.html">[Django</a> <a href="http://dustinfarris.com/tag/ember.html">Ember]</a> </p>
-</footer><!-- /.post-info -->                <p><strong>[2013 Nov 29 Update]</strong>: This blog examines the use of session-based authentication. You may find
+<body>
+    <div class="pure-g-r" id="layout">
+        <div class="sidebar pure-u">
+            <div class="cover-img" style="background-image: url('http://dustinfarris.com/images/beach.jpg')">
+                <div class="cover-body">
+                    <header class="header">
+                        <hgroup>
+                            <img class="avatar" src="http://dustinfarris.com/images/dustin.jpeg">
+                            <h1 class="brand-main"><a href="http://dustinfarris.com">Dustin Farris</a></h1>
+                            <p class="tagline">inveniam viam aut faciam</p>
+                                <p class="social">
+                                    <a href="https://github.com/dustinfarris/">
+                                        <i class="fa fa-github fa-3x"></i>
+                                    </a>
+                                    <a href="https://twitter.com/dustinfarris">
+                                        <i class="fa fa-twitter fa-3x"></i>
+                                    </a>
+                                    <a href="/feeds/all.atom.xml">
+                                        <i class="fa fa-rss fa-3x"></i>
+                                    </a>
+                                </p>
+                        </hgroup>
+                    </header>
+                </div>
+            </div>
+        </div>
+    <div class="pure-u">
+        <div class="content">
+            <!-- A wrapper for all the blog posts -->
+            <div class="posts">
+                <h1 class="content-subhead">
+Posts by 'Dustin Farris'                </h1>
+                    <section class="post">
+                        <header class="post-header">
+                            <h3><a class="post-title" href="http://dustinfarris.com/2014/01/01/solr-startstop-script.html">Solr Start/Stop Script</a></h3>
+                            <p class="post-meta"><p>This took a while to sort out, and I ended up more or less copying the script for NGINX.</p></p>
+                            <p class="post-meta">
+                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Wed 01 January 2014
+                            </p>
+                        </header>
+                    </section>
+                    <section class="post">
+                        <header class="post-header">
+                            <h3><a class="post-title" href="http://dustinfarris.com/2013/11/29/djangoember-token-authentication.html">Django/Ember Token Authentication</a></h3>
+                            <p class="post-meta"><p>"Authentication can be a real headache. Thankfully, Django REST Framework and Ember have taken care of the heavy-lifting already."</p></p>
+                            <p class="post-meta">
+                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Fri 29 November 2013
+                            </p>
+                        </header>
+                    </section>
+                    <section class="post">
+                        <header class="post-header">
+                            <h3><a class="post-title" href="http://dustinfarris.com/2013/09/21/djangoember-authentication-is-easy.html">Django/Ember Authentication is Easy</a></h3>
+                            <p class="post-meta"><p><strong>[2013 Nov 29 Update]</strong>: This blog examines the use of session-based authentication. You may find
 token-based authentication more appropriate (as I have), in which case my more recent post will
 probably better suit your needs. <a href="/2013/11/29/django-ember-token-authentication.html">Check out the latest</a></p>
-<p>As I've <a href="/2013/08/authenticating-django-slash-ember/">previously explained</a>, one of the biggest hurdles to ...</p>
-                <a class="readmore" href="http://dustinfarris.com/2013/09/21/djangoember-authentication-is-easy.html">read more</a>
-<p>There are <a href="http://dustinfarris.com/2013/09/21/djangoember-authentication-is-easy.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="http://dustinfarris.com/2013/08/24/authenticating-djangoember.html" rel="bookmark"
-                           title="Permalink to "Authenticating Django/Ember"">"Authenticating Django/Ember"</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2013-08-24T00:00:00+02:00">
-                Published: Sat 24 August 2013
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="http://dustinfarris.com/author/dustin-farris.html">Dustin Farris</a>
-        </address>
-<p>In <a href="http://dustinfarris.com/category/blog.html">blog</a>. </p>
-<p>tags: <a href="http://dustinfarris.com/tag/django.html">[Django</a> <a href="http://dustinfarris.com/tag/ember.html">Ember]</a> </p>
-</footer><!-- /.post-info -->                <p><strong>[2013 Sep 21 Update]</strong>: I've completely refactored this solution and have done a much better job of
+<p>As I've <a href="/2013/08/authenticating-django-slash-ember/">previously explained</a>, one of the biggest hurdles to ...</p></p>
+                            <p class="post-meta">
+                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Sat 21 September 2013
+                            </p>
+                        </header>
+                    </section>
+                    <section class="post">
+                        <header class="post-header">
+                            <h3><a class="post-title" href="http://dustinfarris.com/2013/08/24/authenticating-djangoember.html">Authenticating Django/Ember</a></h3>
+                            <p class="post-meta"><p><strong>[2013 Sep 21 Update]</strong>: I've completely refactored this solution and have done a much better job of
 implementing it and explaining it.  <a href="/2013/11/29/django-ember-authentication-is-easy.html">Check out the latest</a></p>
 <hr />
-<p>The web app rage nowadays is to implement your backend as RESTfully as possible, and use Javascript frameworks to facilitate your controller and ...</p>
-                <a class="readmore" href="http://dustinfarris.com/2013/08/24/authenticating-djangoember.html">read more</a>
-<p>There are <a href="http://dustinfarris.com/2013/08/24/authenticating-djangoember.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="http://dustinfarris.com/2013/07/27/functional-api-tests.html" rel="bookmark"
-                           title="Permalink to "Functional API Tests"">"Functional API Tests"</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2013-07-27T00:00:00+02:00">
-                Published: Sat 27 July 2013
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="http://dustinfarris.com/author/dustin-farris.html">Dustin Farris</a>
-        </address>
-<p>In <a href="http://dustinfarris.com/category/blog.html">blog</a>. </p>
-<p>tags: <a href="http://dustinfarris.com/tag/django.html">[Django]</a> </p>
-</footer><!-- /.post-info -->                <p>Little is more frustrating than running your test suite and watching it fail fail fail because insert name here’s API service is lagging/down/changed/throttled. While knowing about those things has importance, the time to learn about them isn’t when you’re trying to deploy a completely ...</p>
-                <a class="readmore" href="http://dustinfarris.com/2013/07/27/functional-api-tests.html">read more</a>
-<p>There are <a href="http://dustinfarris.com/2013/07/27/functional-api-tests.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="http://dustinfarris.com/2013/07/27/previousnext-navigation-in-django-cms.html" rel="bookmark"
-                           title="Permalink to "Previous/Next Navigation in Django CMS"">"Previous/Next Navigation in Django CMS"</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2013-07-27T00:00:00+02:00">
-                Published: Sat 27 July 2013
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="http://dustinfarris.com/author/dustin-farris.html">Dustin Farris</a>
-        </address>
-<p>In <a href="http://dustinfarris.com/category/blog.html">blog</a>. </p>
-<p>tags: <a href="http://dustinfarris.com/tag/django.html">[Django]</a> </p>
-</footer><!-- /.post-info -->                <p>I don't know why Django CMS doesn't have a built-in helper for navigating a page tree.  Maybe this will be included in the upcoming <a href="https://www.django-cms.org/en/blog/2013/07/03/django-cms-3-beta-2/">3.0 release</a> (which I am very much looking forward to).</p>
-<p>For now, here's a quick gist that will give you previous/next ...</p>
-                <a class="readmore" href="http://dustinfarris.com/2013/07/27/previousnext-navigation-in-django-cms.html">read more</a>
-<p>There are <a href="http://dustinfarris.com/2013/07/27/previousnext-navigation-in-django-cms.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="http://dustinfarris.com/2013/06/23/testing-apis-in-django.html" rel="bookmark"
-                           title="Permalink to "Testing APIs in Django"">"Testing APIs in Django"</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2013-06-23T00:00:00+02:00">
-                Published: Sun 23 June 2013
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="http://dustinfarris.com/author/dustin-farris.html">Dustin Farris</a>
-        </address>
-<p>In <a href="http://dustinfarris.com/category/blog.html">blog</a>. </p>
-<p>tags: <a href="http://dustinfarris.com/tag/django.html">[Django]</a> </p>
-</footer><!-- /.post-info -->                <p>I think anyone who has got their hands more than slightly wet with functional testing knows the pain of testing code that relies on API calls.  The usual suspects can bring your tests to a screeching halt: your network is down, the API is down, the API changed.  While knowing ...</p>
-                <a class="readmore" href="http://dustinfarris.com/2013/06/23/testing-apis-in-django.html">read more</a>
-<p>There are <a href="http://dustinfarris.com/2013/06/23/testing-apis-in-django.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="http://dustinfarris.com/2013/06/22/evernote.html" rel="bookmark"
-                           title="Permalink to "Evernote"">"Evernote"</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2013-06-22T00:00:00+02:00">
-                Published: Sat 22 June 2013
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="http://dustinfarris.com/author/dustin-farris.html">Dustin Farris</a>
-        </address>
-<p>In <a href="http://dustinfarris.com/category/blog.html">blog</a>. </p>
-<p>tags: <a href="http://dustinfarris.com/tag/evernote.html">[Evernote]</a> </p>
-</footer><!-- /.post-info -->                <p><img alt="Evernote logo" src="/uploads/images/evernote-logo.png" /></p>
+<p>The web app rage nowadays is to implement your backend as RESTfully as possible, and use Javascript frameworks to facilitate your controller and ...</p></p>
+                            <p class="post-meta">
+                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Sat 24 August 2013
+                            </p>
+                        </header>
+                    </section>
+                    <section class="post">
+                        <header class="post-header">
+                            <h3><a class="post-title" href="http://dustinfarris.com/2013/07/27/functional-api-tests.html">Functional API Tests</a></h3>
+                            <p class="post-meta"><p>Little is more frustrating than running your test suite and watching it fail fail fail because insert name here’s API service is lagging/down/changed/throttled. While knowing about those things has importance, the time to learn about them isn’t when you’re trying to deploy a completely ...</p></p>
+                            <p class="post-meta">
+                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Sat 27 July 2013
+                            </p>
+                        </header>
+                    </section>
+                    <section class="post">
+                        <header class="post-header">
+                            <h3><a class="post-title" href="http://dustinfarris.com/2013/07/27/previousnext-navigation-in-django-cms.html">Previous/Next Navigation in Django CMS</a></h3>
+                            <p class="post-meta"><p>I don't know why Django CMS doesn't have a built-in helper for navigating a page tree.  Maybe this will be included in the upcoming <a href="https://www.django-cms.org/en/blog/2013/07/03/django-cms-3-beta-2/">3.0 release</a> (which I am very much looking forward to).</p>
+<p>For now, here's a quick gist that will give you previous/next ...</p></p>
+                            <p class="post-meta">
+                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Sat 27 July 2013
+                            </p>
+                        </header>
+                    </section>
+                    <section class="post">
+                        <header class="post-header">
+                            <h3><a class="post-title" href="http://dustinfarris.com/2013/06/23/testing-apis-in-django.html">Testing APIs in Django</a></h3>
+                            <p class="post-meta"><p>I think anyone who has got their hands more than slightly wet with functional testing knows the pain of testing code that relies on API calls.  The usual suspects can bring your tests to a screeching halt: your network is down, the API is down, the API changed.  While knowing ...</p></p>
+                            <p class="post-meta">
+                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Sun 23 June 2013
+                            </p>
+                        </header>
+                    </section>
+                    <section class="post">
+                        <header class="post-header">
+                            <h3><a class="post-title" href="http://dustinfarris.com/2013/06/22/evernote.html">Evernote</a></h3>
+                            <p class="post-meta"><p><img alt="Evernote logo" src="/uploads/images/evernote-logo.png" /></p>
 <p>Every now and then I find myself on a gadget spree—spending more than an appropriate amount of time looking for new tools and apps to improve my work flow.  On my last round of widget-hunting I discovered a note-taking app called <a href="http://evernote.com/">Evernote</a>.</p>
 <h2>Sounds like an over-glorified Notepad</h2>
-<p>It isn ...</p>
-                <a class="readmore" href="http://dustinfarris.com/2013/06/22/evernote.html">read more</a>
-<p>There are <a href="http://dustinfarris.com/2013/06/22/evernote.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="http://dustinfarris.com/2013/06/21/and-now-octopress.html" rel="bookmark"
-                           title="Permalink to "And now, Octopress"">"And now, Octopress"</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2013-06-21T00:00:00+02:00">
-                Published: Fri 21 June 2013
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="http://dustinfarris.com/author/dustin-farris.html">Dustin Farris</a>
-        </address>
-<p>In <a href="http://dustinfarris.com/category/blog.html">blog</a>. </p>
-<p>tags: <a href="http://dustinfarris.com/tag/octopress.html">[Octopress]</a> </p>
-</footer><!-- /.post-info -->                <p><img alt="Octopress logo" src="/uploads/images/octopress.png" /></p>
+<p>It isn ...</p></p>
+                            <p class="post-meta">
+                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Sat 22 June 2013
+                            </p>
+                        </header>
+                    </section>
+                    <section class="post">
+                        <header class="post-header">
+                            <h3><a class="post-title" href="http://dustinfarris.com/2013/06/21/and-now-octopress.html">And now, Octopress</a></h3>
+                            <p class="post-meta"><p><img alt="Octopress logo" src="/uploads/images/octopress.png" /></p>
 <p>What can top hosting your blog on GitHub Pages using Jekyll?  Wrapping it all together with Octopress.</p>
 <p>Octopress is an open-source blogging framework that wraps the above
 technologies in a nice package complete with automation in a Rakefile, a boilerplate theme, and lots of plugins.</p>
-<p>But I didn't decide ...</p>
-                <a class="readmore" href="http://dustinfarris.com/2013/06/21/and-now-octopress.html">read more</a>
-<p>There are <a href="http://dustinfarris.com/2013/06/21/and-now-octopress.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="http://dustinfarris.com/2013/06/20/from-django-to-github-pages.html" rel="bookmark"
-                           title="Permalink to "From Django to GitHub Pages"">"From Django to GitHub Pages"</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2013-06-20T00:00:00+02:00">
-                Published: Thu 20 June 2013
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="http://dustinfarris.com/author/dustin-farris.html">Dustin Farris</a>
-        </address>
-<p>In <a href="http://dustinfarris.com/category/blog.html">blog</a>. </p>
-<p>tags: <a href="http://dustinfarris.com/tag/django.html">[Django</a> <a href="http://dustinfarris.com/tag/github-pages.html">GitHub Pages</a> <a href="http://dustinfarris.com/tag/jekyll.html">Jekyll</a> <a href="http://dustinfarris.com/tag/markdown.html">Markdown]</a> </p>
-</footer><!-- /.post-info -->                <p>I finally joined the cool club of hackers who host their blogs on <a href="http://pages.github.com/">GitHub Pages</a>.  I won't rave
+<p>But I didn't decide ...</p></p>
+                            <p class="post-meta">
+                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Fri 21 June 2013
+                            </p>
+                        </header>
+                    </section>
+                    <section class="post">
+                        <header class="post-header">
+                            <h3><a class="post-title" href="http://dustinfarris.com/2013/06/20/from-django-to-github-pages.html">From Django to GitHub Pages</a></h3>
+                            <p class="post-meta"><p>I finally joined the cool club of hackers who host their blogs on <a href="http://pages.github.com/">GitHub Pages</a>.  I won't rave
 about the sheer awesomeness of using GitHub, <a href="http://jekyllrb.com/">Jekyll</a>, and <a href="http://daringfireball.net/projects/markdown/">Markdown</a> to write blogs because
-there are already about a hundred million other blogs out there doing just that.  I will, though ...</p>
-                <a class="readmore" href="http://dustinfarris.com/2013/06/20/from-django-to-github-pages.html">read more</a>
-<p>There are <a href="http://dustinfarris.com/2013/06/20/from-django-to-github-pages.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
-            </article></li>
-                </ol><!-- /#posts-list -->
-<p class="paginator">
-    Page 1 / 16
-        <a href="http://dustinfarris.com/author/dustin-farris2.html">&raquo;</a>
-</p>
-                </section><!-- /#content -->
-        <section id="extras" class="body">
-                <div class="blogroll">
-                        <h2>blogroll</h2>
-                        <ul>
-                            <li><a href="http://getpelican.com/">Pelican</a></li>
-                            <li><a href="http://python.org/">Python.org</a></li>
-                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
-                            <li><a href="#">You can modify those links in your config file</a></li>
-                        </ul>
-                </div><!-- /.blogroll -->
-                <div class="social">
-                        <h2>social</h2>
-                        <ul>
-                            <li><a href="http://dustinfarris.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+there are already about a hundred million other blogs out there doing just that.  I will, though ...</p></p>
+                            <p class="post-meta">
+                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Thu 20 June 2013
+                            </p>
+                        </header>
+                    </section>
+<div class="pagination-wrapper content-subhead">
+    <div class="pagination">
+        <div class="pagination-left">
+                &nbsp;
+        </div>
+        <span>Page 1 / 16</span>
+        <div class="pagination-right">
+                <a href="http://dustinfarris.com/author/dustin-farris2.html">Older posts&nbsp;&rarr;</a>
+        </div>
+    </div>
+</div><footer class="footer">
+    <p>&copy; Dustin Farris &ndash;
+        Built with <a href="https://github.com/PurePelicanTheme/pure-single">Pure Theme</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+</footer>            </div>
+        </div>
+    </div>
+    </div>
+    <script>
+        var $top = $('.go-top');
 
-                            <li><a href="#">You can add links in your config file</a></li>
-                            <li><a href="#">Another social link</a></li>
-                        </ul>
-                </div><!-- /.social -->
-        </section><!-- /#extras -->
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
 
-        <footer id="contentinfo" class="body">
-                <address id="about" class="vcard body">
-                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
-                </address><!-- /#about -->
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
 
-                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
-        </footer><!-- /#contentinfo -->
-
-    <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-13275015-1']);
-    _gaq.push(['_trackPageview']);
-    (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
     </script>
-<script type="text/javascript">
-    var disqus_shortname = 'dustinfarris';
-    (function () {
-        var s = document.createElement('script'); s.async = true;
-        s.type = 'text/javascript';
-        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-    }());
-</script>
+    <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker("UA-13275015-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+    </script>
+
 </body>
 </html>

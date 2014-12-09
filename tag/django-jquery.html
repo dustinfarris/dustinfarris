@@ -1,145 +1,119 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-        <meta charset="utf-8" />
-        <title>Dustin Farris - Django jQuery</title>
-        <link rel="stylesheet" href="http://dustinfarris.com/theme/css/main.css" />
-        <link href="http://dustinfarris.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Dustin Farris Atom Feed" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dustin Farris, inveniam viam aut faciam">
 
-        <!--[if IE]>
-            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
+        <link rel="alternate"  href="http://dustinfarris.com/feeds/all.atom.xml" type="application/atom+xml" title="Dustin Farris Full Atom Feed"/>
+
+        <title>Django jQuery tag // Dustin Farris // inveniam viam aut faciam</title>
+
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://dustinfarris.com/theme/css/pure.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 </head>
 
-<body id="index" class="home">
-        <header id="banner" class="body">
-                <h1><a href="http://dustinfarris.com/">Dustin Farris </a></h1>
-                <nav><ul>
-                    <li><a href="http://dustinfarris.com/category/blog.html">blog</a></li>
-                </ul></nav>
-        </header><!-- /#banner -->
-
-            <aside id="featured" class="body">
-                <article>
-                    <h1 class="entry-title"><a href="http://dustinfarris.com/2012/04/09/django-jquery-and-infinite-scroll.html">"Django, jQuery, and Infinite Scroll"</a></h1>
-<footer class="post-info">
-        <abbr class="published" title="2012-04-09T00:00:00+02:00">
-                Published: Mon 09 April 2012
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="http://dustinfarris.com/author/dustin-farris.html">Dustin Farris</a>
-        </address>
-<p>In <a href="http://dustinfarris.com/category/blog.html">blog</a>. </p>
-<p>tags: <a href="http://dustinfarris.com/tag/django-jquery.html">Django jQuery</a> </p>
-</footer><!-- /.post-info --><p><strong>Incomplete</strong>: This post is missing some JavaScript code that got removed
+<body>
+    <div class="pure-g-r" id="layout">
+        <div class="sidebar pure-u">
+            <div class="cover-img" style="background-image: url('http://dustinfarris.com/images/beach.jpg')">
+                <div class="cover-body">
+                    <header class="header">
+                        <hgroup>
+                            <img class="avatar" src="http://dustinfarris.com/images/dustin.jpeg">
+                            <h1 class="brand-main"><a href="http://dustinfarris.com">Dustin Farris</a></h1>
+                            <p class="tagline">inveniam viam aut faciam</p>
+                                <p class="social">
+                                    <a href="https://github.com/dustinfarris/">
+                                        <i class="fa fa-github fa-3x"></i>
+                                    </a>
+                                    <a href="https://twitter.com/dustinfarris">
+                                        <i class="fa fa-twitter fa-3x"></i>
+                                    </a>
+                                    <a href="/feeds/all.atom.xml">
+                                        <i class="fa fa-rss fa-3x"></i>
+                                    </a>
+                                </p>
+                        </hgroup>
+                    </header>
+                </div>
+            </div>
+        </div>
+    <div class="pure-u">
+        <div class="content">
+            <!-- A wrapper for all the blog posts -->
+            <div class="posts">
+                <h1 class="content-subhead">
+Posts tagged 'Django jQuery'                </h1>
+                    <section class="post">
+                        <header class="post-header">
+                            <h3><a class="post-title" href="http://dustinfarris.com/2012/04/09/django-jquery-and-infinite-scroll.html">"Django, jQuery, and Infinite Scroll"</a></h3>
+                            <p class="post-meta"><p><strong>Incomplete</strong>: This post is missing some JavaScript code that got removed
 somehow when I <a href="http://dustinfarris.com/2013/06/from-django-to-github-pages/">switched to Octopress</a>.</p>
 <p>As the "next page" button becomes a thing of the past, we look for new ways to
 provide streaming information. Enter infinite scroll. Implementing infinite
-scroll in Django is easy thanks to the built-in
-<a href="https://docs.djangoproject.com/en/dev/topics/pagination/">paginator</a>. What
-you need is a view that will generate additional results of an object when
-called upon via AJAX. Assume this model in a "people" application:</p>
-<div class="highlight"><pre><span class="k">class</span> <span class="nc">Person</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">()</span>
-    <span class="n">age</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">()</span>
-</pre></div>
+scroll in Django is easy thanks to the ...</p></p>
+                            <p class="post-meta">
+                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Mon 09 April 2012
+                            </p>
+                        </header>
+                    </section>
+<div class="pagination-wrapper content-subhead">
+    <div class="pagination">
+        <div class="pagination-left">
+                &nbsp;
+        </div>
+        <span>Page 1 / 1</span>
+        <div class="pagination-right">
+        </div>
+    </div>
+</div><footer class="footer">
+    <p>&copy; Dustin Farris &ndash;
+        Built with <a href="https://github.com/PurePelicanTheme/pure-single">Pure Theme</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+</footer>            </div>
+        </div>
+    </div>
+    </div>
+    <script>
+        var $top = $('.go-top');
 
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
 
-<p>Build this view to generate the list page <em>and</em> handle
-AJAX calls for more results:</p>
-<div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.core.paginator</span> <span class="kn">import</span> <span class="n">Paginator</span><span class="p">,</span> <span class="n">InvalidPage</span><span class="p">,</span> <span class="n">EmptyPage</span>
-<span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">render</span>
-<span class="kn">from</span> <span class="nn">people.models</span> <span class="kn">import</span> <span class="n">Person</span>
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
 
-<span class="k">def</span> <span class="nf">people_list</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
-    <span class="c"># If this isn&#39;t AJAX, just return the page</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">request</span><span class="o">.</span><span class="n">is_ajax</span><span class="p">():</span>
-        <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">&#39;people/people_list.html&#39;</span><span class="p">)</span>
-        <span class="n">people_qs</span> <span class="o">=</span> <span class="n">Person</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s">&#39;name&#39;</span><span class="p">)</span>
-        <span class="c"># Get the paginator</span>
-        <span class="n">paginator</span> <span class="o">=</span> <span class="n">Paginator</span><span class="p">(</span><span class="n">people</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">page</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;page&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
-        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
-            <span class="n">page</span> <span class="o">=</span> <span class="mi">1</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">people</span> <span class="o">=</span> <span class="n">paginator</span><span class="o">.</span><span class="n">page</span><span class="p">(</span><span class="n">page</span><span class="p">)</span>
-        <span class="k">except</span> <span class="p">(</span><span class="n">EmptyPage</span><span class="p">,</span> <span class="n">InvalidPage</span><span class="p">):</span>
-            <span class="n">people</span> <span class="o">=</span> <span class="n">paginator</span><span class="o">.</span><span class="n">page</span><span class="p">(</span><span class="n">paginator</span><span class="o">.</span><span class="n">num_pages</span><span class="p">)</span>
-        <span class="c"># Return a snippet</span>
-        <span class="n">context</span> <span class="o">=</span> <span class="p">{</span> <span class="s">&#39;people&#39;</span><span class="p">:</span> <span class="n">people</span><span class="p">,</span> <span class="s">&#39;paginator&#39;</span><span class="p">:</span> <span class="n">paginator</span><span class="p">,</span> <span class="p">}</span>
-        <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">&#39;people/_people_list.html&#39;</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
-</pre></div>
-
-
-<p>The snippet is fairly simple.
-_people_list.html:</p>
-<p>{% raw %}</p>
-<div class="highlight"><pre><span class="cp">{%</span> <span class="k">for</span> <span class="nv">person</span> <span class="k">in</span> <span class="nv">people</span> <span class="cp">%}</span><span class="x"></span>
-<span class="x">    &lt;li</span><span class="cp">{%</span> <span class="k">if</span> <span class="nv">people.has_next</span> <span class="cp">%}</span><span class="x"> data-next=&quot;</span><span class="cp">{{</span> <span class="nv">people.next_page_number</span> <span class="cp">}}</span><span class="x">&quot;</span><span class="cp">{%</span> <span class="k">endif</span> <span class="cp">%}</span><span class="x">&gt;</span>
-<span class="x">        Name: </span><span class="cp">{{</span> <span class="nv">person.name</span> <span class="cp">}}</span><span class="x"></span>
-<span class="x">        Age: </span><span class="cp">{{</span> <span class="nv">person.age</span> <span class="cp">}}</span><span class="x"></span>
-<span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span><span class="x"></span>
-</pre></div>
-
-
-<p>{% endraw %}</p>
-<p>And in in the main page, we enable the whole thing with
-JavaScript. people_list.html:</p>
-<p>And there you have it. Alternate jQuery infinite scroll techniques can be
-<a href="http://www.jquery4u.com/tutorials/jquery-infinite-scrolling-demos/">found here</a>.</p><p>There are <a href="http://dustinfarris.com/2012/04/09/django-jquery-and-infinite-scroll.html#disqus_thread">comments</a>.</p>                </article>
-<p class="paginator">
-    Page 1 / 1
-</p>
-            </aside><!-- /#featured -->
-        <section id="extras" class="body">
-                <div class="blogroll">
-                        <h2>blogroll</h2>
-                        <ul>
-                            <li><a href="http://getpelican.com/">Pelican</a></li>
-                            <li><a href="http://python.org/">Python.org</a></li>
-                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
-                            <li><a href="#">You can modify those links in your config file</a></li>
-                        </ul>
-                </div><!-- /.blogroll -->
-                <div class="social">
-                        <h2>social</h2>
-                        <ul>
-                            <li><a href="http://dustinfarris.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
-
-                            <li><a href="#">You can add links in your config file</a></li>
-                            <li><a href="#">Another social link</a></li>
-                        </ul>
-                </div><!-- /.social -->
-        </section><!-- /#extras -->
-
-        <footer id="contentinfo" class="body">
-                <address id="about" class="vcard body">
-                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
-                </address><!-- /#about -->
-
-                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
-        </footer><!-- /#contentinfo -->
-
-    <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-13275015-1']);
-    _gaq.push(['_trackPageview']);
-    (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
     </script>
-<script type="text/javascript">
-    var disqus_shortname = 'dustinfarris';
-    (function () {
-        var s = document.createElement('script'); s.async = true;
-        s.type = 'text/javascript';
-        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-    }());
-</script>
+    <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker("UA-13275015-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+    </script>
+
 </body>
 </html>

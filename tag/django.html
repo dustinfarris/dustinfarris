@@ -1,667 +1,214 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-        <meta charset="utf-8" />
-        <title>Dustin Farris - [Django</title>
-        <link rel="stylesheet" href="http://dustinfarris.com/theme/css/main.css" />
-        <link href="http://dustinfarris.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Dustin Farris Atom Feed" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dustin Farris, inveniam viam aut faciam">
 
-        <!--[if IE]>
-            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
+        <link rel="alternate"  href="http://dustinfarris.com/feeds/all.atom.xml" type="application/atom+xml" title="Dustin Farris Full Atom Feed"/>
+
+        <title>[Django tag // Dustin Farris // inveniam viam aut faciam</title>
+
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://dustinfarris.com/theme/css/pure.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 </head>
 
-<body id="index" class="home">
-        <header id="banner" class="body">
-                <h1><a href="http://dustinfarris.com/">Dustin Farris </a></h1>
-                <nav><ul>
-                    <li><a href="http://dustinfarris.com/category/blog.html">blog</a></li>
-                </ul></nav>
-        </header><!-- /#banner -->
-
-            <aside id="featured" class="body">
-                <article>
-                    <h1 class="entry-title"><a href="http://dustinfarris.com/2013/11/29/djangoember-token-authentication.html">"Django/Ember Token Authentication"</a></h1>
-<footer class="post-info">
-        <abbr class="published" title="2013-11-29T00:00:00+01:00">
-                Published: Fri 29 November 2013
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="http://dustinfarris.com/author/dustin-farris.html">Dustin Farris</a>
-        </address>
-<p>In <a href="http://dustinfarris.com/category/blog.html">blog</a>. </p>
-<p>tags: <a href="http://dustinfarris.com/tag/django.html">Django</a> <a href="http://dustinfarris.com/tag/ember.html">Ember</a> </p>
-</footer><!-- /.post-info --><p>As I've <a href="/2013/09/21/django-ember-authentication-is-easy.html">previously detailed</a>, 
-implementing session-based authentication with Django and Ember is not as hard as you might think.
-Now I'd like to say the same thing for token-based authentication.</p>
-<p>In token-based authentication, every user in the database is assigned a unique token.  The flow of 
-authentication then works like this:</p>
-<ol>
-<li>You send a username and password to the API</li>
-<li>The API validates the credentials and returns that user's token</li>
-<li>You include the token in the header of every request going forward to prove that you are already 
-   authenticated.</li>
-</ol>
-<p>Here's a demonstration of the concept using curl:</p>
-<div class="highlight"><pre><span class="nv">$ </span>curl localhost:8000/users/
-<span class="o">{</span><span class="s2">&quot;detail&quot;</span>: <span class="s2">&quot;Authentication credentials were not provided.&quot;</span><span class="o">}</span>
-
-<span class="nv">$ </span>curl -X POST -d <span class="s2">&quot;username=bob&amp;password=correct&quot;</span> localhost:8000/api-token-auth/
-<span class="o">{</span><span class="s2">&quot;token&quot;</span>: <span class="s2">&quot;abcdefg12345&quot;</span><span class="o">}</span>
-
-<span class="nv">$ </span>curl -H <span class="s2">&quot;Authorization: Token abcdefg12345&quot;</span> localhost:8000/users/
-<span class="o">[{</span><span class="s2">&quot;id&quot;</span>: 1, <span class="s2">&quot;username&quot;</span>: <span class="s2">&quot;bob&quot;</span>, <span class="s2">&quot;email&quot;</span>: <span class="s2">&quot;bob@example.org&quot;</span><span class="o">}]</span>
-</pre></div>
-
-
-<p>Here, I'll explain how to set up token-based authentication using Django REST Framework, and how to 
-set up Ember as a consumer.  I'll assume you already have DRF installed, and that you have <a href="https://docs.djangoproject.com/en/dev/topics/auth/customizing/#extending-the-existing-user-model">extended 
-Django's User model</a> 
-(which I really recommend you do from the beginning even if you don't have an immediate need), e.g.:</p>
-<div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.contrib.auth.models</span> <span class="kn">import</span> <span class="n">AbstractUser</span>
-
-<span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">AbstractUser</span><span class="p">):</span>
-    <span class="k">pass</span>
-</pre></div>
-
-
-<h2>Django (DRF)</h2>
-<p>After installing DRF in the usual way, you will want need a way to generate tokens for your users, 
-and return them when a consumer posts valid credentials.  Fortunately, DRF has most of this 
-functionality <a href="http://django-rest-framework.org/api-guide/authentication#tokenauthentication">built in</a>.<br />
-First, add <code>rest_framework.authtoken</code> to your <code>INSTALLED_APPS</code>:</p>
-<div class="highlight"><pre><span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">(</span>
-    <span class="s">&#39;rest_framework.authtoken&#39;</span><span class="p">,</span>
-<span class="p">)</span>
-</pre></div>
-
-
-<p>Run <code>manage.py syncdb</code>.  Refer to the <a href="http://django-rest-framework.org/api-guide/authentication#schema-migrations">DRF documentation</a> 
-for possible edge cases involving South migrations.  Finally, create tokens for all existing users 
-in the Python shell:</p>
-<div class="highlight"><pre><span class="kn">from</span> <span class="nn">rest_framework.authtoken.models</span> <span class="kn">import</span> <span class="n">Token</span>
-<span class="kn">from</span> <span class="nn">users.models</span> <span class="kn">import</span> <span class="n">User</span>
-<span class="k">for</span> <span class="n">user</span> <span class="ow">in</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
-    <span class="n">Token</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">)</span>
-</pre></div>
-
-
-<h3>Automating token creation</h3>
-<p>Going forward, you'll want to automate the creation of tokens for new users.  This is easily 
-achieved with a post_save hook for the User model.</p>
-<div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.db.models.signals</span> <span class="kn">import</span> <span class="n">post_save</span>
-<span class="kn">from</span> <span class="nn">django.dispatch</span> <span class="kn">import</span> <span class="n">receiver</span>
-<span class="kn">from</span> <span class="nn">rest_framework.authtoken.models</span> <span class="kn">import</span> <span class="n">Token</span>
-
-<span class="nd">@receiver</span><span class="p">(</span><span class="n">post_save</span><span class="p">,</span> <span class="n">sender</span><span class="o">=</span><span class="n">User</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">init_new_user</span><span class="p">(</span><span class="n">sender</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="n">signal</span><span class="p">,</span> <span class="n">created</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Create an authentication token for newly created users.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">created</span><span class="p">:</span>
-        <span class="n">Token</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">instance</span><span class="p">)</span>
-</pre></div>
-
-
-<h3>Authentication endpoint</h3>
-<p>DRF takes care of authenticating credentials and returning a token.  You just need to add the 
-endpoint to your URLconf:</p>
-<div class="highlight"><pre><span class="n">urlpatterns</span> <span class="o">+=</span> <span class="n">patterns</span><span class="p">(</span><span class="s">&#39;&#39;</span><span class="p">,</span>
-    <span class="n">url</span><span class="p">(</span><span class="s">r&#39;^api-token-auth/&#39;</span><span class="p">,</span> <span class="s">&#39;rest_framework.authtoken.views.obtain_auth_token&#39;</span><span class="p">),</span>
-<span class="p">)</span>
-</pre></div>
-
-
-<h3>Token-based policy</h3>
-<p>The last piece as far as Django is concerned is specifying that you want to use token-based 
-authentication throughout your REST API.  This can be done by adding/modifying the 
-<code>DEFAULT_AUTHENTICATION</code> setting:</p>
-<div class="highlight"><pre><span class="n">REST_FRAMEWORK</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s">&#39;DEFAULT_AUTHENTICATION_CLASSES&#39;</span><span class="p">:</span> <span class="p">(</span>
-        <span class="s">&#39;rest_framework.authentication.TokenAuthentication&#39;</span><span class="p">,</span>
-        <span class="s">&#39;rest_framework.authentication.SessionAuthentication&#39;</span><span class="p">,</span>  <span class="c"># optional</span>
-    <span class="p">),</span>
-<span class="p">}</span>
-</pre></div>
-
-
-<p>I keep SessionAuthentication for using the web-browsable API that DRF comes with.</p>
-<h3>The current user</h3>
-<p>Thinking ahead, we know that in Ember, after authenticating, we will want an easy way to retrieve details 
-about the authenticated user.  Things like, name, email, etc..  The DRF response to a correct username 
-and password is: a token.  While the token helps us authenticate future requests, it tells us nothing
-about the user we just authenticated.  We can't even do a GET request to /users/:id/ because we don't
-even know what the user's ID is!  To solve this problem, I like to create a special endpoint that returns 
-the currently authenticated user at /users/me/.  This is easy to accomplish in DRF.  In your UserViewSet:</p>
-<div class="highlight"><pre><span class="k">class</span> <span class="nc">UserViewSet</span><span class="p">(</span><span class="n">viewsets</span><span class="o">.</span><span class="n">ModelViewSet</span><span class="p">):</span>
-    <span class="n">model</span> <span class="o">=</span> <span class="n">User</span>
-    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">UserSerializer</span>
-
-    <span class="k">def</span> <span class="nf">retrieve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">pk</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        If provided &#39;pk&#39; is &quot;me&quot; then return the current user.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">pk</span> <span class="o">==</span> <span class="s">&#39;me&#39;</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">UserSerializer</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
-        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">UserViewSet</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">retrieve</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">pk</span><span class="p">)</span>
-</pre></div>
-
-
-<p>That's it for setting up Django.</p>
-<h2>Ember</h2>
-<p>As explained above, to make use of token authentication, we'll need to send a username and password 
-to the API, store the returned token, and provide the token in the header for any future request to 
-the API.  In short, we need:</p>
-<ul>
-<li>A user model to store user data</li>
-<li>An authentication controller to facilitate the exchange of credentials for a token and store the 
-  currently authenticated user</li>
-<li>A way to prevent an unauthenticated user from visiting protected pages</li>
-</ul>
-<p>The model is straight-forward:</p>
-<div class="highlight"><pre><span class="nx">App</span><span class="p">.</span><span class="nx">User</span> <span class="o">=</span> <span class="nx">DS</span><span class="p">.</span><span class="nx">Model</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
-    <span class="nx">username</span><span class="o">:</span> <span class="nx">DS</span><span class="p">.</span><span class="nx">attr</span><span class="p">(),</span>
-    <span class="nx">first_name</span><span class="o">:</span> <span class="nx">DS</span><span class="p">.</span><span class="nx">attr</span><span class="p">(),</span>
-    <span class="nx">last_name</span><span class="o">:</span> <span class="nx">DS</span><span class="p">.</span><span class="nx">attr</span><span class="p">(),</span>
-    <span class="nx">email</span><span class="o">:</span> <span class="nx">DS</span><span class="p">.</span><span class="nx">attr</span><span class="p">(),</span>
-    <span class="nx">is_active</span><span class="o">:</span> <span class="nx">DS</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;boolean&#39;</span><span class="p">)</span>
-<span class="p">});</span>
-</pre></div>
-
-
-<p>Of course your model may be different depending on how you've extended the User Django model.</p>
-<h3>AuthController</h3>
-<p>The real meat of token authentication in Ember lies in a controller we'll create to submit form 
-information (username/password) to the server, retrieve the token, store the token, and provide 
-information about the currently logged in user.  To accomplish this, we'll extend ObjectController, 
-so that the controller itself represents the logged in user (or lack thereof).  Remember that 
-ObjectControllers in Ember are manifestations of a model—just as ArrayControllers are manifestations 
-of a set of models, etc.</p>
-<div class="highlight"><pre><span class="nx">App</span><span class="p">.</span><span class="nx">AuthController</span> <span class="o">=</span> <span class="nx">Ember</span><span class="p">.</span><span class="nx">ObjectController</span><span class="p">.</span><span class="nx">extend</span><span class="p">();</span>
-</pre></div>
-
-
-<p>I'm going to digress and talk for a second on Django, Ember, and forms.  In Ember, form fields can 
-be tied to controller attributes.  In Django, forms are validated and if they are not valid, a set 
-of errors is returned.  In this case we will be submitting form data to Django REST Framework which 
-passes the information on to the UserSerializer for validation.  Serializers in DRF inherit from 
-Django forms, so the errors we get back (if any) will look just like errors we might get back from 
-an invalid Django form.  So we know that errors will come back as a Python dictionary, converted to 
-a JSON object, e.g.:</p>
-<div class="highlight"><pre><span class="p">{</span><span class="nt">&quot;username&quot;</span><span class="p">:</span> <span class="s2">&quot;This field is required.&quot;</span><span class="p">}</span>
-</pre></div>
-
-
-<p>or </p>
-<div class="highlight"><pre><span class="p">{</span><span class="nt">&quot;non_field_errors&quot;</span><span class="p">:</span> <span class="s2">&quot;Invalid username or password&quot;</span><span class="p">}</span>
-</pre></div>
-
-
-<p>We are going to use these ideas to our advantage to submit form data to Django, and report back 
-with any errors (like an invalid password).</p>
-<p>So right now we have an AuthController that does nothing.  It has a "model" attribute, which we will 
-use later on to represent the currently logged in user.  We are going to add a few more attributes 
-to represent the form fields we need, the token we eventually get back, and any errors encountered 
-while processing the login form.</p>
-<div class="highlight"><pre><span class="nx">App</span><span class="p">.</span><span class="nx">AuthController</span> <span class="o">=</span> <span class="nx">Ember</span><span class="p">.</span><span class="nx">ObjectController</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
-    <span class="nx">username</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-    <span class="nx">password</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-    <span class="nx">token</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-    <span class="nx">errors</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-    <span class="nx">reset</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">setProperties</span><span class="p">({</span>
-            <span class="nx">username</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-            <span class="nx">password</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-            <span class="nx">errors</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-            <span class="nx">model</span><span class="o">:</span> <span class="kc">null</span>
-        <span class="p">});</span>
-    <span class="p">}</span>
-<span class="p">});</span>
-</pre></div>
-
-
-<p>Let's look at the authentication handlebars template we'll be using:</p>
-<div class="highlight"><pre><span class="nt">&lt;form</span> <span class="cp">{{</span><span class="nv">action</span> <span class="s1">&#39;login&#39;</span> <span class="nv">on</span><span class="o">=</span><span class="s1">&#39;submit&#39;</span><span class="cp">}}</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;div</span> <span class="cp">{{</span><span class="nv">bind-attr</span> <span class="nv">class</span><span class="o">=</span><span class="s1">&#39;errors.username:has-error&#39;</span><span class="cp">}}</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;span&gt;</span><span class="cp">{{</span><span class="nv">errors.username</span><span class="cp">}}</span><span class="nt">&lt;/span&gt;</span>
-        <span class="cp">{{</span><span class="nv">input</span> <span class="nv">value</span><span class="o">=</span><span class="nv">username</span> <span class="nv">type</span><span class="o">=</span><span class="s1">&#39;text&#39;</span> <span class="nv">placeholder</span><span class="o">=</span><span class="s1">&#39;Username&#39;</span><span class="cp">}}</span>
-    <span class="nt">&lt;/div&gt;</span>
-    <span class="nt">&lt;div</span> <span class="cp">{{</span><span class="nv">bind-attr</span> <span class="nv">class</span><span class="o">=</span><span class="s1">&#39;errors.password:has-error&#39;</span><span class="cp">}}</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;span&gt;</span><span class="cp">{{</span><span class="nv">errors.password</span><span class="cp">}}</span><span class="nt">&lt;/span&gt;</span>
-        <span class="cp">{{</span><span class="nv">input</span> <span class="nv">value</span><span class="o">=</span><span class="nv">password</span> <span class="nv">type</span><span class="o">=</span><span class="s1">&#39;password&#39;</span> <span class="nv">placeholder</span><span class="o">=</span><span class="s1">&#39;Password&#39;</span><span class="cp">}}</span>
-    <span class="nt">&lt;/div&gt;</span>
-    <span class="cp">{{</span><span class="err">#</span><span class="k">if</span> <span class="nv">errors.non_field_errors</span><span class="cp">}}</span>
-    <span class="nt">&lt;div&gt;</span>
-        <span class="nt">&lt;strong&gt;</span>Oops!<span class="nt">&lt;/strong&gt;</span> <span class="cp">{{</span><span class="nv">errors.non_field_errors</span><span class="cp">}}</span>
-    <span class="nt">&lt;/div&gt;</span>
-    <span class="cp">{{</span><span class="nv">input</span> <span class="nv">type</span><span class="o">=</span><span class="s1">&#39;submit&#39;</span> <span class="nv">value</span><span class="o">=</span><span class="s1">&#39;Log in&#39;</span><span class="cp">}}</span>
-<span class="nt">&lt;/form&gt;</span>
-</pre></div>
-
-
-<p>Easy: we have a username and password field bound to the AuthController, and a few areas of text 
-that are bound to any potential errors we get back.  When the form is submitted, the "login" action 
-is fired, so let's implement that in the controller:</p>
-<div class="highlight"><pre><span class="p">...</span>
-<span class="nx">actions</span><span class="o">:</span> <span class="p">{</span>
-    <span class="nx">login</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-        <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-        <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getProperties</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="s1">&#39;password&#39;</span><span class="p">);</span>
-        <span class="nx">$</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">&#39;/api-token-auth/&#39;</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="s1">&#39;json&#39;</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span>
-            <span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
-                <span class="nx">self</span><span class="p">.</span><span class="nx">reset</span><span class="p">();</span>
-                <span class="nx">self</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;token&#39;</span><span class="p">,</span> <span class="nx">response</span><span class="p">.</span><span class="nx">token</span><span class="p">);</span>
-                <span class="nx">self</span><span class="p">.</span><span class="nx">transitionToRoute</span><span class="p">(</span><span class="s1">&#39;index&#39;</span><span class="p">);</span>
-            <span class="p">},</span>
-            <span class="kd">function</span><span class="p">(</span><span class="nx">jqXHR</span><span class="p">,</span> <span class="nx">status</span><span class="p">,</span> <span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-                <span class="nx">self</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;errors&#39;</span><span class="p">,</span> <span class="nx">$</span><span class="p">.</span><span class="nx">parseJSON</span><span class="p">(</span><span class="nx">jqXHR</span><span class="p">.</span><span class="nx">responseText</span><span class="p">));</span>
-            <span class="p">}</span>
-        <span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-<span class="p">...</span>
-</pre></div>
-
-
-<p>If the authentication request is successful, we'll reset the form (a function we'll implement later 
-to just clear the fields of their old values), store the token, and navigate to the index (or 
-wherever you want the user to go next).  If the authentication request is not successful, we'll 
-populate the errors attribute so the user gets information on why the form was not valid.</p>
-<p><strong>The tricky part!</strong>  After the authentication request to the API succeeds, we want to 
-store the token permanently (so if the user refreshes the page, they are still logged in), <em>and</em> we 
-want to make sure that any future API request includes the token in the header.  To accomplish the 
-latter we'll implement functions in the AuthController to check for a valid token, setup future AJAX 
-requests to use the token, retrieve the current user, and process a new token when it is set by a 
-successful authentication form response:</p>
-<div class="highlight"><pre><span class="p">...</span>
-<span class="nx">hasValidToken</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">token</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;token&#39;</span><span class="p">);</span>
-    <span class="k">return</span> <span class="p">(</span><span class="o">!</span><span class="nx">Ember</span><span class="p">.</span><span class="nx">isEmpty</span><span class="p">(</span><span class="nx">token</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">token</span> <span class="o">!=</span> <span class="s1">&#39;null&#39;</span> <span class="o">&amp;&amp;</span> <span class="nx">token</span> <span class="o">!==</span> <span class="s1">&#39;undefined&#39;</span><span class="p">);</span>
-<span class="p">}.</span><span class="nx">property</span><span class="p">(</span><span class="s1">&#39;token&#39;</span><span class="p">),</span>
-<span class="nx">setupAjax</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">,</span> <span class="nx">token</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;token&#39;</span><span class="p">);</span>
-    <span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ajaxSend</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">,</span> <span class="nx">xhr</span><span class="p">,</span> <span class="nx">settings</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">hasValidToken</span><span class="p">())</span> <span class="p">{</span>
-            <span class="nx">xhr</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">&quot;Authorization&quot;</span><span class="p">,</span> <span class="s2">&quot;Token &quot;</span> <span class="o">+</span> <span class="nx">token</span><span class="p">);</span>
-        <span class="p">}</span>
-    <span class="p">});</span>
-<span class="p">},</span>
-<span class="nx">setCurrentUser</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">hasValidToken</span><span class="p">())</span> <span class="p">{</span>
-        <span class="kd">var</span> <span class="nx">currentUser</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">store</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">,</span> <span class="s1">&#39;me&#39;</span><span class="p">);</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;model&#39;</span><span class="p">,</span> <span class="nx">currentUser</span><span class="p">);</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">reset</span><span class="p">();</span>
-    <span class="p">}</span>
-<span class="p">},</span>
-<span class="nx">tokenChanged</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">localStorage</span><span class="p">.</span><span class="nx">MYPROJECT_auth_token</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;token&#39;</span><span class="p">);</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">setupAjax</span><span class="p">();</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">setCurrentUser</span><span class="p">();</span>
-<span class="p">}.</span><span class="nx">observes</span><span class="p">(</span><span class="s1">&#39;token&#39;</span><span class="p">)</span>
-<span class="p">...</span>
-</pre></div>
-
-
-<p>Here we have an observer that persists a new token to local storage, sets up future AJAX requests, 
-and retrieves the currently logged in user.</p>
-<h3>Retrieving tokens from local storage</h3>
-<p>You'll notice above that we persist the token to local storage.  This is so the token is still 
-available even if the user refreshes the page (or leaves and comes back, etc..)  We'll need to 
-retrieve the token from local storage anytime the user visits the site, so create/modify 
-ApplicationRoute to handle this.  While we're at it, we'll add a 'logout' action that can be 
-accessed from anywhere in the site:</p>
-<div class="highlight"><pre><span class="nx">App</span><span class="p">.</span><span class="nx">ApplicationRoute</span> <span class="o">=</span> <span class="nx">Ember</span><span class="p">.</span><span class="nx">Route</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
-    <span class="nx">init</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">_super</span><span class="p">();</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">controllerFor</span><span class="p">(</span><span class="s1">&#39;auth&#39;</span><span class="p">).</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;token&#39;</span><span class="p">,</span> <span class="nx">localStorage</span><span class="p">.</span><span class="nx">MYPROJECT_auth_token</span><span class="p">);</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">controllerFor</span><span class="p">(</span><span class="s1">&#39;auth&#39;</span><span class="p">).</span><span class="nx">setupAjax</span><span class="p">();</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">controllerFor</span><span class="p">(</span><span class="s1">&#39;auth&#39;</span><span class="p">).</span><span class="nx">setCurrentUser</span><span class="p">();</span>
-    <span class="p">},</span>
-    <span class="nx">actions</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">logout</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-            <span class="nx">App</span><span class="p">.</span><span class="nx">reset</span><span class="p">();</span>
-            <span class="k">this</span><span class="p">.</span><span class="nx">controllerFor</span><span class="p">(</span><span class="s1">&#39;auth&#39;</span><span class="p">).</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;token&#39;</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
-            <span class="k">this</span><span class="p">.</span><span class="nx">transitionTo</span><span class="p">(</span><span class="s1">&#39;index&#39;</span><span class="p">);</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">});</span>
-</pre></div>
-
-
-<p>If the user has not visited the site before, or has not authenticated, 
-<code>localStorage.MYPROJECT_auth_token</code> will return <code>undefined</code>.</p>
-<h3>Protected Routes</h3>
-<p>Invariably, there will be some routes you do not want unauthenticated users to access.  We'll 
-create a base route that covers these:</p>
-<div class="highlight"><pre><span class="nx">App</span><span class="p">.</span><span class="nx">RestrictedRoute</span> <span class="o">=</span> <span class="nx">Ember</span><span class="p">.</span><span class="nx">Route</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
-    <span class="nx">beforeModel</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">transition</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">controllerFor</span><span class="p">(</span><span class="s1">&#39;auth&#39;</span><span class="p">).</span><span class="nx">hasValidToken</span><span class="p">())</span> <span class="p">{</span>
-            <span class="k">this</span><span class="p">.</span><span class="nx">transitionTo</span><span class="p">(</span><span class="s1">&#39;auth&#39;</span><span class="p">);</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">});</span>
-</pre></div>
-
-
-<p>And all other protected routes will extend this, e.g.:</p>
-<div class="highlight"><pre><span class="nx">App</span><span class="p">.</span><span class="nx">MySecretRoute</span> <span class="o">=</span> <span class="nx">App</span><span class="p">.</span><span class="nx">RestrictedRoute</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span> <span class="err">…</span>
-</pre></div>
-
-
-<h3>Tying it all together</h3>
-<p>So now we have an AuthController, an auth template, and a few modifications to our routes.  All 
-that's remaining is creating the actual login page, and a way to get to it.  In your router:</p>
-<div class="highlight"><pre><span class="nx">App</span><span class="p">.</span><span class="nx">Router</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">route</span><span class="p">(</span><span class="s1">&#39;auth&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">path</span><span class="o">:</span> <span class="s1">&#39;/login&#39;</span> <span class="p">});</span>
-<span class="p">});</span>
-</pre></div>
-
-
-<p>This will use the auth template and controller we already created, now we just need part of the 
-main application template to provide information about the logged in user, or provide a link to 
-the login page if the user is not yet logged in.  To do this we'll need to make the AuthController 
-available to the main application template.  So create/modify ApplicationController:</p>
-<div class="highlight"><pre><span class="nx">App</span><span class="p">.</span><span class="nx">ApplicationController</span> <span class="o">=</span> <span class="nx">Ember</span><span class="p">.</span><span class="nx">Controller</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
-    <span class="nx">needs</span><span class="o">:</span> <span class="s1">&#39;auth&#39;</span>
-<span class="p">});</span>
-</pre></div>
-
-
-<p>And now in your main application handlebars template:</p>
-<div class="highlight"><pre><span class="cp">{{</span><span class="err">#</span><span class="k">with</span> <span class="nv">controllers.auth</span><span class="cp">}}</span>
-<span class="cp">{{</span><span class="err">#</span><span class="k">if</span> <span class="nv">hasValidToken</span><span class="cp">}}</span>
-Welcome back, <span class="cp">{{</span><span class="nv">first_name</span><span class="cp">}}</span> <span class="cp">{{</span><span class="nv">last_name</span><span class="cp">}}</span>!
-<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;#&quot;</span> <span class="cp">{{</span><span class="nv">action</span> <span class="s1">&#39;logout&#39;</span><span class="cp">}}</span><span class="nt">&gt;</span>Logout<span class="nt">&lt;/a&gt;</span>
-<span class="cp">{{</span><span class="k">else</span><span class="cp">}}</span>
-<span class="cp">{{</span><span class="err">#</span><span class="nv">link-to</span> <span class="s1">&#39;auth&#39;</span><span class="cp">}}</span>Login<span class="cp">{{</span><span class="o">/</span><span class="nv">link-to</span><span class="cp">}}</span>
-<span class="cp">{{</span><span class="o">/</span><span class="k">if</span><span class="cp">}}</span>
-<span class="cp">{{</span><span class="o">/</span><span class="k">with</span><span class="cp">}}</span>
-</pre></div>
-
-
-<h2>Conclusion</h2>
-<p>Everything above, when put together, will provide you with a token-based authentication scheme for 
-your API server, and a way to consume it using Ember.  Token-based authentication is nice because 
-it is straight-forward for other API consumers to plug into quickly without having to worry about 
-cookies and such.  Think mobile applications.</p>
-<p>Remember, the initial request to retrieve a token sends a plain text username and password across 
-the net, and all subsequent requests send a naked token across the net.  Always use SSL when using 
-token-based authentication.</p><p>There are <a href="http://dustinfarris.com/2013/11/29/djangoember-token-authentication.html#disqus_thread">comments</a>.</p>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="http://dustinfarris.com/2013/09/21/djangoember-authentication-is-easy.html" rel="bookmark"
-                           title="Permalink to "Django/Ember Authentication is Easy"">"Django/Ember Authentication is Easy"</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2013-09-21T00:00:00+02:00">
-                Published: Sat 21 September 2013
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="http://dustinfarris.com/author/dustin-farris.html">Dustin Farris</a>
-        </address>
-<p>In <a href="http://dustinfarris.com/category/blog.html">blog</a>. </p>
-<p>tags: <a href="http://dustinfarris.com/tag/django.html">[Django</a> <a href="http://dustinfarris.com/tag/ember.html">Ember]</a> </p>
-</footer><!-- /.post-info -->                <p><strong>[2013 Nov 29 Update]</strong>: This blog examines the use of session-based authentication. You may find
+<body>
+    <div class="pure-g-r" id="layout">
+        <div class="sidebar pure-u">
+            <div class="cover-img" style="background-image: url('http://dustinfarris.com/images/beach.jpg')">
+                <div class="cover-body">
+                    <header class="header">
+                        <hgroup>
+                            <img class="avatar" src="http://dustinfarris.com/images/dustin.jpeg">
+                            <h1 class="brand-main"><a href="http://dustinfarris.com">Dustin Farris</a></h1>
+                            <p class="tagline">inveniam viam aut faciam</p>
+                                <p class="social">
+                                    <a href="https://github.com/dustinfarris/">
+                                        <i class="fa fa-github fa-3x"></i>
+                                    </a>
+                                    <a href="https://twitter.com/dustinfarris">
+                                        <i class="fa fa-twitter fa-3x"></i>
+                                    </a>
+                                    <a href="/feeds/all.atom.xml">
+                                        <i class="fa fa-rss fa-3x"></i>
+                                    </a>
+                                </p>
+                        </hgroup>
+                    </header>
+                </div>
+            </div>
+        </div>
+    <div class="pure-u">
+        <div class="content">
+            <!-- A wrapper for all the blog posts -->
+            <div class="posts">
+                <h1 class="content-subhead">
+Posts tagged '[Django'                </h1>
+                    <section class="post">
+                        <header class="post-header">
+                            <h3><a class="post-title" href="http://dustinfarris.com/2013/11/29/djangoember-token-authentication.html">Django/Ember Token Authentication</a></h3>
+                            <p class="post-meta"><p>"Authentication can be a real headache. Thankfully, Django REST Framework and Ember have taken care of the heavy-lifting already."</p></p>
+                            <p class="post-meta">
+                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Fri 29 November 2013
+                            </p>
+                        </header>
+                    </section>
+                    <section class="post">
+                        <header class="post-header">
+                            <h3><a class="post-title" href="http://dustinfarris.com/2013/09/21/djangoember-authentication-is-easy.html">Django/Ember Authentication is Easy</a></h3>
+                            <p class="post-meta"><p><strong>[2013 Nov 29 Update]</strong>: This blog examines the use of session-based authentication. You may find
 token-based authentication more appropriate (as I have), in which case my more recent post will
 probably better suit your needs. <a href="/2013/11/29/django-ember-token-authentication.html">Check out the latest</a></p>
-<p>As I've <a href="/2013/08/authenticating-django-slash-ember/">previously explained</a>, one of the biggest hurdles to ...</p>
-                <a class="readmore" href="http://dustinfarris.com/2013/09/21/djangoember-authentication-is-easy.html">read more</a>
-<p>There are <a href="http://dustinfarris.com/2013/09/21/djangoember-authentication-is-easy.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="http://dustinfarris.com/2013/08/24/authenticating-djangoember.html" rel="bookmark"
-                           title="Permalink to "Authenticating Django/Ember"">"Authenticating Django/Ember"</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2013-08-24T00:00:00+02:00">
-                Published: Sat 24 August 2013
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="http://dustinfarris.com/author/dustin-farris.html">Dustin Farris</a>
-        </address>
-<p>In <a href="http://dustinfarris.com/category/blog.html">blog</a>. </p>
-<p>tags: <a href="http://dustinfarris.com/tag/django.html">[Django</a> <a href="http://dustinfarris.com/tag/ember.html">Ember]</a> </p>
-</footer><!-- /.post-info -->                <p><strong>[2013 Sep 21 Update]</strong>: I've completely refactored this solution and have done a much better job of
+<p>As I've <a href="/2013/08/authenticating-django-slash-ember/">previously explained</a>, one of the biggest hurdles to ...</p></p>
+                            <p class="post-meta">
+                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Sat 21 September 2013
+                            </p>
+                        </header>
+                    </section>
+                    <section class="post">
+                        <header class="post-header">
+                            <h3><a class="post-title" href="http://dustinfarris.com/2013/08/24/authenticating-djangoember.html">Authenticating Django/Ember</a></h3>
+                            <p class="post-meta"><p><strong>[2013 Sep 21 Update]</strong>: I've completely refactored this solution and have done a much better job of
 implementing it and explaining it.  <a href="/2013/11/29/django-ember-authentication-is-easy.html">Check out the latest</a></p>
 <hr />
-<p>The web app rage nowadays is to implement your backend as RESTfully as possible, and use Javascript frameworks to facilitate your controller and ...</p>
-                <a class="readmore" href="http://dustinfarris.com/2013/08/24/authenticating-djangoember.html">read more</a>
-<p>There are <a href="http://dustinfarris.com/2013/08/24/authenticating-djangoember.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="http://dustinfarris.com/2013/07/27/functional-api-tests.html" rel="bookmark"
-                           title="Permalink to "Functional API Tests"">"Functional API Tests"</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2013-07-27T00:00:00+02:00">
-                Published: Sat 27 July 2013
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="http://dustinfarris.com/author/dustin-farris.html">Dustin Farris</a>
-        </address>
-<p>In <a href="http://dustinfarris.com/category/blog.html">blog</a>. </p>
-<p>tags: <a href="http://dustinfarris.com/tag/django.html">[Django]</a> </p>
-</footer><!-- /.post-info -->                <p>Little is more frustrating than running your test suite and watching it fail fail fail because insert name here’s API service is lagging/down/changed/throttled. While knowing about those things has importance, the time to learn about them isn’t when you’re trying to deploy a completely ...</p>
-                <a class="readmore" href="http://dustinfarris.com/2013/07/27/functional-api-tests.html">read more</a>
-<p>There are <a href="http://dustinfarris.com/2013/07/27/functional-api-tests.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="http://dustinfarris.com/2013/07/27/previousnext-navigation-in-django-cms.html" rel="bookmark"
-                           title="Permalink to "Previous/Next Navigation in Django CMS"">"Previous/Next Navigation in Django CMS"</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2013-07-27T00:00:00+02:00">
-                Published: Sat 27 July 2013
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="http://dustinfarris.com/author/dustin-farris.html">Dustin Farris</a>
-        </address>
-<p>In <a href="http://dustinfarris.com/category/blog.html">blog</a>. </p>
-<p>tags: <a href="http://dustinfarris.com/tag/django.html">[Django]</a> </p>
-</footer><!-- /.post-info -->                <p>I don't know why Django CMS doesn't have a built-in helper for navigating a page tree.  Maybe this will be included in the upcoming <a href="https://www.django-cms.org/en/blog/2013/07/03/django-cms-3-beta-2/">3.0 release</a> (which I am very much looking forward to).</p>
-<p>For now, here's a quick gist that will give you previous/next ...</p>
-                <a class="readmore" href="http://dustinfarris.com/2013/07/27/previousnext-navigation-in-django-cms.html">read more</a>
-<p>There are <a href="http://dustinfarris.com/2013/07/27/previousnext-navigation-in-django-cms.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="http://dustinfarris.com/2013/06/23/testing-apis-in-django.html" rel="bookmark"
-                           title="Permalink to "Testing APIs in Django"">"Testing APIs in Django"</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2013-06-23T00:00:00+02:00">
-                Published: Sun 23 June 2013
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="http://dustinfarris.com/author/dustin-farris.html">Dustin Farris</a>
-        </address>
-<p>In <a href="http://dustinfarris.com/category/blog.html">blog</a>. </p>
-<p>tags: <a href="http://dustinfarris.com/tag/django.html">[Django]</a> </p>
-</footer><!-- /.post-info -->                <p>I think anyone who has got their hands more than slightly wet with functional testing knows the pain of testing code that relies on API calls.  The usual suspects can bring your tests to a screeching halt: your network is down, the API is down, the API changed.  While knowing ...</p>
-                <a class="readmore" href="http://dustinfarris.com/2013/06/23/testing-apis-in-django.html">read more</a>
-<p>There are <a href="http://dustinfarris.com/2013/06/23/testing-apis-in-django.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="http://dustinfarris.com/2013/06/20/from-django-to-github-pages.html" rel="bookmark"
-                           title="Permalink to "From Django to GitHub Pages"">"From Django to GitHub Pages"</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2013-06-20T00:00:00+02:00">
-                Published: Thu 20 June 2013
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="http://dustinfarris.com/author/dustin-farris.html">Dustin Farris</a>
-        </address>
-<p>In <a href="http://dustinfarris.com/category/blog.html">blog</a>. </p>
-<p>tags: <a href="http://dustinfarris.com/tag/django.html">[Django</a> <a href="http://dustinfarris.com/tag/github-pages.html">GitHub Pages</a> <a href="http://dustinfarris.com/tag/jekyll.html">Jekyll</a> <a href="http://dustinfarris.com/tag/markdown.html">Markdown]</a> </p>
-</footer><!-- /.post-info -->                <p>I finally joined the cool club of hackers who host their blogs on <a href="http://pages.github.com/">GitHub Pages</a>.  I won't rave
+<p>The web app rage nowadays is to implement your backend as RESTfully as possible, and use Javascript frameworks to facilitate your controller and ...</p></p>
+                            <p class="post-meta">
+                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Sat 24 August 2013
+                            </p>
+                        </header>
+                    </section>
+                    <section class="post">
+                        <header class="post-header">
+                            <h3><a class="post-title" href="http://dustinfarris.com/2013/07/27/functional-api-tests.html">Functional API Tests</a></h3>
+                            <p class="post-meta"><p>Little is more frustrating than running your test suite and watching it fail fail fail because insert name here’s API service is lagging/down/changed/throttled. While knowing about those things has importance, the time to learn about them isn’t when you’re trying to deploy a completely ...</p></p>
+                            <p class="post-meta">
+                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Sat 27 July 2013
+                            </p>
+                        </header>
+                    </section>
+                    <section class="post">
+                        <header class="post-header">
+                            <h3><a class="post-title" href="http://dustinfarris.com/2013/07/27/previousnext-navigation-in-django-cms.html">Previous/Next Navigation in Django CMS</a></h3>
+                            <p class="post-meta"><p>I don't know why Django CMS doesn't have a built-in helper for navigating a page tree.  Maybe this will be included in the upcoming <a href="https://www.django-cms.org/en/blog/2013/07/03/django-cms-3-beta-2/">3.0 release</a> (which I am very much looking forward to).</p>
+<p>For now, here's a quick gist that will give you previous/next ...</p></p>
+                            <p class="post-meta">
+                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Sat 27 July 2013
+                            </p>
+                        </header>
+                    </section>
+                    <section class="post">
+                        <header class="post-header">
+                            <h3><a class="post-title" href="http://dustinfarris.com/2013/06/23/testing-apis-in-django.html">Testing APIs in Django</a></h3>
+                            <p class="post-meta"><p>I think anyone who has got their hands more than slightly wet with functional testing knows the pain of testing code that relies on API calls.  The usual suspects can bring your tests to a screeching halt: your network is down, the API is down, the API changed.  While knowing ...</p></p>
+                            <p class="post-meta">
+                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Sun 23 June 2013
+                            </p>
+                        </header>
+                    </section>
+                    <section class="post">
+                        <header class="post-header">
+                            <h3><a class="post-title" href="http://dustinfarris.com/2013/06/20/from-django-to-github-pages.html">From Django to GitHub Pages</a></h3>
+                            <p class="post-meta"><p>I finally joined the cool club of hackers who host their blogs on <a href="http://pages.github.com/">GitHub Pages</a>.  I won't rave
 about the sheer awesomeness of using GitHub, <a href="http://jekyllrb.com/">Jekyll</a>, and <a href="http://daringfireball.net/projects/markdown/">Markdown</a> to write blogs because
-there are already about a hundred million other blogs out there doing just that.  I will, though ...</p>
-                <a class="readmore" href="http://dustinfarris.com/2013/06/20/from-django-to-github-pages.html">read more</a>
-<p>There are <a href="http://dustinfarris.com/2013/06/20/from-django-to-github-pages.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="http://dustinfarris.com/2013/02/23/testing-in-django.html" rel="bookmark"
-                           title="Permalink to "Testing in Django"">"Testing in Django"</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2013-02-23T00:00:00+01:00">
-                Published: Sat 23 February 2013
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="http://dustinfarris.com/author/dustin-farris.html">Dustin Farris</a>
-        </address>
-<p>In <a href="http://dustinfarris.com/category/blog.html">blog</a>. </p>
-<p>tags: <a href="http://dustinfarris.com/tag/django.html">Django</a> </p>
-</footer><!-- /.post-info -->                <p>Writing tests and test-driven development has become all the rage lately; but before declaring assertions left and
+there are already about a hundred million other blogs out there doing just that.  I will, though ...</p></p>
+                            <p class="post-meta">
+                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Thu 20 June 2013
+                            </p>
+                        </header>
+                    </section>
+                    <section class="post">
+                        <header class="post-header">
+                            <h3><a class="post-title" href="http://dustinfarris.com/2013/02/23/testing-in-django.html">"Testing in Django"</a></h3>
+                            <p class="post-meta"><p>Writing tests and test-driven development has become all the rage lately; but before declaring assertions left and
 right, it's important to consider where, why, and how you will write your tests.</p>
-<p>Different frameworks have different philosophies about how to go about this but, more often than not, developers tend ...</p>
-                <a class="readmore" href="http://dustinfarris.com/2013/02/23/testing-in-django.html">read more</a>
-<p>There are <a href="http://dustinfarris.com/2013/02/23/testing-in-django.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="http://dustinfarris.com/2012/08/14/rails-through-vs-django-manytomany.html" rel="bookmark"
-                           title="Permalink to "Rails 'through' vs Django 'ManyToMany'"">"Rails 'through' vs Django 'ManyToMany'"</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2012-08-14T00:00:00+02:00">
-                Published: Tue 14 August 2012
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="http://dustinfarris.com/author/dustin-farris.html">Dustin Farris</a>
-        </address>
-<p>In <a href="http://dustinfarris.com/category/blog.html">blog</a>. </p>
-<p>tags: <a href="http://dustinfarris.com/tag/django.html">[Django</a> <a href="http://dustinfarris.com/tag/ruby-on-rails.html">Ruby on Rails]</a> </p>
-</footer><!-- /.post-info -->                <p>Ok, Rails &amp; company have a lot of great points--I love RSpec--but I've noticed a few areas where Rails can improve.  Here, namely, I see a big difference in handling multiple relationships to self.</p>
+<p>Different frameworks have different philosophies about how to go about this but, more often than not, developers tend ...</p></p>
+                            <p class="post-meta">
+                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Sat 23 February 2013
+                            </p>
+                        </header>
+                    </section>
+                    <section class="post">
+                        <header class="post-header">
+                            <h3><a class="post-title" href="http://dustinfarris.com/2012/08/14/rails-through-vs-django-manytomany.html">"Rails 'through' vs Django 'ManyToMany'"</a></h3>
+                            <p class="post-meta"><p>Ok, Rails &amp; company have a lot of great points--I love RSpec--but I've noticed a few areas where Rails can improve.  Here, namely, I see a big difference in handling multiple relationships to self.</p>
 <h2>In Rails</h2>
 <p><code>db/migrate/create_relationships.rb</code></p>
 <div class="highlight"><pre><span class="k">class</span> <span class="nc">CreateRelationships</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span>
     <span class="k">def</span> <span class="nf">change</span>
-        <span class="n">create_table</span> <span class="ss">:relationships</span> <span class="k">do</span> <span class="o">|</span><span class="n">t ...</span></pre></div>
-                <a class="readmore" href="http://dustinfarris.com/2012/08/14/rails-through-vs-django-manytomany.html">read more</a>
-<p>There are <a href="http://dustinfarris.com/2012/08/14/rails-through-vs-django-manytomany.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
-            </article></li>
+        <span class="n">create_table</span> <span class="ss">:relationships</span> <span class="k">do</span> <span class="o">|</span><span class="n">t ...</span></pre></div></p>
+                            <p class="post-meta">
+                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Tue 14 August 2012
+                            </p>
+                        </header>
+                    </section>
+                    <section class="post">
+                        <header class="post-header">
+                            <h3><a class="post-title" href="http://dustinfarris.com/2012/08/09/testing-management-commands.html">"Testing Management Commands"</a></h3>
+                            <p class="post-meta"><p>I think to be a good Django citizen it would be appropriate to write tests ensuring that standard management commands work with your application.  I thought of this after dealing with a <a href="https://github.com/divio/django-cms/">certain app</a> that doesn't handle <code>loaddata</code> very well.</p>
+<p>Going forward, I'm adding this TestCase to all ...</p></p>
+                            <p class="post-meta">
+                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Thu 09 August 2012
+                            </p>
+                        </header>
+                    </section>
+<div class="pagination-wrapper content-subhead">
+    <div class="pagination">
+        <div class="pagination-left">
+                &nbsp;
+        </div>
+        <span>Page 1 / 2</span>
+        <div class="pagination-right">
+                <a href="http://dustinfarris.com/tag/django2.html">Older posts&nbsp;&rarr;</a>
+        </div>
+    </div>
+</div><footer class="footer">
+    <p>&copy; Dustin Farris &ndash;
+        Built with <a href="https://github.com/PurePelicanTheme/pure-single">Pure Theme</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+</footer>            </div>
+        </div>
+    </div>
+    </div>
+    <script>
+        var $top = $('.go-top');
 
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="http://dustinfarris.com/2012/08/09/testing-management-commands.html" rel="bookmark"
-                           title="Permalink to "Testing Management Commands"">"Testing Management Commands"</a></h1>
-                </header>
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
 
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2012-08-09T00:00:00+02:00">
-                Published: Thu 09 August 2012
-        </abbr>
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
 
-        <address class="vcard author">
-                By                         <a class="url fn" href="http://dustinfarris.com/author/dustin-farris.html">Dustin Farris</a>
-        </address>
-<p>In <a href="http://dustinfarris.com/category/blog.html">blog</a>. </p>
-<p>tags: <a href="http://dustinfarris.com/tag/django.html">Django</a> </p>
-</footer><!-- /.post-info -->                <p>I think to be a good Django citizen it would be appropriate to write tests ensuring that standard management commands work with your application.  I thought of this after dealing with a <a href="https://github.com/divio/django-cms/">certain app</a> that doesn't handle <code>loaddata</code> very well.</p>
-<p>Going forward, I'm adding this TestCase to all ...</p>
-                <a class="readmore" href="http://dustinfarris.com/2012/08/09/testing-management-commands.html">read more</a>
-<p>There are <a href="http://dustinfarris.com/2012/08/09/testing-management-commands.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
-            </article></li>
-                </ol><!-- /#posts-list -->
-<p class="paginator">
-    Page 1 / 2
-        <a href="http://dustinfarris.com/tag/django2.html">&raquo;</a>
-</p>
-                </section><!-- /#content -->
-        <section id="extras" class="body">
-                <div class="blogroll">
-                        <h2>blogroll</h2>
-                        <ul>
-                            <li><a href="http://getpelican.com/">Pelican</a></li>
-                            <li><a href="http://python.org/">Python.org</a></li>
-                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
-                            <li><a href="#">You can modify those links in your config file</a></li>
-                        </ul>
-                </div><!-- /.blogroll -->
-                <div class="social">
-                        <h2>social</h2>
-                        <ul>
-                            <li><a href="http://dustinfarris.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
-
-                            <li><a href="#">You can add links in your config file</a></li>
-                            <li><a href="#">Another social link</a></li>
-                        </ul>
-                </div><!-- /.social -->
-        </section><!-- /#extras -->
-
-        <footer id="contentinfo" class="body">
-                <address id="about" class="vcard body">
-                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
-                </address><!-- /#about -->
-
-                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
-        </footer><!-- /#contentinfo -->
-
-    <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-13275015-1']);
-    _gaq.push(['_trackPageview']);
-    (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
     </script>
-<script type="text/javascript">
-    var disqus_shortname = 'dustinfarris';
-    (function () {
-        var s = document.createElement('script'); s.async = true;
-        s.type = 'text/javascript';
-        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-    }());
-</script>
+    <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker("UA-13275015-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+    </script>
+
 </body>
 </html>

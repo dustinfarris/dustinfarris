@@ -1,38 +1,58 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-        <meta charset="utf-8" />
-        <title>Dustin Farris - Django RSpec</title>
-        <link rel="stylesheet" href="http://dustinfarris.com/theme/css/main.css" />
-        <link href="http://dustinfarris.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Dustin Farris Atom Feed" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dustin Farris, inveniam viam aut faciam">
 
-        <!--[if IE]>
-            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
+        <link rel="alternate"  href="http://dustinfarris.com/feeds/all.atom.xml" type="application/atom+xml" title="Dustin Farris Full Atom Feed"/>
+
+        <title>Django RSpec tag // Dustin Farris // inveniam viam aut faciam</title>
+
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://dustinfarris.com/theme/css/pure.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 </head>
 
-<body id="index" class="home">
-        <header id="banner" class="body">
-                <h1><a href="http://dustinfarris.com/">Dustin Farris </a></h1>
-                <nav><ul>
-                    <li><a href="http://dustinfarris.com/category/blog.html">blog</a></li>
-                </ul></nav>
-        </header><!-- /#banner -->
-
-            <aside id="featured" class="body">
-                <article>
-                    <h1 class="entry-title"><a href="http://dustinfarris.com/2012/10/09/django-a-new-way-to-write-tests.html">"Django: A New Way to Write Tests"</a></h1>
-<footer class="post-info">
-        <abbr class="published" title="2012-10-09T00:00:00+02:00">
-                Published: Tue 09 October 2012
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="http://dustinfarris.com/author/dustin-farris.html">Dustin Farris</a>
-        </address>
-<p>In <a href="http://dustinfarris.com/category/blog.html">blog</a>. </p>
-<p>tags: <a href="http://dustinfarris.com/tag/django-rspec.html">Django RSpec</a> </p>
-</footer><!-- /.post-info --><p>Taking a lot of inspiration from Ruby's <a href="http://rspec.info">RSpec</a>, I've established a new way to write my tests when doing TDD in Django.  Using <a href="https://github.com/jbalogh/django-nose">django-nose</a>, <a href="https://github.com/dnerdy/factory_boy">factoryboy</a>, and a few of my own <a href="https://github.com/dustinfarris/dustinfarris/blob/master/tests/support/utilities.py">helpers</a> I have greatly simplified and consolidated test writing.</p>
+<body>
+    <div class="pure-g-r" id="layout">
+        <div class="sidebar pure-u">
+            <div class="cover-img" style="background-image: url('http://dustinfarris.com/images/beach.jpg')">
+                <div class="cover-body">
+                    <header class="header">
+                        <hgroup>
+                            <img class="avatar" src="http://dustinfarris.com/images/dustin.jpeg">
+                            <h1 class="brand-main"><a href="http://dustinfarris.com">Dustin Farris</a></h1>
+                            <p class="tagline">inveniam viam aut faciam</p>
+                                <p class="social">
+                                    <a href="https://github.com/dustinfarris/">
+                                        <i class="fa fa-github fa-3x"></i>
+                                    </a>
+                                    <a href="https://twitter.com/dustinfarris">
+                                        <i class="fa fa-twitter fa-3x"></i>
+                                    </a>
+                                    <a href="/feeds/all.atom.xml">
+                                        <i class="fa fa-rss fa-3x"></i>
+                                    </a>
+                                </p>
+                        </hgroup>
+                    </header>
+                </div>
+            </div>
+        </div>
+    <div class="pure-u">
+        <div class="content">
+            <!-- A wrapper for all the blog posts -->
+            <div class="posts">
+                <h1 class="content-subhead">
+Posts tagged 'Django RSpec'                </h1>
+                    <section class="post">
+                        <header class="post-header">
+                            <h3><a class="post-title" href="http://dustinfarris.com/2012/10/09/django-a-new-way-to-write-tests.html">"Django: A New Way to Write Tests"</a></h3>
+                            <p class="post-meta"><p>Taking a lot of inspiration from Ruby's <a href="http://rspec.info">RSpec</a>, I've established a new way to write my tests when doing TDD in Django.  Using <a href="https://github.com/jbalogh/django-nose">django-nose</a>, <a href="https://github.com/dnerdy/factory_boy">factoryboy</a>, and a few of my own <a href="https://github.com/dustinfarris/dustinfarris/blob/master/tests/support/utilities.py">helpers</a> I have greatly simplified and consolidated test writing.</p>
 <p>My file structure:</p>
 <div class="highlight"><pre>project
   |
@@ -42,165 +62,64 @@
   |
   +-- project
   |
-  +-- tests
-        |
-        +-- models
-        |     |
-        |     +-- app1_models.py
-        |     |
-        |     +-- app2_models.py
-        |
-        +-- requests
-        |     |
-        |     +-- app1_pages.py
-        |     |
-        |     +-- app2_pages.py
-        |
-        +-- views
-        |     |
-        |     +-- app1_views.py
-        |     |
-        |     +-- app2_views.py
-        |
-        +-- support
-        |     |
-        |     +-- utilities.py
-        |
-        +-- factories.py
-</pre></div>
+  +-- tests ...</pre></div></p>
+                            <p class="post-meta">
+                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Tue 09 October 2012
+                            </p>
+                        </header>
+                    </section>
+<div class="pagination-wrapper content-subhead">
+    <div class="pagination">
+        <div class="pagination-left">
+                &nbsp;
+        </div>
+        <span>Page 1 / 1</span>
+        <div class="pagination-right">
+        </div>
+    </div>
+</div><footer class="footer">
+    <p>&copy; Dustin Farris &ndash;
+        Built with <a href="https://github.com/PurePelicanTheme/pure-single">Pure Theme</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+</footer>            </div>
+        </div>
+    </div>
+    </div>
+    <script>
+        var $top = $('.go-top');
 
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
 
-<p>For brevity I skipped over the <code>__init__.py</code> files.  You can see the tree in full <a href="https://github.com/dustinfarris/dustinfarris/tree/master/tests">here</a>.</p>
-<p>The <code>utilities.py</code> file contains some helper code I've written that expands on the assertions provided by Nose and provides a few other shortcuts.  When all is said and done, we get three basic types of tests: models, requests, and views.</p>
-<p>As an example for "app1" model tests, suppose app1 is a blog application:</p>
-<div class="highlight"><pre><span class="kn">from</span> <span class="nn">tests.support.utilities</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">tests.factories</span> <span class="kn">import</span> <span class="o">*</span>
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
 
-<span class="k">class</span> <span class="nc">BlogModel</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
-
-  <span class="k">def</span> <span class="nf">test_fields</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="n">it</span> <span class="o">=</span> <span class="n">get_model</span><span class="p">(</span><span class="n">BlogFactory</span><span class="p">())</span>
-
-    <span class="n">it</span><span class="o">.</span><span class="n">should_respond_to</span><span class="p">(</span><span class="s">&#39;pub_date&#39;</span><span class="p">)</span>
-    <span class="n">it</span><span class="o">.</span><span class="n">should_respond_to</span><span class="p">(</span><span class="s">&#39;last_modified&#39;</span><span class="p">)</span>
-    <span class="n">it</span><span class="o">.</span><span class="n">should_respond_to</span><span class="p">(</span><span class="s">&#39;title&#39;</span><span class="p">)</span>
-    <span class="n">it</span><span class="o">.</span><span class="n">should_respond_to</span><span class="p">(</span><span class="s">&#39;author&#39;</span><span class="p">)</span>
-    <span class="n">it</span><span class="o">.</span><span class="n">should_respond_to</span><span class="p">(</span><span class="s">&#39;content&#39;</span><span class="p">)</span>
-    <span class="n">it</span><span class="o">.</span><span class="n">should_respond_to</span><span class="p">(</span><span class="s">&#39;slug&#39;</span><span class="p">)</span>
-    <span class="n">it</span><span class="o">.</span><span class="n">should_be_valid</span>
-
-  <span class="k">def</span> <span class="nf">test_with_blank_title</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="n">it</span> <span class="o">=</span> <span class="n">get_model</span><span class="p">(</span><span class="n">BlogFactory</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">))</span>
-
-    <span class="n">it</span><span class="o">.</span><span class="n">should_not_be_valid</span>
-
-  <span class="k">def</span> <span class="nf">test_with</span> <span class="n">blank_content</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="n">it</span> <span class="o">=</span> <span class="n">get_model</span><span class="p">(</span><span class="n">BlogFactory</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">))</span>
-
-    <span class="n">it</span><span class="o">.</span><span class="n">should_not_be_valid</span>
-</pre></div>
-
-
-<p>And so on.  Here is an example of a "requests" test.</p>
-<div class="highlight"><pre><span class="kn">from</span> <span class="nn">app1.models</span> <span class="kn">import</span> <span class="n">Blog</span>
-<span class="kn">from</span> <span class="nn">tests.factories</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">tests.support.utilities</span> <span class="kn">import</span> <span class="o">*</span>
-
-<span class="k">class</span> <span class="nc">BlogPages</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
-
-  <span class="k">def</span> <span class="nf">test_index</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
-      <span class="n">BlogFactory</span><span class="p">()</span>
-
-    <span class="n">page</span> <span class="o">=</span> <span class="n">visit</span><span class="p">(</span><span class="s">&#39;blog:index&#39;</span><span class="p">)</span>
-
-    <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">Entry</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()[:</span><span class="mi">3</span><span class="p">]:</span>
-      <span class="n">page</span><span class="o">.</span><span class="n">should_have_html</span><span class="p">(</span><span class="s">&#39;&lt;span&gt;</span><span class="si">%s</span><span class="s">&lt;/span&gt;&#39;</span> <span class="o">%</span> <span class="n">e</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
-
-  <span class="k">def</span> <span class="nf">test_blog_page</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="n">blog</span> <span class="o">=</span> <span class="n">BlogFactory</span><span class="p">()</span>
-
-    <span class="n">page</span> <span class="o">=</span> <span class="n">visit</span><span class="p">(</span><span class="n">blog</span><span class="p">)</span>
-
-    <span class="n">page</span><span class="o">.</span><span class="n">should_have_html</span><span class="p">(</span><span class="s">&#39;&lt;title&gt;</span><span class="si">%s</span><span class="s">&lt;/title&gt;&#39;</span> <span class="o">%</span> <span class="n">blog</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
-    <span class="n">page</span><span class="o">.</span><span class="n">should_contain</span><span class="p">(</span><span class="n">blog</span><span class="o">.</span><span class="n">author</span><span class="o">.</span><span class="n">first_name</span><span class="p">)</span>
-</pre></div>
-
-
-<p>And so on.  Finally, the "views" tests.  Suppose app2 is a contact form application:</p>
-<div class="highlight"><pre><span class="kn">from</span> <span class="nn">app2.models</span> <span class="kn">import</span> <span class="n">Message</span>
-<span class="kn">from</span> <span class="nn">tests.support.utilities</span> <span class="kn">import</span> <span class="o">*</span>
-
-<span class="k">class</span> <span class="nc">ContactViews</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
-
-  <span class="k">def</span> <span class="nf">test_message_creation_with_invalid_information</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="n">old_message_count</span> <span class="o">=</span> <span class="n">Message</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
-    <span class="n">ajax</span><span class="p">(</span><span class="s">&#39;post&#39;</span><span class="p">,</span> <span class="s">&#39;contact&#39;</span><span class="p">,</span> <span class="p">{})</span>
-    <span class="n">assert_equal</span><span class="p">(</span><span class="n">Message</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span> <span class="n">old_message_count</span><span class="p">)</span>
-
-  <span class="k">def</span> <span class="nf">test_message_creation_with_valid_information</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="n">old_message_count</span> <span class="o">=</span> <span class="n">Message</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
-    <span class="n">message</span> <span class="o">=</span> <span class="p">{</span>
-      <span class="s">&#39;name&#39;</span><span class="p">:</span> <span class="s">&quot;Sample Person&quot;</span><span class="p">,</span>
-      <span class="s">&#39;email&#39;</span><span class="p">:</span> <span class="s">&quot;person@email.org&quot;</span><span class="p">,</span>
-      <span class="s">&#39;message&#39;</span><span class="p">:</span> <span class="s">&quot;This is an example message.&quot;</span><span class="p">}</span>
-    <span class="n">ajax</span><span class="p">(</span><span class="s">&#39;post&#39;</span><span class="p">,</span> <span class="s">&#39;contact&#39;</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
-    <span class="n">assert_equal</span><span class="p">(</span><span class="n">Message</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span> <span class="n">old_message_count</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-</pre></div>
-
-
-<p>I think having tests arranged this way is much more comprehensive and readable. I've been "testing" the tests on this blog using <a href="https://travis-ci.org">Travis</a> continuous integration and have been very pleased. Feel free to look at the <a href="https://github.com/dustinfarris/dustinfarris">source</a> code for ideas.</p><p>There are <a href="http://dustinfarris.com/2012/10/09/django-a-new-way-to-write-tests.html#disqus_thread">comments</a>.</p>                </article>
-<p class="paginator">
-    Page 1 / 1
-</p>
-            </aside><!-- /#featured -->
-        <section id="extras" class="body">
-                <div class="blogroll">
-                        <h2>blogroll</h2>
-                        <ul>
-                            <li><a href="http://getpelican.com/">Pelican</a></li>
-                            <li><a href="http://python.org/">Python.org</a></li>
-                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
-                            <li><a href="#">You can modify those links in your config file</a></li>
-                        </ul>
-                </div><!-- /.blogroll -->
-                <div class="social">
-                        <h2>social</h2>
-                        <ul>
-                            <li><a href="http://dustinfarris.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
-
-                            <li><a href="#">You can add links in your config file</a></li>
-                            <li><a href="#">Another social link</a></li>
-                        </ul>
-                </div><!-- /.social -->
-        </section><!-- /#extras -->
-
-        <footer id="contentinfo" class="body">
-                <address id="about" class="vcard body">
-                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
-                </address><!-- /#about -->
-
-                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
-        </footer><!-- /#contentinfo -->
-
-    <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-13275015-1']);
-    _gaq.push(['_trackPageview']);
-    (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
     </script>
-<script type="text/javascript">
-    var disqus_shortname = 'dustinfarris';
-    (function () {
-        var s = document.createElement('script'); s.async = true;
-        s.type = 'text/javascript';
-        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-    }());
-</script>
+    <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker("UA-13275015-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+    </script>
+
 </body>
 </html>

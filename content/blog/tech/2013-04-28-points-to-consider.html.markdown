@@ -1,4 +1,4 @@
-Title: "Points to Consider"
+Title: Points to Consider
 Tags: [Paul Krugman]
 
 [Paul Krugman][1]:

@@ -1,4 +1,4 @@
-Title: "Authenticating Django/Ember"
+Title: Authenticating Django/Ember
 Tags: [Django,Ember]
 
 **[2013 Sep 21 Update]**: I've completely refactored this solution and have done a much better job of

@@ -1,4 +1,4 @@
-Title: "Testing APIs in Django"
+Title: Testing APIs in Django
 Tags: [Django]
 published: false
 

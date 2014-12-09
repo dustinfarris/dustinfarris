@@ -1,11 +1,10 @@
-Title: "Previous/Next Navigation in Django CMS"
+Title: Previous/Next Navigation in Django CMS
 Tags: [Django]
 
 I don't know why Django CMS doesn't have a built-in helper for navigating a page tree.  Maybe this will be included in the upcoming [3.0 release][] (which I am very much looking forward to).
 
 For now, here's a quick gist that will give you previous/next buttons to get from one page to the next in your CMS Page tree.
 
-{% raw %}
 ```html
 {% load cms_tags %}
  
@@ -26,7 +25,6 @@ For now, here's a quick gist that will give you previous/next buttons to get fro
   {% endif %}
 </ul>
 ```
-{% endraw %}
 
 
 [3.0 release]: https://www.django-cms.org/en/blog/2013/07/03/django-cms-3-beta-2/

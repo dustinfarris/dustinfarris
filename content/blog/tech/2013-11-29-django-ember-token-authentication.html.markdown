@@ -1,4 +1,4 @@
-Title: "Django/Ember Token Authentication"
+Title: Django/Ember Token Authentication
 Tags: Django, Ember
 Summary: "Authentication can be a real headache. Thankfully, Django REST Framework and Ember have taken care of the heavy-lifting already."
 

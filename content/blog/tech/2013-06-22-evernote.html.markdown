@@ -1,4 +1,4 @@
-Title: "Evernote"
+Title: Evernote
 Tags: [Evernote]
 
 ![Evernote logo](/uploads/images/evernote-logo.png)

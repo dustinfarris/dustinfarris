@@ -1,4 +1,4 @@
-Title: "And now, Octopress"
+Title: And now, Octopress
 Tags: [Octopress]
 
 ![Octopress logo](/uploads/images/octopress.png)

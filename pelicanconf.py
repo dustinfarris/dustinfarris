@@ -4,7 +4,12 @@ from __future__ import unicode_literals
 
 AUTHOR = 'Dustin Farris'
 SITENAME = 'Dustin Farris'
-SITEURL = ''
+SITEURL = 'http://localhost:8000'
+
+THEME = 'pure-single'
+COVER_IMG_URL = SITEURL + '/images/beach.jpg'
+PROFILE_IMG_URL = SITEURL + '/images/dustin.jpeg'
+TAGLINE = 'inveniam viam aut faciam'
 
 PATH = 'content'
 
@@ -34,8 +39,11 @@ LINKS = (('Pelican', 'http://getpelican.com/'),
          ('You can modify those links in your config file', '#'),)
 
 # Social widget
-SOCIAL = (('You can add links in your config file', '#'),
-          ('Another social link', '#'),)
+SOCIAL = (
+  ('github', 'https://github.com/dustinfarris/'),
+  ('twitter', 'https://twitter.com/dustinfarris'),
+  ('rss', '/feeds/all.atom.xml'),
+)
 
 DEFAULT_PAGINATION = 10
 

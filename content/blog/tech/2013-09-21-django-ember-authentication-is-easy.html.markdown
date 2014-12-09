@@ -1,4 +1,4 @@
-Title: "Django/Ember Authentication is Easy"
+Title: Django/Ember Authentication is Easy
 Tags: [Django, Ember]
 
 **[2013 Nov 29 Update]**: This blog examines the use of session-based authentication. You may find

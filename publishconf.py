@@ -11,6 +11,8 @@ sys.path.append(os.curdir)
 from pelicanconf import *
 
 SITEURL = 'http://dustinfarris.com'
+COVER_IMG_URL = SITEURL + '/images/beach.jpg'
+PROFILE_IMG_URL = SITEURL + '/images/dustin.jpeg'
 RELATIVE_URLS = False
 
 FEED_ALL_ATOM = 'feeds/all.atom.xml'

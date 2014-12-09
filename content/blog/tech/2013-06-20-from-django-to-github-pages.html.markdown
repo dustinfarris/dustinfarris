@@ -1,4 +1,4 @@
-Title: "From Django to GitHub Pages"
+Title: From Django to GitHub Pages
 Tags: [Django, GitHub Pages, Jekyll, Markdown]
 
 I finally joined the cool club of hackers who host their blogs on [GitHub Pages][].  I won't rave

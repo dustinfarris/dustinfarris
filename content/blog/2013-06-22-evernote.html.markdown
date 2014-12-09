@@ -1,0 +1,54 @@
+Title: "Evernote"
+Tags: [Evernote]
+
+![Evernote logo](/uploads/images/evernote-logo.png)
+
+Every now and then I find myself on a gadget spree—spending more than an appropriate amount of time looking for new tools and apps to improve my work flow.  On my last round of widget-hunting I discovered a note-taking app called [Evernote][].
+
+## Sounds like an over-glorified Notepad
+
+It isn't.  While taking notes may seem like an elementary task, Evernote has a lot of extras that are exceedingly useful.
+
+First and foremost is a very well thought out [indexing system][].  It allows Evernote to archive, not just typed-out notes, but also emails, PDF documents, and images.  And not just archive, but _index_ these as well.  That's right, if you throw an image into your notebook, Evernote will capture any text present and index the asset as it would any other note.
+
+![Evernote search for 'parachutes'](/uploads/images/evernote-search-parachutes.png)
+
+Once the idea of archiving any sort of document you like catches on, I've found it becomes addictive and extremely useful in the end.
+
+## Email
+
+Probably my favorite feature of Evernote—also one of the simplest—is the ability to archive email.  Forward any email you get to _`username@m.evernote.com`_ and it gets added to your archive.  So now when you're searching your notes for details on a web page feature you need to implement for a client, anything the client has sent to you in email is included as well.
+
+Oh, and that includes attachments.  Text buried in an Excel spreadsheet someone emailed you months ago?  Evernote will bring it up in a flash.
+
+Also, on email, the forwarding feature is nice, but it leaves a lot of header information at the top.  "Orginially from, original message.."  Mail.app has a operation, redirect, that essentially forwards the email, but leaves the From: header as the original sender.  In short, this sends the email to Evernote exactly as it was sent to you.  Evernote will even make note of the From header and record that as the author in the entry's meta-data.
+
+## Extensibility
+
+Evernote plugs in to a lot of applications you're probably already using.  If it doesn't, it tends to be fairly painless to copy and paste anything you see.  With a vast number of add-on software, browser plugins, and share options in third-party apps, you can effectively archive your entire electronic life.
+
+For example, I'm using an app called [Callnote][] that automatically records my Skype calls.  With one click, the entire call is sent to Evernote.
+
+![Callnote screenshot](/uploads/images/callnote-screenshot.png)
+
+## Everyone is using it
+
+One of the downsides of working at home is that I am usually the last to hear about cool stuff, and by time I do, it's old news.  Once I started using Evernote religiously, I discovered that everyone I work with regularly also use it heavily.  Why does that matter?  Because you can collaborate on notebooks and search each other's archive.  This is great for doing internal research when you have a team that is geographically spread out.
+
+## Concerns
+
+I was perturbed when I read that Evernote experienced a [security breach][] earlier this year.  They have, though, implemented [2-step verification] since then.
+
+Initially, I was turned off by mandatory use of Evernote's cloud (no option to use Google Drive, iCloud, etc..).  But I know now that Evernote's servers don't just store the information, they process and index the files so it makes sense to use their own hardware.
+
+Lastly, I was surprised at the lack of Markdown support, but using a WYSYWIG has become comfortable very quickly as they have built in keyboard shortcuts for common formatting operations (bullets, links, indentation, etc..).
+
+## tl;dr
+
+Evernote is a robust application that synchronizes your notes to the cloud.  It integrates with many other applications and has a well-tuned search feature.  It can be used by individuals or by an entire team—giving everyone real-time updates on thoughts, meetings, and, well, anything else you would take notes on.
+
+[Evernote]: http://evernote.com/
+[indexing system]: http://blog.evernote.com/tech/2011/09/30/evernote-indexing-system/
+[Callnote]: http://shop.skype.com/apps/Call-recording-audio-only/Callnote.html
+[security breach]: http://online.wsj.com/article/SB10001424127887323478304578336373531236296.html
+[2-step verification]: http://blog.evernote.com/blog/2013/05/30/evernotes-three-new-security-features/

@@ -22,7 +22,7 @@ Here's a demonstration of the concept using curl:
     $ curl -X POST -d "username=bob&password=correct" localhost:8000/api-token-auth/
     {"token": "abcdefg12345"}
 
-    $ curl -H "Authorization: Token abcdefg12345" localhost:000/users/
+    $ curl -H "Authorization: Token abcdefg12345" localhost:8000/users/
     [{"id": 1, "username": "bob", "email": "bob@example.org"}]
 
 Here, I'll explain how to set up token-based authentication using Django REST Framework, and how to 

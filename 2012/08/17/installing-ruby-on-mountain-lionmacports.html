@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Dustin Farris, inveniam viam aut faciam">
 <link rel="alternate"  href="http://dustinfarris.com/feeds/all.atom.xml" type="application/atom+xml" title="Dustin Farris Full Atom Feed">
-<title>"Installing Ruby on Mountain Lion/MacPorts" // Dustin Farris // inveniam viam aut faciam</title>
+<title>"Installing Ruby on Mountain Lion/MacPorts"</title>
 
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
@@ -76,6 +76,20 @@ $(document).ready(function(){
     <section class="post">
       <header class="post-header">
         <h1>"Installing Ruby on Mountain Lion/MacPorts"</h1>
+        <div class="lead"><p>If you use MacPorts, the following should get Ruby installed and working on your machine.</p>
+<h3>Install RVM</h3>
+<p>Taken from the <a href="https://rvm.io/rvm/install/">RVM website</a>:</p>
+<div class="highlight"><pre>curl -L https://get.rvm.io | bash -s stable --ruby
+</pre></div>
+
+
+<h3>Install OpenSSL and libyaml</h3>
+<div class="highlight"><pre>sudo port install openssl libyaml
+</pre></div>
+
+
+<h3>(Re)Install Ruby</h3>
+<div class="highlight"><pre>rvm reinstall 1.9.3 --with-openssl-dir ...</pre></div></div>
         <p class="post-meta">
         <a class="post-tag" href="http://dustinfarris.com/tag/macports-rvm.html">MacPorts RVM</a>
         </p>

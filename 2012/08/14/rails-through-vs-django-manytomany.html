@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Dustin Farris, inveniam viam aut faciam">
 <link rel="alternate"  href="http://dustinfarris.com/feeds/all.atom.xml" type="application/atom+xml" title="Dustin Farris Full Atom Feed">
-<title>"Rails 'through' vs Django 'ManyToMany'" // Dustin Farris // inveniam viam aut faciam</title>
+<title>"Rails 'through' vs Django 'ManyToMany'"</title>
 
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
@@ -76,6 +76,12 @@ $(document).ready(function(){
     <section class="post">
       <header class="post-header">
         <h1>"Rails 'through' vs Django 'ManyToMany'"</h1>
+        <div class="lead"><p>Ok, Rails &amp; company have a lot of great points--I love RSpec--but I've noticed a few areas where Rails can improve.  Here, namely, I see a big difference in handling multiple relationships to self.</p>
+<h2>In Rails</h2>
+<p><code>db/migrate/create_relationships.rb</code></p>
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">CreateRelationships</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span>
+    <span class="k">def</span> <span class="nf">change</span>
+        <span class="n">create_table</span> <span class="ss">:relationships</span> <span class="k">do</span> <span class="o">|</span><span class="n">t ...</span></pre></div></div>
         <p class="post-meta">
         <a class="post-tag" href="http://dustinfarris.com/tag/django.html">[Django</a>
         <a class="post-tag" href="http://dustinfarris.com/tag/ruby-on-rails.html">Ruby on Rails]</a>

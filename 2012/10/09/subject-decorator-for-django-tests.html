@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Dustin Farris, inveniam viam aut faciam">
 <link rel="alternate"  href="http://dustinfarris.com/feeds/all.atom.xml" type="application/atom+xml" title="Dustin Farris Full Atom Feed">
-<title>""subject" Decorator for Django Tests" // Dustin Farris // inveniam viam aut faciam</title>
+<title>""subject" Decorator for Django Tests"</title>
 
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
@@ -76,6 +76,13 @@ $(document).ready(function(){
     <section class="post">
       <header class="post-header">
         <h1>"&quot;subject&quot; Decorator for Django Tests"</h1>
+        <div class="lead"><p>The Python elite will probably turn their noses up at me, but I just conjured an <em>even</em> better looking way to write my <a href="http://dustinfarris.com/2012/10/django-a-new-way-to-write-tests/">tests</a>.</p>
+<p>Using my <a href="https://github.com/dustinfarris/dustinfarris/blob/master/tests/support/utilities.py">utilities.py</a> file I can write the following decorator:</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">subject</span><span class="p">(</span><span class="n">item</span><span class="p">):</span>
+  <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">_item</span><span class="o">=</span><span class="n">item</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">test_func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+      <span class="n">item</span> <span class="o">=</span> <span class="n">_item</span>
+      <span class="k">if ...</span></pre></div></div>
         <p class="post-meta">
         <a class="post-tag" href="http://dustinfarris.com/tag/django-python.html">Django Python</a>
         </p>

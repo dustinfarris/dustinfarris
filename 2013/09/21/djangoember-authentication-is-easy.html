@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Dustin Farris, inveniam viam aut faciam">
 <link rel="alternate"  href="http://dustinfarris.com/feeds/all.atom.xml" type="application/atom+xml" title="Dustin Farris Full Atom Feed">
-<title>Django/Ember Authentication is Easy // Dustin Farris // inveniam viam aut faciam</title>
+<title>Django/Ember Authentication is Easy</title>
 
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
@@ -76,9 +76,13 @@ $(document).ready(function(){
     <section class="post">
       <header class="post-header">
         <h1>Django/Ember Authentication is Easy</h1>
+        <div class="lead"><p><strong>[2013 Nov 29 Update]</strong>: This blog examines the use of session-based authentication. You may find
+token-based authentication more appropriate (as I have), in which case my more recent post will
+probably better suit your needs. <a href="/2013/11/29/django-ember-token-authentication.html">Check out the latest</a></p>
+<p>As I've <a href="/2013/08/authenticating-django-slash-ember/">previously explained</a>, one of the biggest hurdles to ...</p></div>
         <p class="post-meta">
-        <a class="post-tag" href="http://dustinfarris.com/tag/django.html">[Django</a>
-        <a class="post-tag" href="http://dustinfarris.com/tag/ember.html">Ember]</a>
+        <a class="post-tag" href="http://dustinfarris.com/tag/django.html">Django</a>
+        <a class="post-tag" href="http://dustinfarris.com/tag/ember.html">Ember</a>
         </p>
       </header>
       <p><strong>[2013 Nov 29 Update]</strong>: This blog examines the use of session-based authentication. You may find
@@ -263,25 +267,23 @@ session when the page is first loaded:</p>
 
 <p>Finally we just need a handlebars template to provide the user with a login form, or with a representation of
 the current user.</p>
-<p>{% raw %}</p>
-<div class="highlight"><pre><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/x-handlebars&quot;</span> <span class="na">id=</span><span class="s">&quot;session&quot;</span><span class="nt">&gt;</span>
-  <span class="p">{</span><span class="err">#</span><span class="k">if</span> <span class="nx">isAuthenticated</span><span class="p">}}</span>
-    <span class="o">&lt;</span><span class="nx">h3</span><span class="o">&gt;</span><span class="nx">Welcome</span> <span class="nx">back</span><span class="p">,</span> <span class="p">{{</span><span class="nx">first_name</span><span class="p">}}</span><span class="o">!&lt;</span><span class="err">/h3&gt;</span>
-    <span class="o">&lt;</span><span class="nx">button</span> <span class="p">{{</span><span class="nx">action</span> <span class="s1">&#39;logout&#39;</span><span class="p">}}</span><span class="o">&gt;</span><span class="nx">Logout</span><span class="o">&lt;</span><span class="err">/button&gt;</span>
-  <span class="p">{{</span><span class="k">else</span><span class="p">}}</span>
-    <span class="o">&lt;</span><span class="nx">form</span> <span class="p">{{</span><span class="nx">action</span> <span class="nx">login</span> <span class="nx">on</span><span class="o">=</span><span class="s2">&quot;submit&quot;</span><span class="p">}}</span><span class="o">&gt;</span>
-      <span class="p">{{</span><span class="nx">input</span> <span class="nx">value</span><span class="o">=</span><span class="nx">username</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span> <span class="nx">placeholder</span><span class="o">=</span><span class="s2">&quot;Username&quot;</span><span class="p">}}</span>
-      <span class="p">{{</span><span class="nx">input</span> <span class="nx">value</span><span class="o">=</span><span class="nx">password</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;password&quot;</span> <span class="nx">placeholder</span><span class="o">=</span><span class="s2">&quot;Password&quot;</span><span class="p">}}</span>
-      <span class="p">{{</span><span class="nx">input</span> <span class="nx">value</span><span class="o">=</span><span class="s2">&quot;Login&quot;</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;submit&quot;</span><span class="p">}}</span>
-    <span class="o">&lt;</span><span class="err">/form&gt;</span>
-    <span class="p">{{</span><span class="err">#</span><span class="k">if</span> <span class="nx">errorMessage</span><span class="p">}}</span><span class="o">&lt;</span><span class="nx">span</span><span class="o">&gt;</span><span class="p">{{</span><span class="nx">errorMessage</span><span class="p">}}</span><span class="o">&lt;</span><span class="err">/span&gt;{{/if}}</span>
-  <span class="p">{{</span><span class="err">/if}}</span>
+<div class="highlight"><pre><span class="nt">&lt;script</span> <span class="na">type=</span><span class="s">&quot;text/x-handlebars&quot;</span> <span class="na">id=</span><span class="s">&quot;session&quot;</span><span class="nt">&gt;</span>
+  <span class="cp">{{</span><span class="err">#</span><span class="k">if</span> <span class="nv">isAuthenticated</span><span class="cp">}}</span>
+    <span class="nt">&lt;h3&gt;</span>Welcome back, <span class="cp">{{</span><span class="nv">first_name</span><span class="cp">}}</span>!<span class="nt">&lt;/h3&gt;</span>
+    <span class="nt">&lt;button</span> <span class="cp">{{</span><span class="nv">action</span> <span class="s1">&#39;logout&#39;</span><span class="cp">}}</span><span class="nt">&gt;</span>Logout<span class="nt">&lt;/button&gt;</span>
+  <span class="cp">{{</span><span class="k">else</span><span class="cp">}}</span>
+    <span class="nt">&lt;form</span> <span class="cp">{{</span><span class="nv">action</span> <span class="nv">login</span> <span class="nv">on</span><span class="o">=</span><span class="s2">&quot;submit&quot;</span><span class="cp">}}</span><span class="nt">&gt;</span>
+      <span class="cp">{{</span><span class="nv">input</span> <span class="nv">value</span><span class="o">=</span><span class="nv">username</span> <span class="nv">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span> <span class="nv">placeholder</span><span class="o">=</span><span class="s2">&quot;Username&quot;</span><span class="cp">}}</span>
+      <span class="cp">{{</span><span class="nv">input</span> <span class="nv">value</span><span class="o">=</span><span class="nv">password</span> <span class="nv">type</span><span class="o">=</span><span class="s2">&quot;password&quot;</span> <span class="nv">placeholder</span><span class="o">=</span><span class="s2">&quot;Password&quot;</span><span class="cp">}}</span>
+      <span class="cp">{{</span><span class="nv">input</span> <span class="nv">value</span><span class="o">=</span><span class="s2">&quot;Login&quot;</span> <span class="nv">type</span><span class="o">=</span><span class="s2">&quot;submit&quot;</span><span class="cp">}}</span>
+    <span class="nt">&lt;/form&gt;</span>
+    <span class="cp">{{</span><span class="err">#</span><span class="k">if</span> <span class="nv">errorMessage</span><span class="cp">}}</span><span class="nt">&lt;span&gt;</span><span class="cp">{{</span><span class="nv">errorMessage</span><span class="cp">}}</span><span class="nt">&lt;/span&gt;</span><span class="cp">{{</span><span class="o">/</span><span class="k">if</span><span class="cp">}}</span>
+  <span class="cp">{{</span><span class="o">/</span><span class="k">if</span><span class="cp">}}</span>
 <span class="nt">&lt;/script&gt;</span>
 </pre></div>
 
 
-<p>{% endraw %}</p>
-<p>You can put this login form wherever you want by calling {% raw %}<code _="%" endraw="endraw">{{render 'session'}}</code>.</p>
+<p>You can put this login form wherever you want by calling <code>{{render 'session'}}</code>.</p>
 <h2>Conclusion</h2>
 <p>Authenticating in Ember using Django's session-based authentication is straight-forward and easy.  I've left
 out a lot of boiler-plate and tests here. You can view a more complete and working <a href="https://github.com/dustinfarris/django-ember-authentication">example on GitHub</a>.</p>

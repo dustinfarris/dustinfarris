@@ -68,12 +68,15 @@ a:hover {
 }
 
 .lead {
-  margin: 2em 0;
-  font-size: 1.5em;
+  margin: 1em 0;
+  font-size: 1.2em;
   font-weight: 200;
   line-height: 1.4;
-  font-family: $lead-text-font-family;
-  color: $lead-text-color;
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  color: #777;
+}
+.lead p {
+  margin: 0;
 }
 
 blockquote {
@@ -287,11 +290,12 @@ p + .highlight pre {
 .post-tag {
   margin: 0 0.1em;
   padding: 0.2em 0.5em;
-  color: #f2f2f2;
+  color: #f4f4f4;
   background: #ddd;
-  font-size: 75%;
+  font-size: 72%;
   text-transform: uppercase;
   border-radius: 3px;
+  font-weight: 200;
 }
 .post-tag:hover {
   background: #888;

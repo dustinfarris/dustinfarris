@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Dustin Farris, inveniam viam aut faciam">
 <link rel="alternate"  href="http://dustinfarris.com/feeds/all.atom.xml" type="application/atom+xml" title="Dustin Farris Full Atom Feed">
-<title>"Using Google to Send Mail in Django" // Dustin Farris // inveniam viam aut faciam</title>
+<title>"Using Google to Send Mail in Django"</title>
 
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
@@ -76,6 +76,9 @@ $(document).ready(function(){
     <section class="post">
       <header class="post-header">
         <h1>"Using Google to Send Mail in Django"</h1>
+        <div class="lead"><p>If you have a Gmail account (or a Google Apps account), you can use it to send mail on your behalf just like any other email client.  Remember to use port 587 (not 465), and an "application-specific" password if you use 2-step verification.</p>
+<div class="highlight"><pre><span class="n">EMAIL_HOST</span> <span class="o">=</span> <span class="s">&#39;smtp.gmail.com&#39;</span>
+<span class="n">EMAIL_HOST_USER</span> <span class="o">=</span> <span class="s">&#39;you@gmail ...</span></pre></div></div>
         <p class="post-meta">
         <a class="post-tag" href="http://dustinfarris.com/tag/django-gmail.html">Django Gmail</a>
         </p>

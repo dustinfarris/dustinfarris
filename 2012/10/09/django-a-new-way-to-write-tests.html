@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Dustin Farris, inveniam viam aut faciam">
 <link rel="alternate"  href="http://dustinfarris.com/feeds/all.atom.xml" type="application/atom+xml" title="Dustin Farris Full Atom Feed">
-<title>"Django: A New Way to Write Tests" // Dustin Farris // inveniam viam aut faciam</title>
+<title>"Django: A New Way to Write Tests"</title>
 
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
@@ -76,6 +76,17 @@ $(document).ready(function(){
     <section class="post">
       <header class="post-header">
         <h1>"Django: A New Way to Write Tests"</h1>
+        <div class="lead"><p>Taking a lot of inspiration from Ruby's <a href="http://rspec.info">RSpec</a>, I've established a new way to write my tests when doing TDD in Django.  Using <a href="https://github.com/jbalogh/django-nose">django-nose</a>, <a href="https://github.com/dnerdy/factory_boy">factoryboy</a>, and a few of my own <a href="https://github.com/dustinfarris/dustinfarris/blob/master/tests/support/utilities.py">helpers</a> I have greatly simplified and consolidated test writing.</p>
+<p>My file structure:</p>
+<div class="highlight"><pre>project
+  |
+  +-- app1
+  |
+  +-- app2
+  |
+  +-- project
+  |
+  +-- tests ...</pre></div></div>
         <p class="post-meta">
         <a class="post-tag" href="http://dustinfarris.com/tag/django-rspec.html">Django RSpec</a>
         </p>

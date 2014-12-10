@@ -74,192 +74,198 @@ Posts in 'tech'        &ndash; Page&nbsp;4
       <section class="post">
         <header class="post-header">
           <h2 class="post-title">
-            <a href="http://dustinfarris.com/2012/09/11/restful-django.html">
-              "RESTful Django"
+            <a href="http://dustinfarris.com/2012/07/07/automating-old-junk-mail-removal-in-gentoopostfix.html">
+              "Automating Old Junk-mail Removal in Gentoo/Postfix"
             </a>
           </h2>
-          <div class="summary"><p>I've been taking a lot of time lately to determine a best practice way of incorporating a RESTful approach to Django views.  My goal is to come up with a solution so simple, using a third party library won't be necessary.</p>
-<p>As a first step, I've borrowed ...</p></div>
+          <div class="summary"><p>I run a mail server on a typical Linux/Postfix/Amavisd/Dovecot stack and have been recently playing with sa-learn.  More on that later.  In the mean-time I thought I'd share a quickie bash command to remove old junk mail from all virtual users that I just spun up ...</p></div>
           <p class="post-meta">
           in
           <a href="http://dustinfarris.com/category/tech.html">
             tech
           </a>
-          &middot; Tue 11 September 2012
+          &middot; Sat 07 July 2012
           </p>
         </header>
       </section>
       <section class="post">
         <header class="post-header">
           <h2 class="post-title">
-            <a href="http://dustinfarris.com/2012/09/07/today-on-fair-and-balanced.html">
-              "Today, on &#39;Fair and Balanced&#39;"
+            <a href="http://dustinfarris.com/2012/07/06/setting-up-a-postgresql-server-with-gentoo.html">
+              "Setting up a PostgreSQL Server with Gentoo"
             </a>
           </h2>
-          <div class="summary"><p>Today's headline on Fox News highlights their philosophy of neutral reporting:</p>
-<p><img alt="Fox News is awful" src="/media/filer/2012/09/07/foxnewsbetterpolicies.jpg" /></p>
-<p>Meanwhile, in other tabloids:</p>
-<p><img alt="Fox News look-a-like" src="/media/filer/2012/09/07/homobama__opt.jpeg" title="Fox news look-a-like" /></p></div>
+          <div class="summary"><p>Setting up a database server is usually the first step when deploying a web framework stack.  This is the second of <a href="http://dustinfarris.com/tag/setting-up-gentoo-postgres-and-django/">three documents</a> showing how to get Django up and running with Gentoo.</p>
+<p><a id="contents"></a></p>
+<h2>Contents</h2>
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#prerequisites">Prerequisites</a></li>
+<li><a href="#firewall">Firewall</a></li>
+<li><a href="#install-postgres">Install Postgres</a></li>
+<li><a href="#install-postgis-extensions">Install PostGIS Extensions</a></li>
+<li><a href="#create-super-users">Create Super Users</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul>
+<p><a id="introduction"></a></p>
+<h2>Introduction</h2>
+<p>Using Gentoo Linux ...</p></div>
           <p class="post-meta">
           in
           <a href="http://dustinfarris.com/category/tech.html">
             tech
           </a>
-          &middot; Fri 07 September 2012
+          &middot; Fri 06 July 2012
           </p>
         </header>
       </section>
       <section class="post">
         <header class="post-header">
           <h2 class="post-title">
-            <a href="http://dustinfarris.com/2012/09/06/an-inspiring-hour.html">
-              "An Inspiring Hour"
+            <a href="http://dustinfarris.com/2012/07/05/facebook-meta-tags-using-django-and-jade.html">
+              "Facebook Meta-tags using Django and Jade"
             </a>
           </h2>
-          <div class="summary"><p><img alt="President Bill Clinton at the 2012 Democratic National Convention" src="/media/filer/2012/09/06/video-dnc-day2-7pm-b-clinton-thumbwide.jpeg" /></p>
-<p>President Bill Clinton, who presided over years of American prosperity, gave a speech at the 2012 Democratic National Convention that was down to earth, yet extraordinarily powerful.  In case you missed it, the New York Times has a video in high definition.</p>
-<p><a href="http://video.nytimes.com/video/2012/09/06/us/politics/100000001763238/bill-clintons-speech-.html">Watch Bill Clinton's speech on nytimes.com</a></p></div>
+          <div class="summary"><p>I've found the Facebook doesn't do the best job of inferring general information from my blog articles on its own.  Fortunately, the folks at FB provide a name-spaced meta tag schema more commonly known as <a href="https://developers.facebook.com/docs/opengraph/">Open Graph</a>.</p>
+<p>Implementing a quick self-explanatory in a Django template <a href="http://dustinfarris.com/2012/6/django-and-jade/">using Jade</a> is ...</p></div>
           <p class="post-meta">
           in
           <a href="http://dustinfarris.com/category/tech.html">
             tech
           </a>
-          &middot; Thu 06 September 2012
+          &middot; Thu 05 July 2012
           </p>
         </header>
       </section>
       <section class="post">
         <header class="post-header">
           <h2 class="post-title">
-            <a href="http://dustinfarris.com/2012/09/05/and-now-fox-news.html">
-              "And now, Fox News"
+            <a href="http://dustinfarris.com/2012/07/02/cpu-hungry-retina-macbook-pro.html">
+              "CPU Hungry Retina Macbook Pro"
             </a>
           </h2>
-          <div class="summary"><p>How anyone can take Fox News seriously is beyond me.  After yesterday's <em>top</em> <a href="http://www.foxnews.com/politics/2012/09/04/israeli-ambassador-denies-reported-remarks-on-israel-while-dnc-chair-calls/">story</a> about an assertion found in an article by another conservative news paper about words a Democrat may or may not have said to an Israel ambassador, today we are enlightened with this headline:</p>
-<p><img alt="Fox News is a joke" src="/media/filer/2012/09/05/newsjokesep5.jpg" title="Fox news is a joke" /></p>
-<p>Does anyone ...</p></div>
+          <div class="summary"><p>I had a chance to play with one of the new Retina Macbook Pros in the Apple store in Portland the other day and noticed two things:</p>
+<ol>
+<li>It's beautiful</li>
+<li>Its graphics performance is sluggish</li>
+</ol>
+<p>I found point two surprising because I have been watching <a href="http://en.wikipedia.org/wiki/Intel_Tick-Tock#Roadmap">Intel's roadmap</a> for years ...</p></div>
           <p class="post-meta">
           in
           <a href="http://dustinfarris.com/category/tech.html">
             tech
           </a>
-          &middot; Wed 05 September 2012
+          &middot; Mon 02 July 2012
           </p>
         </header>
       </section>
       <section class="post">
         <header class="post-header">
           <h2 class="post-title">
-            <a href="http://dustinfarris.com/2012/09/04/are-you-better-off.html">
-              "Are You Better Off?"
+            <a href="http://dustinfarris.com/2012/06/08/cache-timeout-default-in-django.html">
+              "Cache Timeout Default in Django"
             </a>
           </h2>
-          <div class="summary"><p>Via <a href="http://krugman.blogs.nytimes.com/2012/09/04/the-fire-last-time/">Krugman</a>:</p>
-<blockquote>
-<p>Dean Baker has exactly the right metaphor for journalists asking the really dumb "are you better off" question:</p>
-<blockquote>
-<p>Suppose your house is on fire and the firefighters race to the scene. They set up their hoses and start spraying water on the blaze as quickly as possible. After ...</p></blockquote></blockquote></div>
+          <div class="summary"><p>I had to break a bad habit where I always specify explicit cache timeout settings when building custom template tags.  For example, I might have a news feed for the homepage that looks something like this:</p>
+<div class="highlight"><pre>    <span class="kn">from</span> <span class="nn">django.conf</span> <span class="kn">import</span> <span class="n">settings</span>
+    <span class="kn">from</span> <span class="nn">django.core.cache</span> <span class="kn">import</span> <span class="n">cache</span>
+    <span class="kn">from</span> <span class="nn">django.template ...</span></pre></div></div>
           <p class="post-meta">
           in
           <a href="http://dustinfarris.com/category/tech.html">
             tech
           </a>
-          &middot; Tue 04 September 2012
+          &middot; Fri 08 June 2012
           </p>
         </header>
       </section>
       <section class="post">
         <header class="post-header">
           <h2 class="post-title">
-            <a href="http://dustinfarris.com/2012/09/03/austerity-will-work-wrong.html">
-              "Austerity Will Work!  Wrong."
+            <a href="http://dustinfarris.com/2012/06/01/django-and-jade.html">
+              "Django and Jade"
             </a>
           </h2>
-          <div class="summary"><p>Borrowing a graph from <a href="http://krugman.blogs.nytimes.com/2012/09/03/britains-paul-ryan/">Krugman</a>, I think staging the United State's recovery versus the United Kingdom's gives us an interesting comparison of liberal versus conservative fiscal policy.</p>
-<p><img alt="US vs UK recovery" src="/media/filer/2012/09/03/090312krugman1-blog480.jpg" /></p>
-<p>Krugman says it best:</p>
-<blockquote>
-<p>Osborne’s big idea was that Britain should turn to fiscal austerity now now now, even though ...</p></blockquote></div>
+          <div class="summary"><p>This week I made an important addition to my tool kit.  In the past I've focused primarily on ways to streamline backend development using tools like django_compressor, Sentry, and Fabric.  More recently, however, I've taken a turn and began focusing on ways to bring my frontend up to ...</p></div>
           <p class="post-meta">
           in
           <a href="http://dustinfarris.com/category/tech.html">
             tech
           </a>
-          &middot; Mon 03 September 2012
+          &middot; Fri 01 June 2012
           </p>
         </header>
       </section>
       <section class="post">
         <header class="post-header">
           <h2 class="post-title">
-            <a href="http://dustinfarris.com/2012/09/03/powerless.html">
-              "Powerless"
+            <a href="http://dustinfarris.com/2012/06/01/dustinfarriscom-jadified.html">
+              "Dustinfarris.com, Jadified"
             </a>
           </h2>
-          <div class="summary"><p>Linkin Park does it again.  From their latest album:</p></div>
+          <div class="summary"><p>As I <a href="http://dustinfarris.com/2012/6/django-and-jade/">previously mentioned</a>, I have embraced <a href="http://jade-lang.com/">Jade</a> as a new and improved way of writing frontend markup.  As usual when learning new technologies, I've used my own website as a guinea pig.</p>
+<p>This site's markup is now 100% written in Jade and is available for your viewing ...</p></div>
           <p class="post-meta">
           in
           <a href="http://dustinfarris.com/category/tech.html">
             tech
           </a>
-          &middot; Mon 03 September 2012
+          &middot; Fri 01 June 2012
           </p>
         </header>
       </section>
       <section class="post">
         <header class="post-header">
           <h2 class="post-title">
-            <a href="http://dustinfarris.com/2012/09/01/national-debt-food-for-thought.html">
-              "National Debt: Food for Thought"
+            <a href="http://dustinfarris.com/2012/05/28/linking-multiple-rss-feeds.html">
+              "Linking Multiple RSS Feeds"
             </a>
           </h2>
-          <div class="summary"><p>I hear Republicans rant often about the "runaway" national debt and how China is going to "own this country" if we don't pick up our bootstraps and let Romney give rich people more tax breaks.</p>
-<p>If every American borrowed $100,000 from China to buy a house, we would ...</p></div>
+          <div class="summary"><p>I <a href="http://dustinfarris.com/2012/5/offering-rss-filter-option/">split my RSS feed</a> the other day to filter technical blog posts from the rest by creating a /feeds/ page that offers the option.  Little did I know that these options can be presented right in the head of an HTML document just by adding additional "links"</p>
+<p>{% raw %}</p>
+<div class="highlight"><pre><span class="x">    &lt;link ...</span></pre></div></div>
           <p class="post-meta">
           in
           <a href="http://dustinfarris.com/category/tech.html">
             tech
           </a>
-          &middot; Sat 01 September 2012
+          &middot; Mon 28 May 2012
           </p>
         </header>
       </section>
       <section class="post">
         <header class="post-header">
           <h2 class="post-title">
-            <a href="http://dustinfarris.com/2012/08/30/installing-mongodb-with-macports-on-mountainlion.html">
-              "Installing MongoDB with MacPorts on MountainLion"
+            <a href="http://dustinfarris.com/2012/05/24/dustinfarriscom-source-on-github.html">
+              "Dustinfarris.com Source on GitHub"
             </a>
           </h2>
-          <div class="summary"><p>Technically this should be as simple as:</p>
-<div class="highlight"><pre><span class="go">sudo port install mongodb</span>
-</pre></div>
-
-
-<p>Unfortunately, the mongodb port depends (for now) on devel/boost &lt;= 1.49.  The boost port was recently upgraded to 1.50, so to install db you will have to uninstall boost and explicitly reinstall it at version 1.49 ...</p></div>
+          <div class="summary"><p>My website is at a point where I feel comfortable making the source code public.  As of today, it is available as a <a href="https://github.com/dustinfarris/dustinfarris">public repository on GitHub</a>.</p>
+<p>I've taken inspiration from other sites such as <a href="https://github.com/dcramer/dcramer.github.com">David Cramer</a>'s blog and even <a href="https://github.com/django/djangoproject.com">Django's website</a> itself.  I believe that being ...</p></div>
           <p class="post-meta">
           in
           <a href="http://dustinfarris.com/category/tech.html">
             tech
           </a>
-          &middot; Thu 30 August 2012
+          &middot; Thu 24 May 2012
           </p>
         </header>
       </section>
       <section class="post">
         <header class="post-header">
           <h2 class="post-title">
-            <a href="http://dustinfarris.com/2012/08/24/ractivate-the-missing-script-for-rvm.html">
-              "&quot;ractivate&quot;, the Missing Script for RVM"
+            <a href="http://dustinfarris.com/2012/05/23/using-zclip-to-copy-to-clipboard.html">
+              "Using zClip to 'Copy to Clipboard'"
             </a>
           </h2>
-          <div class="summary"><p>When developing multiple projects in Ruby using <a href="https://rvm.io/">RVM</a>, I've found that it can be difficult to keep track of which binaries and gemsets you are using, and installing gems to the wrong gemsets can cause problems.  Inspired by <a href="http://www.virtualenv.org/en/latest/index.html">virtualenv</a>, I've created (largely copied) a script to switch between ...</p></div>
+          <div class="summary"><p>I've begun using django-filer to manage site assets after years of trying to beat a square peg (django-filebrowser) through a round hole (everything else).  It's been a very rewarding transition.</p>
+<p>Part of the addiction to filebrowser was due to its integration with django-tinymce.  A long time ago, the ...</p></div>
           <p class="post-meta">
           in
           <a href="http://dustinfarris.com/category/tech.html">
             tech
           </a>
-          &middot; Fri 24 August 2012
+          &middot; Wed 23 May 2012
           </p>
         </header>
       </section>
@@ -268,7 +274,7 @@ Posts in 'tech'        &ndash; Page&nbsp;4
         <div class="pagination-left">
                 <a href="http://dustinfarris.com/category/tech3.html"><span>&larr; Newer posts</span></a>
         </div>
-        <span>Page 4 / 16</span>
+        <span>Page 4 / 6</span>
         <div class="pagination-right">
                 <a href="http://dustinfarris.com/category/tech5.html">Older posts&nbsp;&rarr;</a>
         </div>

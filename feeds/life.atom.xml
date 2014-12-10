@@ -1,0 +1,1275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Dustin Farris</title><link href="http://dustinfarris.com/" rel="alternate"></link><link href="http://dustinfarris.com/feeds/life.atom.xml" rel="self"></link><id>http://dustinfarris.com/</id><updated>2013-06-22T00:00:00+02:00</updated><entry><title>Evernote</title><link href="http://dustinfarris.com/2013/06/22/evernote.html" rel="alternate"></link><updated>2013-06-22T00:00:00+02:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2013-06-22:2013/06/22/evernote.html</id><summary type="html">&lt;p&gt;&lt;img alt="Evernote logo" src="/uploads/images/evernote-logo.png" /&gt;&lt;/p&gt;
+&lt;p&gt;Every now and then I find myself on a gadget spree—spending more than an appropriate amount of time looking for new tools and apps to improve my work flow.  On my last round of widget-hunting I discovered a note-taking app called &lt;a href="http://evernote.com/"&gt;Evernote&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Sounds like an over-glorified Notepad&lt;/h2&gt;
+&lt;p&gt;It isn't.  While taking notes may seem like an elementary task, Evernote has a lot of extras that are exceedingly useful.&lt;/p&gt;
+&lt;p&gt;First and foremost is a very well thought out &lt;a href="http://blog.evernote.com/tech/2011/09/30/evernote-indexing-system/"&gt;indexing system&lt;/a&gt;.  It allows Evernote to archive, not just typed-out notes, but also emails, PDF documents, and images.  And not just archive, but &lt;em&gt;index&lt;/em&gt; these as well.  That's right, if you throw an image into your notebook, Evernote will capture any text present and index the asset as it would any other note.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Evernote search for 'parachutes'" src="/uploads/images/evernote-search-parachutes.png" /&gt;&lt;/p&gt;
+&lt;p&gt;Once the idea of archiving any sort of document you like catches on, I've found it becomes addictive and extremely useful in the end.&lt;/p&gt;
+&lt;h2&gt;Email&lt;/h2&gt;
+&lt;p&gt;Probably my favorite feature of Evernote—also one of the simplest—is the ability to archive email.  Forward any email you get to &lt;em&gt;&lt;code&gt;username@m.evernote.com&lt;/code&gt;&lt;/em&gt; and it gets added to your archive.  So now when you're searching your notes for details on a web page feature you need to implement for a client, anything the client has sent to you in email is included as well.&lt;/p&gt;
+&lt;p&gt;Oh, and that includes attachments.  Text buried in an Excel spreadsheet someone emailed you months ago?  Evernote will bring it up in a flash.&lt;/p&gt;
+&lt;p&gt;Also, on email, the forwarding feature is nice, but it leaves a lot of header information at the top.  "Orginially from, original message.."  Mail.app has a operation, redirect, that essentially forwards the email, but leaves the From: header as the original sender.  In short, this sends the email to Evernote exactly as it was sent to you.  Evernote will even make note of the From header and record that as the author in the entry's meta-data.&lt;/p&gt;
+&lt;h2&gt;Extensibility&lt;/h2&gt;
+&lt;p&gt;Evernote plugs in to a lot of applications you're probably already using.  If it doesn't, it tends to be fairly painless to copy and paste anything you see.  With a vast number of add-on software, browser plugins, and share options in third-party apps, you can effectively archive your entire electronic life.&lt;/p&gt;
+&lt;p&gt;For example, I'm using an app called &lt;a href="http://shop.skype.com/apps/Call-recording-audio-only/Callnote.html"&gt;Callnote&lt;/a&gt; that automatically records my Skype calls.  With one click, the entire call is sent to Evernote.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Callnote screenshot" src="/uploads/images/callnote-screenshot.png" /&gt;&lt;/p&gt;
+&lt;h2&gt;Everyone is using it&lt;/h2&gt;
+&lt;p&gt;One of the downsides of working at home is that I am usually the last to hear about cool stuff, and by time I do, it's old news.  Once I started using Evernote religiously, I discovered that everyone I work with regularly also use it heavily.  Why does that matter?  Because you can collaborate on notebooks and search each other's archive.  This is great for doing internal research when you have a team that is geographically spread out.&lt;/p&gt;
+&lt;h2&gt;Concerns&lt;/h2&gt;
+&lt;p&gt;I was perturbed when I read that Evernote experienced a &lt;a href="http://online.wsj.com/article/SB10001424127887323478304578336373531236296.html"&gt;security breach&lt;/a&gt; earlier this year.  They have, though, implemented &lt;a href="http://blog.evernote.com/blog/2013/05/30/evernotes-three-new-security-features/"&gt;2-step verification&lt;/a&gt; since then.&lt;/p&gt;
+&lt;p&gt;Initially, I was turned off by mandatory use of Evernote's cloud (no option to use Google Drive, iCloud, etc..).  But I know now that Evernote's servers don't just store the information, they process and index the files so it makes sense to use their own hardware.&lt;/p&gt;
+&lt;p&gt;Lastly, I was surprised at the lack of Markdown support, but using a WYSYWIG has become comfortable very quickly as they have built in keyboard shortcuts for common formatting operations (bullets, links, indentation, etc..).&lt;/p&gt;
+&lt;h2&gt;tl;dr&lt;/h2&gt;
+&lt;p&gt;Evernote is a robust application that synchronizes your notes to the cloud.  It integrates with many other applications and has a well-tuned search feature.  It can be used by individuals or by an entire team—giving everyone real-time updates on thoughts, meetings, and, well, anything else you would take notes on.&lt;/p&gt;</summary><category term="[Evernote]"></category></entry><entry><title>Points to Consider</title><link href="http://dustinfarris.com/2013/04/28/points-to-consider.html" rel="alternate"></link><updated>2013-04-28T00:00:00+02:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2013-04-28:2013/04/28/points-to-consider.html</id><summary type="html">&lt;p&gt;&lt;a href="http://krugman.blogs.nytimes.com/2013/04/27/the-ignoramus-strategy/"&gt;Paul Krugman&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;The economy isn't like an individual family that earns a certain amount
+    and spends some other amount, with no relationship between the two. My
+    spending is your income and your spending is my income. If we both slash
+    spending, both of our incomes fall.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;We are now in a situation in which many people have cut spending, either
+    because they chose to or because their creditors forced them to, while
+    relatively few people are willing to spend more. The result is depressed
+    incomes and a depressed economy, with millions of willing workers unable
+    to find jobs.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Things aren't always this way, but when they are, the government is not
+    in competition with the private sector. Government purchases don’t use
+    resources that would otherwise be producing private goods, they put
+    unemployed resources to work. Government borrowing doesn't crowd out
+    private borrowing, it puts idle funds to work. As a result, now is a time
+    when the government should be spending more, not less. If we ignore this
+    insight and cut government spending instead, the economy will shrink and
+    unemployment will rise. In fact, even private spending will shrink,
+    because of falling incomes.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;This view of our problems has made correct predictions over the past four
+    years, while alternative views have gotten it all wrong. Budget deficits
+    haven't led to soaring interest rates (and the Fed's "money-printing"
+    hasn't led to inflation); austerity policies have greatly deepened
+    economic slumps almost everywhere they have been tried.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Yes, the government must pay its bills in the long run. But spending cuts
+    and/or tax increases should wait until the economy is no longer
+    depressed, and the private sector is willing to spend enough to produce
+    full employment.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;</summary><category term="[Paul Krugman]"></category></entry><entry><title>"The History of Social Security"</title><link href="http://dustinfarris.com/2012/11/28/the-history-of-social-security.html" rel="alternate"></link><updated>2012-11-28T00:00:00+01:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-11-28:2012/11/28/the-history-of-social-security.html</id><summary type="html">&lt;p&gt;With Republicans (even after a sweeping electoral defeat) &lt;a href="http://www.csmonitor.com/Business/Latest-News-Wires/2012/1128/Medicare-social-program-cuts-Will-Democrats-go-along"&gt;demanding&lt;/a&gt; a strip-down of Social Security and other benefit programs, I think it is important for every American to reflect on why we have them in the first place.  The Administration has a well-written document that everyone should read:&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.ssa.gov/history/briefhistory3.html"&gt;The History of Social Security&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;It discusses the idea of economic security and its derivatives, and how events like the Civil War, the Industrial Revolution, and the Great Depression have caused us to reexamine how the basic needs of our elderly and disabled should be insured.  President Roosevelt summarizes:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Security was attained in the earlier days through the interdependence of members of families upon each other and of the families within a small community upon each other. The complexities of great communities and of organized industry make less real these simple means of security. Therefore, we are compelled to employ the active interest of the Nation as a whole through government in order to encourage a greater security for each individual who composes it... This seeking for a greater measure of welfare and happiness does not indicate a change in values. It is rather a return to values lost in the course of our economic development and expansion...&lt;/p&gt;
+&lt;p&gt;~ Franklin D. Roosevelt: Message of the President to Congress, June 8, 1934&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Before we start turning up our noses at programs like Social Security and Medicare, it is important to first have a grasp on what they are and how they got there.&lt;/p&gt;</summary><category term="[Medicare"></category><category term="Social Security]"></category></entry><entry><title>"Mitt Romney and Spain"</title><link href="http://dustinfarris.com/2012/10/09/mitt-romney-and-spain.html" rel="alternate"></link><updated>2012-10-09T00:00:00+02:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-10-09:2012/10/09/mitt-romney-and-spain.html</id><summary type="html">&lt;p&gt;&lt;a href="http://www.salon.com/2012/10/07/spain_quip_adds_to_romneys_foreign_policy_trouble/"&gt;Brad Klapper&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;"I don't want to go down the path of Spain," Romney said Wednesday night during the first presidential debate. He argued that government spending under Obama has reached 42 percent of the U.S. economy, a figure comparable with America's NATO ally. "I want to go down the path of growth that puts Americans to work."&lt;/p&gt;
+&lt;p&gt;The remark was Romney's latest to cause international offense during a campaign that much of the world is closely monitoring.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I picked up on this too during the Oct 3 presidential debate; but my head was already spinning by that point as a result of the hail storm of you-know-what coming out of Romney's mouth.&lt;/p&gt;
+&lt;p&gt;Spain isn't doing so hot, it's true, but their lack of recovery has been due to the repulsively strict austere measures they have been putting into place.  And when that doesn't work: &lt;a href="http://krugman.blogs.nytimes.com/2012/07/11/pointless-pain-in-spain/"&gt;more austerity&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;So, insulting yet another foreign country aside, it's doubly amusing that Romney chose Spain in his analogy given that their "recovery" policies are very nearly the exact same policies the Republican party is advocating for here in the U.S.&lt;/p&gt;</summary><category term="[Mitt Romney]"></category></entry><entry><title>"Nonrequired Reading"</title><link href="http://dustinfarris.com/2012/10/04/nonrequired-reading.html" rel="alternate"></link><updated>2012-10-04T00:00:00+02:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-10-04:2012/10/04/nonrequired-reading.html</id><summary type="html">&lt;p&gt;Via &lt;a href="http://www.synsecblog.com/2012/10/books.html"&gt;Synapse&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;On my desk stand three books that 2501 was kind enough to let me borrow. 2 psychology, 1 management and 1 rethorics. As I was skimming through them I realized something.&lt;/p&gt;
+&lt;p&gt;Imagine this: These are books that contain secret knowledge. Not everyone can get their hands on them. The few who do will possess an edge over the rest.&lt;/p&gt;
+&lt;p&gt;Now remove the word "secret" from the first sentence. Nothing major changed. Most people don't read, don't look for knowledge and don't want to improve. If you do any of the above things, you'll be better than them. Not everyone can afford this or is capable of it.&lt;/p&gt;
+&lt;p&gt;I myself have thought for a long time that a certain skill is not worth learning if it can't be used often enough. While that sounds good in theory, in practice it does not work like that. This is the way to procrastinate and be lazy. I do that. Now I know, that while you might not ever need to use a particular skill for it's intended purpose, possessing the skill will give you a lot of perspective for everything else you do. That only is worth your while.&lt;/p&gt;
+&lt;/blockquote&gt;</summary><category term="reading"></category></entry><entry><title>"Mainstream Media Hiding in Your Closet"</title><link href="http://dustinfarris.com/2012/10/03/mainstream-media-hiding-in-your-closet.html" rel="alternate"></link><updated>2012-10-03T00:00:00+02:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-10-03:2012/10/03/mainstream-media-hiding-in-your-closet.html</id><summary type="html">&lt;p&gt;FOX News is ready for the big debate tomorrow.  They've peppered their front page with anti-Obama articles and released &lt;a href="http://video.foxnews.com/v/1873044131001/"&gt;this&lt;/a&gt; special report on a poll revealing America's new enemy: Mainstream media.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="FOX News thinks Mainstream media is America's enemy." src="/media/filer_public/2012/10/02/fox-americasenemy.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;FOX denounces these evil media outlets as "unfair," and "biased."  I'm sure many Tea-partiers wholeheartedly agree.&lt;/p&gt;</summary><category term="[Fox News]"></category></entry><entry><title>"Book Review: The Rise of Theodore Roosevelt"</title><link href="http://dustinfarris.com/2012/10/01/book-review-the-rise-of-theodore-roosevelt.html" rel="alternate"></link><updated>2012-10-01T00:00:00+02:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-10-01:2012/10/01/book-review-the-rise-of-theodore-roosevelt.html</id><summary type="html">&lt;p&gt;&lt;img alt="The Rise of Theodoore Roosevelt book cover" src="/media/filer_public/2012/10/01/riseoftr.jpg" title="The Rise of Theodore Roosevelt by Edmund Morris" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;The Rise of Theodore Roosevelt&lt;/em&gt; by Edmund Morris&lt;/p&gt;
+&lt;p&gt;This mountain of a biography chronicles the life of Theodore Roosevelt before he became president at the age of 42.  It is inspiring, insightful, and exceedingly well documented (over 100 pages of notes).&lt;/p&gt;
+&lt;p&gt;TR was noted for his integrity, personality, and masculinity.  He was a highly energetic person who never seemed to let a moment rest without doing something productive.  As a child he spent his time reading and ripping apart animals to study their insides.  As a youth he studied foreign languages, exercised for hours a day, and ripped even more animals apart.  As a young adult he attended Harvard, hunted Buffalo in the Dakotas, bought a ranch, wrote several books, served as New York assemblyman, served as the national Civil Service Commissioner, served as a New York City police commissioner, served as Assistant Secretary of the Navy, became Colonel in the Army and led the Rough Riders to victory in Santiago, Cuba, became Governor of New York, and was elected Vice President of the United States just before President McKinley was assassinated.&lt;/p&gt;
+&lt;p&gt;Reading this book made me want to get off the couch.&lt;/p&gt;
+&lt;p&gt;In politics, I like how TR evolved into a progressive reformer, while staying true to his Republican party.  God knows no one fitting that description exists today.&lt;/p&gt;
+&lt;p&gt;TR's energy to make the most out of every minute is probably what I will take away most from this remarkable biography.  Whenever I'm feeling unmotivated, I just think of TR and start moving forward.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Roosevelt, ever the schismatic, began to write &lt;em&gt;Thomas Hart Benton&lt;/em&gt;.  He completed Chapter 1 on 27 March, by which time the boat, a flat-bottomed scow, was ready.  But a furious blizzard delayed their departure for three more days.  Roosevelt soothed his impatience with a literary letter to Cabot Lodge.  "I have got some good ideas in the first chapter, but I am not sure they are worked up rightly; my style is rough, and I do not like a certain lack of &lt;em&gt;sequitur&lt;/em&gt; that I do not seem able to get rid of."  Casually mentioning that he was about to start downriver "after some horse thieves," he added, "I shall take Matthew Arnold along."  He also took Tolstoy's &lt;em&gt;Anna Karenina&lt;/em&gt;, and a camera to record his capture of the thieves.  Already he was thinking what a good illustrated article this would make for &lt;em&gt;Century&lt;/em&gt; magazine.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Roosevelt's determination is another quality that I strongly admire.  When he put his mind to something, he never let up come hell or high water.  He would sooner loose his own life than see events unfold he thought were unjust.&lt;/p&gt;
+&lt;p&gt;Politically he was extremely well-educated, mostly from being self-taught, and he was never off-put to speak his mind.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;That night a highly excited Theodore Roosevelt accosted Mark Hanna and two other Senators at a reception. In his haste to urge war upon them, he did not notice that Hanna was accompanied by Henriette Adler, a young Frenchwoman recently arrived from Paris. Roosevelt launched into a typical fist-smacking harangue, and Mlle. Adler found herself wedged between him and the wall. She tried to follow what he was saying, but was distracted by his flailing right arm, which swept nearer and nearer her bodice. Eventually his elbow ripped off a silken rose and some gauze, whereupon she exclaimed "&lt;em&gt;Mon Dieu&lt;/em&gt;."  Roosevelt, wheeling, made profuse pardons. To her alarm, he continued to pour out war rhetoric upon her in French, until Nannie Lodge tactfully appeared with a safety pin. The Senators screened Mlle. Adler off, while Roosevelt switched back to English.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;An incredible man covered by an incredible author.&lt;/p&gt;</summary><category term="reading"></category></entry><entry><title>"A '47%' Grip on Reality"</title><link href="http://dustinfarris.com/2012/09/29/a-47-grip-on-reality.html" rel="alternate"></link><updated>2012-09-29T00:00:00+02:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-09-29:2012/09/29/a-47-grip-on-reality.html</id><summary type="html">&lt;p&gt;I still &lt;a href="http://dustinfarris.com/2012/9/romney-and-mother-jones/"&gt;hold&lt;/a&gt; that Romney's "gaffe" was no more than a simple appeasement to rich Republican donors. I highly doubt that he intended to offend anyone.&lt;/p&gt;
+&lt;p&gt;But he made a mistake: he got caught on camera. And now real people are really hurt.&lt;/p&gt;
+&lt;p&gt;That matters.&lt;/p&gt;
+&lt;p&gt;Especially when you now have a flood of personal stories being published online like this one from the &lt;a href="http://www.nytimes.com/2012/09/23/opinion/sunday/taking-responsibility-on-welfare.html"&gt;New York Times&lt;/a&gt;.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;My country gave me the chance to rebuild my life — paying my tax tab is the only thing it's asked of me in return.&lt;/p&gt;
+&lt;p&gt;I was not an exception in that little Section 8 neighborhood. Among those welfare moms were future teachers, nurses, scientists, business owners, health and safety advocates. We never believed we were "victims" or felt "entitled"; if anything, we felt determined. Wouldn't any decent person throw a rope to a drowning person? Wouldn't any drowning person take it?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The rest of that article is very moving and worth reading; you can see how good honest people have been given a real second chance at life.&lt;/p&gt;
+&lt;p&gt;But not everyone has the mental endowment to see the big picture surrounding misfortunes that can befall anyone--and seemingly more-so the closer you are to the poverty line--and Mitt Romney's apparent lack of consideration and willingness to slap an "irresponsible citizen" sticker on anyone who has problems.  Note I say "apparent."  Again, I don't think this is Romney's message--a Republican message? yes, Romney's?.. well who knows what his message is anymore.&lt;/p&gt;
+&lt;p&gt;And in case you're thinking that Republicans are trying to publicly water down Romney's gaffe, here's one prominent Republican who vehemently agrees.  &lt;a href="http://www.washingtontimes.com/news/2012/sep/27/mitt-romney-was-right-about-the-47-percent/?page=all#pagebreak"&gt;Ted Nugent&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Mitt Romney hit the bull's-eye with his comments regarding the 47 percent of Americans...As I’ve written before, for at least the past 50 years the Democratic Party has intentionally engineered a class of political "victims" who have been bamboozled into being dependent on the federal government for their subsistence, including food, housing and now health care. They get this without paying any federal income taxes, and that's wrong. Something for nothing is always a scam. This is how you buy votes, plain and simple.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;So, while Romney &lt;em&gt;may&lt;/em&gt; privately "get it," others evidently don't, and the Republicans have embraced a &lt;em&gt;faux pas&lt;/em&gt; that is pissing a lot of people off.&lt;/p&gt;</summary><category term="[Mitt Romney]"></category></entry><entry><title>"Ann Defending Mitt"</title><link href="http://dustinfarris.com/2012/09/21/ann-defending-mitt.html" rel="alternate"></link><updated>2012-09-21T00:00:00+02:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-09-21:2012/09/21/ann-defending-mitt.html</id><summary type="html">&lt;p&gt;Romney's repetitious campaign fumbles have been the source of amusement for Democrats and frustration for Republicans.  As members of his own party have been distancing themselves, Mrs. Romney jumps to his &lt;a href="http://www.cbsnews.com/8301-503544_162-57517556-503544/ann-romney-to-critics-stop-it-this-is-hard/"&gt;defense&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Stop It. This Is Hard.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Does anyone else remember this:&lt;/p&gt;
+&lt;iframe frameborder="0" width="480" height="360" src="http://www.dailymotion.com/embed/video/x2yk69"&gt;&lt;/iframe&gt;
+
+&lt;p&gt;You know what else is hard?  Being president.&lt;/p&gt;</summary><category term="[Mitt Romney]"></category></entry><entry><title>"Romney and Mother Jones"</title><link href="http://dustinfarris.com/2012/09/20/romney-and-mother-jones.html" rel="alternate"></link><updated>2012-09-20T00:00:00+02:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-09-20:2012/09/20/romney-and-mother-jones.html</id><summary type="html">&lt;p&gt;I just want to briefly weigh in on the "47%" video published by &lt;a href="http://www.motherjones.com/politics/2012/09/secret-video-romney-private-fundraiser"&gt;Mother Jones&lt;/a&gt;.  There is nothing shocking about what was said here.  Romney is in a room with his donors explaining his campaign philosophy; not his political views.  As he points out, some voters won't vote for you no matter what, so why spend the time and money trying to sway their opinion?&lt;/p&gt;
+&lt;p&gt;I don't think there is anything insulting about his reasoning and I'm sure similar generalizations  are made in the other camp.&lt;/p&gt;
+&lt;p&gt;For once, though, I am happy intellectualism plays a minor role in elections.  Notwithstanding the completely rational conversation, this is going to burn Romney.&lt;/p&gt;
+&lt;p&gt;Now can anyone explain to me how someone managed to get a hidden cam set up without the Secret Service noticing?&lt;/p&gt;</summary><category term="[Mitt Romney]"></category></entry><entry><title>"Obstruct and Exploit"</title><link href="http://dustinfarris.com/2012/09/11/obstruct-and-exploit.html" rel="alternate"></link><updated>2012-09-11T00:00:00+02:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-09-11:2012/09/11/obstruct-and-exploit.html</id><summary type="html">&lt;p&gt;Before you give heed to Republican criticisms of how "the President has failed America," read &lt;a href="http://www.nytimes.com/2012/09/10/opinion/krugman-obstruct-and-exploit.html?src=recg"&gt;this article&lt;/a&gt; by Paul Krugman.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;A year ago President Obama proposed boosting the economy with a combination of tax cuts and spending increases, aimed in particular at sustaining state and local government employment. ... The Jobs Act would have been just what the doctor ordered.&lt;/p&gt;
+&lt;p&gt;But the bill went nowhere, of course, blocked by Republicans in Congress. And now, having prevented Mr. Obama from implementing any of his policies, those same Republicans are pointing to disappointing job numbers and declaring that the president’s policies have failed.&lt;/p&gt;
+&lt;/blockquote&gt;</summary><category term="[Paul Krugman]"></category></entry><entry><title>"Today, on 'Fair and Balanced'"</title><link href="http://dustinfarris.com/2012/09/07/today-on-fair-and-balanced.html" rel="alternate"></link><updated>2012-09-07T00:00:00+02:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-09-07:2012/09/07/today-on-fair-and-balanced.html</id><summary type="html">&lt;p&gt;Today's headline on Fox News highlights their philosophy of neutral reporting:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Fox News is awful" src="/media/filer/2012/09/07/foxnewsbetterpolicies.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;Meanwhile, in other tabloids:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Fox News look-a-like" src="/media/filer/2012/09/07/homobama__opt.jpeg" title="Fox news look-a-like" /&gt;&lt;/p&gt;</summary><category term="[Fox News]"></category></entry><entry><title>"An Inspiring Hour"</title><link href="http://dustinfarris.com/2012/09/06/an-inspiring-hour.html" rel="alternate"></link><updated>2012-09-06T00:00:00+02:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-09-06:2012/09/06/an-inspiring-hour.html</id><summary type="html">&lt;p&gt;&lt;img alt="President Bill Clinton at the 2012 Democratic National Convention" src="/media/filer/2012/09/06/video-dnc-day2-7pm-b-clinton-thumbwide.jpeg" /&gt;&lt;/p&gt;
+&lt;p&gt;President Bill Clinton, who presided over years of American prosperity, gave a speech at the 2012 Democratic National Convention that was down to earth, yet extraordinarily powerful.  In case you missed it, the New York Times has a video in high definition.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://video.nytimes.com/video/2012/09/06/us/politics/100000001763238/bill-clintons-speech-.html"&gt;Watch Bill Clinton's speech on nytimes.com&lt;/a&gt;&lt;/p&gt;</summary><category term="[Bill Clinton]"></category></entry><entry><title>"And now, Fox News"</title><link href="http://dustinfarris.com/2012/09/05/and-now-fox-news.html" rel="alternate"></link><updated>2012-09-05T00:00:00+02:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-09-05:2012/09/05/and-now-fox-news.html</id><summary type="html">&lt;p&gt;How anyone can take Fox News seriously is beyond me.  After yesterday's &lt;em&gt;top&lt;/em&gt; &lt;a href="http://www.foxnews.com/politics/2012/09/04/israeli-ambassador-denies-reported-remarks-on-israel-while-dnc-chair-calls/"&gt;story&lt;/a&gt; about an assertion found in an article by another conservative news paper about words a Democrat may or may not have said to an Israel ambassador, today we are enlightened with this headline:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Fox News is a joke" src="/media/filer/2012/09/05/newsjokesep5.jpg" title="Fox news is a joke" /&gt;&lt;/p&gt;
+&lt;p&gt;Does anyone else think Fox's "News" stories belong on the tabloid shelf at your local supermarket next to this stuff:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Phil" src="/media/filer/2012/09/05/dr_phil_cover_enquirer.jpeg" /&gt;&lt;/p&gt;
+&lt;p&gt;Fox news is a joke.&lt;/p&gt;</summary><category term="[Fox News]"></category></entry><entry><title>"Are You Better Off?"</title><link href="http://dustinfarris.com/2012/09/04/are-you-better-off.html" rel="alternate"></link><updated>2012-09-04T00:00:00+02:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-09-04:2012/09/04/are-you-better-off.html</id><summary type="html">&lt;p&gt;Via &lt;a href="http://krugman.blogs.nytimes.com/2012/09/04/the-fire-last-time/"&gt;Krugman&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Dean Baker has exactly the right metaphor for journalists asking the really dumb "are you better off" question:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Suppose your house is on fire and the firefighters race to the scene. They set up their hoses and start spraying water on the blaze as quickly as possible. After the fire is put out, the courageous news reporter on the scene asks the chief firefighter, "is the house in better shape than when you got here?"&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;To be honest, the "are you better off" stab is the first Republican epigram I've heard this year that I could see being an effective weapon.  As Krugman points out later in the article it's a bogus question to begin with; yet I'm afraid many Americans may not understand that--making it an ideal candidate for right-wing propaganda.&lt;/p&gt;</summary><category term="[Paul Krugman]"></category></entry><entry><title>"Austerity Will Work! Wrong."</title><link href="http://dustinfarris.com/2012/09/03/austerity-will-work-wrong.html" rel="alternate"></link><updated>2012-09-03T00:00:00+02:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-09-03:2012/09/03/austerity-will-work-wrong.html</id><summary type="html">&lt;p&gt;Borrowing a graph from &lt;a href="http://krugman.blogs.nytimes.com/2012/09/03/britains-paul-ryan/"&gt;Krugman&lt;/a&gt;, I think staging the United State's recovery versus the United Kingdom's gives us an interesting comparison of liberal versus conservative fiscal policy.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="US vs UK recovery" src="/media/filer/2012/09/03/090312krugman1-blog480.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;Krugman says it best:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Osborne’s big idea was that Britain should turn to fiscal austerity now now now, even though the economy remained deeply depressed; it would all work out, he insisted, because the confidence fairy would come to the rescue. Never mind those whining Keynesians who said that premature austerity would send Britain into a double-dip recession.&lt;/p&gt;
+&lt;p&gt;Strange to say, Britain’s recovery stalled soon after Cameron/Osborne began their new policies, and the country is now in a double-dip recession.&lt;/p&gt;
+&lt;/blockquote&gt;</summary><category term="[Paul Krugman]"></category></entry><entry><title>"Powerless"</title><link href="http://dustinfarris.com/2012/09/03/powerless.html" rel="alternate"></link><updated>2012-09-03T00:00:00+02:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-09-03:2012/09/03/powerless.html</id><summary type="html">&lt;p&gt;Linkin Park does it again.  From their latest album:&lt;/p&gt;</summary><category term="[Linkin Park]"></category></entry><entry><title>"National Debt: Food for Thought"</title><link href="http://dustinfarris.com/2012/09/01/national-debt-food-for-thought.html" rel="alternate"></link><updated>2012-09-01T00:00:00+02:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-09-01:2012/09/01/national-debt-food-for-thought.html</id><summary type="html">&lt;p&gt;I hear Republicans rant often about the "runaway" national debt and how China is going to "own this country" if we don't pick up our bootstraps and let Romney give rich people more tax breaks.&lt;/p&gt;
+&lt;p&gt;If every American borrowed $100,000 from China to buy a house, we would owe China $31,427,982,500,000.  That's &lt;em&gt;double&lt;/em&gt; the total national debt which stands around $15 trillion, and we've built offices, houses, roads, schools, parks, libraries, a military, and the list goes on.&lt;/p&gt;
+&lt;p&gt;Further, the amount we owe China is less than 8% of our national debt.  In fact, &lt;a href="http://www.gao.gov/special.pubs/longterm/debt/ownership.html"&gt;all foreign investors combined&lt;/a&gt; make up less than half of the debt.  We actually owe the majority of it to American interests--to ourselves!&lt;/p&gt;
+&lt;p&gt;The next time a Republican tells you our national debt is a crisis, ask him how his mortgage is holding out.  Fine?  Ok then.&lt;/p&gt;</summary><category term=""></category></entry><entry><title>"Mighty Germany"</title><link href="http://dustinfarris.com/2012/08/16/mighty-germany.html" rel="alternate"></link><updated>2012-08-16T00:00:00+02:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-08-16:2012/08/16/mighty-germany.html</id><summary type="html">&lt;p&gt;Many people, especially conservatives, point to Germany as a shining example of austere success--but the country's present success is superficial.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.project-syndicate.org/commentary/early-retirement-for-the-eurozone-by-nouriel-roubini"&gt;Nouriel Roubini&lt;/a&gt; writes an article on the cost of delaying an inevitable Eurozone breakup; but what really caught my eye was a reader comment that I think describes Germany's situation very well:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Germany's strength is both intrinsic and extrinsic. The extrinsic part is a consequence of being able to export without currency appreciation. This is a consequence of the less industrially competitive components of the eurozone. It has allowed Germany and some others to increase their intrinsic strengths.&lt;/p&gt;
+&lt;p&gt;It is therefore fair to say that German unemployment is in Greece and Spain and burdens the exchequer of each of these 'peripherals'. An intelligent and fully integrated system would have balanced this better. Perhaps the example of Italy with it's 'Germanic' north and 'Greek' south is an unwelcome one.&lt;/p&gt;
+&lt;p&gt;If the euro is too break up, there is no bright future for Germany as the core of a northern fortress. That is the road to decline.&lt;/p&gt;
+&lt;/blockquote&gt;</summary><category term="Germany"></category></entry><entry><title>"The Veil of Opulence"</title><link href="http://dustinfarris.com/2012/08/13/the-veil-of-opulence.html" rel="alternate"></link><updated>2012-08-13T00:00:00+02:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-08-13:2012/08/13/the-veil-of-opulence.html</id><summary type="html">&lt;p&gt;&lt;a href="http://opinionator.blogs.nytimes.com/2012/08/12/the-veil-of-opulence/?partner=rss&amp;amp;emc=rss"&gt;Benjamin Hale&lt;/a&gt; offers a great point of view to consider when looking at our political choices--and many non-political choices for that matter.  It's really a great article.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The veil of opulence assumes that the playing field is level, that all gains are fairly gotten, that there is no cosmic adversity. In doing so, it is partial to the fortunate — for fortune here is entirely earned or deserved. The veil of ignorance, on the other hand, introduces the possibility that one might fall on hard luck or that one is not born into luck. It never once closes out the possibility that that same person might take steps to overcome that bad luck. In this respect, it is not partial to the fortunate but impartial to all. Some will win by merit, some will win by lottery. Others will lose by laziness, while still others will lose because the world has thrown them some unfathomably awful disease or some catastrophically terrible car accident. It is an illusion of prosperity to believe that each of us deserves everything we get.&lt;/p&gt;
+&lt;/blockquote&gt;</summary><category term=""></category></entry><entry><title>"Book Review: Brave New World"</title><link href="http://dustinfarris.com/2012/08/05/book-review-brave-new-world.html" rel="alternate"></link><updated>2012-08-05T00:00:00+02:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-08-05:2012/08/05/book-review-brave-new-world.html</id><summary type="html">&lt;p&gt;&lt;img alt="Brave New World book cover" src="/media/filer/2012/08/05/bravenewworld.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Brave New World&lt;/em&gt; by Aldous Huxley&lt;/p&gt;
+&lt;p&gt;I think what is most remarkable about this book is that it foreshadows the world we live in today on several levels.  From anti-depressants to age-defying creams to &lt;a href="http://www.cbsnews.com/2100-500164_162-611618.html"&gt;manipulating the gender&lt;/a&gt; of an unborn baby, Huxley is probably looking down on us saying, "I told you so."  But the real question is: Is it really such a bad thing?&lt;/p&gt;
+&lt;p&gt;I am a proponent of science as a means to improve our physical health, and I support advances in social sciences that encourage peace and harmony.  In Brave New World we are shown a society where doctors can make you look young well into your 60s, and newborns are physically bread and mentally conditioned to be unobtrusive, productive, and happy.  Happy.&lt;/p&gt;
+&lt;p&gt;So what is the tradeoff?  Perhaps the most obvious "negative" is the loss of freedom, and therefore the loss of meaning in an individual life, but what is freedom and meaning anyway?  Philosophers have been debating that question for centuries.  If a person is happy in their own mind, was freedom and meaning really all that important?&lt;/p&gt;
+&lt;p&gt;I wonder if, with the recent pushes around the country to &lt;a href="http://travel.nytimes.com/2012/01/27/us/a-ballot-push-to-legalize-marijuana-with-alcohol-as-the-role-model.html?ref=marijuana"&gt;legalize marijuana&lt;/a&gt;, we are looking at the very circumstance Huxley describe as having "all the advantages of Christianity and alcohol; none of their defects"--referring to the use of Soma in his novel.&lt;/p&gt;
+&lt;p&gt;I challenge anyone who finds &lt;em&gt;Brave New World&lt;/em&gt; representative of threats to society to take a serious inner examination and determine if it would really be that bad.  Scary?  Maybe at first.  Bad?  I say on many counts, no.  Now where's my damn Soma?  ;-)&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;A really efficient totalitarian state would be one in which the all-powerful executive of political bosses and their army of managers control a population of slaves who do not have to be coerced, because they love their servitude.&lt;/p&gt;
+&lt;/blockquote&gt;</summary><category term="reading"></category></entry><entry><title>"Book Review: Call of the Wild"</title><link href="http://dustinfarris.com/2012/08/05/book-review-call-of-the-wild.html" rel="alternate"></link><updated>2012-08-05T00:00:00+02:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-08-05:2012/08/05/book-review-call-of-the-wild.html</id><summary type="html">&lt;p&gt;&lt;img alt="The Call of the Wild book cover" src="/media/filer/2012/08/05/callofthewild.jpg" title="The Call of the Wild by Jack London" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;The Call of the Wild&lt;/em&gt; by Jack London&lt;/p&gt;
+&lt;p&gt;It took me an impressively small amount of time to read this book partly because of short length, and partly because it is one of those books you just can't put down to save your soul.&lt;/p&gt;
+&lt;p&gt;The Call of the Wild is a story about a dog named Buck who undergoes many deep transformations over the course of his life.  The philosophical undertones characterized by Bucks life demonstrate the impeccable wisdom Jack London must have had.&lt;/p&gt;
+&lt;p&gt;I'll recommend this book to anyone not only for its spiritual awakening power, but also because it is simply a great story!&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;He was a killer, a thing that preyed, living on things that lived, unaided, alone, by virtue of his own strength and prowess, surviving triumphantly in a hostile environment where only the strong survived.&lt;/p&gt;
+&lt;/blockquote&gt;</summary><category term="reading"></category></entry><entry><title>"Tax Inequality"</title><link href="http://dustinfarris.com/2012/07/09/tax-inequality.html" rel="alternate"></link><updated>2012-07-09T00:00:00+02:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-07-09:2012/07/09/tax-inequality.html</id><summary type="html">&lt;p&gt;President Obama wants to &lt;a href="http://www.nytimes.com/2012/07/09/us/politics/obama-seeks-2013-tax-cuts-within-limits.html"&gt;extend tax cuts&lt;/a&gt; for Americans, but only for those making less than $250,000.  Is this appropriate?  &lt;a href="http://krugman.blogs.nytimes.com/2012/07/08/taxes-at-the-top/"&gt;Paul Krugman&lt;/a&gt; thinks so.  As he points out, if you combine corporations and people--which are practically &lt;a href="http://www.supremecourt.gov/opinions/09pdf/08-205.pdf"&gt;synonymous&lt;/a&gt; these days--you see that the top 1% have been doing &lt;em&gt;very&lt;/em&gt; well over the past 50 years in terms of tax breaks while the middle class have seen their taxes rise.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Federal Tax Rates by Income group from 1960 to 2004" src="/media/filer/2012/07/09/070812krugman2-blog480.jpg" title="From krugman.nytimes.com" /&gt;&lt;/p&gt;
+&lt;p&gt;I might point out that the unemployment rate in 1960 &lt;a href="http://www.bls.gov/cps/cpsaat01.htm"&gt;was 5.5%&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;In fact, if you look at unemployment data and tax rates over time, it becomes pretty clear that there is no direct correlation between unemployment and taxes.  Nonetheless, Mitt's campaign was quick to respond to Obama's proposal &lt;a href="http://politicalticker.blogs.cnn.com/2012/07/09/romney-responds-to-obamas-tax-cut-pledge/"&gt;saying&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Governor Romney knows that job-killing tax increases will hurt our troubled economy even further, and he has a plan to lower the rates and broaden the base without increasing the deficit to encourage investment and job creation.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;"Job killing," huh?  I don't see it.  I'm no economist, but attempting to draw a parallel between taxes and job creation seems to be nothing but rhetorical nonsense (aka politics).&lt;/p&gt;</summary><category term="[Mitt Romney]"></category></entry><entry><title>"Great Expectations"</title><link href="http://dustinfarris.com/2012/07/05/great-expectations.html" rel="alternate"></link><updated>2012-07-05T00:00:00+02:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-07-05:2012/07/05/great-expectations.html</id><summary type="html">&lt;p&gt;&lt;a href="http://online.wsj.com/article/SB10001424052702303561504577497451649700504.html?mod=rss_opinion_main"&gt;Austan Goolsbee&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Of all the public reactions to last Thursday's surprise ruling from the Supreme Court on the Affordable Care Act, one of the most interesting came from the markets: Nothing happened.&lt;/p&gt;
+&lt;/blockquote&gt;</summary><category term="[Affordable Care Act]"></category></entry><entry><title>"Work Less, for America"</title><link href="http://dustinfarris.com/2012/07/04/work-less-for-america.html" rel="alternate"></link><updated>2012-07-04T00:00:00+02:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-07-04:2012/07/04/work-less-for-america.html</id><summary type="html">&lt;p&gt;Dean Baker has an interesting solution to unemployment: ask everyone currently employed to work less.  I think it's a fantastic proposal.&lt;/p&gt;
+&lt;p&gt;From &lt;a href="http://www.guardian.co.uk/commentisfree/2012/jul/03/why-americans-should-work-less-way-germans-do"&gt;The Guardian&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Germany's growth has been no better than growth in the United States since the start of the downturn, yet its unemployment rate has fallen by 2.0 percentage points – while unemployment in the United States has risen by almost 4.0 percentage points. The difference is that Germany encourages firms to reduce work hours rather than lay off workers.&lt;/p&gt;
+&lt;/blockquote&gt;</summary><category term=""></category></entry><entry><title>"Book Review: The Grapes of Wrath"</title><link href="http://dustinfarris.com/2012/07/01/book-review-the-grapes-of-wrath.html" rel="alternate"></link><updated>2012-07-01T00:00:00+02:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-07-01:2012/07/01/book-review-the-grapes-of-wrath.html</id><summary type="html">&lt;p&gt;&lt;img alt="The Grapes of Wrath book cover" src="/media/filer/2012/07/01/grapesofwrath.jpg" title="The Grapes of Wrath by John Steinbeck" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;The Grapes of Wrath&lt;/em&gt; by John Steinbeck&lt;/p&gt;
+&lt;p&gt;What a novel that rings home with relevance in today's America!  Written in 1939, &lt;em&gt;The Grapes of Wrath&lt;/em&gt; tells the story of an Oklahoma family who is suddenly uprooted from their home and, unable to find work, moves to California where landowners promise work and prosperity.  To their dismay, they are met with animosity and meanness.&lt;/p&gt;
+&lt;p&gt;I think &lt;em&gt;The Grapes of Wrath&lt;/em&gt; sets the tone for any immigration scenario where on one hand you have a people who have inherited riches that were fought for and won, an on the other you have people who are not so lucky seeking a means for survival.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;And while the Californians wanted many things, accumulation, social success, amusement, luxury, and a curious banking security, the new barbarians wanted only two things--land and food.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Speaking on how California was taken from Mexico by early Americans, &lt;em&gt;The Grapes of Wrath&lt;/em&gt; describes how the rich take advantage of immigrants:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;They imported slaves, although they did not call them slaves: Chinese, Japanese, Mexicans, Filipinos.  They live on rice and beans, the business men said.  They don't need much.  They wouldn't know what to do with good wages.  Why, look how they live.  Why, look what they eat.  And if they get funny--deport them.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;And the book makes clear the inclination of society to ignore this unfair process not due to evil intent, but due to ignorance, fear and apathy.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Men of property were terrified for their property.  Men who had never been hungry saw the eyes of the hungry.  Men who had never wanted anything very much saw the flare of want in the eyes of the migrants.  And the men of the towns and of the soft suburban country gathered to defend themselves; and they reassured themselves that they were good and the invaders bad, as a man must do before he fights.  They said, These goddamned Okies are dirty and ignorant.  They're degenerate, sexual maniacs.  These goddamned Okies are thieves.  They'll steal anything.  They've got no sense of property rights.&lt;/p&gt;
+&lt;p&gt;And the latter was true, for how can a man without property know the ache of ownership?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I believe there are serious lessons to be learned regarding immigration, and before someone takes a serious stance on issues that affect the lives of millions of immigrants, he should read &lt;em&gt;The Grapes of Wrath&lt;/em&gt;.&lt;/p&gt;</summary><category term="reading"></category></entry><entry><title>"The Real Winners"</title><link href="http://dustinfarris.com/2012/07/01/the-real-winners.html" rel="alternate"></link><updated>2012-07-01T00:00:00+02:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-07-01:2012/07/01/the-real-winners.html</id><summary type="html">&lt;p&gt;Economist Paul Krugman offers his view on the recent Supreme Court ruling on the constitutionality of the Affordable Care Act.&lt;/p&gt;
+&lt;p&gt;From the &lt;a href="http://www.nytimes.com/2012/06/29/opinion/the-real-winners.html"&gt;New York Times&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;In short, unless you belong to that tiny class of wealthy Americans who are insulated and isolated from the realities of most people’s lives, the winners from that Supreme Court decision are your friends, your relatives, the people you work with — and, very likely, you.&lt;/p&gt;
+&lt;/blockquote&gt;</summary><category term="[Affordable Care Act"></category><category term="Paul Krugman]"></category></entry><entry><title>"Lessons from death row inmates"</title><link href="http://dustinfarris.com/2012/06/19/lessons-from-death-row-inmates.html" rel="alternate"></link><updated>2012-06-19T00:00:00+02:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-06-19:2012/06/19/lessons-from-death-row-inmates.html</id><summary type="html">&lt;p&gt;An interesting look at the context of the death penalty.&lt;/p&gt;</summary><category term="TED"></category></entry><entry><title>"The Brain on Trial"</title><link href="http://dustinfarris.com/2012/06/19/the-brain-on-trial.html" rel="alternate"></link><updated>2012-06-19T00:00:00+02:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-06-19:2012/06/19/the-brain-on-trial.html</id><summary type="html">&lt;p&gt;My friend Tom posted an article in response to a TED video on death-row inmates &lt;a href="http://dustinfarris.com/2012/6/lessons-from-death-row-inmates/"&gt;I posted&lt;/a&gt; yesterday.  &lt;a href="http://www.theatlantic.com/magazine/archive/2011/07/the-brain-on-trial/8520/2/"&gt;The Brain on Trial&lt;/a&gt; from The Atlantic magazine argues what I think many of us already suspect: that we are not as in control of our lives as we might like to think.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Who we can be starts with our molecular blueprints—a series of alien codes written in invisibly small strings of acids—well before we have anything to do with it. Each of us is, in part, a product of our inaccessible, microscopic history.&lt;/p&gt;
+&lt;/blockquote&gt;</summary><category term=""></category></entry><entry><title>"John O'Kelly Properties in New York"</title><link href="http://dustinfarris.com/2012/05/24/john-okelly-properties-in-new-york.html" rel="alternate"></link><updated>2012-05-24T00:00:00+02:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-05-24:2012/05/24/john-okelly-properties-in-new-york.html</id><summary type="html">&lt;p&gt;I recently gave an old client of mine a site overhaul.  His site was one of my first, and let's just say things have come a long way since I built it.&lt;/p&gt;
+&lt;p&gt;Upgrades include a brand new design (probably one of my best), a bump to Django 1.4, model restructuring, and a complete refactoring of HTML.  Check it out at &lt;a href="http://johnokelly.com"&gt;johnokelly.com&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Oh, and if you're looking for an apartment in Manhattan, you should definitely give him a call!&lt;/p&gt;</summary><category term=""></category></entry><entry><title>"Book Report: The Picture of Dorian Gray"</title><link href="http://dustinfarris.com/2012/05/17/book-report-the-picture-of-dorian-gray.html" rel="alternate"></link><updated>2012-05-17T00:00:00+02:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-05-17:2012/05/17/book-report-the-picture-of-dorian-gray.html</id><summary type="html">&lt;p&gt;&lt;img alt="The Picture of Dorian Gray book cover" src="http://dustinfarris.com/media/filer/2012/05/17/doriangray.jpg" title="The Picture of Dorian Gray by Oscar Wilde" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;The Picture of Dorian Gray&lt;/em&gt; by Oscar Wilde&lt;/p&gt;
+&lt;p&gt;What I love most about Oscar Wilde--and I'm not alone--is his impeccable sense of wit and sarcasm.  There is something about his light-hearted writing combined with a sort of philosophical depth that gives me a sensational thrill.  This book, in particular, is absolutely overflowing with epigrams and irony.&lt;/p&gt;
+&lt;p&gt;Dorian Gray is a young man who unlocks the secret to perpetual youth.  He travels through life transitioning from naivety, to narcissism, to wickedness, and finally to regret, all the while maintaining a boyish appearance.  I suppose the "moral" of the story is that good looks and physical pleasure do not guarantee happiness, but there is much more to be had from this book than a mere life lesson.  As the splendid character, Lord Harry, humorously says:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;There is no doubt that Genius lasts longer than Beauty.  That accounts for the fact that we all take such pains to over-educate ourselves.  In the wild struggle for existence, we want to have something that endures, and so we fill our minds with rubbish and facts, in the silly hope of keeping our place.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I have read many of Oscar Wilde's writings and have thoroughly enjoyed them, but I found &lt;em&gt;The Picture of Dorian Gray&lt;/em&gt; to be the most complete and entertaining of them all.&lt;/p&gt;</summary><category term="reading"></category></entry><entry><title>"Fair and Balanced Reporting (part 2)"</title><link href="http://dustinfarris.com/2012/05/10/fair-and-balanced-reporting-part-2.html" rel="alternate"></link><updated>2012-05-10T00:00:00+02:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-05-10:2012/05/10/fair-and-balanced-reporting-part-2.html</id><summary type="html">&lt;p&gt;Yes, I spent another 30 seconds checking out Fox News' website today--which is
+30 more seconds than could possibly have been healthy for me.
+&lt;a href="/2012/5/fair-and-balanced-and-gay/"&gt;As it did before&lt;/a&gt;, it
+blows my mind how such a wide reaching news network can stoop to posting
+tabloid-level headlines on the front page like this one:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Same Sex Payoff headline on Fox News" src="/media/uploads/screen_shot_2012-05-10_at_12.07.29_pm.png" /&gt;&lt;/p&gt;
+&lt;p&gt;Oh, and when you're done reading the Fair and Balanced news you can
+participate in a Fair and Balanced poll:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Fox News poll on why Obama announced his support for gay marriage" src="/media/uploads/screen_shot_2012-05-10_at_12.32.52_pm.png" /&gt;&lt;/p&gt;
+&lt;p&gt;Fox News is a joke.&lt;/p&gt;</summary><category term="[Fox News]"></category></entry><entry><title>"Dear &lt;customer name&gt;"</title><link href="http://dustinfarris.com/2012/05/09/dear-customer-name.html" rel="alternate"></link><updated>2012-05-09T00:00:00+02:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-05-09:2012/05/09/dear-customer-name.html</id><summary type="html">&lt;p&gt;I always get a chuckle when big tech companies make silly oversights.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Email from Amazon" src="/media/uploads/screen_shot_2012-05-09_at_3.44.57_pm.png" /&gt;&lt;/p&gt;</summary><category term=""></category></entry><entry><title>"Tick Tock"</title><link href="http://dustinfarris.com/2012/05/09/tick-tock.html" rel="alternate"></link><updated>2012-05-09T00:00:00+02:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-05-09:2012/05/09/tick-tock.html</id><summary type="html">&lt;p&gt;It's a shame we can't live out all of our life's dreams. I
+wish I could pursue music. I wish I could pursue
+philosophy. I wish I could pursue geology, astronomy, and
+physics. In place of all that I study computers and web
+development to a level that borders madness.&lt;/p&gt;
+&lt;p&gt;Out of all areas of study in existance I am left with one that I can barely
+keep up with. Why are we given such a short time to live?
+Why is reality so complex? Why do we
+care?&lt;/p&gt;</summary><category term="thoughts"></category></entry><entry><title>"Driverless Cars in Nevada"</title><link href="http://dustinfarris.com/2012/05/08/driverless-cars-in-nevada.html" rel="alternate"></link><updated>2012-05-08T00:00:00+02:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-05-08:2012/05/08/driverless-cars-in-nevada.html</id><summary type="html">&lt;p&gt;&lt;a href="http://www.telegraph.co.uk/news/uknews/road-and-rail-transport/9252657/Driverless-cars-approved-by-Nevada.html"&gt;The Telegraph&lt;/a&gt; reports on the
+first US state to approve driverless cars. (You know Google
+is involved)&lt;/p&gt;
+&lt;p&gt;It's a beautiful thing.&lt;/p&gt;</summary><category term="Google"></category></entry><entry><title>"Lions! and Tigers! and Bears! oh .. it's an email."</title><link href="http://dustinfarris.com/2012/04/30/lions-and-tigers-and-bears-oh-its-an-email.html" rel="alternate"></link><updated>2012-04-30T00:00:00+02:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-04-30:2012/04/30/lions-and-tigers-and-bears-oh-its-an-email.html</id><summary type="html">&lt;p&gt;I had to use my personal email at work today to send files to a client because
+we have an email security policy suitable for 9-year-old girls.&lt;/p&gt;</summary><category term="[Microsoft Exchange]"></category></entry><entry><title>"Book Report: For Whom the Bell Tolls"</title><link href="http://dustinfarris.com/2012/04/25/book-report-for-whom-the-bell-tolls.html" rel="alternate"></link><updated>2012-04-25T00:00:00+02:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-04-25:2012/04/25/book-report-for-whom-the-bell-tolls.html</id><summary type="html">&lt;p&gt;&lt;img alt="For Whom the Bell Tolls book cover" src="/media/uploads/uploads/hemingwaywhomthebelltolls_big.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;For Whom the Bell Tolls&lt;/em&gt; by Ernest Hemingway&lt;/p&gt;
+&lt;p&gt;Hemingway tells the tale of a rouge U.S. citizen aiding the Spanish Republic
+during the Spanish Civil War. The novel hits strongly on a
+man's rationale when facing a hard situation.&lt;/p&gt;
+&lt;p&gt;The protagonist demonstrates admirably level-headed thinking when carrying out
+a mission to blow up a bridge to assist a military initiative in fascist
+territory. While deep in enemy lands, he meets a girl and
+falls in love, and in the end shows us how a man can be willing to give
+everything for the right cause.&lt;/p&gt;
+&lt;p&gt;Having previously finished Adam Smith's &lt;em&gt;&lt;a href="/2012/3/book-report-wealth-of-nations/"&gt;Wealth of Nations&lt;/a&gt;&lt;/em&gt;, I found Ernest Hemingway's
+award-winning tale a welcome and thrilling refreshment.&lt;/p&gt;</summary><category term="reading"></category></entry><entry><title>"Living and Dying at the British Museum"</title><link href="http://dustinfarris.com/2012/04/24/living-and-dying-at-the-british-museum.html" rel="alternate"></link><updated>2012-04-24T00:00:00+02:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-04-24:2012/04/24/living-and-dying-at-the-british-museum.html</id><summary type="html">&lt;p&gt;&lt;img alt="People everywhere experience trouble, sorry, need and sickness and develop skill and knowledge in response to these adversities." src="/media/uploads/britishsorrow.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;I had an opportunity recently to visit the British Museum in London, and came
+across a &lt;a href="http://www.britishmuseum.org/explore/galleries/themes/room_24_living_and_dying.aspx"&gt;gallery&lt;/a&gt; themed "Living and Dying." It is
+an intriguing collection of artifacts that represent how humans deal with self
+preservation, sickness, and death around the world.&lt;/p&gt;
+&lt;p&gt;I found myself fascinated with how differently various cultures view these
+universal effects of life. For instance, when people get
+sick, some cultures pray, some dance, some invent medicine, and some do all of
+the above; but what remains the inescapable truth is that we all react to
+sickness and death.&lt;/p&gt;</summary><category term="London"></category></entry><entry><title>"Congressmen, Lobbyists, and Super PACs"</title><link href="http://dustinfarris.com/2012/04/05/congressmen-lobbyists-and-super-pacs.html" rel="alternate"></link><updated>2012-04-05T00:00:00+02:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-04-05:2012/04/05/congressmen-lobbyists-and-super-pacs.html</id><summary type="html">&lt;p&gt;&lt;a href="http://www.jasonswadley.com/2012/04/this-american-life-on-lobbying-and-fundraising/"&gt;Jason Swadley&lt;/a&gt; suggests listening to &lt;a href="http://www.thisamericanlife.org/radio-archives/episode/461/take-the-money-and-run-for-office"&gt;This American Life&lt;/a&gt; this week and it's advice worth heeding.  The hour long discussion is a stirring perspective on the
+reality of political influence.&lt;/p&gt;</summary><category term=""></category></entry><entry><title>"Did He Really Say That?"</title><link href="http://dustinfarris.com/2012/03/27/did-he-really-say-that.html" rel="alternate"></link><updated>2012-03-27T00:00:00+02:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-03-27:2012/03/27/did-he-really-say-that.html</id><summary type="html">&lt;p&gt;Yes, he did.&lt;/p&gt;
+&lt;p&gt;In an attempt to capitalize on Obama's discussion with Russian President
+Dmitry Medvedev regarding election year politics, Mitt Romney
+&lt;a href="http://politicalticker.blogs.cnn.com/2012/03/26/romney-not-worried-about-santorum-labels-russia-no-1-foe/"&gt;stated&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Russia "is without question our number one geopolitical foe,"&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;As I'm sure anyone can imagine, the Russians just &lt;a href="http://politicalticker.blogs.cnn.com/2012/03/27/russian-president-lobs-hollywood-charge-at-romney/"&gt;loved hearing that&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Medvedev:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;"My first advice is to listen to reason when they formulate their positions.
+Reason never harmed a presidential candidate. My other
+advice is to check their watches from time to time: it is 2012, not the mid-
+1970s."&lt;/p&gt;
+&lt;/blockquote&gt;</summary><category term="[Mitt Romney]"></category></entry><entry><title>"Economists on Healthcare"</title><link href="http://dustinfarris.com/2012/03/26/economists-on-healthcare.html" rel="alternate"></link><updated>2012-03-26T00:00:00+02:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-03-26:2012/03/26/economists-on-healthcare.html</id><summary type="html">&lt;p&gt;You don't have to be lawyer to have common sense.&lt;/p&gt;
+&lt;p&gt;Via &lt;a href="http://krugman.blogs.nytimes.com/2012/03/26/supreme-thoughts/"&gt;Krugman&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;We know, or I think we know, that a single-payer system -- in which the
+government collects taxes, and uses the revenue to provide health insurance --
+would be constitutional. I mean, I don't think the court is about to strike
+down Medicare.&lt;/p&gt;
+&lt;p&gt;Well, ObamaRomneycare is basically a somewhat klutzy way of simulating
+single-payer. Instead of collecting enough revenue to pay for universal health
+insurance, it requires that those who can afford it buy the insurance
+directly, then provides aid -- financed with taxes -- to those who can't. The
+end result is much the same as if the government collected taxes from those
+under the mandate and bought insurance for them.&lt;/p&gt;
+&lt;p&gt;Yes, the system is surely less efficient than single-payer, both because
+it's more complex and because it introduces another layer of middlemen. That's
+what happens when you have to make political compromises. But it is in no
+sense more interventionist, more tyrannical, than Medicare; it's just a
+different way of achieving the same thing.&lt;/p&gt;
+&lt;/blockquote&gt;</summary><category term="[Affordable Care Act"></category><category term="Paul Krugman]"></category></entry><entry><title>"Obamacare is Unconstitutional?"</title><link href="http://dustinfarris.com/2012/03/25/obamacare-is-unconstitutional.html" rel="alternate"></link><updated>2012-03-25T00:00:00+01:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-03-25:2012/03/25/obamacare-is-unconstitutional.html</id><summary type="html">&lt;p&gt;It seems that our friends on the right have ramped up efforts to &lt;a href="http://www.nytimes.com/2012/03/20/us/politics/republicans-attack-health-law-as-supreme-court-hearing-nears.html?ref=affordablecareact"&gt;excite citizens&lt;/a&gt; into
+thinking the Affordable Care Act is unconstitutional. The
+achingly resounding argument is that forcing people to buy insurance they
+don't want is somehow illegal.&lt;/p&gt;
+&lt;p&gt;I have two responses:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Whoever doesn't want health insurance is out of their mind.&lt;/li&gt;
+&lt;li&gt;The Congress shall have Power to regulate Commerce among the several States. (U.S. Constitution, Article I, Section 8)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Is &lt;a href="http://www.baltimoresun.com/news/nation-world/sns-rt-us-healthcare-teapartybre82n0e4-20120324,0,6453307.story"&gt;jumping up and down&lt;/a&gt; outside of the
+Capitol going to change that? No.&lt;/p&gt;</summary><category term="[Affordable Care Act]"></category></entry><entry><title>"Book Report: Wealth of Nations"</title><link href="http://dustinfarris.com/2012/03/24/book-report-wealth-of-nations.html" rel="alternate"></link><updated>2012-03-24T00:00:00+01:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-03-24:2012/03/24/book-report-wealth-of-nations.html</id><summary type="html">&lt;p&gt;&lt;img alt="Wealth of Nations book cover" src="/media/uploads/uploads/wealthofnations_big.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;Wealth of Nations by Adam Smith&lt;/p&gt;
+&lt;p&gt;An Inquiry Into the Nature and Causes of the Wealth of Nations--yes, that's
+the full title--is one of the first pieces of literature written on economics
+(which technically was not even a field at the time). Adam
+Smith takes a 1700's world bubbling over with discovery, and attempts to
+explain monetary and behavioral trends, where they stem from, and what the
+future might hold. In doing so, he created one of the most
+influential texts of all time that is still widely referenced today.&lt;/p&gt;
+&lt;p&gt;While many of the examples throughout are significantly outdated, much of the
+wisdom is not pecuniary at all and, in a philosophical sense, is very
+applicable in our present world. It is the philosophy
+of_Wealth of Nations_that impacted me
+the most.&lt;/p&gt;
+&lt;p&gt;The first point Adam Smith makes, and refers to throughout the entire book, is
+that productivity is increased substantially by the "division of labor."
+Assigning simple minute tasks to individual workers allows
+them to become proficient quickly, and results in increased output overall.
+A thoughtful person might, however, be concerned that this
+narrowing of scope of a man's daily work could be detrimental to realizing
+human potential. Adam Smith recognizes the
+corephenomenon:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The difference of natural talents in different men is, in reality, much less
+than we are aware of; and the very different genius which appears to
+distinguish men of different professions, when grown up to maturity, is not
+upon many occasions so much the cause, as the effect of the division of
+labour. (Book I, Chapter II, p. 23)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;In my view, this might have a domino effect over the course of an individual's
+life rendering a person stubborn and ignorant. Adam Smith
+agrees:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The man whose whole life is spent in performing a few simple operations, of
+which the effects too are, perhaps, always the same, or very nearly the same,
+has no occasion to exert his understanding, or to exercise his invention in
+finding out expedients for removing difficulties which never occur.
+He naturally loses, therefore, the habit of such exertion,
+and generally becomes as stupid and ignorant as it is possible for a human
+creature to become. The torpor of his mind renders him, not
+only incapable of relishing or bearing a part in any rational conversation,
+but of conceiving any generous, noble, or tender sentiment and consequently of
+forming any just judgment concerning many even of the ordinary duties of
+private life. Of the great and extensive interests of his
+country, he is altogether incapable of judging; and unless very particular
+pains have been taken to render him otherwise, he is equally incapable of
+defending his country in war. The uniformity of his
+stationary life naturally corrupts the courage of his mind, and makes him
+regard with abhorrence the irregular, uncertain, and adventurous life of a
+soldier. It corrupts even the activity of his body, and
+renders him incapable of exerting his strength with vigour and perseverance,
+in any other employment than that to which he has been bred.
+His dexterity at his own particular trade seems, in this
+manner, to be acquired at the expence of his intellectual, social, and martial
+virtues. But in every improved and civilized society this
+is the state into which the labouring poor, that is, the great body of the
+people, must necessarily fall, unless government takes some pains to prevent
+it. (Book V, Chapter I, pp. 429-30)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I believe within every person there is a desire to better not just one's
+condition, but, more importantly, to better oneself as a thing of value.
+It is this driving desire, I think, that has led to the
+great innovations mankind has imagined and produced in science, philosophy,
+and art. I feel that a man, when his eyes are opened to his
+own potential, tastes a power more addictive than money or fame.
+Smith describes a related scenario
+in_Wealth of Nations_ when he refers to the American colony
+leaders.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Almost every individual of the governing party in America, fills, at present
+in his own fancy, a station superior, not only to what he had ever filled
+before, but to what he had ever expected to fill; and unless some new object
+of ambition is presented either to him or to his leaders, if he has the
+ordinary spirit of a man, he will die in defence of that station.
+(Book IV, Chapter VII, p. 363)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;In contrast to the individual aspiring to gain wisdom and improve his self-
+worth is the person who spends his life bathing himself in whatever riches he
+can attain. A "wantonness of plenty," Smith explains, is
+more appropriate when considering the "play-things of children than the
+serious pursuits of men."&lt;/p&gt;
+&lt;p&gt;Surely, hardly anyone can claim to be completely free of profligacy over the
+entire course of life, but there is a trap that we must be careful not to slip
+into. Smith hints at irony between the expenses we can
+afford on others versus our own selves.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;In countries where a rich man can spend his revenue in no other way than by
+maintaining as many people as it can maintain, he is not apt to run out, and
+his benevolence it seems is seldom so violent as to attempt to maintain more
+than he can afford. But where he can spend the greatest
+revenue upon his own person, he frequently has no bounds to his expence,
+because he frequently has no bounds to his vanity, or to his affection for his
+own person. (Book III, Chapter IV, p. 267)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Smith notes that being overly generous to others, however, is not appropriate
+behavior either due to the effects it has on society. Money
+placed in unproductive hands, Smith writes, is immediately consumed and does
+not benefit the opulence of the public at all. There is
+surely, then, a balance between freely giving away all of one's riches, and
+self-indulgence.&lt;/p&gt;
+&lt;p&gt;An interesting factor of wealth is the envy it creates among those who don't
+have it, or who don't have "enough" of it. Smith argues
+that the evolution of government is a direct result of this envy:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The affluence of the rich excites the indignation of the poor, who are often
+both driven by want, and prompted by envy, to invade his possessions. ... The
+acquisition of valuable and extensive property, therfore, necessarily requires
+the establishment of civil government. Where there is no
+property, or at least none that exceeds the value of two or three days labour,
+civil government is not so necessary. (Book V, Chapter I,
+p. 408)&lt;/p&gt;
+&lt;p&gt;Civil government, so far as it is instituted for the security of property,
+is in reality instituted for the defence of the rich against the poor.
+(Book V, Chapter I, p. 413)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;In government, at least in ours, it seems as if there are at least 2 differing
+views. One view that believes in tradition and austerity,
+and another that propones progression and expansive spending.
+In the United States--and I confess to generalize and
+stereotype--we have Republicans and Democrats. Apparently
+this a much more global situation than I knew, according to Smith:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;In every society where the distinction of ranks has once been completely
+established, there have been always two different schemes or systems of
+morality current at the same time; of which the one may be called the strict
+or austere; the other the liberal, or, if you will, the loose system.
+The former is generally admired and revered by the common
+people: The latter is commonly more esteemed and adopted by
+what are called people of fashion. (Book V, Chapter I, p.
+438)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I think Smith was really on to something here. He goes on
+to draw parallels between the adoption of religion and the moral strictness of
+"the common people."&lt;/p&gt;
+&lt;p&gt;In all, there is a wealth of knowledge in the &lt;em&gt;Wealth of Nations&lt;/em&gt;, and it is
+intriguing to detect the similarities of the people of Adam Smith's world and
+the people of our own. Economic understanding may have
+changed greatly in 2+ centuries, but human nature, it seems, hasn't.&lt;/p&gt;
+&lt;p&gt;All page citations from:&lt;/p&gt;
+&lt;p&gt;Smith, A. (2008).&lt;em&gt;&lt;a href="http://www.amazon.com/gp/product/0199535922/ref=as_li_ss_tl?ie=UTF8&amp;amp;tag=jasonswadleyc-20&amp;amp;linkCode=as2&amp;amp;camp=1789&amp;amp;creative=390957&amp;amp;creativeASIN=0199535922"&gt;Wealth of Nations&lt;/a&gt;.&lt;/em&gt; New York, NY: Oxford
+University Press.&lt;/p&gt;</summary><category term="reading"></category></entry><entry><title>"America and Energy Independence"</title><link href="http://dustinfarris.com/2012/03/23/america-and-energy-independence.html" rel="alternate"></link><updated>2012-03-23T00:00:00+01:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-03-23:2012/03/23/america-and-energy-independence.html</id><summary type="html">&lt;p&gt;The &lt;em&gt;&lt;a href="http://www.nytimes.com/2012/03/23/business/energy-environment/inching-toward-energy-independence-in-america.html"&gt;New York Times&lt;/a&gt;&lt;/em&gt; published a
+long, but terrifically written recap of our nation's dependence on foreign-
+made energy. A worthwhile read for anyone looking to brush
+up on all this "domestic oil talk."&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;"One day we were rolling in oil," recalled Jim Foreman, the general manager
+of the Midland BMW dealership, "and the next day geologists were flipping
+burgers at McDonald's."&lt;/p&gt;
+&lt;/blockquote&gt;</summary><category term=""></category></entry><entry><title>"Narcissism, and Facebook"</title><link href="http://dustinfarris.com/2012/03/22/narcissism-and-facebook.html" rel="alternate"></link><updated>2012-03-22T00:00:00+01:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-03-22:2012/03/22/narcissism-and-facebook.html</id><summary type="html">&lt;p&gt;&lt;a href="http://lifehacker.com/5895372/the-more-facebook-friends-you-have-the-more-unhappy-you-probably-are"&gt;Lifehacker&lt;/a&gt; recently discussed research showing a
+correlation between levels of narcissism in an individual and the number of
+Facebook friends he or she has.&lt;/p&gt;
+&lt;p&gt;Via &lt;a href="http://www.guardian.co.uk/technology/2012/mar/17/facebook-dark-side-study-aggressive-narcissism"&gt;The Guardian&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;People who score highly on the Narcissistic Personality Inventory
+questionnaire had more friends on Facebook, tagged themselves more often and
+updated their newsfeeds more regularly.&lt;/p&gt;
+&lt;p&gt;The research comes amid increasing evidence that young people are becoming
+increasingly narcissistic, and obsessed with self-image and shallow
+friendships.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Last year I performed a "friend" purge on my account, removing more than 200
+friends whom, well, weren't really my friends. I have to
+admit, it felt pretty good.&lt;/p&gt;</summary><category term="Facebook"></category></entry><entry><title>"This Foreign Policy Stuff is a Little Frustrating"</title><link href="http://dustinfarris.com/2012/03/16/this-foreign-policy-stuff-is-a-little-frustrating.html" rel="alternate"></link><updated>2012-03-16T00:00:00+01:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-03-16:2012/03/16/this-foreign-policy-stuff-is-a-little-frustrating.html</id><summary type="html">&lt;p&gt;&lt;em&gt;An old video from the White House when former Under Secretary of Defense for
+Policy Douglas J. Feith spoke on the Iraq invasion.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;The difference between the previous administration and the current one is like
+night and day. Republican abuse of power is just
+disheartening.&lt;/p&gt;
+&lt;p&gt;The title is a &lt;a href="http://articles.nydailynews.com/2002-04-23/news/18185707_1_bush-aide-president-bush-middle-east"&gt;quote said by George W. Bush&lt;/a&gt; to his friends in 2002.&lt;/p&gt;</summary><category term=""></category></entry><entry><title>"What's So Terrible About Goldman Sachs Again?"</title><link href="http://dustinfarris.com/2012/03/16/whats-so-terrible-about-goldman-sachs-again.html" rel="alternate"></link><updated>2012-03-16T00:00:00+01:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-03-16:2012/03/16/whats-so-terrible-about-goldman-sachs-again.html</id><summary type="html">&lt;p&gt;A prestigious financial firm since the 19th century, and now there are
+questions raised by former Sachs executive, &lt;a href="http://www.nytimes.com/2012/03/14/opinion/why-i-am-leaving-goldman-sachs.html"&gt;Greg Smith&lt;/a&gt;, over the corporate giant's true candor toward its clients.
+So, what's really going on behind Wall Street doors?
+Harvard Business Review Editorial Director Justin Fox
+offers &lt;a href="http://blogs.hbr.org/fox/2012/03/greg-smiths-resignation-op-ed.html"&gt;a few possible explanations&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Smart people started working there. Wall Street had long attracted the
+bottom third of the class; decent enough folks with modest ambitions. Then the
+combination of bigger paychecks and higher college and grad school tuition
+began driving the best students into finance. ...
+And the culture of an organization composed entirely of
+people who are really, really smart
+and_know_they are really, really smart
+may bebound to turn toxic eventually.&lt;/p&gt;
+&lt;/blockquote&gt;</summary><category term=""></category></entry><entry><title>"Apple, For The Win"</title><link href="http://dustinfarris.com/2012/03/14/apple-for-the-win.html" rel="alternate"></link><updated>2012-03-14T00:00:00+01:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-03-14:2012/03/14/apple-for-the-win.html</id><summary type="html">&lt;p&gt;It's been close to three years since we &lt;a href="http://www.economist.com/node/15911334"&gt;officially came out of a recession&lt;/a&gt;, and pretty much everyone
+is doing better, albeit not as much as they might like. A
+certain company named Apple, however, has really left the recession in the
+dust. From consistently leading consumer electronic brands
+to beautiful money management (they don't have a penny of debt), Apple has
+really set an example that other aspiring companies would do well to follow.&lt;/p&gt;
+&lt;p&gt;Today, Apple is trading at just under $600 a share! Here is
+Apple's stock value growth over the last 3 years compared with the rest of the
+S&amp;amp;P 500:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="AAPL vs S&amp;amp;P 500 gains over 3 years" src="/media/uploads/sp500vsaapl3yr.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;My only regret from buying Apple stock is not having bought more of it when I
+did.&lt;/p&gt;</summary><category term="Apple"></category></entry><entry><title>"Regulate This"</title><link href="http://dustinfarris.com/2012/03/14/regulate-this.html" rel="alternate"></link><updated>2012-03-14T00:00:00+01:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-03-14:2012/03/14/regulate-this.html</id><summary type="html">&lt;p&gt;&lt;a href="http://baselinescenario.com/2012/03/13/americans-like-regulation/"&gt;James Kwak&lt;/a&gt; throws an interesting spin on regulation sentiments, stating:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;It's a well-known fact that Americans oppose government spending in the
+abstract yet favor virtually every government spending program.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;It's fascinating how so much of man-kind can live in the kind of bubble that
+restricts you to empathize only with yourself.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Of course people want stronger food safety regulations when they read
+stories about people dying from tainted food; of course they want stronger
+environmental protections when they hear about toxic groundwater. At the same
+time, exactly half of the political establishment has been on a crusade to
+demonize regulation in general for the past forty years.&lt;/p&gt;
+&lt;/blockquote&gt;</summary><category term=""></category></entry><entry><title>"A Bad Economic Analogy"</title><link href="http://dustinfarris.com/2012/03/12/a-bad-economic-analogy.html" rel="alternate"></link><updated>2012-03-12T00:00:00+01:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-03-12:2012/03/12/a-bad-economic-analogy.html</id><summary type="html">&lt;p&gt;Everyone has heard from the Right that government needs to "tighten its belt"
+and behave like a responsible family in times of economic crisis.
+&lt;a href="http://krugman.blogs.nytimes.com/2012/03/12/losing-the-belt/"&gt;Paul Krugman&lt;/a&gt; blows a nice hole in this analogy:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;When a family tightens its belt it doesn't put itself out of a job. When a
+government tightens its belt in a depressed economy, it puts lots of people
+out of jobs; and this is a negative even from the government's own, narrowly
+fiscal point of view, since a shrinking economy means less revenue.&lt;/p&gt;
+&lt;/blockquote&gt;</summary><category term="[Paul Krugman]"></category></entry><entry><title>"The Ethics of Globalization"</title><link href="http://dustinfarris.com/2012/03/12/the-ethics-of-globalization.html" rel="alternate"></link><updated>2012-03-12T00:00:00+01:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-03-12:2012/03/12/the-ethics-of-globalization.html</id><summary type="html">&lt;p&gt;&lt;a href="http://www.project-syndicate.org/commentary/rodrik68/English"&gt;Dani Rodrik&lt;/a&gt;
+shares his thoughts regarding economic globalization and the, often
+overlooked, ethical consequences it potentially presents if not well-managed:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;We would think differently if Gates and Buffett had enriched themselves not
+through perspiration and inspiration, but by cheating, breaking labor laws,
+ravaging the environment, or taking advantage of government subsidies abroad.
+If we do not condone redistribution that violates widely shared moral codes at
+home, why should we accept it just because it involves transactions across
+political borders?&lt;/p&gt;
+&lt;p&gt;Similarly, when we expect redistributive effects to even out in the long
+run, so that everyone eventually comes out ahead, we are more likely to
+overlook reshufflings of income. That is a key reason why we believe that
+technological progress should run its course, despite its short-run
+destructive effects on some. When, on the other hand, the forces of trade
+repeatedly hit the same people - less educated, blue-collar workers - we may
+feel less sanguine about globalization.&lt;/p&gt;
+&lt;/blockquote&gt;</summary><category term=""></category></entry><entry><title>"Really, Missouri? A Statue?"</title><link href="http://dustinfarris.com/2012/03/08/really-missouri-a-statue.html" rel="alternate"></link><updated>2012-03-08T00:00:00+01:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-03-08:2012/03/08/really-missouri-a-statue.html</id><summary type="html">&lt;p&gt;I'm with &lt;a href="http://www.nydailynews.com/news/politics/bill-maher-liberals-accept-rush-limbaugh-apology-sandra-fluke-move-article-1.1035029"&gt;Bill Mahr&lt;/a&gt; who
+recently criticized liberals for taking Rush Limbaugh's comments regarding
+Sandra Fluke too far. What I'm not for is the $10,000 gold
+statue of Rush that House Speaker Steve Tilley-R wants to erect in the
+Jefferson City Hall of Famous Missourians.&lt;/p&gt;
+&lt;p&gt;Tilley did respond to voters concerned over Rush's recent radio stunt.
+Via &lt;a href="http://www.stltoday.com/news/local/govt-and-politics/bust-of-rush-limbaugh-to-join-twain-s-others-in/article_4aba525d-c395-5b3a-8860-0131a44b87fa.html"&gt;STLtoday&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;"I'm not going to go through it and review every comment he's ever made,"
+Tilley said. "Just like the people who inducted Mark Twain, Warren Hearnes or
+John Ashcroft didn't."&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Somehow I don't think we're comparing apples to apples here.&lt;/p&gt;</summary><category term=""></category></entry><entry><title>"What a Real Presidential Candidate Looks Like"</title><link href="http://dustinfarris.com/2012/02/28/what-a-real-presidential-candidate-looks-like.html" rel="alternate"></link><updated>2012-02-28T00:00:00+01:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-02-28:2012/02/28/what-a-real-presidential-candidate-looks-like.html</id><summary type="html">&lt;p&gt;Oh, andapparentlythis speech makes Rick
+Santorum "&lt;a href="http://articles.latimes.com/2012/feb/26/news/la-pn-rick-santorum-rejects-absolute-separation-of-church-and-state-20120226"&gt;want to throw up.&lt;/a&gt;"&lt;/p&gt;</summary><category term="Rick Santorum"></category></entry><entry><title>"Rich Romney"</title><link href="http://dustinfarris.com/2012/02/27/rich-romney.html" rel="alternate"></link><updated>2012-02-27T00:00:00+01:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-02-27:2012/02/27/rich-romney.html</id><summary type="html">&lt;p&gt;From &lt;a href="http://www.cbsnews.com/8301-503544_162-57385498-503544/romney-not-a-nascar-fan-but-friends-are-owners/"&gt;CBS News&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Asked by the AP reporter if he follows NASCAR, Romney responded, "Not as
+closely as some of the most ardent fans. But I have some great friends who are
+NASCAR team owners."&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Total disconnect.&lt;/p&gt;</summary><category term="[Mitt Romney]"></category></entry><entry><title>"Smart Republicans Reject Science"</title><link href="http://dustinfarris.com/2012/02/26/smart-republicans-reject-science.html" rel="alternate"></link><updated>2012-02-26T00:00:00+01:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-02-26:2012/02/26/smart-republicans-reject-science.html</id><summary type="html">&lt;p&gt;The Economist's View brought up the&lt;a href="http://economistsview.typepad.com/economistsview/2012/02/make-them-identify-emotionally.html?utm_source=feedburner&amp;amp;utm_medium=feed&amp;amp;utm_campaign=Feed%3A+EconomistsView+%28Economist%27s+View+%28EconomistsView%29%29"&gt;interesting point&lt;/a&gt; today
+that a lot of what drives Republican politics revolves more around emotion
+rather than science and education. Furthermore, education
+seems to actually perpetuate this anomaly.&lt;/p&gt;
+&lt;p&gt;Given the facts of global warming and human involvment, &lt;a href="http://www.alternet.org/story/154252/the_republican_brain:_why_even_educated_conservatives_deny_science_--_and_reality/?page=entire"&gt;Chris Mooney&lt;/a&gt; cites a &lt;a href="http://www.people-press.org/2008/05/08/a-deeper-partisan-divide-over-global-warming/"&gt;2008 Pew report&lt;/a&gt; showing the "partisan divide over the reality of global
+warming." Of interest is this chart showing not only the
+belief differences between Republicans, Independents, and Democrats, but also
+between the less and more educated.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Party and Education graph showing who believes global warming is happening because of human activity" src="/media/uploads/417-4.gif" /&gt;&lt;/p&gt;
+&lt;p&gt;Mooney talks about the effect these numbers had on him:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;For Republicans, having a college degree didn't appear to make one any more
+open to what scientists have to say. On the contrary, better-educated
+Republicans were more skeptical of modern climate science than their less
+educated brethren. ...This was my first encounter with what
+I now like to call the "smart idiots" effect: The fact that politically
+sophisticated or knowledgeable people are often more biased, and less
+persuadable, than the ignorant. It's a reality that generates endless
+frustration for many scientists--and indeed, for many well-educated,
+reasonable people...&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;And &lt;a href="http://digbysblog.blogspot.com/2012/02/tribal-solidarity-more-important-than.html"&gt;Digby&lt;/a&gt; goes on to draw the parallel with emotion which I think
+is brilliant:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;...Ultimately, this is about tribalism, feeling part of a group, being
+validated by it and thinking and behaving in ways that preserve your place in
+it. We all do it to some extent...&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Things finally are making sense.&lt;/p&gt;</summary><category term=""></category></entry><entry><title>"Gasping For Words"</title><link href="http://dustinfarris.com/2012/02/25/gasping-for-words.html" rel="alternate"></link><updated>2012-02-25T00:00:00+01:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-02-25:2012/02/25/gasping-for-words.html</id><summary type="html">&lt;p&gt;Blurting without censorship.&lt;/p&gt;
+&lt;p&gt;One time-wasting habit of mine I should really break is reading comment
+threads on political articles--especially articles dealing with the upcoming
+election. The sheer mass of mindless ill-informed, half-
+thoughts that commenters spill out is just very sad. What
+makes it worse is the complete lack of grammar, spelling ability, and word
+choice discernment. I like to call it "Typing Tourett's."&lt;/p&gt;
+&lt;p&gt;Here is a random example from an ABC News article dealing with, well, it
+doesn't really matter:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;UNFORUTANTELY 99% of us cars need oil. And YES, if US produced more OIL, we
+would dampen the effects of the world wide oil market. I'm not giving
+opinions, nor I'm I stating any left or right wing rhethoic. I'm simply stated
+UNDISPUTELY FACTS. But vote for OBAMA anyway. I like 15% unemploymeny, raising
+OIL prices, a divided national, unstoppable deficits, a failing dollar, and a
+man, who leads by pointing his finger and blaming.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;You know, a government in a country such as ours can only be as smart, wise,
+and effective as the people who elect it into place. So
+look in the mirror America, and &lt;em&gt;then&lt;/em&gt; start talking about change.&lt;/p&gt;</summary><category term=""></category></entry><entry><title>"I Finished Insanity!"</title><link href="http://dustinfarris.com/2012/02/21/i-finished-insanity.html" rel="alternate"></link><updated>2012-02-21T00:00:00+01:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-02-21:2012/02/21/i-finished-insanity.html</id><summary type="html">&lt;p&gt;Two months ago, I put myself to the challenge of completing a 60-day period of
+enduring hell also known as the &lt;a href="http://www.beachbody.com/product/fitness_programs/best_sellers/insanity.do"&gt;Beachbody Insanity program&lt;/a&gt;.
+If you haven't seen the promos on late-night TV, it is a
+cardio conditioning program led by instructor Shaun T. that utilizes what he
+likes to call "interval training." Interval training is a
+kind of fitness exercise where, at certain intervals, you want to die.&lt;/p&gt;
+&lt;p&gt;Here is my before and after:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Insanity before and after" src="/media/uploads/uploads/insanitybeforeafter_medium.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;To be honest, I don't think that picture does justice to the blood, sweat, and
+tears I've shed for 4 fortnights. In the first image I
+weighed 137 pounds and couldn't make it through the warm-up without gasping
+for air. In exhibit B, I am now 153 pounds with a resting
+heart-rate at 62bpm (which I think is pretty decent for my age and life
+history).&lt;/p&gt;
+&lt;p&gt;Anyone looking to improve their cardio should give Insanity a try, but I'll
+caution it is not for the faint of heart. ;-) Up next is &lt;a href="http://www.beachbody.com/product/fitness_programs/best_sellers/p90x.do"&gt;p90x&lt;/a&gt;.&lt;/p&gt;</summary><category term=""></category></entry><entry><title>"Memphis Lives In Me"</title><link href="http://dustinfarris.com/2012/02/21/memphis-lives-in-me.html" rel="alternate"></link><updated>2012-02-21T00:00:00+01:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-02-21:2012/02/21/memphis-lives-in-me.html</id><summary type="html">&lt;p&gt;Substitute your hometown for Memphis and this song can be a real tearjerker.
+Also, Adam Pascal has an incredible voice!&lt;/p&gt;</summary><category term=""></category></entry><entry><title>"Shutting Down dfcode.com"</title><link href="http://dustinfarris.com/2012/02/19/shutting-down-dfcodecom.html" rel="alternate"></link><updated>2012-02-19T00:00:00+01:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-02-19:2012/02/19/shutting-down-dfcodecom.html</id><summary type="html">&lt;p&gt;Maintaining two blogs has become impossible, so I'm consolidating my writing
+to this one. I will migrate the most hit blogs and create
+redirects so bookmarks should be good for the rest of the year, but I have no
+plans to renew the domain registration when it expires.&lt;/p&gt;
+&lt;p&gt;Expect more technie-oriented writing here in the near future.&lt;/p&gt;</summary><category term=""></category></entry><entry><title>"Give Me My Money and Go Away"</title><link href="http://dustinfarris.com/2012/02/13/give-me-my-money-and-go-away.html" rel="alternate"></link><updated>2012-02-13T00:00:00+01:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-02-13:2012/02/13/give-me-my-money-and-go-away.html</id><summary type="html">&lt;p&gt;A drilldown on hypocrisy.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://krugman.blogs.nytimes.com/2012/02/13/moochers-for-self-reliance/"&gt;Paul Krugman&lt;/a&gt; discusses a &lt;a href="http://www.nytimes.com/2012/02/12/us/even-critics-of-safet-net-increasingly-depend-on-it.html?_r=1&amp;amp;src=me&amp;amp;ref=general"&gt;New York Times article&lt;/a&gt; that articulates the
+ratio of money states give and receive to and from the Federal government
+versus their political philosophy:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;So are states that get a lot but don't pay much also states that vote for
+candidates demanding self-reliance and an end to Big Government? Basically,
+yes. By my reckoning, 7 of the most dependent states in the sense that they
+pay relatively little while receiving a lot went for McCain in 2008; only 2 of
+the least dependent states did.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Maybe a little introspection is called for.&lt;/p&gt;</summary><category term="[Paul Krugman]"></category></entry><entry><title>"Sarah Palin's Political Discourse"</title><link href="http://dustinfarris.com/2012/02/13/sarah-palins-political-discourse.html" rel="alternate"></link><updated>2012-02-13T00:00:00+01:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-02-13:2012/02/13/sarah-palins-political-discourse.html</id><summary type="html">&lt;p&gt;&lt;img alt="Sarah Palin at CPAC" src="/media/uploads/uploads/sarah-palin-cpac-ap-cropped-proto-custom_28_big.jpeg" /&gt;&lt;/p&gt;
+&lt;p&gt;In case you (hopefully) missed it, here are the real show-stoppers from
+Palin's &lt;a href="http://www.youtube.com/watch?v=qQ6sXNSgQtY"&gt;keynote speech&lt;/a&gt; at the
+Conservative Political Action Conference on Saturday:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;"We are just dog-gone frustrated with the pace of change!"&lt;/p&gt;
+&lt;p&gt;"I say keep your change, we'll keep our god, our guns, and our
+constitution!"&lt;/p&gt;
+&lt;p&gt;"Mr. President, we don't want an economy built to last, we want an economy
+built to grow!"&lt;/p&gt;
+&lt;p&gt;"Mr. President, we want your administration to end!"&lt;/p&gt;
+&lt;p&gt;"'Hope and change', yeah you
+better_hope_things change!"&lt;/p&gt;
+&lt;p&gt;"USA! USA! USA!"&lt;/p&gt;
+&lt;p&gt;"They're hoppin' in a jacuzzi! America it's time we drain
+the jacuzzi and throw the bums out with the bath water!"&lt;/p&gt;
+&lt;p&gt;"The Tea Party rose up because Americans woke up!"&lt;/p&gt;
+&lt;p&gt;"We're not red! We're not blue! We are
+Red, White, and Blue, and President Obama we
+are_through_with you!"&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I don't even know where to start.&lt;/p&gt;</summary><category term="[Sarah Palin]"></category></entry><entry><title>"Paraphrased Dialogue Over Birth Control Access"</title><link href="http://dustinfarris.com/2012/02/10/paraphrased-dialogue-over-birth-control-access.html" rel="alternate"></link><updated>2012-02-10T00:00:00+01:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-02-10:2012/02/10/paraphrased-dialogue-over-birth-control-access.html</id><summary type="html">&lt;p&gt;After reading various opinion articles and comments therein, here is my
+perspective on this week's controversy:&lt;/p&gt;
+&lt;h2&gt;Beginning of week&lt;/h2&gt;
+&lt;p&gt;OBAMA: Institutions and corporations must follow the same
+rules regardless of religious affiliation with regard to providing access to
+birth control.&lt;/p&gt;
+&lt;p&gt;REPUBLICANS: He's a socialist! He's
+violating religious freedoms! He just wants to get
+reelected!&lt;/p&gt;
+&lt;h2&gt;2 days later&lt;/h2&gt;
+&lt;p&gt;OBAMA: Ok, we'll compromise and have this obligation fall on the insurers
+instead.&lt;/p&gt;
+&lt;p&gt;REPUBLICANS: He's a flip-flop! He just
+wants to get reelected!&lt;/p&gt;</summary><category term=""></category></entry><entry><title>"Randall Terry is a Lunatic"</title><link href="http://dustinfarris.com/2012/02/05/randall-terry-is-a-lunatic.html" rel="alternate"></link><updated>2012-02-05T00:00:00+01:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-02-05:2012/02/05/randall-terry-is-a-lunatic.html</id><summary type="html">&lt;p&gt;Randall who?&lt;/p&gt;
+&lt;p&gt;If you haven't heard, there is a madman living in America who thinks it is
+appropriate to broadcast ads featuring aborted fetuses during the Super
+Bowl. Apparently these ads have already &lt;a href="http://motherjones.com/mojo/2011/12/aborted-fetus-campaign-ads-hit-airwaves-iowa"&gt;been running in Iowa&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Without getting into too much of a rant, who the _hell _does this lunatic
+think he is trying to put a brutal show on a program that families across the
+country will be watching? -- families that include
+children, and women who have been through the &lt;a href="http://women.webmd.com/tc/abortion-emotional-recovery-topic-overview"&gt;emotional pains&lt;/a&gt;
+that are often endured after an abortion.&lt;/p&gt;
+&lt;p&gt;Indeed, who is this insensitive maniac? A quick &lt;a href="http://en.wikipedia.org/wiki/Randall_Terry"&gt;Wikipedia search&lt;/a&gt; reveals that he is a 53
+-year-old white male from New York who has been married twice and arrested
+more than 40 times in his life. He has filed for
+bankruptcy, forged political figures' voices in political ads for personal
+gain, and after his son came out of the closet, he publically stated his son
+was "no longer welcome in their home."&lt;/p&gt;
+&lt;p&gt;He has recently put himself on the Democratic primary ticket in several states
+in an attempt to steal potential votes from Obama, and to exploit a legal
+loophole requiring TV stations to air his anti-abortion ad.
+I think it is safe to say I will never take a word of his seriously.&lt;/p&gt;</summary><category term=""></category></entry><entry><title>"The Tea Party is Racist"</title><link href="http://dustinfarris.com/2012/02/03/the-tea-party-is-racist.html" rel="alternate"></link><updated>2012-02-03T00:00:00+01:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-02-03:2012/02/03/the-tea-party-is-racist.html</id><summary type="html">&lt;p&gt;And I'm not the only one who thinks so.&lt;/p&gt;
+&lt;p&gt;It seems to me that many of the &lt;a href="http://teapartyorg.ning.com/profiles/blogs/the-danger-that-the-obama-administration-poses-to-america"&gt;unfounded criticisms&lt;/a&gt; against President Obama stem from
+somewhere not entirely rational. The far right of the right
+--which at times feels like the majority of the right--has been repeatedly
+accused, rightly, of racism in their defiant vow to "defeat Obama not matter
+what it takes." Even &lt;a href="http://nation.foxnews.com/glenn-beck/2011/12/13/beck-suggests-tea-party-racist"&gt;Glenn Beck&lt;/a&gt; thinks so.&lt;/p&gt;
+&lt;p&gt;While browsing The Huffington Post (a succesful progressive news and blog
+site), I found &lt;a href="http://www.huffingtonpost.com/2011/09/23/morgan-freeman-tea-party-racist_n_978123.html"&gt;an article&lt;/a&gt; featuring this video of Morgan Freeman
+giving his thoughts on the Tea Party to CNN:&lt;/p&gt;
+&lt;p&gt;On a slight digression, here is a map from a &lt;a href="http://www.nytimes.com/2008/11/11/us/politics/11south.html?pagewanted=all"&gt;2008 NY Times article&lt;/a&gt; following
+the presidential election depicting which counties voted more Republican than
+in prior elections. Notice anything?&lt;/p&gt;
+&lt;h1&gt;&lt;img alt="Electoral Shifts 2008 vs 2004" src="/media/uploads/uploads/electoralshifts2008_big.jpg" /&gt;&lt;/h1&gt;</summary><category term=""></category></entry><entry><title>"Most people get a refund? I think not."</title><link href="http://dustinfarris.com/2012/02/02/most-people-get-a-refund-i-think-not.html" rel="alternate"></link><updated>2012-02-02T00:00:00+01:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-02-02:2012/02/02/most-people-get-a-refund-i-think-not.html</id><summary type="html">&lt;p&gt;I've heard the argument--on an uncomfortable number of occasions--that taxes
+can and should be raised since "most people get a refund anyway."
+What's disconcerting about this statement is the use of the
+word "refund." It sounds as if the government is just
+handing out money every year without actually taxing anybody.&lt;/p&gt;
+&lt;p&gt;To clarify what a tax refund really is: it is the amount of taxes
+you_overpaid_during the course of the
+previous year. In most jobs, your employer withholds a
+certain percentage of your paycheck based on your salary and exemptions you
+specified when you were hired. This percentage is money
+thatis paid to you, and then sent on your behalf to the
+government in the form of taxes. So you are paying taxes
+every time you receive a paycheck.&lt;/p&gt;
+&lt;p&gt;When you get a refund, it is the amount you overpaid as was calculated by
+filling out a tax return. So let's say you paid $5000 in
+taxes, but receive a $750 tax refund. Maybe in April it
+feels like you're getting free money, but in reality you've effectively
+donated $4,250 to the U.S. Treasury.&lt;/p&gt;
+&lt;p&gt;Now, I do feel that many of us could and should afford to pay more taxes for
+government sanctioned movements to help those in need and stimulate the
+economy, but using the number of "refunds" American tax payers receive is not
+a good argument to start with.&lt;/p&gt;</summary><category term=""></category></entry><entry><title>"Ludacris is in My Portfolio!"</title><link href="http://dustinfarris.com/2012/01/28/ludacris-is-in-my-portfolio.html" rel="alternate"></link><updated>2012-01-28T00:00:00+01:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-01-28:2012/01/28/ludacris-is-in-my-portfolio.html</id><summary type="html">&lt;p&gt;Earlier this month my Wonder colleagues and I wrapped up what is probably my
+biggest project to date: a website for the new line of SOUL by Ludacris
+headphones. And yes, I think that's pretty cool.&lt;/p&gt;
+&lt;p&gt;Building the website was a lot of fun, and allowed me to explore Django even
+further, as well as pick up a few project management
+techniques. Ludacris even came into our office for a photo
+shoot!&lt;/p&gt;
+&lt;p&gt;The true end result was motivation to finally update &lt;a href="/portfolio/"&gt;my
+portfolio&lt;/a&gt;.&lt;/p&gt;</summary><category term=""></category></entry><entry><title>"I think we can agree Newt Gingrich is a Flop"</title><link href="http://dustinfarris.com/2012/01/27/i-think-we-can-agree-newt-gingrich-is-a-flop.html" rel="alternate"></link><updated>2012-01-27T00:00:00+01:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-01-27:2012/01/27/i-think-we-can-agree-newt-gingrich-is-a-flop.html</id><summary type="html">&lt;p&gt;Based on a &lt;a href="http://www.cnn.com/2012/01/27/opinion/bennett-florida-debate/index.html"&gt;pathetic display&lt;/a&gt; of ill-prepared attacks directed at Mitt Romeny
+during last night's debate, I believe I can finally mark off Newt Gingrich on
+America's potential nightmare list.&lt;/p&gt;
+&lt;p&gt;Not only did last night make Newt look like a tool, I found his comments to be
+quite revealing about how fake politicians can be in a debate.
+His tone and facial expressions made Romney's investments
+seem heart-crushing. Yet, as it turns out, they were mutual
+funds carrying investments some of which are shared by funds held by Newt!
+Clearly Newt (incorrectly) thought he had an opportunity to
+put on the actor's mask and drive home some political dirt.&lt;/p&gt;
+&lt;p&gt;It's all very sad.&lt;/p&gt;</summary><category term=""></category></entry><entry><title>"Book Report: The Catcher in the Rye"</title><link href="http://dustinfarris.com/2012/01/21/book-report-the-catcher-in-the-rye.html" rel="alternate"></link><updated>2012-01-21T00:00:00+01:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-01-21:2012/01/21/book-report-the-catcher-in-the-rye.html</id><summary type="html">&lt;p&gt;&lt;img alt="The Catcher in the Rye book cover" src="/media/uploads/uploads/img_0153_medium.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;The Catcher in the Rye by J. D. Salinger&lt;/p&gt;
+&lt;p&gt;What struck me most about_Catcher in the Rye_ was how
+closely my teenage self could have related to the main character of the story.
+I remember, as a younger person, referring to things I
+didn't understand or want to accept with one-off labels like "stupid", "lame",
+"retarded" etc... It was as if my pride was determinant on
+being right, all the time, and anything that might threaten that was beneath
+me.&lt;/p&gt;
+&lt;p&gt;Salinger captures the adolescent inner-rebellion in a very intimate dialog
+that Holden Caulfield, the antihero, has with the reader.
+Near the end of the book, Holden speaks with a teacher who
+wisely summarizes a distinction between youth and adulthood:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The mark of the immature man is that he wants to die nobly for a cause,
+while the mark of the mature man is that he wants to live humbly for one.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;And what struck home most with me was the teacher's description of Holden's
+problem:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;This fall I think you're riding for--it's a special kind of fall, a horrible
+kind. The man falling isn't permitted to feel or hear
+himself hit bottom. He just keeps falling and falling.
+The whole arrangement's designed for men who, at some time
+or other in their lives, were looking for something their own environment
+couldn't supply them with. Or they thought their own
+environment couldn't supply them with. So they gave up
+looking. They gave it up before they ever really even got
+started.&lt;/p&gt;
+&lt;/blockquote&gt;</summary><category term="reading"></category></entry><entry><title>"You Can Keep Your American Rights If..."</title><link href="http://dustinfarris.com/2012/01/17/you-can-keep-your-american-rights-if.html" rel="alternate"></link><updated>2012-01-17T00:00:00+01:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-01-17:2012/01/17/you-can-keep-your-american-rights-if.html</id><summary type="html">&lt;p&gt;I want to react to &lt;a href="http://thehill.com/video/campaign/204459-romney-booed-at-debate-for-support-of-indefinite-detentions"&gt;Mitt Romney's statement&lt;/a&gt; regarding the &lt;a href="http://www.gpo.gov/fdsys/pkg/BILLS-112s1867es/pdf/BILLS-112s1867es.pdf"&gt;newly signed bill&lt;/a&gt;
+that in part allows the military to detain
+&lt;em&gt;indefinitely_any _American_they feel is
+afilliated with terrorism _without a trial&lt;/em&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;"People who side with al Qaeda do not deserve the same rights as other
+people."&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Where in our constitution is it written that some people deserve more rights
+than others? Or perhaps the Declaration of Independence
+intended to be satirical when it read:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;We hold these truths to be self-evident, thatall men are
+created equal, that they are endowed by their Creator with certain unalienable
+Rights, that among these areLife, Liberty and the pursuit
+of Happiness.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;If a citizen commits treason, try him for treason, but don't deny him his
+American rights.&lt;/p&gt;
+&lt;p&gt;Oh, and speaking of that line from the Declaration of Independence, can we
+start thinking about how it might apply to non-Americans also?
+If I'm reading it correctly, being "American" isn't
+actually a required qualifier at all.&lt;/p&gt;</summary><category term="[Mitt Romney]"></category></entry><entry><title>"Too Modern for Time Warner"</title><link href="http://dustinfarris.com/2012/01/10/too-modern-for-time-warner.html" rel="alternate"></link><updated>2012-01-10T00:00:00+01:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-01-10:2012/01/10/too-modern-for-time-warner.html</id><summary type="html">&lt;p&gt;&lt;img alt="Time Warner browser options" src="/media/uploads/uploads/timewarnerfml_big.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;Apparently, I have upgraded myself beyond the ability to pay my cable bill at
+Time Warner's "PayXpress" website. This message was
+shocking for two reasons. First and initially, the fact
+that the corporation providing my internet service can't receive payment
+through my internet browser.&lt;/p&gt;
+&lt;p&gt;Secondly, the pathetic list of browsers
+they_do_support is just miserable:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Firefox 2.0 &amp;amp; 3.0.  I'm running the &lt;a href="http://www.mozilla.org/en-US/firefox/9.0.1/releasenotes/"&gt;latest version&lt;/a&gt;.. 9.0.1&lt;/li&gt;
+&lt;li&gt;Safari 3.0 &amp;amp; 4.0. I'm running the &lt;a href="http://support.apple.com/kb/DL1070"&gt;latest version&lt;/a&gt;.. 5.1.2&lt;/li&gt;
+&lt;li&gt;Internet Explorer 6.0, 7.0 &amp;amp; 8.0.. Well I'm not on Windows, but if I was I would probably have been forced to upgrade to Microsoft's latest &amp;amp; greatest, IE 9.0 (with 10.0 on the way) and been out of luck there as well.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Not to mention they don't support &lt;a href="https://www.google.com/chrome/"&gt;Chrome&lt;/a&gt; at
+all (my browser of choice), or &lt;a href="http://www.opera.com/"&gt;Opera&lt;/a&gt;, or
+&lt;a href="http://caminobrowser.org/"&gt;Camino&lt;/a&gt;, or &lt;a href="http://www.amazon.com/Mobile-Design-Dummies-Janine-Warner/dp/0470560967"&gt;mobile browsing&lt;/a&gt;, or a &lt;a href="http://en.wikipedia.org/wiki/List_of_web_browsers"&gt;slew of other ways people browse the web&lt;/a&gt;. I
+mean they could at least support text-only browsers if they're supporting &lt;a href="http://lynx.browser.org/"&gt;IE 6.0&lt;/a&gt;!&lt;/p&gt;
+&lt;p&gt;Of course I get this message after spending last month arguing with Time
+Warner's customer service regarding their not-so-automatic payment system,
+services appearing on my bill I didn't order, overwhelming price hikes for no
+apparent reason, drops in bandwidth, well the list goes on; but I'll save all
+that for another article.&lt;/p&gt;</summary><category term=""></category></entry><entry><title>Example Article</title><link href="http://dustinfarris.com/2012/01/01/example-article.html" rel="alternate"></link><updated>2012-01-01T00:00:00+01:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2012-01-01:2012/01/01/example-article.html</id><summary type="html">&lt;p&gt;This is an example article. You probably want to delete it and write your own articles!&lt;/p&gt;</summary><category term="example"></category></entry><entry><title>"You want to pierce your what?!"</title><link href="http://dustinfarris.com/2011/12/30/you-want-to-pierce-your-what.html" rel="alternate"></link><updated>2011-12-30T00:00:00+01:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2011-12-30:2011/12/30/you-want-to-pierce-your-what.html</id><summary type="html">&lt;p&gt;&lt;img alt="Cow with nose ring" src="/media/uploads/4265711638_88a87b85a9.jpeg" /&gt;&lt;/p&gt;
+&lt;p&gt;Has anyone else noticed kids punching holes in any piece of flesh they can put
+their hands on? To be fair, I had a piercing of my own in
+my late teens, but now (in my late 20s) it blows my mind how western
+civilization can get away with this.&lt;/p&gt;
+&lt;p&gt;It's not art, and only expresses lack of anything intelligent to do.
+(and yes, I'm speaking to my 18-year-old self)&lt;/p&gt;</summary><category term=""></category></entry><entry><title>"Book Report: The Brothers Karamazov"</title><link href="http://dustinfarris.com/2011/12/27/book-report-the-brothers-karamazov.html" rel="alternate"></link><updated>2011-12-27T00:00:00+01:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2011-12-27:2011/12/27/book-report-the-brothers-karamazov.html</id><summary type="html">&lt;p&gt;&lt;img alt="The Brothers Karamazov book cover" src="/media/uploads/uploads/brotherskaramazov_medium.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;The Brothers Karamazov by Fyodor Dostoevsky&lt;/p&gt;
+&lt;p&gt;You'll have to set aside some serious time for this one.
+&lt;em&gt;Brothers Karamazov&lt;/em&gt; is a loaded book with tons of ironies
+and questions to ponder. I've been eyeing this member of my
+"list" for some time, and was not disappointed.&lt;/p&gt;
+&lt;p&gt;Dostoevsky weaves a fabulous murder mystery, but that is not
+theluminescence that shines from this gem.
+Nearly every page has a hard-hitting point that relates to
+life's purpose, our memories, and our relationships. Parts
+of the book get political:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;But what comes of this right to increase one's needs? For
+the rich, isolation and spiritual suicide; for the poor, envy and murder, for
+they have been given rights, but have not yet been shown any way of satisfying
+their needs.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;And other parts deal with our personal struggle with duty and honor:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Brother... you're not ready, and such a cross is not for you. ... Heavy
+burdens are not for everyone, for some they are impossible.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Anyone who is serious about literature absolutely must
+give_Brothers Karamazov_a go.&lt;/p&gt;</summary><category term="reading"></category></entry><entry><title>"The Futility Of Bipartisan Outreach"</title><link href="http://dustinfarris.com/2011/12/08/the-futility-of-bipartisan-outreach.html" rel="alternate"></link><updated>2011-12-08T00:00:00+01:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2011-12-08:2011/12/08/the-futility-of-bipartisan-outreach.html</id><summary type="html">&lt;p&gt;I love the way &lt;a href="http://en.wikipedia.org/wiki/Paul_Krugman"&gt;Paul Krugman&lt;/a&gt;
+articulates the realities of our government:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;President Obama has tried -- desperately, and far beyond the point at which
+it made any kind of sense -- to reach out across the partisan divide.
+...And his reward for all that is that Mitt Romney
+describes him as a full-on Marxist ...&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Read &lt;a href="http://krugman.blogs.nytimes.com/2011/12/07/the-futility-of-bipartisan-outreach/"&gt;his (short but sweet) blog post on nytimes.com&lt;/a&gt;.&lt;/p&gt;</summary><category term="[Paul Krugman]"></category></entry><entry><title>"Hillary Clinton Speaks to the U.N. on Gay Rights"</title><link href="http://dustinfarris.com/2011/12/07/hillary-clinton-speaks-to-the-un-on-gay-rights.html" rel="alternate"></link><updated>2011-12-07T00:00:00+01:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2011-12-07:2011/12/07/hillary-clinton-speaks-to-the-un-on-gay-rights.html</id><summary type="html">&lt;p&gt;I donated to Hillary Clinton's campaign during the 2008 primaries, and
+although she didn't make it to the final election, I'm glad President Obama
+had the intelligence and humility to make her Secretary of State.&lt;/p&gt;
+&lt;p&gt;Yesterday, December 7, Mrs. Clinton gave a moving speech on the current status
+of gay rights, what it means to have human rights, and how the world is
+improving and can further improve. Together with President
+Obama's recent &lt;a href="http://www.csmonitor.com/Business/Robert-Reich/2011/1207/Obama-s-most-important-economic-speech"&gt;powerful speech on the U.S. economy and what needs to be done&lt;/a&gt;, I am feeling unusually optimistic about our
+current administration's future. Of course actions speak
+louder than words, but there may be hope for our country yet.&lt;/p&gt;</summary><category term=""></category></entry><entry><title>"An Atrocity in Cherokee County"</title><link href="http://dustinfarris.com/2011/12/06/an-atrocity-in-cherokee-county.html" rel="alternate"></link><updated>2011-12-06T00:00:00+01:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2011-12-06:2011/12/06/an-atrocity-in-cherokee-county.html</id><summary type="html">&lt;p&gt;&lt;img alt="Jorelys Rivera, 7, of Canton, Ga." src="/media/uploads/uploads/missing%2520girl%2520georgia-315335709_v2_medium.jpeg" /&gt;&lt;/p&gt;
+&lt;p&gt;I lived in Canton, GA for the entirety of 2 whole weeks. My
+reasons for moving to (and leaving) that city is a separate story, but I have
+memories of friendly people, good food, and plenty of nature.
+The good 'ol south.&lt;/p&gt;
+&lt;p&gt;What I_don't_remember is a son-
+of-a-bitch who had it in him recently to abuse, rape, and "dispose" of a 7
+-year-old girl. This pathetic excuse for a man literally
+sexually assaulted a child and then threw her down the garbage chute when he
+was finished. I'm usually a stubborn advocate for American
+civil rights, due process, human equality and all, but this guy needs to burn.&lt;/p&gt;
+&lt;p&gt;Read the (heart gripping) &lt;a href="http://usnews.msnbc.msn.com/_news/2011/12/05/9227681-body-of-girl-7-found-in-trash"&gt;story on msnbc.msn.com&lt;/a&gt;.&lt;/p&gt;</summary><category term=""></category></entry><entry><title>"Captain, scanners detect an M-class planet"</title><link href="http://dustinfarris.com/2011/12/06/captain-scanners-detect-an-m-class-planet.html" rel="alternate"></link><updated>2011-12-06T00:00:00+01:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2011-12-06:2011/12/06/captain-scanners-detect-an-m-class-planet.html</id><summary type="html">&lt;p&gt;&lt;img alt="Kepler 22-b" src="/media/uploads/uploads/120511_22b_medium.jpeg" /&gt;&lt;/p&gt;
+&lt;p&gt;Remember in Star Trek when the operations officer (usually Commander Data) was
+scanning for "M-class" planets? Well, it looks like we mere
+humans of the 21st century don't need a galaxy-class starship to do the same.
+This monstrosity (about 2 and a half times the size of
+Earth) was just discovered recently, and has temperatures inhabitable by
+humans. The downside is it happens to be 600 light years
+away from our species.&lt;/p&gt;
+&lt;p&gt;If you ask me, the obvious next step is a spaceship that flies at 60-light-
+years/hour.&lt;/p&gt;
+&lt;p&gt;Get the &lt;a href="http://www.bbc.co.uk/news/science-environment-16040655"&gt;details on bbc.com&lt;/a&gt;.&lt;/p&gt;</summary><category term=""></category></entry><entry><title>"We need politicians like Elizabeth Warren"</title><link href="http://dustinfarris.com/2011/12/03/we-need-politicians-like-elizabeth-warren.html" rel="alternate"></link><updated>2011-12-03T00:00:00+01:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2011-12-03:2011/12/03/we-need-politicians-like-elizabeth-warren.html</id><summary type="html">&lt;p&gt;Beautifully spoken criticism on the nation's debt and how to approach taxation
+of the rich.&lt;/p&gt;
+&lt;p&gt;Learn more about her campaign for the Senate
+on&lt;a href="http://elizabethwarren.com/"&gt;elizabethwarren.com&lt;/a&gt;.&lt;/p&gt;</summary><category term="[Elizabeth Warren]"></category></entry><entry><title>"American Airlines files Chapter 11"</title><link href="http://dustinfarris.com/2011/11/29/american-airlines-files-chapter-11.html" rel="alternate"></link><updated>2011-11-29T00:00:00+01:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2011-11-29:2011/11/29/american-airlines-files-chapter-11.html</id><summary type="html">&lt;p&gt;&lt;img alt="American Airlines Boeing 777" src="/media/uploads/uploads/b777-223er-n780an-american-airlines-aal-aa-miami-mia-kmia_medium.jpeg" /&gt;&lt;/p&gt;
+&lt;p&gt;It looks like another year of high gas prices and failed labor negotiations
+has taken the final swing at American Airlines. Today, the
+airline giant filed for Chapter 11 protection. American is
+the last major US carrier to join the ranks of airlines that have filed for
+bankruptcy since 9/11.&lt;/p&gt;
+&lt;p&gt;This reinforces my stance as an anti-union airline employee.
+While American's predicament certainly
+isn't_entirely_ the fault of brutal labor negotiations,
+pompous disregard for a company's financial health--such is the attitude of
+all labor unions (and many of their members) I've been in contact with--seems
+to only lead in one direction: cranky employees, cranky management, and a
+bankrupt airline.&lt;/p&gt;
+&lt;p&gt;Read more about &lt;a href="http://online.wsj.com/article/SB10001424052970204449804577067880541410146.html?mod=googlenews_wsj"&gt;American's filing on The Wall Street Journal&lt;/a&gt;.&lt;/p&gt;</summary><category term=""></category></entry><entry><title>"How to defend Earth from asteroids"</title><link href="http://dustinfarris.com/2011/11/23/how-to-defend-earth-from-asteroids.html" rel="alternate"></link><updated>2011-11-23T00:00:00+01:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2011-11-23:2011/11/23/how-to-defend-earth-from-asteroids.html</id><summary type="html">&lt;p&gt;After an asteroid came &lt;a href="/2011/11/an-asteroid-closeup/"&gt;remarkably close to Earth&lt;/a&gt; recently, I began wondering just what would happen to man-kind if
+one actually struck. Here is a fun talk that gives an
+overview of what we know about asteroids, and what we would be able to do
+right now if such a catastrophic event was foreseen in the near future.&lt;/p&gt;</summary><category term=""></category></entry><entry><title>"NMB Rejects AFA Accusations"</title><link href="http://dustinfarris.com/2011/11/19/nmb-rejects-afa-accusations.html" rel="alternate"></link><updated>2011-11-19T00:00:00+01:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2011-11-19:2011/11/19/nmb-rejects-afa-accusations.html</id><summary type="html">&lt;p&gt;&lt;img alt="Side of Delta aircraft" src="/media/uploads/uploads/side-of-delta_medium.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;After nearly a year of deliberating, the National Mediation Board has found
+the Association of Flight Attendants' claim--that Delta interfered with the
+2010 flight attendant union election process--does not warrant a revote.&lt;/p&gt;
+&lt;p&gt;The AFA has been trying desperately to win Delta: campaigning for over 5
+years, and managing to force 3 elections--inevitably loosing each one.
+The NMB even &lt;a href="http://liveshots.blogs.foxnews.com/2010/05/11/new-union-friendly-rules-could-affect-delta/"&gt;changed the voting rules&lt;/a&gt; this last time around, stating that a union was not, in
+fact, the majority of a labor group, but was rather a "union" of a majority of
+those who felt like voting for a union.  Despite this rule change that
+clearly favored the AFA, they did not prevail in winning this smaller version
+of a "majority".&lt;/p&gt;
+&lt;p&gt;It is the policy of the Board to take seriously any accusation of voting
+interference; which the AFA was quick to file after loosing.
+Again. Now that the claims have been set
+aside, the employees of Delta Airlines can move ahead with the merger with
+Northwest Airlines, and begin enjoying the benefits of a combined workgroup.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://news.delta.com/index.php?s=43&amp;amp;item=1490"&gt;Read more at news.delta.com&lt;/a&gt;&lt;/p&gt;</summary><category term=""></category></entry><entry><title>"Arizona Gets a Break"</title><link href="http://dustinfarris.com/2011/11/09/arizona-gets-a-break.html" rel="alternate"></link><updated>2011-11-09T00:00:00+01:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2011-11-09:2011/11/09/arizona-gets-a-break.html</id><summary type="html">&lt;p&gt;&lt;img alt="Russell Pearce" src="/media/uploads/111109032839-russell-pearce-story-top_large.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;After writing and defending a law that would allow police officers to question
+a person's citizenship for getting a parking ticket, Arizona state senator
+Russell Pearce was removed from office in a public election that took place
+last night. I never supported this law, and see it,
+personally, as a rough and humiliating slap at illegal immigrants.&lt;/p&gt;
+&lt;p&gt;It is not the state's duty to catch and imprison people who do not have valid
+documents. There is a whole department at the Federal level
+dedicated to ensuring this process is carried out fairly and accurately.
+What if I forget to signal while changing lanes, get pulled
+over, and don't have my passport handy? Do I go to jail and
+wait for the cops to sort things out? I mean really, what
+good does this do for anyone? This law is just another
+Republican attempt to wield undeserved power.&lt;/p&gt;
+&lt;p&gt;At any rate, I'm glad he's not in congress any more.&lt;/p&gt;
+&lt;p&gt;Read more at &lt;a href="http://www.csmonitor.com/USA/Latest-News-Wires/2011/1109/Russell-Pearce-architect-of-illegal-immigration-law-in-Arizona-loses-election"&gt;The Christian Science Monitor&lt;/a&gt;.&lt;/p&gt;</summary><category term="immigration"></category></entry><entry><title>"Simulating a Mission to Mars"</title><link href="http://dustinfarris.com/2011/11/07/simulating-a-mission-to-mars.html" rel="alternate"></link><updated>2011-11-07T00:00:00+01:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2011-11-07:2011/11/07/simulating-a-mission-to-mars.html</id><summary type="html">&lt;p&gt;This is absolutely stunning. A multi-national crew locked
+themselves up in a mock space craft for over a year to determine the
+psychological effects it would have. Who can imagine what
+_that_must have been like?&lt;/p&gt;
+&lt;p&gt;I always knew somehow that a Mars trip would be possible someday, but never
+did I think it would happen in my lifetime. Isn't it
+incredible to think that if something were to happen to Earth, our species
+might be able to live on.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Clothed in blue jumpsuits, the would-be astronauts from Europe, Russia
+andChinagrinned and waved as the heavy
+metal door was shut on their home of the last 17 months in a mock spaceship at
+a Moscow research institute.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Read the &lt;a href="http://www.reuters.com/article/2011/11/04/us-mars-isolation-odd-idUSTRE7A349220111104"&gt;full article on Reuters&lt;/a&gt;.&lt;/p&gt;</summary><category term=""></category></entry><entry><title>"An Asteroid Closeup"</title><link href="http://dustinfarris.com/2011/11/05/an-asteroid-closeup.html" rel="alternate"></link><updated>2011-11-05T00:00:00+01:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2011-11-05:2011/11/05/an-asteroid-closeup.html</id><summary type="html">&lt;p&gt;It looks like the folks in astronomy are getting a treat Tuesday night.
+An asteroid the size of "4 city blocks" is going to come
+closer to Earth than the moon!&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Scientists say the asteroid won't hit us, but it will be barely more than
+200,000 miles away when it passes Earth at 11:13 p.m. Tuesday, and in cosmic
+terms that's really close.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="http://www.sfgate.com/cgi-bin/article.cgi?file=/c/a/2011/11/05/MN3V1LOKC9.DTL"&gt;San Francisco Chronicle: Asteroid headed our way will miss by this much&lt;/a&gt;&lt;/p&gt;</summary><category term=""></category></entry><entry><title>"Book Report: The Republic"</title><link href="http://dustinfarris.com/2011/10/23/book-report-the-republic.html" rel="alternate"></link><updated>2011-10-23T00:00:00+02:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2011-10-23:2011/10/23/book-report-the-republic.html</id><summary type="html">&lt;p&gt;&lt;img alt="The Republic by Plato book cover" src="/media/uploads/republic_medium.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;The Republic by Plato&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;The Republic&lt;/em&gt; is a beautiful dialogue that takes place between Socrates and
+his friends as they explore the worth and profitability of a just man.
+Throughout the writing, our hero, Socrates, utilizes
+dialect to argue fundamental aspects of our soul and how its nurture or
+neglect affects us in life and society.&lt;/p&gt;
+&lt;p&gt;Socrates teaches us that we should spend more time learning about ourselves
+and the power of the Good. This in turn helps us understand
+what we must do:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;For you have often heard that the greatest and most important study is the
+Idea of the Good, by which just things and the rest become useful and
+beneficial.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Socrates also points out that we must be strong in character if we are ever to
+be great:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;A weak nature will never be responsible for great things, whether for good
+or ill.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I find that many of the points raised in _The Republic_are
+valid today. For instance, Socrates discusses the folly of
+excessive praise and flattering of promising youth:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;When he becomes older, I suppose, his relatives and fellow citizens will
+wish to use him for their own purposes.&lt;/p&gt;
+&lt;p&gt;They will fawn on him with requests and honors, anticipating the power that
+will be his and flattering it in advance.&lt;/p&gt;
+&lt;p&gt;[Then] won't he be filled with an impossible hope, believing himself
+competent to manage the affairs of Greeks and barbarians alike, exalting
+himself to a great height, filled with pretense and empty pride without
+intelligence?&lt;/p&gt;
+&lt;p&gt;Then suppose someone came to a person in this condition and gently spoke the
+truth: that intelligence is not in him, but he needs it, and that it cannot be
+possessed unless he slaves for the possession of it. Do you
+think it will be easy for him to listen, in the midst of these great evils?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;There is also a criticism of literature, music and poetry that I believe is
+especially applicable today:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Because we shall say, I presume, that poets and prose writers therefore
+speak badly about what is most important for men, claiming that many men are
+happy but unjust, or just but wretched, and that the doing of injustice is
+profitable if it escapes detection, while justice is another's good and one's
+own loss.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I think that describes a lot of what exists in pop culture today.
+It's ironic that the same air of ignorance exists today as
+it did over 2000 years ago. Have we learned nothing?
+Or is the ratio of wisdom to ignorance hard-coded in our
+genetics somewhere?&lt;/p&gt;
+&lt;p&gt;We can learn a lot by reviewing the ground Socrates covered in this dialogue.
+Plato wrote &lt;a href="/2011/7/book-
+report-dialogues-by-plato/"&gt;many other great dialogues&lt;/a&gt; as well that teach us just as much, but I place
+_The Republic _at the the top.&lt;/p&gt;
+&lt;p&gt;I own &lt;a href="http://yalepress.yale.edu/book.asp?isbn=9780300136371"&gt;_The Republic _translated by R.E. Allen&lt;/a&gt;which is a modern translation of
+the Greek and is delightfully readable.&lt;/p&gt;</summary><category term="reading"></category></entry><entry><title>"A Cold Lovers' Night"</title><link href="http://dustinfarris.com/2011/10/16/a-cold-lovers-night.html" rel="alternate"></link><updated>2011-10-16T00:00:00+02:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2011-10-16:2011/10/16/a-cold-lovers-night.html</id><summary type="html">&lt;p&gt;ETOH - A Cold Lovers' Night&lt;/p&gt;
+&lt;p&gt;I recently flew to Orlando to play the piano at a wedding for an old friend of
+mine. While there, he asked about a song I produced many
+years ago called A Cold Lovers' Night. He was interested in
+getting a copy, which was understandable--because he wrote it.&lt;/p&gt;
+&lt;p&gt;Many years have passed since Matias and I wrote and recorded music together,
+and I have many fond memories of those days. Work was play,
+and play was music, and the whole while we became close friends expressing
+ourselves in a way only melodies and rhythms can explain.&lt;/p&gt;
+&lt;p&gt;We called ourselves ETOH (Entertaining Thoughts Of Happiness), and though we
+never did much with our recordings, I will always cherish the prints of our
+lives we left behind.&lt;/p&gt;</summary><category term=""></category></entry><entry><title>"What we learned from 5 million books"</title><link href="http://dustinfarris.com/2011/09/21/what-we-learned-from-5-million-books.html" rel="alternate"></link><updated>2011-09-21T00:00:00+02:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2011-09-21:2011/09/21/what-we-learned-from-5-million-books.html</id><summary type="html">&lt;p&gt;A humorous talk on an initiative to digitize books and learn about culture.&lt;/p&gt;</summary><category term="TED"></category></entry><entry><title>"Book Report: 1984"</title><link href="http://dustinfarris.com/2011/09/15/book-report-1984.html" rel="alternate"></link><updated>2011-09-15T00:00:00+02:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2011-09-15:2011/09/15/book-report-1984.html</id><summary type="html">&lt;p&gt;&lt;img alt="1984 book cover" src="/media/uploads/1984_medium.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;1984 by George Orwell&lt;/p&gt;
+&lt;p&gt;If you want a terrifying glimpse into the future of mankind, read this book.
+Orwell tells a story of a time when citizens are controlled
+in every way, and wars are waged just to get rid of surplus.&lt;/p&gt;
+&lt;p&gt;"The Party" dominates the people of the 1984 world, watching their every move,
+listening to every spoken word, and eliminating anyone who might threaten
+their manifesto:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;"War is peace. Freedom is slavery.
+Ignorance is strength."&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The source of the phrase "Big Brother," 1984 shows us that when humanist
+philosophy goes out the window, totalitarianismcombines
+with oligarchical collectivism to create a supreme power of hate and control.
+This book serves as a warning to those who believe rights
+to life, liberty, and property are not worth fighting for.&lt;/p&gt;</summary><category term="reading"></category></entry><entry><title>"Book Report: Slaughterhouse-Five"</title><link href="http://dustinfarris.com/2011/09/09/book-report-slaughterhouse-five.html" rel="alternate"></link><updated>2011-09-09T00:00:00+02:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2011-09-09:2011/09/09/book-report-slaughterhouse-five.html</id><summary type="html">&lt;p&gt;&lt;img alt="Slaughterhouse-five book cover" src="/media/uploads/slaughterhouse_medium.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;Slaughterhouse-Five by Kurt Vonnegut&lt;/p&gt;
+&lt;p&gt;While being sufficiently entertaining enough to read quickly, I did not seem
+to capture the awe that so many others have when reading this book.
+However, Vonnegut offers a few interesting ideas throughout
+his novel: one being that there is no such thing as time--that we are forever
+frozen in all moments of existence.&lt;/p&gt;
+&lt;p&gt;Kurt Vonnegut writes in a style that is easy to absorb. I'm
+sure many people would get a kick out of this book in particular--which is
+probably why it was listed in &lt;a href="http://en.wikipedia.org/wiki/Slaughterhouse-
+Five#Literary_significance_and_reception"&gt;Time Magazine's 100 best English-language
+novels written since 1923&lt;/a&gt;.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;"That is a very &lt;em&gt;Earthling _question to ask, Mr. Pilgrim.
+Why _you?&lt;/em&gt; Why &lt;em&gt;us _for that matter?
+Why _anything?&lt;/em&gt; Because this moment
+simply &lt;em&gt;is&lt;/em&gt;."&lt;/p&gt;
+&lt;/blockquote&gt;</summary><category term="reading"></category></entry><entry><title>"Book Report: The Prince"</title><link href="http://dustinfarris.com/2011/09/05/book-report-the-prince.html" rel="alternate"></link><updated>2011-09-05T00:00:00+02:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2011-09-05:2011/09/05/book-report-the-prince.html</id><summary type="html">&lt;p&gt;&lt;img alt="The Prince book cover" src="/media/uploads/theprince_medium.jpg" title="The Prince by Niccolo Machiavelli" /&gt; &lt;em&gt;The Prince&lt;/em&gt; by Niccolo Machiavelli What intrigues me
+about this book is that it marked a sharp change in philosophical thinking--
+making a break from idealism, and instead focusing on realism. While
+Machiavelli may have simply been trying to compose his way into friendship
+with the leaders of Florence, his work has endured and has been an inspiration
+for many fearsome leaders. The book was such a deviation, in fact, that the
+Church banned it shortly after it was published. The Prince explores the logic
+and reasoning a leader should employ when conquering new lands and maintaining
+those he already has. Machiavelli gives no moral weight to right and wrong,
+but recommends that goal-oriented logic dictate all of one's actions: &amp;gt;"Hence
+it is necessary for a prince wishing to hold his own to know how to do wrong,
+and to make use of it or not according to necessity." Notable individuals who
+drew lessons from Machiavelli include Napoleon, Adolf Hitler, and probably
+several modern-day politicians who won't otherwise admit it.&lt;/p&gt;</summary><category term="reading"></category></entry><entry><title>"Book Report: The Great Gatsby"</title><link href="http://dustinfarris.com/2011/09/02/book-report-the-great-gatsby.html" rel="alternate"></link><updated>2011-09-02T00:00:00+02:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2011-09-02:2011/09/02/book-report-the-great-gatsby.html</id><summary type="html">&lt;p&gt;&lt;img alt="The Great Gatsby book cover" src="/media/uploads/greatgatsby_medium.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;The Great Gatsby by F. Scott Fitzgerald&lt;/p&gt;
+&lt;p&gt;An easy read that took me just short of 2 days to breeze through, I found The
+Great Gatsby a fun book that was modestly entertaining.&lt;/p&gt;
+&lt;p&gt;The story is of a man who falls in love, leaves for 5 years, then returns to
+reclaim his love. The Great Gatsby explores how we can
+dwell on the past too much, and forget to conduct ourselves nobly in the
+present.&lt;/p&gt;</summary><category term="reading"></category></entry><entry><title>"Book Report: Crime and Punishment"</title><link href="http://dustinfarris.com/2011/08/29/book-report-crime-and-punishment.html" rel="alternate"></link><updated>2011-08-29T00:00:00+02:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2011-08-29:2011/08/29/book-report-crime-and-punishment.html</id><summary type="html">&lt;p&gt;&lt;img alt="Crime and Punishment book cover" src="/media/uploads/crimeandpunishment_medium.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;Crime and Punishment by Fyodor Dostoevsky&lt;/p&gt;
+&lt;p&gt;I picked up this book at my new favorite store in Manhattan, &lt;a href="http://www.strandbooks.com/"&gt;Strand Book Store&lt;/a&gt;. I had an impulsive
+itch to read something from Russia, and since I've been lately determined to
+read the classics, this seemed like a good pick. Plot about
+murder, written by a Russian deviant who spent a few years in the Siberian
+prison, raving reviews from anyone who has read it, I figured I couldn't go
+wrong. Right I was.&lt;/p&gt;
+&lt;p&gt;The basic outline of the story involves a Russian student who has dropped out
+of university. This man has spent the more recent months of
+his life in melodramatic thought, going over certain views and philosophies of
+his. One key view he has is that murder, and other crime,
+is only a crime when committed by normal people. He
+postulated that there is a class of extraordinary citizens to whom the rules
+do not apply. His favorite example was Napoleon.
+He thinks that committing a crime to achieve a greater good
+is forgivable, and should not even be seen as a crime in the first place.&lt;/p&gt;
+&lt;p&gt;The book explores his inner struggle between his modern theoretical
+justification, and his conscience. He never fully admits
+feeling "sorry" for his crime, although he does eventually declare that his
+reasoning may have been imperfect. (spoiler) He concludes
+his journey by confessing his crime so that he may do penance and live a
+better life afterwards.&lt;/p&gt;
+&lt;p&gt;I think Dostoevsky must have had great insight into what motivates certain
+people to behave in certain ways. While many if not most of
+our actions are dictated by our daily needs, sometimes we are driven to do
+great deeds, for better or worse, purely for the sake of our beliefs.
+The main character in Crime and Punishment committed murder
+to prove to himself that he really believed in his own theory.
+He comes up with other excuses (debt, family needs, etc..)
+to satiate other simple minded inquisitors, but the underlying reason never
+seems to change.&lt;/p&gt;
+&lt;p&gt;Dostoevsky is a brilliant writer and Crime and Punishment was particularly
+easy and fun to read.&lt;/p&gt;</summary><category term="reading"></category></entry><entry><title>"Lucky Star Pinot Noir"</title><link href="http://dustinfarris.com/2011/08/27/lucky-star-pinot-noir.html" rel="alternate"></link><updated>2011-08-27T00:00:00+02:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2011-08-27:2011/08/27/lucky-star-pinot-noir.html</id><summary type="html">&lt;p&gt;&lt;img alt="Lucky Star Pinot Noir" src="/media/uploads/wine_small.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;I made a delightful discovery the other day. This Pinot is
+fantastic both with dinner and by itself. It contains great
+oaky characteristics, and is not overpowering. Not for
+those with a sweet tooth (most Pinots aren't), but definitately a win for the
+casual wine drinker (me). Best of all, it can be bought for
+under $10! This is the first Pinot in that price range that
+I've tried and liked, and, luckily for me, the wine shop down the street from
+my NYC apartment keeps it regularly stocked.&lt;/p&gt;
+&lt;p&gt;For a great wine around $8.99, trya 2009 Lucky Star Pinot
+Noir.&lt;/p&gt;</summary><category term="wine"></category></entry><entry><title>"Mark Pagel: How language transformed humanity"</title><link href="http://dustinfarris.com/2011/08/11/mark-pagel-how-language-transformed-humanity.html" rel="alternate"></link><updated>2011-08-11T00:00:00+02:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2011-08-11:2011/08/11/mark-pagel-how-language-transformed-humanity.html</id><summary type="html">&lt;p&gt;Here is a fascinating talk on how humanity's significant advantage over other
+species owes itself largely to the development of language.&lt;/p&gt;
+&lt;p&gt;It makes me wonder if the "spark" that God or some deity breathed into us is
+somehow related to this language evolution that led to the coordinated
+exchange of ideas.&lt;/p&gt;</summary><category term="TED"></category></entry><entry><title>"The Charles Dickens Museum"</title><link href="http://dustinfarris.com/2011/08/07/the-charles-dickens-museum.html" rel="alternate"></link><updated>2011-08-07T00:00:00+02:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2011-08-07:2011/08/07/the-charles-dickens-museum.html</id><summary type="html">&lt;p&gt;On a trip to London, I decided to take some time to investigate an author I
+recently read, Charles Dickens. The house on 48 Doughtry
+Street was occupied by the great writer between 1837 and 1839. In this period,
+he produced The Pickwick Papers, and the everlasting favorite, Oliver Twist.&lt;/p&gt;
+&lt;p&gt;It was indeed a joy to climb the stairs from the wine cellar, to the ground
+floor, and upwards further to the drawing room and library.
+The museum has collected several pieces of furniture,
+literature, and artwork that Dickens owned over the years.
+The experience was quite authentic and warm, with a
+friendly staff and a video documentary of Dickens prolific life.&lt;/p&gt;
+&lt;p&gt;I would highly recommend anyone with an interest in great English literature
+to take a stop by this museum if one happens to have a few hours of spare time
+in London. The cost of entry is £7 and is well worth it.&lt;/p&gt;</summary><category term="London"></category></entry><entry><title>"A finer moment in chess"</title><link href="http://dustinfarris.com/2011/07/31/a-finer-moment-in-chess.html" rel="alternate"></link><updated>2011-07-31T00:00:00+02:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2011-07-31:2011/07/31/a-finer-moment-in-chess.html</id><summary type="html">&lt;p&gt;&lt;img alt="chess.com screenshot" src="/media/uploads/aproudmoment_medium.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;I love chess, but that should not be confused with me actually being any good
+at it. Every now and then, though, I surprise myself.
+In this Sunday morning game, I sacrifice both of my bishops
+to open up black's king after he castled. After attempting
+to pin my queen, I move in for mate with Rh5#.&lt;/p&gt;</summary><category term="chess"></category></entry><entry><title>"Thandie Newton: Embracing otherness, embracing myself"</title><link href="http://dustinfarris.com/2011/07/25/thandie-newton-embracing-otherness-embracing-myself.html" rel="alternate"></link><updated>2011-07-25T00:00:00+02:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2011-07-25:2011/07/25/thandie-newton-embracing-otherness-embracing-myself.html</id><summary type="html">&lt;p&gt;Extraordinary.&lt;/p&gt;</summary><category term="TED"></category></entry><entry><title>"Book Report: Dialogues by Plato"</title><link href="http://dustinfarris.com/2011/07/21/book-report-dialogues-by-plato.html" rel="alternate"></link><updated>2011-07-21T00:00:00+02:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2011-07-21:2011/07/21/book-report-dialogues-by-plato.html</id><summary type="html">&lt;p&gt;&lt;img alt="The Republic and other Dialogues book cover" src="/media/uploads/img_0583_medium.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;Dialogues by Plato&lt;/p&gt;
+&lt;p&gt;This covers 4 of the 5 most popular dialogues written by Plato excluding &lt;em&gt;The
+Republic&lt;/em&gt; which, as a text that has moved me profoundly, &lt;a href="/2011/10/book-report-the-republic/"&gt;will get its own entry&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Plato was a Greek philosopher and friend to the dialectical genius,
+Socrates. While the exact history of the man Socrates may
+never be fully known, we do know that Plato chose Socrates to exhibit the
+ideas presented in his writing.&lt;/p&gt;
+&lt;p&gt;The dialogue approach to writing that was common in those days is very
+appealing to me even in the 21st century. The process of
+question and response discovery draws a sort of parrallel to the thoughts that
+run through my own head. It is quite gratifying to see your
+own thoughts explored, or &lt;a href="http://www.jasonswadley.com/2011/07/uncovering-our-thought-in-aristotle%E2%80%99s/"&gt;"uncovered"&lt;/a&gt; as a friend of mine wrote,
+making the dialogues an especially enjoyable read.&lt;/p&gt;
+&lt;p&gt;In &lt;em&gt;Apology&lt;/em&gt; we learn that Socrates is on trial for his
+life. He has the conviction of a man who believes what he
+preaches, and makes the best case possible given the short amount of time
+allotted.&lt;/p&gt;
+&lt;p&gt;In &lt;em&gt;Crito&lt;/em&gt;, Socrates is in jail awaiting death when his friend pleads with him
+to escape. Socrates explains that he must accept the
+sentence his government has awarded him. He believes that
+although his indictment might have been avoided given more time for a proper
+defence, the system of government trumps any selfish bias or desire for "a
+little more life."&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Phaedo&lt;/em&gt; was probably the best of these 3 dialogues describing the death of
+Socrates in my opinion. Here, Socrates explores the human
+soul and offers proof that it not only exists, but has always existed and
+forever will. He examins the effect of good and evil on the
+soul and assures his friends that although he is to die, his soul will endure
+and that death has always been the pursuit of philosophy.&lt;/p&gt;
+&lt;p&gt;Finally, in &lt;em&gt;Symposium,&lt;/em&gt; Plato explores the meaning of Love, what he is, and
+how he is encountered. I was hoping for a more revealing
+account of love in this text than was provided. The
+majority of the dialogue is thoughtless banter regarding the party and
+attributing every uplifting word known to man to love.
+"Love is majestic, love is pure, love is moving, etc..."
+While love is certainly a thing to be praised, I feel that its praise should
+be left to poets, not philosophers. In Plato's defense,
+according to &lt;em&gt;Symposium&lt;/em&gt;, even poets had not yet written a single hymn of
+praise to love at that time--something Plato's character, Eryximachus, sought
+to remedy.&lt;/p&gt;</summary><category term="reading"></category></entry><entry><title>"Book Report: The Girl with the Dragon Tattoo"</title><link href="http://dustinfarris.com/2011/07/15/book-report-the-girl-with-the-dragon-tattoo.html" rel="alternate"></link><updated>2011-07-15T00:00:00+02:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2011-07-15:2011/07/15/book-report-the-girl-with-the-dragon-tattoo.html</id><summary type="html">&lt;p&gt;&lt;img alt="The Girl with the Dragon Tattoo book cover" src="/media/uploads/img_0571_medium.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;The Girl with the Dragon Tattoo by Stieg Larsson&lt;/p&gt;
+&lt;p&gt;I began noticing this book all over the airports about 2 years
+ago. It's hard to miss due to the bright green glossy
+cover, and the fact that everyone reading it seemed to be absorbed like they
+were uncovering the meaning of life.&lt;/p&gt;
+&lt;p&gt;At first I laughed off the title. What guy reads a book
+about a girl? Then a buddy of mine read it and gave me the
+real low down. Murder mystery?
+Suspense? Computer hacking? Bouts with
+evil antagonists hiding in Europe? More
+hacking? I bought it the next day.&lt;/p&gt;
+&lt;p&gt;The book lives up to its reputation. I have never been on
+reading lockdown like I was with The Girl with the Dragon
+Tattoo. At one point I was staying at my mother's, reading
+on her couch all night until 9am when I passed out cold.&lt;/p&gt;
+&lt;p&gt;The story is about Lizbeth, a mid-20's loner who has a shady background and
+knows more about computer hacking than anyone could ever suspect at face
+value. She teams up with a 40-something reporter who is
+hired to solve a murder mystery in northern Sweden. The
+book takes sharp turns regularly, and keeps you saying to yourself, "oh no,
+it's not going to go there, that's not going to happen," and then it does.&lt;/p&gt;
+&lt;p&gt;The story is captivating, the characters are solid. Anyone
+looking for entertainment that doesn't spray a thousand lux into your eyes
+should pick up The Girl with the Dragon Tattoo.&lt;/p&gt;</summary><category term="reading"></category></entry><entry><title>"Book Report: A Tale of Two Cities"</title><link href="http://dustinfarris.com/2011/07/12/book-report-a-tale-of-two-cities.html" rel="alternate"></link><updated>2011-07-12T00:00:00+02:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2011-07-12:2011/07/12/book-report-a-tale-of-two-cities.html</id><summary type="html">&lt;p&gt;&lt;img alt="A Tale of Two Cities book cover" src="/media/uploads/img_0567_medium.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;A Tale of Two Cities by Charles Dickens&lt;/p&gt;
+&lt;p&gt;A novel that builds continuously to the end, A Tale of Two Cities is one of
+the most eloquently written texts I've read in some time.&lt;/p&gt;
+&lt;p&gt;Set during the onset of the French Revolution, Charles Darnay (formally
+Charles Evremonde) runs away from an aristocratic life in Paris he hates to
+live as a free working man in prosperous London. In England
+he meets Lucie Manette, the daughter of a doctor who happened to (spoiler
+alert) be imprisoned by Charles' late family in the infamous Bastille for over
+a decade. Charles and Lucie are married, after which
+Charles is called back to France by a plea letter from a colleague of his left
+in charge of his estate, now imprisoned by French revolutionists.&lt;/p&gt;
+&lt;p&gt;Charles is put on trial as an aristocrat emigrant and sentenced to
+death. He is saved in the end by the social reject
+character, Sydney Carton, whose life of bad behavior is redeemed by his
+sacrifice in taking Charles' place on the chopping block.&lt;/p&gt;
+&lt;p&gt;This story builds progressively until the very end unlike a typical rise-
+climax-fall setup. Dickens confesses this style explicitly
+at one time writing: "... if you want to put it down halfway through, don't."&lt;/p&gt;
+&lt;p&gt;I am inspired to read more about the French Revolution.
+Dickens used a single source as a historical reference, The French Revolution:
+A History by Thomas Carlyle. I suppose that would be a good
+place to start.&lt;/p&gt;
+&lt;p&gt;A Tale of Two Cities goes out with a bang with the fantastic closing line:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;"It is a far, far better thing that I do, than I have ever done; it is a
+far, far better rest that I go to, than I have ever known."&lt;/p&gt;
+&lt;/blockquote&gt;</summary><category term="reading"></category></entry><entry><title>"Book Report: Lord of the Flies"</title><link href="http://dustinfarris.com/2011/07/12/book-report-lord-of-the-flies.html" rel="alternate"></link><updated>2011-07-12T00:00:00+02:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2011-07-12:2011/07/12/book-report-lord-of-the-flies.html</id><summary type="html">&lt;p&gt;&lt;img alt="Lord of the Flies book cover" src="/media/uploads/7624_medium.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;Lord of the Flies by William Golding&lt;/p&gt;
+&lt;p&gt;It took an impressively short amount of time to read this (2 days--which is
+short compared to my average reading time of 2 months). The
+brutal nature of humanity is the foundation of a real page-turner, indeed.&lt;/p&gt;
+&lt;p&gt;The government that the boys establish in this book is caused by their need to
+organize themselves. Rules and leaders are selected, and
+from the start there is a tug of war for dominance. Over
+time, organization becomes savagry as the boys' isolated world frees them of
+social restraint and values.&lt;/p&gt;
+&lt;p&gt;Lord of the Flies gives me new appreciation for society, religion, and any
+government that requires people to get along and keeps primal instincts in
+check.&lt;/p&gt;</summary><category term="reading"></category></entry><entry><title>"Missouri and Baby Pictures"</title><link href="http://dustinfarris.com/2011/06/21/missouri-and-baby-pictures.html" rel="alternate"></link><updated>2011-06-21T00:00:00+02:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2011-06-21:2011/06/21/missouri-and-baby-pictures.html</id><summary type="html">&lt;p&gt;Flying back to New York after a lovely weekend in the
+Ozarks. I watched my oldest friend from high school get
+married and showed my girlfriend fantastic things the
+midwest has to offer, like Andy's Frozen Yogurt, and Walmart.&lt;/p&gt;
+&lt;p&gt;My mother dug out some old pictures and apparently I was blonde
+once. Who knew?&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Dustin Farris Kindergarten Picture" src="/media/uploads/img_0053_medium.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;I have to say I really appreciate the warm upbringing Missouri gave
+me. I think our perspective on the world is significantly
+shaped by the environment we grow up in.&lt;/p&gt;</summary><category term=""></category></entry><entry><title>"New Blog, New Look"</title><link href="http://dustinfarris.com/2011/06/16/new-blog-new-look.html" rel="alternate"></link><updated>2011-06-16T00:00:00+02:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2011-06-16:2011/06/16/new-blog-new-look.html</id><summary type="html">&lt;p&gt;So here it is. Rolling out the new dustinfarris.com with a
+new look and a new blog engine. After having gone through 4
+_very _different revisions, I've settled on a front end design and a back end
+database structure that I'm happy with.&lt;/p&gt;
+&lt;p&gt;Featured in front is a bright and trim menu bar that's easy to reach, but not
+in the way. On the side there is a &lt;strong&gt;collapsible&lt;/strong&gt;
+companion bar providing quick links to recent blogs, a (not functioning yet)
+search bar, and Twitter posts (cough keyword plugs
+cough). Still work to do here
+obviously. Lastly, I've added some subtle jQuery with more
+on the way.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="PostgreSQL code" src="/media/uploads/codess_big.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;Behind the scenes I've hammered out a blog engine that is finally at least
+close to on par with the likes of wordpress and such. Why
+am I not using word press, you ask? Because I didn't write
+it.&lt;/p&gt;
+&lt;p&gt;New engine means new database structuring, new dynamic content generation
+code, and a fresh off the press upgrade to Django 1.3 (woo hoo!)&lt;/p&gt;
+&lt;p&gt;Finally, I've added some bells and whistles including a "follow-up" option
+that notifies commenters when new comments are added, and an &lt;strong&gt;auto-twitter-
+post&lt;/strong&gt; method that shortens the URL using my own custom service, updates
+Twitter (which in turn updates Facebook), and updates the RSS, all
+automatically! Now I just need to automate the actual
+writing of a blog and I'll be set. :-)&lt;/p&gt;
+&lt;p&gt;Well that's it for Dustin's Blog version 4.0. Stay tuned
+for actual blogging.&lt;/p&gt;
+&lt;p&gt;Don't forget to &lt;a href="http://feeds.feedburner.com/dustinfarris"&gt;subscribe&lt;/a&gt; or
+&lt;a href="http://twitter.com/dustinfarris"&gt;follow&lt;/a&gt;.&lt;/p&gt;</summary><category term=""></category></entry></feed>

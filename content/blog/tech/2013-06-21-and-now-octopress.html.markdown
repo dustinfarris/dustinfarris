@@ -1,5 +1,5 @@
 Title: And now, Octopress
-Tags: [Octopress]
+Tags: Octopress
 
 ![Octopress logo](/uploads/images/octopress.png)
 

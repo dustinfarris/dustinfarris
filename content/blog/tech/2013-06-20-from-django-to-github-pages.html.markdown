@@ -1,5 +1,5 @@
 Title: From Django to GitHub Pages
-Tags: [Django, GitHub Pages, Jekyll, Markdown]
+Tags: Django, GitHub Pages, Jekyll, Markdown
 
 I finally joined the cool club of hackers who host their blogs on [GitHub Pages][].  I won't rave
 about the sheer awesomeness of using GitHub, [Jekyll][], and [Markdown][] to write blogs because

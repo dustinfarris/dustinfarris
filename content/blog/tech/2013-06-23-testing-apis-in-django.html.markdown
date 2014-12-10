@@ -1,5 +1,5 @@
 Title: Testing APIs in Django
-Tags: [Django]
+Tags: Django
 published: false
 
 I think anyone who has got their hands more than slightly wet with functional testing knows the pain of testing code that relies on API calls.  The usual suspects can bring your tests to a screeching halt: your network is down, the API is down, the API changed.  While knowing about any of the above is important, you likely don't want a flood of emails every time the API you use has a hiccup.

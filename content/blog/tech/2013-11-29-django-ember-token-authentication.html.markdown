@@ -1,6 +1,6 @@
 Title: Django/Ember Token Authentication
 Tags: Django, Ember
-Summary: "Authentication can be a real headache. Thankfully, Django REST Framework and Ember have taken care of the heavy-lifting already."
+Summary: Authentication can be a real headache. Thankfully, Django REST Framework and Ember have taken care of the heavy-lifting already.
 
 As I've [previously detailed](/2013/09/21/django-ember-authentication-is-easy.html), 
 implementing session-based authentication with Django and Ember is not as hard as you might think.

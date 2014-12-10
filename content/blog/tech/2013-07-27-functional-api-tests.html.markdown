@@ -1,5 +1,5 @@
 Title: Functional API Tests
-Tags: [Django]
+Tags: Django
 
 Little is more frustrating than running your test suite and watching it fail fail fail because insert name here’s API service is lagging/down/changed/throttled. While knowing about those things has importance, the time to learn about them isn’t when you’re trying to deploy a completely unrelated feature.
 

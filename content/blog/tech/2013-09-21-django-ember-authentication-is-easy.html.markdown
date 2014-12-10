@@ -1,5 +1,5 @@
 Title: Django/Ember Authentication is Easy
-Tags: [Django, Ember]
+Tags: Django, Ember
 
 **[2013 Nov 29 Update]**: This blog examines the use of session-based authentication. You may find
 token-based authentication more appropriate (as I have), in which case my more recent post will
@@ -203,10 +203,9 @@ App.ApplicationRoute = Ember.Route.extend({
 Finally we just need a handlebars template to provide the user with a login form, or with a representation of
 the current user.
 
-{% raw %}
-```html
+```hbs
 <script type="text/x-handlebars" id="session">
-  {#if isAuthenticated}}
+  {{#if isAuthenticated}}
     <h3>Welcome back, {{first_name}}!</h3>
     <button {{action 'logout'}}>Logout</button>
   {{else}}
@@ -219,9 +218,8 @@ the current user.
   {{/if}}
 </script>
 ```
-{% endraw %}
 
-You can put this login form wherever you want by calling {% raw %}``{{render 'session'}}``{% endraw %}.
+You can put this login form wherever you want by calling `{{render 'session'}}`.
 
 ## Conclusion
 
@@ -232,4 +230,3 @@ out a lot of boiler-plate and tests here. You can view a more complete and worki
 [previously explained]: /2013/08/authenticating-django-slash-ember/
 [View the source on GitHub]: https://github.com/dustinfarris/django-ember-authentication
 [example on GitHub]: https://github.com/dustinfarris/django-ember-authentication
-

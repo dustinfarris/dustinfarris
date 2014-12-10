@@ -1,98 +1,147 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Dustin Farris, inveniam viam aut faciam">
-
-        <link rel="alternate"  href="http://dustinfarris.com/feeds/all.atom.xml" type="application/atom+xml" title="Dustin Farris Full Atom Feed"/>
-
-        <title>Dustin Farris // inveniam viam aut faciam</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Dustin Farris, inveniam viam aut faciam">
+<link rel="alternate"  href="http://dustinfarris.com/feeds/all.atom.xml" type="application/atom+xml" title="Dustin Farris Full Atom Feed">
+<title>Dustin Farris // inveniam viam aut faciam</title>
 
 
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="http://dustinfarris.com/theme/css/pure.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="http://dustinfarris.com/theme/css/pure.css">
+<script>
+WebFontConfig = {
+google: { families: [ 'Dosis:600:latin', 'Open+Sans:400italic,400,700:latin' ] }
+};
+(function() {
+ var wf = document.createElement('script');
+ wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+ '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+ wf.type = 'text/javascript';
+ wf.async = 'true';
+ var s = document.getElementsByTagName('script')[0];
+ s.parentNode.insertBefore(wf, s);
+ })();
+</script>
 
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 </head>
 
 <body>
-    <div class="pure-g-r" id="layout">
-        <div class="sidebar pure-u">
-            <div class="cover-img" style="background-image: url('http://dustinfarris.com/images/beach.jpg')">
-                <div class="cover-body">
-                    <header class="header">
-                        <hgroup>
-                            <img class="avatar" src="http://dustinfarris.com/images/dustin.jpeg">
-                            <h1 class="brand-main"><a href="http://dustinfarris.com">Dustin Farris</a></h1>
-                            <p class="tagline">inveniam viam aut faciam</p>
-                                <p class="social">
-                                    <a href="https://github.com/dustinfarris/">
-                                        <i class="fa fa-github fa-3x"></i>
-                                    </a>
-                                    <a href="https://twitter.com/dustinfarris">
-                                        <i class="fa fa-twitter fa-3x"></i>
-                                    </a>
-                                    <a href="/feeds/all.atom.xml">
-                                        <i class="fa fa-rss fa-3x"></i>
-                                    </a>
-                                </p>
-                        </hgroup>
-                    </header>
-                </div>
-            </div>
-        </div>
-    <div class="pure-u">
-        <div class="content">
-            <!-- A wrapper for all the blog posts -->
-            <div class="posts">
-                <h1 class="content-subhead">
-                            Posts
-                        &ndash; Page&nbsp;12
-                </h1>
-                    <section class="post">
-                        <header class="post-header">
-                            <h3><a class="post-title" href="http://dustinfarris.com/2012/02/21/memphis-lives-in-me.html">"Memphis Lives In Me"</a></h3>
-                            <p class="post-meta"><p>Substitute your hometown for Memphis and this song can be a real tearjerker.
-Also, Adam Pascal has an incredible voice!</p></p>
-                            <p class="post-meta">
-                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Tue 21 February 2012
-                            </p>
-                        </header>
-                    </section>
-                    <section class="post">
-                        <header class="post-header">
-                            <h3><a class="post-title" href="http://dustinfarris.com/2012/02/19/shutting-down-dfcodecom.html">"Shutting Down dfcode.com"</a></h3>
-                            <p class="post-meta"><p>Maintaining two blogs has become impossible, so I'm consolidating my writing
+<div class="pure-g-r" id="layout">
+  <div class="sidebar pure-u">
+    <div class="cover-img" style="background-image: url('http://dustinfarris.com/images/beach.jpg')">
+      <!--
+      <div class="cover-header">
+        <a href="http://dustinfarris.com">
+          <img class="logo" src="http://dustinfarris.com/images/df.png">
+        </a>
+      </div>
+      -->
+      <div class="cover-body">
+        <header class="header">
+          <hgroup>
+          <a href="http://dustinfarris.com">
+            <img class="avatar" src="http://dustinfarris.com/images/dustin.jpeg">
+          </a>
+          <h1 class="brand-main"><a href="http://dustinfarris.com">Dustin Farris</a></h1>
+          <p class="tagline">inveniam viam aut faciam</p>
+          <p class="social">
+          <a href="https://github.com/dustinfarris/">
+            <i class="fa fa-github fa-3x"></i>
+          </a>
+          <a href="https://twitter.com/dustinfarris">
+            <i class="fa fa-twitter fa-3x"></i>
+          </a>
+          <a href="/feeds/all.atom.xml">
+            <i class="fa fa-rss fa-3x"></i>
+          </a>
+          </p>
+          </hgroup>
+        </header>
+      </div>
+    </div>
+  </div>
+<div class="pure-u">
+  <div class="content">
+    <!-- A wrapper for all the blog posts -->
+    <div class="posts">
+      <h1 class="content-subhead">
+        Posts
+        &ndash; Page&nbsp;12
+      </h1>
+      <section class="post">
+        <header class="post-header">
+          <h2 class="post-title">
+            <a href="http://dustinfarris.com/2012/02/21/memphis-lives-in-me.html">
+              "Memphis Lives In Me"
+            </a>
+          </h2>
+          <div class="summary"><p>Substitute your hometown for Memphis and this song can be a real tearjerker.
+Also, Adam Pascal has an incredible voice!</p></div>
+          <p class="post-meta">
+          in
+          <a href="http://dustinfarris.com/category/tech.html">
+            tech
+          </a>
+          &middot; Tue 21 February 2012
+          </p>
+        </header>
+      </section>
+      <section class="post">
+        <header class="post-header">
+          <h2 class="post-title">
+            <a href="http://dustinfarris.com/2012/02/19/shutting-down-dfcodecom.html">
+              "Shutting Down dfcode.com"
+            </a>
+          </h2>
+          <div class="summary"><p>Maintaining two blogs has become impossible, so I'm consolidating my writing
 to this one. I will migrate the most hit blogs and create
 redirects so bookmarks should be good for the rest of the year, but I have no
 plans to renew the domain registration when it expires.</p>
-<p>Expect ...</p></p>
-                            <p class="post-meta">
-                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Sun 19 February 2012
-                            </p>
-                        </header>
-                    </section>
-                    <section class="post">
-                        <header class="post-header">
-                            <h3><a class="post-title" href="http://dustinfarris.com/2012/02/13/give-me-my-money-and-go-away.html">"Give Me My Money and Go Away"</a></h3>
-                            <p class="post-meta"><p>A drilldown on hypocrisy.</p>
+<p>Expect ...</p></div>
+          <p class="post-meta">
+          in
+          <a href="http://dustinfarris.com/category/tech.html">
+            tech
+          </a>
+          &middot; Sun 19 February 2012
+          </p>
+        </header>
+      </section>
+      <section class="post">
+        <header class="post-header">
+          <h2 class="post-title">
+            <a href="http://dustinfarris.com/2012/02/13/give-me-my-money-and-go-away.html">
+              "Give Me My Money and Go Away"
+            </a>
+          </h2>
+          <div class="summary"><p>A drilldown on hypocrisy.</p>
 <p><a href="http://krugman.blogs.nytimes.com/2012/02/13/moochers-for-self-reliance/">Paul Krugman</a> discusses a <a href="http://www.nytimes.com/2012/02/12/us/even-critics-of-safet-net-increasingly-depend-on-it.html?_r=1&amp;src=me&amp;ref=general">New York Times article</a> that articulates the
 ratio of money states give and receive to and from the Federal government
 versus their political philosophy:</p>
 <blockquote>
 <p>So are states that get a lot but don't pay much also states that vote for
-candidates ...</p></blockquote></p>
-                            <p class="post-meta">
-                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Mon 13 February 2012
-                            </p>
-                        </header>
-                    </section>
-                    <section class="post">
-                        <header class="post-header">
-                            <h3><a class="post-title" href="http://dustinfarris.com/2012/02/13/sarah-palins-political-discourse.html">"Sarah Palin&#39;s Political Discourse"</a></h3>
-                            <p class="post-meta"><p><img alt="Sarah Palin at CPAC" src="/media/uploads/uploads/sarah-palin-cpac-ap-cropped-proto-custom_28_big.jpeg" /></p>
+candidates ...</p></blockquote></div>
+          <p class="post-meta">
+          in
+          <a href="http://dustinfarris.com/category/tech.html">
+            tech
+          </a>
+          &middot; Mon 13 February 2012
+          </p>
+        </header>
+      </section>
+      <section class="post">
+        <header class="post-header">
+          <h2 class="post-title">
+            <a href="http://dustinfarris.com/2012/02/13/sarah-palins-political-discourse.html">
+              "Sarah Palin&#39;s Political Discourse"
+            </a>
+          </h2>
+          <div class="summary"><p><img alt="Sarah Palin at CPAC" src="/media/uploads/uploads/sarah-palin-cpac-ap-cropped-proto-custom_28_big.jpeg" /></p>
 <p>In case you (hopefully) missed it, here are the real show-stoppers from
 Palin's <a href="http://www.youtube.com/watch?v=qQ6sXNSgQtY">keynote speech</a> at the
 Conservative Political Action Conference on Saturday:</p>
@@ -100,92 +149,144 @@ Conservative Political Action Conference on Saturday:</p>
 <p>"We are just dog-gone frustrated with the pace of change!"</p>
 <p>"I say keep your change, we'll keep our god, our guns, and our
 constitution!"</p>
-<p>"Mr ...</p></blockquote></p>
-                            <p class="post-meta">
-                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Mon 13 February 2012
-                            </p>
-                        </header>
-                    </section>
-                    <section class="post">
-                        <header class="post-header">
-                            <h3><a class="post-title" href="http://dustinfarris.com/2012/02/10/paraphrased-dialogue-over-birth-control-access.html">"Paraphrased Dialogue Over Birth Control Access"</a></h3>
-                            <p class="post-meta"><p>After reading various opinion articles and comments therein, here is my
+<p>"Mr ...</p></blockquote></div>
+          <p class="post-meta">
+          in
+          <a href="http://dustinfarris.com/category/tech.html">
+            tech
+          </a>
+          &middot; Mon 13 February 2012
+          </p>
+        </header>
+      </section>
+      <section class="post">
+        <header class="post-header">
+          <h2 class="post-title">
+            <a href="http://dustinfarris.com/2012/02/10/paraphrased-dialogue-over-birth-control-access.html">
+              "Paraphrased Dialogue Over Birth Control Access"
+            </a>
+          </h2>
+          <div class="summary"><p>After reading various opinion articles and comments therein, here is my
 perspective on this week's controversy:</p>
 <h2>Beginning of week</h2>
 <p>OBAMA: Institutions and corporations must follow the same
 rules regardless of religious affiliation with regard to providing access to
 birth control.</p>
 <p>REPUBLICANS: He's a socialist! He's
-violating religious ...</p></p>
-                            <p class="post-meta">
-                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Fri 10 February 2012
-                            </p>
-                        </header>
-                    </section>
-                    <section class="post">
-                        <header class="post-header">
-                            <h3><a class="post-title" href="http://dustinfarris.com/2012/02/05/randall-terry-is-a-lunatic.html">"Randall Terry is a Lunatic"</a></h3>
-                            <p class="post-meta"><p>Randall who?</p>
+violating religious ...</p></div>
+          <p class="post-meta">
+          in
+          <a href="http://dustinfarris.com/category/tech.html">
+            tech
+          </a>
+          &middot; Fri 10 February 2012
+          </p>
+        </header>
+      </section>
+      <section class="post">
+        <header class="post-header">
+          <h2 class="post-title">
+            <a href="http://dustinfarris.com/2012/02/05/randall-terry-is-a-lunatic.html">
+              "Randall Terry is a Lunatic"
+            </a>
+          </h2>
+          <div class="summary"><p>Randall who?</p>
 <p>If you haven't heard, there is a madman living in America who thinks it is
 appropriate to broadcast ads featuring aborted fetuses during the Super
 Bowl. Apparently these ads have already <a href="http://motherjones.com/mojo/2011/12/aborted-fetus-campaign-ads-hit-airwaves-iowa">been running in Iowa</a>.</p>
-<p>Without getting into too much of a rant, who the _hell _does ...</p></p>
-                            <p class="post-meta">
-                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Sun 05 February 2012
-                            </p>
-                        </header>
-                    </section>
-                    <section class="post">
-                        <header class="post-header">
-                            <h3><a class="post-title" href="http://dustinfarris.com/2012/02/03/the-tea-party-is-racist.html">"The Tea Party is Racist"</a></h3>
-                            <p class="post-meta"><p>And I'm not the only one who thinks so.</p>
+<p>Without getting into too much of a rant, who the _hell _does ...</p></div>
+          <p class="post-meta">
+          in
+          <a href="http://dustinfarris.com/category/tech.html">
+            tech
+          </a>
+          &middot; Sun 05 February 2012
+          </p>
+        </header>
+      </section>
+      <section class="post">
+        <header class="post-header">
+          <h2 class="post-title">
+            <a href="http://dustinfarris.com/2012/02/03/the-tea-party-is-racist.html">
+              "The Tea Party is Racist"
+            </a>
+          </h2>
+          <div class="summary"><p>And I'm not the only one who thinks so.</p>
 <p>It seems to me that many of the <a href="http://teapartyorg.ning.com/profiles/blogs/the-danger-that-the-obama-administration-poses-to-america">unfounded criticisms</a> against President Obama stem from
 somewhere not entirely rational. The far right of the right
 --which at times feels like the majority of the right--has been repeatedly
-accused, rightly, of ...</p></p>
-                            <p class="post-meta">
-                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Fri 03 February 2012
-                            </p>
-                        </header>
-                    </section>
-                    <section class="post">
-                        <header class="post-header">
-                            <h3><a class="post-title" href="http://dustinfarris.com/2012/02/02/most-people-get-a-refund-i-think-not.html">"Most people get a refund?  I think not."</a></h3>
-                            <p class="post-meta"><p>I've heard the argument--on an uncomfortable number of occasions--that taxes
+accused, rightly, of ...</p></div>
+          <p class="post-meta">
+          in
+          <a href="http://dustinfarris.com/category/tech.html">
+            tech
+          </a>
+          &middot; Fri 03 February 2012
+          </p>
+        </header>
+      </section>
+      <section class="post">
+        <header class="post-header">
+          <h2 class="post-title">
+            <a href="http://dustinfarris.com/2012/02/02/most-people-get-a-refund-i-think-not.html">
+              "Most people get a refund?  I think not."
+            </a>
+          </h2>
+          <div class="summary"><p>I've heard the argument--on an uncomfortable number of occasions--that taxes
 can and should be raised since "most people get a refund anyway."
 What's disconcerting about this statement is the use of the
 word "refund." It sounds as if the government is just
-handing out money every year without ...</p></p>
-                            <p class="post-meta">
-                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Thu 02 February 2012
-                            </p>
-                        </header>
-                    </section>
-                    <section class="post">
-                        <header class="post-header">
-                            <h3><a class="post-title" href="http://dustinfarris.com/2012/01/28/ludacris-is-in-my-portfolio.html">"Ludacris is in My Portfolio!"</a></h3>
-                            <p class="post-meta"><p>Earlier this month my Wonder colleagues and I wrapped up what is probably my
+handing out money every year without ...</p></div>
+          <p class="post-meta">
+          in
+          <a href="http://dustinfarris.com/category/tech.html">
+            tech
+          </a>
+          &middot; Thu 02 February 2012
+          </p>
+        </header>
+      </section>
+      <section class="post">
+        <header class="post-header">
+          <h2 class="post-title">
+            <a href="http://dustinfarris.com/2012/01/28/ludacris-is-in-my-portfolio.html">
+              "Ludacris is in My Portfolio!"
+            </a>
+          </h2>
+          <div class="summary"><p>Earlier this month my Wonder colleagues and I wrapped up what is probably my
 biggest project to date: a website for the new line of SOUL by Ludacris
 headphones. And yes, I think that's pretty cool.</p>
-<p>Building the website was a lot of fun, and allowed me to explore ...</p></p>
-                            <p class="post-meta">
-                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Sat 28 January 2012
-                            </p>
-                        </header>
-                    </section>
-                    <section class="post">
-                        <header class="post-header">
-                            <h3><a class="post-title" href="http://dustinfarris.com/2012/01/27/i-think-we-can-agree-newt-gingrich-is-a-flop.html">"I think we can agree Newt Gingrich is a Flop"</a></h3>
-                            <p class="post-meta"><p>Based on a <a href="http://www.cnn.com/2012/01/27/opinion/bennett-florida-debate/index.html">pathetic display</a> of ill-prepared attacks directed at Mitt Romeny
+<p>Building the website was a lot of fun, and allowed me to explore ...</p></div>
+          <p class="post-meta">
+          in
+          <a href="http://dustinfarris.com/category/tech.html">
+            tech
+          </a>
+          &middot; Sat 28 January 2012
+          </p>
+        </header>
+      </section>
+      <section class="post">
+        <header class="post-header">
+          <h2 class="post-title">
+            <a href="http://dustinfarris.com/2012/01/27/i-think-we-can-agree-newt-gingrich-is-a-flop.html">
+              "I think we can agree Newt Gingrich is a Flop"
+            </a>
+          </h2>
+          <div class="summary"><p>Based on a <a href="http://www.cnn.com/2012/01/27/opinion/bennett-florida-debate/index.html">pathetic display</a> of ill-prepared attacks directed at Mitt Romeny
 during last night's debate, I believe I can finally mark off Newt Gingrich on
 America's potential nightmare list.</p>
 <p>Not only did last night make Newt look like a tool, I found his comments to be
-quite ...</p></p>
-                            <p class="post-meta">
-                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Fri 27 January 2012
-                            </p>
-                        </header>
-                    </section>
+quite ...</p></div>
+          <p class="post-meta">
+          in
+          <a href="http://dustinfarris.com/category/tech.html">
+            tech
+          </a>
+          &middot; Fri 27 January 2012
+          </p>
+        </header>
+      </section>
 <div class="pagination-wrapper content-subhead">
     <div class="pagination">
         <div class="pagination-left">
@@ -197,38 +298,35 @@ quite ...</p></p>
         </div>
     </div>
 </div><footer class="footer">
-    <p>&copy; Dustin Farris &ndash;
-        Built with <a href="https://github.com/PurePelicanTheme/pure-single">Pure Theme</a>
-        for <a href="http://blog.getpelican.com/">Pelican</a>
-    </p>
-</footer>            </div>
-        </div>
-    </div>
-    </div>
-    <script>
-        var $top = $('.go-top');
+  <p>&copy; Dustin Farris</p>
+</footer>    </div>
+  </div>
+</div>
+</div>
+<script>
+var $top = $('.go-top');
 
-        // Show or hide the sticky footer button
-        $(window).scroll(function() {
-            if ($(this).scrollTop() > 200) {
-                $top.fadeIn(200);
-            } else {
-                $top.fadeOut(200);
-            }
-        });
+// Show or hide the sticky footer button
+$(window).scroll(function() {
+    if ($(this).scrollTop() > 200) {
+    $top.fadeIn(200);
+    } else {
+    $top.fadeOut(200);
+    }
+    });
 
-        // Animate the scroll to top
-        $top.click(function(event) {
-            event.preventDefault();
-            $('html, body').animate({scrollTop: 0}, 300);
-        })
+// Animate the scroll to top
+$top.click(function(event) {
+    event.preventDefault();
+    $('html, body').animate({scrollTop: 0}, 300);
+    })
 
-        // Makes sure that the href="#" attached to the <a> elements
-        // don't scroll you back up the page.
-        $('body').on('click', 'a[href="#"]', function(event) {
-            event.preventDefault();
-        });
-    </script>
+// Makes sure that the href="#" attached to the <a> elements
+// don't scroll you back up the page.
+$('body').on('click', 'a[href="#"]', function(event) {
+    event.preventDefault();
+    });
+</script>
     <script type="text/javascript">
         var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
         document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));

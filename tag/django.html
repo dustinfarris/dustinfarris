@@ -1,161 +1,262 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Dustin Farris, inveniam viam aut faciam">
-
-        <link rel="alternate"  href="http://dustinfarris.com/feeds/all.atom.xml" type="application/atom+xml" title="Dustin Farris Full Atom Feed"/>
-
-        <title>[Django tag // Dustin Farris // inveniam viam aut faciam</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Dustin Farris, inveniam viam aut faciam">
+<link rel="alternate"  href="http://dustinfarris.com/feeds/all.atom.xml" type="application/atom+xml" title="Dustin Farris Full Atom Feed">
+<title>[Django tag // Dustin Farris // inveniam viam aut faciam</title>
 
 
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="http://dustinfarris.com/theme/css/pure.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="http://dustinfarris.com/theme/css/pure.css">
+<script>
+WebFontConfig = {
+google: { families: [ 'Dosis:600:latin', 'Open+Sans:400italic,400,700:latin' ] }
+};
+(function() {
+ var wf = document.createElement('script');
+ wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+ '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+ wf.type = 'text/javascript';
+ wf.async = 'true';
+ var s = document.getElementsByTagName('script')[0];
+ s.parentNode.insertBefore(wf, s);
+ })();
+</script>
 
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 </head>
 
 <body>
-    <div class="pure-g-r" id="layout">
-        <div class="sidebar pure-u">
-            <div class="cover-img" style="background-image: url('http://dustinfarris.com/images/beach.jpg')">
-                <div class="cover-body">
-                    <header class="header">
-                        <hgroup>
-                            <img class="avatar" src="http://dustinfarris.com/images/dustin.jpeg">
-                            <h1 class="brand-main"><a href="http://dustinfarris.com">Dustin Farris</a></h1>
-                            <p class="tagline">inveniam viam aut faciam</p>
-                                <p class="social">
-                                    <a href="https://github.com/dustinfarris/">
-                                        <i class="fa fa-github fa-3x"></i>
-                                    </a>
-                                    <a href="https://twitter.com/dustinfarris">
-                                        <i class="fa fa-twitter fa-3x"></i>
-                                    </a>
-                                    <a href="/feeds/all.atom.xml">
-                                        <i class="fa fa-rss fa-3x"></i>
-                                    </a>
-                                </p>
-                        </hgroup>
-                    </header>
-                </div>
-            </div>
-        </div>
-    <div class="pure-u">
-        <div class="content">
-            <!-- A wrapper for all the blog posts -->
-            <div class="posts">
-                <h1 class="content-subhead">
-Posts tagged '[Django'                </h1>
-                    <section class="post">
-                        <header class="post-header">
-                            <h3><a class="post-title" href="http://dustinfarris.com/2013/11/29/djangoember-token-authentication.html">Django/Ember Token Authentication</a></h3>
-                            <p class="post-meta"><p>"Authentication can be a real headache. Thankfully, Django REST Framework and Ember have taken care of the heavy-lifting already."</p></p>
-                            <p class="post-meta">
-                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Fri 29 November 2013
-                            </p>
-                        </header>
-                    </section>
-                    <section class="post">
-                        <header class="post-header">
-                            <h3><a class="post-title" href="http://dustinfarris.com/2013/09/21/djangoember-authentication-is-easy.html">Django/Ember Authentication is Easy</a></h3>
-                            <p class="post-meta"><p><strong>[2013 Nov 29 Update]</strong>: This blog examines the use of session-based authentication. You may find
+<div class="pure-g-r" id="layout">
+  <div class="sidebar pure-u">
+    <div class="cover-img" style="background-image: url('http://dustinfarris.com/images/beach.jpg')">
+      <!--
+      <div class="cover-header">
+        <a href="http://dustinfarris.com">
+          <img class="logo" src="http://dustinfarris.com/images/df.png">
+        </a>
+      </div>
+      -->
+      <div class="cover-body">
+        <header class="header">
+          <hgroup>
+          <a href="http://dustinfarris.com">
+            <img class="avatar" src="http://dustinfarris.com/images/dustin.jpeg">
+          </a>
+          <h1 class="brand-main"><a href="http://dustinfarris.com">Dustin Farris</a></h1>
+          <p class="tagline">inveniam viam aut faciam</p>
+          <p class="social">
+          <a href="https://github.com/dustinfarris/">
+            <i class="fa fa-github fa-3x"></i>
+          </a>
+          <a href="https://twitter.com/dustinfarris">
+            <i class="fa fa-twitter fa-3x"></i>
+          </a>
+          <a href="/feeds/all.atom.xml">
+            <i class="fa fa-rss fa-3x"></i>
+          </a>
+          </p>
+          </hgroup>
+        </header>
+      </div>
+    </div>
+  </div>
+<div class="pure-u">
+  <div class="content">
+    <!-- A wrapper for all the blog posts -->
+    <div class="posts">
+      <h1 class="content-subhead">
+Posts tagged '[Django'      </h1>
+      <section class="post">
+        <header class="post-header">
+          <h2 class="post-title">
+            <a href="http://dustinfarris.com/2013/11/29/djangoember-token-authentication.html">
+              Django/Ember Token Authentication
+            </a>
+          </h2>
+          <div class="summary"><p>"Authentication can be a real headache. Thankfully, Django REST Framework and Ember have taken care of the heavy-lifting already."</p></div>
+          <p class="post-meta">
+          in
+          <a href="http://dustinfarris.com/category/tech.html">
+            tech
+          </a>
+          &middot; Fri 29 November 2013
+          </p>
+        </header>
+      </section>
+      <section class="post">
+        <header class="post-header">
+          <h2 class="post-title">
+            <a href="http://dustinfarris.com/2013/09/21/djangoember-authentication-is-easy.html">
+              Django/Ember Authentication is Easy
+            </a>
+          </h2>
+          <div class="summary"><p><strong>[2013 Nov 29 Update]</strong>: This blog examines the use of session-based authentication. You may find
 token-based authentication more appropriate (as I have), in which case my more recent post will
 probably better suit your needs. <a href="/2013/11/29/django-ember-token-authentication.html">Check out the latest</a></p>
-<p>As I've <a href="/2013/08/authenticating-django-slash-ember/">previously explained</a>, one of the biggest hurdles to ...</p></p>
-                            <p class="post-meta">
-                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Sat 21 September 2013
-                            </p>
-                        </header>
-                    </section>
-                    <section class="post">
-                        <header class="post-header">
-                            <h3><a class="post-title" href="http://dustinfarris.com/2013/08/24/authenticating-djangoember.html">Authenticating Django/Ember</a></h3>
-                            <p class="post-meta"><p><strong>[2013 Sep 21 Update]</strong>: I've completely refactored this solution and have done a much better job of
+<p>As I've <a href="/2013/08/authenticating-django-slash-ember/">previously explained</a>, one of the biggest hurdles to ...</p></div>
+          <p class="post-meta">
+          in
+          <a href="http://dustinfarris.com/category/tech.html">
+            tech
+          </a>
+          &middot; Sat 21 September 2013
+          </p>
+        </header>
+      </section>
+      <section class="post">
+        <header class="post-header">
+          <h2 class="post-title">
+            <a href="http://dustinfarris.com/2013/08/24/authenticating-djangoember.html">
+              Authenticating Django/Ember
+            </a>
+          </h2>
+          <div class="summary"><p><strong>[2013 Sep 21 Update]</strong>: I've completely refactored this solution and have done a much better job of
 implementing it and explaining it.  <a href="/2013/11/29/django-ember-authentication-is-easy.html">Check out the latest</a></p>
 <hr />
-<p>The web app rage nowadays is to implement your backend as RESTfully as possible, and use Javascript frameworks to facilitate your controller and ...</p></p>
-                            <p class="post-meta">
-                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Sat 24 August 2013
-                            </p>
-                        </header>
-                    </section>
-                    <section class="post">
-                        <header class="post-header">
-                            <h3><a class="post-title" href="http://dustinfarris.com/2013/07/27/functional-api-tests.html">Functional API Tests</a></h3>
-                            <p class="post-meta"><p>Little is more frustrating than running your test suite and watching it fail fail fail because insert name here’s API service is lagging/down/changed/throttled. While knowing about those things has importance, the time to learn about them isn’t when you’re trying to deploy a completely ...</p></p>
-                            <p class="post-meta">
-                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Sat 27 July 2013
-                            </p>
-                        </header>
-                    </section>
-                    <section class="post">
-                        <header class="post-header">
-                            <h3><a class="post-title" href="http://dustinfarris.com/2013/07/27/previousnext-navigation-in-django-cms.html">Previous/Next Navigation in Django CMS</a></h3>
-                            <p class="post-meta"><p>I don't know why Django CMS doesn't have a built-in helper for navigating a page tree.  Maybe this will be included in the upcoming <a href="https://www.django-cms.org/en/blog/2013/07/03/django-cms-3-beta-2/">3.0 release</a> (which I am very much looking forward to).</p>
-<p>For now, here's a quick gist that will give you previous/next ...</p></p>
-                            <p class="post-meta">
-                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Sat 27 July 2013
-                            </p>
-                        </header>
-                    </section>
-                    <section class="post">
-                        <header class="post-header">
-                            <h3><a class="post-title" href="http://dustinfarris.com/2013/06/23/testing-apis-in-django.html">Testing APIs in Django</a></h3>
-                            <p class="post-meta"><p>I think anyone who has got their hands more than slightly wet with functional testing knows the pain of testing code that relies on API calls.  The usual suspects can bring your tests to a screeching halt: your network is down, the API is down, the API changed.  While knowing ...</p></p>
-                            <p class="post-meta">
-                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Sun 23 June 2013
-                            </p>
-                        </header>
-                    </section>
-                    <section class="post">
-                        <header class="post-header">
-                            <h3><a class="post-title" href="http://dustinfarris.com/2013/06/20/from-django-to-github-pages.html">From Django to GitHub Pages</a></h3>
-                            <p class="post-meta"><p>I finally joined the cool club of hackers who host their blogs on <a href="http://pages.github.com/">GitHub Pages</a>.  I won't rave
+<p>The web app rage nowadays is to implement your backend as RESTfully as possible, and use Javascript frameworks to facilitate your controller and ...</p></div>
+          <p class="post-meta">
+          in
+          <a href="http://dustinfarris.com/category/tech.html">
+            tech
+          </a>
+          &middot; Sat 24 August 2013
+          </p>
+        </header>
+      </section>
+      <section class="post">
+        <header class="post-header">
+          <h2 class="post-title">
+            <a href="http://dustinfarris.com/2013/07/27/functional-api-tests.html">
+              Functional API Tests
+            </a>
+          </h2>
+          <div class="summary"><p>Little is more frustrating than running your test suite and watching it fail fail fail because insert name here’s API service is lagging/down/changed/throttled. While knowing about those things has importance, the time to learn about them isn’t when you’re trying to deploy a completely ...</p></div>
+          <p class="post-meta">
+          in
+          <a href="http://dustinfarris.com/category/tech.html">
+            tech
+          </a>
+          &middot; Sat 27 July 2013
+          </p>
+        </header>
+      </section>
+      <section class="post">
+        <header class="post-header">
+          <h2 class="post-title">
+            <a href="http://dustinfarris.com/2013/07/27/previousnext-navigation-in-django-cms.html">
+              Previous/Next Navigation in Django CMS
+            </a>
+          </h2>
+          <div class="summary"><p>I don't know why Django CMS doesn't have a built-in helper for navigating a page tree.  Maybe this will be included in the upcoming <a href="https://www.django-cms.org/en/blog/2013/07/03/django-cms-3-beta-2/">3.0 release</a> (which I am very much looking forward to).</p>
+<p>For now, here's a quick gist that will give you previous/next ...</p></div>
+          <p class="post-meta">
+          in
+          <a href="http://dustinfarris.com/category/tech.html">
+            tech
+          </a>
+          &middot; Sat 27 July 2013
+          </p>
+        </header>
+      </section>
+      <section class="post">
+        <header class="post-header">
+          <h2 class="post-title">
+            <a href="http://dustinfarris.com/2013/06/23/testing-apis-in-django.html">
+              Testing APIs in Django
+            </a>
+          </h2>
+          <div class="summary"><p>I think anyone who has got their hands more than slightly wet with functional testing knows the pain of testing code that relies on API calls.  The usual suspects can bring your tests to a screeching halt: your network is down, the API is down, the API changed.  While knowing ...</p></div>
+          <p class="post-meta">
+          in
+          <a href="http://dustinfarris.com/category/tech.html">
+            tech
+          </a>
+          &middot; Sun 23 June 2013
+          </p>
+        </header>
+      </section>
+      <section class="post">
+        <header class="post-header">
+          <h2 class="post-title">
+            <a href="http://dustinfarris.com/2013/06/20/from-django-to-github-pages.html">
+              From Django to GitHub Pages
+            </a>
+          </h2>
+          <div class="summary"><p>I finally joined the cool club of hackers who host their blogs on <a href="http://pages.github.com/">GitHub Pages</a>.  I won't rave
 about the sheer awesomeness of using GitHub, <a href="http://jekyllrb.com/">Jekyll</a>, and <a href="http://daringfireball.net/projects/markdown/">Markdown</a> to write blogs because
-there are already about a hundred million other blogs out there doing just that.  I will, though ...</p></p>
-                            <p class="post-meta">
-                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Thu 20 June 2013
-                            </p>
-                        </header>
-                    </section>
-                    <section class="post">
-                        <header class="post-header">
-                            <h3><a class="post-title" href="http://dustinfarris.com/2013/02/23/testing-in-django.html">"Testing in Django"</a></h3>
-                            <p class="post-meta"><p>Writing tests and test-driven development has become all the rage lately; but before declaring assertions left and
+there are already about a hundred million other blogs out there doing just that.  I will, though ...</p></div>
+          <p class="post-meta">
+          in
+          <a href="http://dustinfarris.com/category/tech.html">
+            tech
+          </a>
+          &middot; Thu 20 June 2013
+          </p>
+        </header>
+      </section>
+      <section class="post">
+        <header class="post-header">
+          <h2 class="post-title">
+            <a href="http://dustinfarris.com/2013/02/23/testing-in-django.html">
+              "Testing in Django"
+            </a>
+          </h2>
+          <div class="summary"><p>Writing tests and test-driven development has become all the rage lately; but before declaring assertions left and
 right, it's important to consider where, why, and how you will write your tests.</p>
-<p>Different frameworks have different philosophies about how to go about this but, more often than not, developers tend ...</p></p>
-                            <p class="post-meta">
-                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Sat 23 February 2013
-                            </p>
-                        </header>
-                    </section>
-                    <section class="post">
-                        <header class="post-header">
-                            <h3><a class="post-title" href="http://dustinfarris.com/2012/08/14/rails-through-vs-django-manytomany.html">"Rails 'through' vs Django 'ManyToMany'"</a></h3>
-                            <p class="post-meta"><p>Ok, Rails &amp; company have a lot of great points--I love RSpec--but I've noticed a few areas where Rails can improve.  Here, namely, I see a big difference in handling multiple relationships to self.</p>
+<p>Different frameworks have different philosophies about how to go about this but, more often than not, developers tend ...</p></div>
+          <p class="post-meta">
+          in
+          <a href="http://dustinfarris.com/category/tech.html">
+            tech
+          </a>
+          &middot; Sat 23 February 2013
+          </p>
+        </header>
+      </section>
+      <section class="post">
+        <header class="post-header">
+          <h2 class="post-title">
+            <a href="http://dustinfarris.com/2012/08/14/rails-through-vs-django-manytomany.html">
+              "Rails 'through' vs Django 'ManyToMany'"
+            </a>
+          </h2>
+          <div class="summary"><p>Ok, Rails &amp; company have a lot of great points--I love RSpec--but I've noticed a few areas where Rails can improve.  Here, namely, I see a big difference in handling multiple relationships to self.</p>
 <h2>In Rails</h2>
 <p><code>db/migrate/create_relationships.rb</code></p>
 <div class="highlight"><pre><span class="k">class</span> <span class="nc">CreateRelationships</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span>
     <span class="k">def</span> <span class="nf">change</span>
-        <span class="n">create_table</span> <span class="ss">:relationships</span> <span class="k">do</span> <span class="o">|</span><span class="n">t ...</span></pre></div></p>
-                            <p class="post-meta">
-                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Tue 14 August 2012
-                            </p>
-                        </header>
-                    </section>
-                    <section class="post">
-                        <header class="post-header">
-                            <h3><a class="post-title" href="http://dustinfarris.com/2012/08/09/testing-management-commands.html">"Testing Management Commands"</a></h3>
-                            <p class="post-meta"><p>I think to be a good Django citizen it would be appropriate to write tests ensuring that standard management commands work with your application.  I thought of this after dealing with a <a href="https://github.com/divio/django-cms/">certain app</a> that doesn't handle <code>loaddata</code> very well.</p>
-<p>Going forward, I'm adding this TestCase to all ...</p></p>
-                            <p class="post-meta">
-                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Thu 09 August 2012
-                            </p>
-                        </header>
-                    </section>
+        <span class="n">create_table</span> <span class="ss">:relationships</span> <span class="k">do</span> <span class="o">|</span><span class="n">t ...</span></pre></div></div>
+          <p class="post-meta">
+          in
+          <a href="http://dustinfarris.com/category/tech.html">
+            tech
+          </a>
+          &middot; Tue 14 August 2012
+          </p>
+        </header>
+      </section>
+      <section class="post">
+        <header class="post-header">
+          <h2 class="post-title">
+            <a href="http://dustinfarris.com/2012/08/09/testing-management-commands.html">
+              "Testing Management Commands"
+            </a>
+          </h2>
+          <div class="summary"><p>I think to be a good Django citizen it would be appropriate to write tests ensuring that standard management commands work with your application.  I thought of this after dealing with a <a href="https://github.com/divio/django-cms/">certain app</a> that doesn't handle <code>loaddata</code> very well.</p>
+<p>Going forward, I'm adding this TestCase to all ...</p></div>
+          <p class="post-meta">
+          in
+          <a href="http://dustinfarris.com/category/tech.html">
+            tech
+          </a>
+          &middot; Thu 09 August 2012
+          </p>
+        </header>
+      </section>
 <div class="pagination-wrapper content-subhead">
     <div class="pagination">
         <div class="pagination-left">
@@ -167,38 +268,35 @@ right, it's important to consider where, why, and how you will write your tests.
         </div>
     </div>
 </div><footer class="footer">
-    <p>&copy; Dustin Farris &ndash;
-        Built with <a href="https://github.com/PurePelicanTheme/pure-single">Pure Theme</a>
-        for <a href="http://blog.getpelican.com/">Pelican</a>
-    </p>
-</footer>            </div>
-        </div>
-    </div>
-    </div>
-    <script>
-        var $top = $('.go-top');
+  <p>&copy; Dustin Farris</p>
+</footer>    </div>
+  </div>
+</div>
+</div>
+<script>
+var $top = $('.go-top');
 
-        // Show or hide the sticky footer button
-        $(window).scroll(function() {
-            if ($(this).scrollTop() > 200) {
-                $top.fadeIn(200);
-            } else {
-                $top.fadeOut(200);
-            }
-        });
+// Show or hide the sticky footer button
+$(window).scroll(function() {
+    if ($(this).scrollTop() > 200) {
+    $top.fadeIn(200);
+    } else {
+    $top.fadeOut(200);
+    }
+    });
 
-        // Animate the scroll to top
-        $top.click(function(event) {
-            event.preventDefault();
-            $('html, body').animate({scrollTop: 0}, 300);
-        })
+// Animate the scroll to top
+$top.click(function(event) {
+    event.preventDefault();
+    $('html, body').animate({scrollTop: 0}, 300);
+    })
 
-        // Makes sure that the href="#" attached to the <a> elements
-        // don't scroll you back up the page.
-        $('body').on('click', 'a[href="#"]', function(event) {
-            event.preventDefault();
-        });
-    </script>
+// Makes sure that the href="#" attached to the <a> elements
+// don't scroll you back up the page.
+$('body').on('click', 'a[href="#"]', function(event) {
+    event.preventDefault();
+    });
+</script>
     <script type="text/javascript">
         var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
         document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));

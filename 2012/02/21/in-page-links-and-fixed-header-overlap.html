@@ -1,66 +1,86 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Dustin Farris, inveniam viam aut faciam">
-
-        <link rel="alternate"  href="http://dustinfarris.com/feeds/all.atom.xml" type="application/atom+xml" title="Dustin Farris Full Atom Feed"/>
-
-        <title>"In-page Links and Fixed Header Overlap" // Dustin Farris // inveniam viam aut faciam</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Dustin Farris, inveniam viam aut faciam">
+<link rel="alternate"  href="http://dustinfarris.com/feeds/all.atom.xml" type="application/atom+xml" title="Dustin Farris Full Atom Feed">
+<title>"In-page Links and Fixed Header Overlap" // Dustin Farris // inveniam viam aut faciam</title>
 
 
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="http://dustinfarris.com/theme/css/pure.css">
-    <link rel="stylesheet" href="http://dustinfarris.com/theme/css/pygments.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="http://dustinfarris.com/theme/css/pure.css">
+<link rel="stylesheet" href="http://dustinfarris.com/theme/css/pygments.css">
+<script>
+WebFontConfig = {
+google: { families: [ 'Dosis:600:latin', 'Open+Sans:400italic,400,700:latin' ] }
+};
+(function() {
+ var wf = document.createElement('script');
+ wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+ '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+ wf.type = 'text/javascript';
+ wf.async = 'true';
+ var s = document.getElementsByTagName('script')[0];
+ s.parentNode.insertBefore(wf, s);
+ })();
+</script>
 
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
-    <script>
-        $(document).ready(function(){
-            $(".content").fitVids();
-        });
-    </script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
+<script>
+$(document).ready(function(){
+  $(".content").fitVids();
+});
+</script>
 </head>
 
 <body>
-    <div class="pure-g-r" id="layout">
-        <div class="sidebar pure-u">
-            <div class="cover-img" style="background-image: url('http://dustinfarris.com/images/beach.jpg')">
-                <div class="cover-body">
-                    <header class="header">
-                        <hgroup>
-                            <img class="avatar" src="http://dustinfarris.com/images/dustin.jpeg">
-                            <h1 class="brand-main"><a href="http://dustinfarris.com">Dustin Farris</a></h1>
-                            <p class="tagline">inveniam viam aut faciam</p>
-                                <p class="social">
-                                    <a href="https://github.com/dustinfarris/">
-                                        <i class="fa fa-github fa-3x"></i>
-                                    </a>
-                                    <a href="https://twitter.com/dustinfarris">
-                                        <i class="fa fa-twitter fa-3x"></i>
-                                    </a>
-                                    <a href="/feeds/all.atom.xml">
-                                        <i class="fa fa-rss fa-3x"></i>
-                                    </a>
-                                </p>
-                        </hgroup>
-                    </header>
-                </div>
-            </div>
-        </div>
-    <div class="pure-u">
-        <div class="content">
-            <section class="post">
-                <header class="post-header">
-                    <h1>"In-page Links and Fixed Header Overlap"</h1>
-                        <p class="post-meta">
-                            // under                                 <a class="post-category" href="http://dustinfarris.com/tag/css.html">CSS</a>
-                        </p>
-                </header>
-            </section>
-            <p>Problem: You have a fixed position header (like the one on this page), and you
+<div class="pure-g-r" id="layout">
+  <div class="sidebar pure-u">
+    <div class="cover-img" style="background-image: url('http://dustinfarris.com/images/beach.jpg')">
+      <!--
+      <div class="cover-header">
+        <a href="http://dustinfarris.com">
+          <img class="logo" src="http://dustinfarris.com/images/df.png">
+        </a>
+      </div>
+      -->
+      <div class="cover-body">
+        <header class="header">
+          <hgroup>
+          <a href="http://dustinfarris.com">
+            <img class="avatar" src="http://dustinfarris.com/images/dustin.jpeg">
+          </a>
+          <h1 class="brand-main"><a href="http://dustinfarris.com">Dustin Farris</a></h1>
+          <p class="tagline">inveniam viam aut faciam</p>
+          <p class="social">
+          <a href="https://github.com/dustinfarris/">
+            <i class="fa fa-github fa-3x"></i>
+          </a>
+          <a href="https://twitter.com/dustinfarris">
+            <i class="fa fa-twitter fa-3x"></i>
+          </a>
+          <a href="/feeds/all.atom.xml">
+            <i class="fa fa-rss fa-3x"></i>
+          </a>
+          </p>
+          </hgroup>
+        </header>
+      </div>
+    </div>
+  </div>
+<div class="pure-u">
+  <div class="content">
+    <section class="post">
+      <header class="post-header">
+        <h1>"In-page Links and Fixed Header Overlap"</h1>
+        <p class="post-meta">
+        <a class="post-tag" href="http://dustinfarris.com/tag/css.html">CSS</a>
+        </p>
+      </header>
+      <p>Problem: You have a fixed position header (like the one on this page), and you
 find that using <code>&lt;a href="#othersection"&gt;</code> causes a portion of your document
 to be "hidden" by the banner after being brought to the top of the page. From
 a visual standpoint, when you declare <code>position:fixed</code> on an element, say a
@@ -79,8 +99,11 @@ jump point: :::html</p>
 <p>...</p>
 <p>Assuming the header's height is 70px, you must offset the jump point by at
 least that much. Modify the span element with the following CSS:</p>
-<p>span.anchor { display: block; height: 70px; margin-top: -70px; visibility:
-hidden; }</p>
+<div class="highlight"><pre><span class="nt">span</span><span class="nc">.anchor</span> <span class="p">{</span> <span class="k">display</span><span class="o">:</span> <span class="k">block</span><span class="p">;</span> <span class="k">height</span><span class="o">:</span> <span class="m">70px</span><span class="p">;</span> <span class="k">margin-top</span><span class="o">:</span> <span class="m">-70px</span><span class="p">;</span> <span class="k">visibility</span><span class="o">:</span>
+<span class="k">hidden</span><span class="p">;</span> <span class="p">}</span>
+</pre></div>
+
+
 <p>The browser will consider the height attribute when calculating
 where to scroll to, and the negative top margin keeps any large gaps from
 appearing in your page content. <img alt="Fixed-header problem fixed example" src="/media/uploads/fixedheaderfixed_example.png" /> This solution works
@@ -88,7 +111,8 @@ well in all modern browsers.</p>
 <ul>
 <li>CSS: Cascading Style Sheets</li>
 </ul>
-            <a href="#" class="go-top">Go Top</a>
+    </section>
+    <a href="#" class="go-top">&uparrow;</a>
     <div class="comments">
         <div id="disqus_thread"></div>
         <script type="text/javascript">
@@ -106,37 +130,34 @@ well in all modern browsers.</p>
         <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
     </div>
 <footer class="footer">
-    <p>&copy; Dustin Farris &ndash;
-        Built with <a href="https://github.com/PurePelicanTheme/pure-single">Pure Theme</a>
-        for <a href="http://blog.getpelican.com/">Pelican</a>
-    </p>
-</footer>        </div>
-    </div>
-    </div>
-    <script>
-        var $top = $('.go-top');
+  <p>&copy; Dustin Farris</p>
+</footer>  </div>
+</div>
+</div>
+<script>
+var $top = $('.go-top');
 
-        // Show or hide the sticky footer button
-        $(window).scroll(function() {
-            if ($(this).scrollTop() > 200) {
-                $top.fadeIn(200);
-            } else {
-                $top.fadeOut(200);
-            }
-        });
+// Show or hide the sticky footer button
+$(window).scroll(function() {
+    if ($(this).scrollTop() > 200) {
+    $top.fadeIn(200);
+    } else {
+    $top.fadeOut(200);
+    }
+    });
 
-        // Animate the scroll to top
-        $top.click(function(event) {
-            event.preventDefault();
-            $('html, body').animate({scrollTop: 0}, 300);
-        })
+// Animate the scroll to top
+$top.click(function(event) {
+    event.preventDefault();
+    $('html, body').animate({scrollTop: 0}, 300);
+    })
 
-        // Makes sure that the href="#" attached to the <a> elements
-        // don't scroll you back up the page.
-        $('body').on('click', 'a[href="#"]', function(event) {
-            event.preventDefault();
-        });
-    </script>
+// Makes sure that the href="#" attached to the <a> elements
+// don't scroll you back up the page.
+$('body').on('click', 'a[href="#"]', function(event) {
+    event.preventDefault();
+    });
+</script>
     <script type="text/javascript">
         var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
         document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));

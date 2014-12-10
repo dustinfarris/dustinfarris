@@ -1,68 +1,101 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Dustin Farris, inveniam viam aut faciam">
-
-        <link rel="alternate"  href="http://dustinfarris.com/feeds/all.atom.xml" type="application/atom+xml" title="Dustin Farris Full Atom Feed"/>
-
-        <title>tech category // Dustin Farris // inveniam viam aut faciam</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Dustin Farris, inveniam viam aut faciam">
+<link rel="alternate"  href="http://dustinfarris.com/feeds/all.atom.xml" type="application/atom+xml" title="Dustin Farris Full Atom Feed">
+<title>tech category // Dustin Farris // inveniam viam aut faciam</title>
 
 
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="http://dustinfarris.com/theme/css/pure.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="http://dustinfarris.com/theme/css/pure.css">
+<script>
+WebFontConfig = {
+google: { families: [ 'Dosis:600:latin', 'Open+Sans:400italic,400,700:latin' ] }
+};
+(function() {
+ var wf = document.createElement('script');
+ wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+ '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+ wf.type = 'text/javascript';
+ wf.async = 'true';
+ var s = document.getElementsByTagName('script')[0];
+ s.parentNode.insertBefore(wf, s);
+ })();
+</script>
 
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 </head>
 
 <body>
-    <div class="pure-g-r" id="layout">
-        <div class="sidebar pure-u">
-            <div class="cover-img" style="background-image: url('http://dustinfarris.com/images/beach.jpg')">
-                <div class="cover-body">
-                    <header class="header">
-                        <hgroup>
-                            <img class="avatar" src="http://dustinfarris.com/images/dustin.jpeg">
-                            <h1 class="brand-main"><a href="http://dustinfarris.com">Dustin Farris</a></h1>
-                            <p class="tagline">inveniam viam aut faciam</p>
-                                <p class="social">
-                                    <a href="https://github.com/dustinfarris/">
-                                        <i class="fa fa-github fa-3x"></i>
-                                    </a>
-                                    <a href="https://twitter.com/dustinfarris">
-                                        <i class="fa fa-twitter fa-3x"></i>
-                                    </a>
-                                    <a href="/feeds/all.atom.xml">
-                                        <i class="fa fa-rss fa-3x"></i>
-                                    </a>
-                                </p>
-                        </hgroup>
-                    </header>
-                </div>
-            </div>
-        </div>
-    <div class="pure-u">
-        <div class="content">
-            <!-- A wrapper for all the blog posts -->
-            <div class="posts">
-                <h1 class="content-subhead">
-Posts in 'tech'                        &ndash; Page&nbsp;5
-                </h1>
-                    <section class="post">
-                        <header class="post-header">
-                            <h3><a class="post-title" href="http://dustinfarris.com/2012/08/24/virtual-hosting-rails-nginx-apache-passenger-ubuntu.html">"Virtual Hosting, Rails, NGINX, Apache, Passenger, Ubuntu"</a></h3>
-                            <p class="post-meta"><p>I've become a fan of <a href="https://rvm.io/">RVM</a>, which allows you to create pseudo virtual environments called "gemsets" that can be version-locked to the specific needs of your individual projects.  In Rails, deploying several of these projects to a single server can be tricky.  This tutorial describes how this can be ...</p></p>
-                            <p class="post-meta">
-                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Fri 24 August 2012
-                            </p>
-                        </header>
-                    </section>
-                    <section class="post">
-                        <header class="post-header">
-                            <h3><a class="post-title" href="http://dustinfarris.com/2012/08/17/installing-ruby-on-mountain-lionmacports.html">"Installing Ruby on Mountain Lion/MacPorts"</a></h3>
-                            <p class="post-meta"><p>If you use MacPorts, the following should get Ruby installed and working on your machine.</p>
+<div class="pure-g-r" id="layout">
+  <div class="sidebar pure-u">
+    <div class="cover-img" style="background-image: url('http://dustinfarris.com/images/beach.jpg')">
+      <!--
+      <div class="cover-header">
+        <a href="http://dustinfarris.com">
+          <img class="logo" src="http://dustinfarris.com/images/df.png">
+        </a>
+      </div>
+      -->
+      <div class="cover-body">
+        <header class="header">
+          <hgroup>
+          <a href="http://dustinfarris.com">
+            <img class="avatar" src="http://dustinfarris.com/images/dustin.jpeg">
+          </a>
+          <h1 class="brand-main"><a href="http://dustinfarris.com">Dustin Farris</a></h1>
+          <p class="tagline">inveniam viam aut faciam</p>
+          <p class="social">
+          <a href="https://github.com/dustinfarris/">
+            <i class="fa fa-github fa-3x"></i>
+          </a>
+          <a href="https://twitter.com/dustinfarris">
+            <i class="fa fa-twitter fa-3x"></i>
+          </a>
+          <a href="/feeds/all.atom.xml">
+            <i class="fa fa-rss fa-3x"></i>
+          </a>
+          </p>
+          </hgroup>
+        </header>
+      </div>
+    </div>
+  </div>
+<div class="pure-u">
+  <div class="content">
+    <!-- A wrapper for all the blog posts -->
+    <div class="posts">
+      <h1 class="content-subhead">
+Posts in 'tech'        &ndash; Page&nbsp;5
+      </h1>
+      <section class="post">
+        <header class="post-header">
+          <h2 class="post-title">
+            <a href="http://dustinfarris.com/2012/08/24/virtual-hosting-rails-nginx-apache-passenger-ubuntu.html">
+              "Virtual Hosting, Rails, NGINX, Apache, Passenger, Ubuntu"
+            </a>
+          </h2>
+          <div class="summary"><p>I've become a fan of <a href="https://rvm.io/">RVM</a>, which allows you to create pseudo virtual environments called "gemsets" that can be version-locked to the specific needs of your individual projects.  In Rails, deploying several of these projects to a single server can be tricky.  This tutorial describes how this can be ...</p></div>
+          <p class="post-meta">
+          in
+          <a href="http://dustinfarris.com/category/tech.html">
+            tech
+          </a>
+          &middot; Fri 24 August 2012
+          </p>
+        </header>
+      </section>
+      <section class="post">
+        <header class="post-header">
+          <h2 class="post-title">
+            <a href="http://dustinfarris.com/2012/08/17/installing-ruby-on-mountain-lionmacports.html">
+              "Installing Ruby on Mountain Lion/MacPorts"
+            </a>
+          </h2>
+          <div class="summary"><p>If you use MacPorts, the following should get Ruby installed and working on your machine.</p>
 <h3>Install RVM</h3>
 <p>Taken from the <a href="https://rvm.io/rvm/install/">RVM website</a>:</p>
 <div class="highlight"><pre>curl -L https://get.rvm.io | bash -s stable --ruby
@@ -75,98 +108,166 @@ Posts in 'tech'                        &ndash; Page&nbsp;5
 
 
 <h3>(Re)Install Ruby</h3>
-<div class="highlight"><pre>rvm reinstall 1.9.3 --with-openssl-dir ...</pre></div></p>
-                            <p class="post-meta">
-                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Fri 17 August 2012
-                            </p>
-                        </header>
-                    </section>
-                    <section class="post">
-                        <header class="post-header">
-                            <h3><a class="post-title" href="http://dustinfarris.com/2012/08/16/mighty-germany.html">"Mighty Germany"</a></h3>
-                            <p class="post-meta"><p>Many people, especially conservatives, point to Germany as a shining example of austere success--but the country's present success is superficial.</p>
-<p><a href="http://www.project-syndicate.org/commentary/early-retirement-for-the-eurozone-by-nouriel-roubini">Nouriel Roubini</a> writes an article on the cost of delaying an inevitable Eurozone breakup; but what really caught my eye was a reader comment that I think describes Germany ...</p></p>
-                            <p class="post-meta">
-                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Thu 16 August 2012
-                            </p>
-                        </header>
-                    </section>
-                    <section class="post">
-                        <header class="post-header">
-                            <h3><a class="post-title" href="http://dustinfarris.com/2012/08/14/rails-through-vs-django-manytomany.html">"Rails 'through' vs Django 'ManyToMany'"</a></h3>
-                            <p class="post-meta"><p>Ok, Rails &amp; company have a lot of great points--I love RSpec--but I've noticed a few areas where Rails can improve.  Here, namely, I see a big difference in handling multiple relationships to self.</p>
+<div class="highlight"><pre>rvm reinstall 1.9.3 --with-openssl-dir ...</pre></div></div>
+          <p class="post-meta">
+          in
+          <a href="http://dustinfarris.com/category/tech.html">
+            tech
+          </a>
+          &middot; Fri 17 August 2012
+          </p>
+        </header>
+      </section>
+      <section class="post">
+        <header class="post-header">
+          <h2 class="post-title">
+            <a href="http://dustinfarris.com/2012/08/16/mighty-germany.html">
+              "Mighty Germany"
+            </a>
+          </h2>
+          <div class="summary"><p>Many people, especially conservatives, point to Germany as a shining example of austere success--but the country's present success is superficial.</p>
+<p><a href="http://www.project-syndicate.org/commentary/early-retirement-for-the-eurozone-by-nouriel-roubini">Nouriel Roubini</a> writes an article on the cost of delaying an inevitable Eurozone breakup; but what really caught my eye was a reader comment that I think describes Germany ...</p></div>
+          <p class="post-meta">
+          in
+          <a href="http://dustinfarris.com/category/tech.html">
+            tech
+          </a>
+          &middot; Thu 16 August 2012
+          </p>
+        </header>
+      </section>
+      <section class="post">
+        <header class="post-header">
+          <h2 class="post-title">
+            <a href="http://dustinfarris.com/2012/08/14/rails-through-vs-django-manytomany.html">
+              "Rails 'through' vs Django 'ManyToMany'"
+            </a>
+          </h2>
+          <div class="summary"><p>Ok, Rails &amp; company have a lot of great points--I love RSpec--but I've noticed a few areas where Rails can improve.  Here, namely, I see a big difference in handling multiple relationships to self.</p>
 <h2>In Rails</h2>
 <p><code>db/migrate/create_relationships.rb</code></p>
 <div class="highlight"><pre><span class="k">class</span> <span class="nc">CreateRelationships</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span>
     <span class="k">def</span> <span class="nf">change</span>
-        <span class="n">create_table</span> <span class="ss">:relationships</span> <span class="k">do</span> <span class="o">|</span><span class="n">t ...</span></pre></div></p>
-                            <p class="post-meta">
-                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Tue 14 August 2012
-                            </p>
-                        </header>
-                    </section>
-                    <section class="post">
-                        <header class="post-header">
-                            <h3><a class="post-title" href="http://dustinfarris.com/2012/08/13/the-veil-of-opulence.html">"The Veil of Opulence"</a></h3>
-                            <p class="post-meta"><p><a href="http://opinionator.blogs.nytimes.com/2012/08/12/the-veil-of-opulence/?partner=rss&amp;emc=rss">Benjamin Hale</a> offers a great point of view to consider when looking at our political choices--and many non-political choices for that matter.  It's really a great article.</p>
+        <span class="n">create_table</span> <span class="ss">:relationships</span> <span class="k">do</span> <span class="o">|</span><span class="n">t ...</span></pre></div></div>
+          <p class="post-meta">
+          in
+          <a href="http://dustinfarris.com/category/tech.html">
+            tech
+          </a>
+          &middot; Tue 14 August 2012
+          </p>
+        </header>
+      </section>
+      <section class="post">
+        <header class="post-header">
+          <h2 class="post-title">
+            <a href="http://dustinfarris.com/2012/08/13/the-veil-of-opulence.html">
+              "The Veil of Opulence"
+            </a>
+          </h2>
+          <div class="summary"><p><a href="http://opinionator.blogs.nytimes.com/2012/08/12/the-veil-of-opulence/?partner=rss&amp;emc=rss">Benjamin Hale</a> offers a great point of view to consider when looking at our political choices--and many non-political choices for that matter.  It's really a great article.</p>
 <blockquote>
-<p>The veil of opulence assumes that the playing field is level, that all gains are fairly gotten, that there is no cosmic ...</p></blockquote></p>
-                            <p class="post-meta">
-                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Mon 13 August 2012
-                            </p>
-                        </header>
-                    </section>
-                    <section class="post">
-                        <header class="post-header">
-                            <h3><a class="post-title" href="http://dustinfarris.com/2012/08/10/why-ror-is-awesome-part-1-of-many.html">"Why RoR is Awesome (part 1 of many)"</a></h3>
-                            <p class="post-meta"><p>I finally took the plunge.  I'm learning Rails.  And holy shit.</p>
+<p>The veil of opulence assumes that the playing field is level, that all gains are fairly gotten, that there is no cosmic ...</p></blockquote></div>
+          <p class="post-meta">
+          in
+          <a href="http://dustinfarris.com/category/tech.html">
+            tech
+          </a>
+          &middot; Mon 13 August 2012
+          </p>
+        </header>
+      </section>
+      <section class="post">
+        <header class="post-header">
+          <h2 class="post-title">
+            <a href="http://dustinfarris.com/2012/08/10/why-ror-is-awesome-part-1-of-many.html">
+              "Why RoR is Awesome (part 1 of many)"
+            </a>
+          </h2>
+          <div class="summary"><p>I finally took the plunge.  I'm learning Rails.  And holy shit.</p>
 <p>RoR has a philosophy of being RESTful, which means using what's already built (HTTP) rather than reinventing the wheel.</p>
 <p>I launched a "users" app using just these <em>three</em> commands taken from the tutorial I'm following:</p>
-<div class="highlight"><pre><span class="go">rails ...</span></pre></div></p>
-                            <p class="post-meta">
-                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Fri 10 August 2012
-                            </p>
-                        </header>
-                    </section>
-                    <section class="post">
-                        <header class="post-header">
-                            <h3><a class="post-title" href="http://dustinfarris.com/2012/08/09/testing-management-commands.html">"Testing Management Commands"</a></h3>
-                            <p class="post-meta"><p>I think to be a good Django citizen it would be appropriate to write tests ensuring that standard management commands work with your application.  I thought of this after dealing with a <a href="https://github.com/divio/django-cms/">certain app</a> that doesn't handle <code>loaddata</code> very well.</p>
-<p>Going forward, I'm adding this TestCase to all ...</p></p>
-                            <p class="post-meta">
-                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Thu 09 August 2012
-                            </p>
-                        </header>
-                    </section>
-                    <section class="post">
-                        <header class="post-header">
-                            <h3><a class="post-title" href="http://dustinfarris.com/2012/08/08/django-model-managers-via-related.html">"Django Model Managers via Related"</a></h3>
-                            <p class="post-meta"><p>It is fairly common practice to use a custom model manager when you have a certain field(s) that you know you will be filtering by a lot.  I found a small caveat from the traditional approach when you take related objects into account.  Take this classic example for published ...</p></p>
-                            <p class="post-meta">
-                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Wed 08 August 2012
-                            </p>
-                        </header>
-                    </section>
-                    <section class="post">
-                        <header class="post-header">
-                            <h3><a class="post-title" href="http://dustinfarris.com/2012/08/08/html5-navigation-bug-when-returning-from-external-site.html">"HTML5 Navigation Bug When Returning From External Site"</a></h3>
-                            <p class="post-meta"><p>So HTML5 navigation is in full swing, and it's awesome.  If you aren't implementing it yet, start.  I found a bug in Chrome, though, (and possibly other browsers) that resulted in your JSON data being grossly displayed as a webpage if the user visited and returned from an ...</p></p>
-                            <p class="post-meta">
-                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Wed 08 August 2012
-                            </p>
-                        </header>
-                    </section>
-                    <section class="post">
-                        <header class="post-header">
-                            <h3><a class="post-title" href="http://dustinfarris.com/2012/08/05/book-review-brave-new-world.html">"Book Review: Brave New World"</a></h3>
-                            <p class="post-meta"><p><img alt="Brave New World book cover" src="/media/filer/2012/08/05/bravenewworld.jpg" /></p>
+<div class="highlight"><pre><span class="go">rails ...</span></pre></div></div>
+          <p class="post-meta">
+          in
+          <a href="http://dustinfarris.com/category/tech.html">
+            tech
+          </a>
+          &middot; Fri 10 August 2012
+          </p>
+        </header>
+      </section>
+      <section class="post">
+        <header class="post-header">
+          <h2 class="post-title">
+            <a href="http://dustinfarris.com/2012/08/09/testing-management-commands.html">
+              "Testing Management Commands"
+            </a>
+          </h2>
+          <div class="summary"><p>I think to be a good Django citizen it would be appropriate to write tests ensuring that standard management commands work with your application.  I thought of this after dealing with a <a href="https://github.com/divio/django-cms/">certain app</a> that doesn't handle <code>loaddata</code> very well.</p>
+<p>Going forward, I'm adding this TestCase to all ...</p></div>
+          <p class="post-meta">
+          in
+          <a href="http://dustinfarris.com/category/tech.html">
+            tech
+          </a>
+          &middot; Thu 09 August 2012
+          </p>
+        </header>
+      </section>
+      <section class="post">
+        <header class="post-header">
+          <h2 class="post-title">
+            <a href="http://dustinfarris.com/2012/08/08/django-model-managers-via-related.html">
+              "Django Model Managers via Related"
+            </a>
+          </h2>
+          <div class="summary"><p>It is fairly common practice to use a custom model manager when you have a certain field(s) that you know you will be filtering by a lot.  I found a small caveat from the traditional approach when you take related objects into account.  Take this classic example for published ...</p></div>
+          <p class="post-meta">
+          in
+          <a href="http://dustinfarris.com/category/tech.html">
+            tech
+          </a>
+          &middot; Wed 08 August 2012
+          </p>
+        </header>
+      </section>
+      <section class="post">
+        <header class="post-header">
+          <h2 class="post-title">
+            <a href="http://dustinfarris.com/2012/08/08/html5-navigation-bug-when-returning-from-external-site.html">
+              "HTML5 Navigation Bug When Returning From External Site"
+            </a>
+          </h2>
+          <div class="summary"><p>So HTML5 navigation is in full swing, and it's awesome.  If you aren't implementing it yet, start.  I found a bug in Chrome, though, (and possibly other browsers) that resulted in your JSON data being grossly displayed as a webpage if the user visited and returned from an ...</p></div>
+          <p class="post-meta">
+          in
+          <a href="http://dustinfarris.com/category/tech.html">
+            tech
+          </a>
+          &middot; Wed 08 August 2012
+          </p>
+        </header>
+      </section>
+      <section class="post">
+        <header class="post-header">
+          <h2 class="post-title">
+            <a href="http://dustinfarris.com/2012/08/05/book-review-brave-new-world.html">
+              "Book Review: Brave New World"
+            </a>
+          </h2>
+          <div class="summary"><p><img alt="Brave New World book cover" src="/media/filer/2012/08/05/bravenewworld.jpg" /></p>
 <p><em>Brave New World</em> by Aldous Huxley</p>
-<p>I think what is most remarkable about this book is that it foreshadows the world we live in today on several levels.  From anti-depressants to age-defying creams to <a href="http://www.cbsnews.com/2100-500164_162-611618.html">manipulating the gender</a> of an unborn baby, Huxley is probably looking down on us saying, "I ...</p></p>
-                            <p class="post-meta">
-                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Sun 05 August 2012
-                            </p>
-                        </header>
-                    </section>
+<p>I think what is most remarkable about this book is that it foreshadows the world we live in today on several levels.  From anti-depressants to age-defying creams to <a href="http://www.cbsnews.com/2100-500164_162-611618.html">manipulating the gender</a> of an unborn baby, Huxley is probably looking down on us saying, "I ...</p></div>
+          <p class="post-meta">
+          in
+          <a href="http://dustinfarris.com/category/tech.html">
+            tech
+          </a>
+          &middot; Sun 05 August 2012
+          </p>
+        </header>
+      </section>
 <div class="pagination-wrapper content-subhead">
     <div class="pagination">
         <div class="pagination-left">
@@ -178,38 +279,35 @@ Posts in 'tech'                        &ndash; Page&nbsp;5
         </div>
     </div>
 </div><footer class="footer">
-    <p>&copy; Dustin Farris &ndash;
-        Built with <a href="https://github.com/PurePelicanTheme/pure-single">Pure Theme</a>
-        for <a href="http://blog.getpelican.com/">Pelican</a>
-    </p>
-</footer>            </div>
-        </div>
-    </div>
-    </div>
-    <script>
-        var $top = $('.go-top');
+  <p>&copy; Dustin Farris</p>
+</footer>    </div>
+  </div>
+</div>
+</div>
+<script>
+var $top = $('.go-top');
 
-        // Show or hide the sticky footer button
-        $(window).scroll(function() {
-            if ($(this).scrollTop() > 200) {
-                $top.fadeIn(200);
-            } else {
-                $top.fadeOut(200);
-            }
-        });
+// Show or hide the sticky footer button
+$(window).scroll(function() {
+    if ($(this).scrollTop() > 200) {
+    $top.fadeIn(200);
+    } else {
+    $top.fadeOut(200);
+    }
+    });
 
-        // Animate the scroll to top
-        $top.click(function(event) {
-            event.preventDefault();
-            $('html, body').animate({scrollTop: 0}, 300);
-        })
+// Animate the scroll to top
+$top.click(function(event) {
+    event.preventDefault();
+    $('html, body').animate({scrollTop: 0}, 300);
+    })
 
-        // Makes sure that the href="#" attached to the <a> elements
-        // don't scroll you back up the page.
-        $('body').on('click', 'a[href="#"]', function(event) {
-            event.preventDefault();
-        });
-    </script>
+// Makes sure that the href="#" attached to the <a> elements
+// don't scroll you back up the page.
+$('body').on('click', 'a[href="#"]', function(event) {
+    event.preventDefault();
+    });
+</script>
     <script type="text/javascript">
         var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
         document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));

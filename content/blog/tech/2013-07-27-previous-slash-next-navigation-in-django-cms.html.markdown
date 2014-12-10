@@ -5,7 +5,7 @@ I don't know why Django CMS doesn't have a built-in helper for navigating a page
 
 For now, here's a quick gist that will give you previous/next buttons to get from one page to the next in your CMS Page tree.
 
-```html
+```django
 {% load cms_tags %}
  
 <ul class="pager">

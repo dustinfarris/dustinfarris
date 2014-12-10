@@ -30,8 +30,11 @@ Assuming the header's height is 70px, you must offset the jump point by at
 least that much. Modify the span element with the following CSS:
 
 
+```css
 span.anchor { display: block; height: 70px; margin-top: -70px; visibility:
 hidden; }
+```
+
 
 The browser will consider the height attribute when calculating
 where to scroll to, and the negative top margin keeps any large gaps from

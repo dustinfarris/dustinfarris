@@ -14,7 +14,7 @@ In June, [I decided](https://github.com/toranb/ember-data-django-rest-adapter/is
 npm install --save-dev ember-django-adapter
 ```
 
-There a few extra perks in the addon, such as blueprints for generating customizable adapter/serializer extensions.
+There are a few extra perks in the addon, such as blueprints for generating customizable adapter/serializer extensions.
 
 ## Version 1.0 (in progress)
 

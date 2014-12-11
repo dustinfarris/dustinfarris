@@ -7,7 +7,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;There a few extra perks in the addon, such as blueprints for generating customizable adapter/serializer extensions.&lt;/p&gt;
+&lt;p&gt;There are a few extra perks in the addon, such as blueprints for generating customizable adapter/serializer extensions.&lt;/p&gt;
 &lt;h2&gt;Version 1.0 (in progress)&lt;/h2&gt;
 &lt;p&gt;Since ember-cli &lt;a href="https://github.com/emberjs/rfcs/blob/ember-2.0-rfc/active/0000-the-road-to-ember-2-0.md#big-bets"&gt;is the future&lt;/a&gt; of Ember.js, we decided to move the entire codebase into the addon repository.&lt;/p&gt;
 &lt;p&gt;We are currently working toward a version 1.0 release of the adapter.  I've been working with &lt;a href="https://github.com/benkonrath"&gt;@benkonrath&lt;/a&gt; and &lt;a href="https://github.com/holandes22"&gt;@holandes22&lt;/a&gt; to address outstanding issues and sort out documentation.&lt;/p&gt;

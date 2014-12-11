@@ -8,7 +8,7 @@ SITEURL = 'http://localhost:8000'
 
 THEME = 'pure-single'
 COVER_IMG_URL = SITEURL + '/images/beach.jpg'
-PROFILE_IMG_URL = SITEURL + '/images/dustin.jpeg'
+PROFILE_IMG_URL = SITEURL + '/images/dustin.jpg'
 LOGO_IMG_URL = SITEURL + '/images/df.png'
 TAGLINE = 'inveniam viam aut faciam'
 

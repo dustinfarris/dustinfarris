@@ -1,16 +1,12 @@
 <!doctype html>
+
 <html lang="en">
+
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Dustin Farris, inveniam viam aut faciam">
+<meta http-equiv="X-UA-Compatible" content="IE=edge;chrome=1">
 <link rel="alternate"  href="http://dustinfarris.com/feeds/all.atom.xml" type="application/atom+xml" title="Dustin Farris Full Atom Feed">
 <title>tech category // Dustin Farris</title>
-
-
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="http://dustinfarris.com/theme/css/pure.css">
 <script>
 WebFontConfig = {
 google: { families: [ 'Dosis:600:latin', 'Open+Sans:400italic,400,700:latin' ] }
@@ -24,253 +20,299 @@ google: { families: [ 'Dosis:600:latin', 'Open+Sans:400italic,400,700:latin' ] }
  var s = document.getElementsByTagName('script')[0];
  s.parentNode.insertBefore(wf, s);
  })();
-</script>
-
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+</script><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="http://dustinfarris.com/theme/css/pure.css"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta
+name="description"
+content="Dustin Farris">
+<link href="http://dustinfarris.com/humans.txt" rel="author">
 </head>
 
-<body>
+<body itemscope itemtype="http://schema.org/WebPage">
 <div class="pure-g-r" id="layout">
-  <div class="sidebar pure-u">
-    <div class="cover-img" style="background-image: url('http://dustinfarris.com/images/beach.jpg')">
-      <!--
-      <div class="cover-header">
+<div class="sidebar pure-u">
+  <div class="cover-img" style="background-image: url('http://dustinfarris.com/images/beach.jpg')">
+    <div class="cover-body">
+      <header class="header">
+        <hgroup>
         <a href="http://dustinfarris.com">
-          <img class="logo" src="http://dustinfarris.com/images/df.png">
+          <img class="avatar" src="http://dustinfarris.com/images/dustin.jpeg">
         </a>
-      </div>
-      -->
-      <div class="cover-body">
-        <header class="header">
-          <hgroup>
-          <a href="http://dustinfarris.com">
-            <img class="avatar" src="http://dustinfarris.com/images/dustin.jpeg">
-          </a>
-          <h1 class="brand-main"><a href="http://dustinfarris.com">Dustin Farris</a></h1>
-          <p class="tagline">inveniam viam aut faciam</p>
-          <p class="social">
-          <a href="https://github.com/dustinfarris/">
-            <i class="fa fa-github fa-3x"></i>
-          </a>
-          <a href="https://twitter.com/dustinfarris">
-            <i class="fa fa-twitter fa-3x"></i>
-          </a>
-          <a href="/feeds/all.atom.xml">
-            <i class="fa fa-rss fa-3x"></i>
-          </a>
-          </p>
-          </hgroup>
-        </header>
-      </div>
+        <h1 class="brand-main"><a href="http://dustinfarris.com">Dustin Farris</a></h1>
+        <p class="tagline">inveniam viam aut faciam</p>
+        <p class="social">
+        <a href="https://github.com/dustinfarris/">
+          <i class="fa fa-github fa-3x"></i>
+        </a>
+        <a href="https://twitter.com/dustinfarris">
+          <i class="fa fa-twitter fa-3x"></i>
+        </a>
+        <a href="/feeds/all.atom.xml">
+          <i class="fa fa-rss fa-3x"></i>
+        </a>
+        </p>
+        </hgroup>
+      </header>
     </div>
   </div>
-<div class="pure-u">
+</div><div class="pure-u">
   <div class="content">
     <!-- A wrapper for all the blog posts -->
-    <div class="posts">
+    <div class="posts" itemscope itemtype="http://schema.org/Blog">
       <h1 class="content-subhead">
 Posts in 'tech'        &ndash; Page&nbsp;5
       </h1>
-      <section class="post">
-        <header class="post-header">
-          <h2 class="post-title">
-            <a href="http://dustinfarris.com/2012/05/21/offering-an-rss-filter-option.html">
-              "Offering an RSS Filter Option"
-            </a>
-          </h2>
-          <div class="summary"><p>The great thing about RSS is that it allows you to get updates on things you're interested in as they are published.  However, with multifaceted blogs, such as mine, it's quite possible that you are receiving both wanted and unwanted updates from your subscription.  That's why I ...</p></div>
-          <p class="post-meta">
-          in
-          <a href="http://dustinfarris.com/category/tech.html">
-            tech
+      <div class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <h2 class="post-title" itemprop="name">
+          <a href="http://dustinfarris.com/2012/05/21/offering-an-rss-filter-option.html" itemprop="url">
+            "Offering an RSS Filter Option"
           </a>
-          &middot; Mon 21 May 2012
-          </p>
-        </header>
-      </section>
-      <section class="post">
-        <header class="post-header">
-          <h2 class="post-title">
-            <a href="http://dustinfarris.com/2012/05/18/why-build-a-blog-with-django.html">
-              "Why Build a Blog with Django?"
-            </a>
-          </h2>
-          <div class="summary"><p>This question comes up a lot, both in flame wars and in rational discussion.  Why would you take time to build a blog application with Django when there are engines like WordPress that do the same thing out of the box.  Well it depends.</p>
-<p>The number one reason I think ...</p></div>
-          <p class="post-meta">
-          in
-          <a href="http://dustinfarris.com/category/tech.html">
-            tech
+        </h2>
+        <div class="summary" itemprop="description">
+          <p>The great thing about RSS is that it allows you to get updates on things you're interested in as they are published.  However, with multifaceted blogs, such as mine, it's quite possible that you are receiving both wanted and unwanted updates from your subscription.  That's why I ...</p>
+        </div>
+        <p class="post-meta">
+        in
+        <a href="http://dustinfarris.com/category/tech.html">
+          tech
+        </a>
+        &middot;
+        <span itemprop="datePublished">
+          <time datetime="2012-05-21">
+            21 May 2012
+          </time>
+        </span>
+        </p>
+      </div>
+      <div class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <h2 class="post-title" itemprop="name">
+          <a href="http://dustinfarris.com/2012/05/18/why-build-a-blog-with-django.html" itemprop="url">
+            "Why Build a Blog with Django?"
           </a>
-          &middot; Fri 18 May 2012
-          </p>
-        </header>
-      </section>
-      <section class="post">
-        <header class="post-header">
-          <h2 class="post-title">
-            <a href="http://dustinfarris.com/2012/05/17/rss-not-a-fishing-pole.html">
-              "RSS: Not a Fishing Pole"
-            </a>
-          </h2>
-          <div class="summary"><p>I've decided to formally denounce truncated RSS feeds.  I have become overtly annoyed by a handful of blogs I follow that break my Google Reader flow, and <a href="http://www.geekinheels.com/2010/03/17/gawkers-truncated-rss-feeds-and-how-to-get-your-full-feeds-back.html">others</a> <a href="http://www.techdirt.com/articles/20100311/1809048526.shtml">agree with me</a>.</p>
-<p>The reason I love RSS so much is because it puts all of the people/organizations who write ...</p></div>
-          <p class="post-meta">
-          in
-          <a href="http://dustinfarris.com/category/tech.html">
-            tech
+        </h2>
+        <div class="summary" itemprop="description">
+          <p>This question comes up a lot, both in flame wars and in rational discussion.  Why would you take time to build a blog application with Django when there are engines like WordPress that do the same thing out of the box.  Well it depends.</p>
+<p>The number one reason I think ...</p>
+        </div>
+        <p class="post-meta">
+        in
+        <a href="http://dustinfarris.com/category/tech.html">
+          tech
+        </a>
+        &middot;
+        <span itemprop="datePublished">
+          <time datetime="2012-05-18">
+            18 May 2012
+          </time>
+        </span>
+        </p>
+      </div>
+      <div class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <h2 class="post-title" itemprop="name">
+          <a href="http://dustinfarris.com/2012/05/17/rss-not-a-fishing-pole.html" itemprop="url">
+            "RSS: Not a Fishing Pole"
           </a>
-          &middot; Thu 17 May 2012
-          </p>
-        </header>
-      </section>
-      <section class="post">
-        <header class="post-header">
-          <h2 class="post-title">
-            <a href="http://dustinfarris.com/2012/05/16/goodbye-tinymce-hello-markdown.html">
-              "Goodbye TinyMCE, Hello Markdown"
-            </a>
-          </h2>
-          <div class="summary"><p>I've been a faithful <a href="http://www.tinymce.com/">TinyMCE</a> user for years, but
+        </h2>
+        <div class="summary" itemprop="description">
+          <p>I've decided to formally denounce truncated RSS feeds.  I have become overtly annoyed by a handful of blogs I follow that break my Google Reader flow, and <a href="http://www.geekinheels.com/2010/03/17/gawkers-truncated-rss-feeds-and-how-to-get-your-full-feeds-back.html">others</a> <a href="http://www.techdirt.com/articles/20100311/1809048526.shtml">agree with me</a>.</p>
+<p>The reason I love RSS so much is because it puts all of the people/organizations who write ...</p>
+        </div>
+        <p class="post-meta">
+        in
+        <a href="http://dustinfarris.com/category/tech.html">
+          tech
+        </a>
+        &middot;
+        <span itemprop="datePublished">
+          <time datetime="2012-05-17">
+            17 May 2012
+          </time>
+        </span>
+        </p>
+      </div>
+      <div class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <h2 class="post-title" itemprop="name">
+          <a href="http://dustinfarris.com/2012/05/16/goodbye-tinymce-hello-markdown.html" itemprop="url">
+            "Goodbye TinyMCE, Hello Markdown"
+          </a>
+        </h2>
+        <div class="summary" itemprop="description">
+          <p>I've been a faithful <a href="http://www.tinymce.com/">TinyMCE</a> user for years, but
 my blogging needs are growing and changing, and TinyMCE just isn't a fit
 anymore. My primary complaint has been with syntax highlighting. The best
 solution I was able to find was a Javascript libarary called
 <a href="http://alexgorbatchev.com/SyntaxHighlighter/">SyntaxHighlighter</a> that
-requires you ...</p></div>
-          <p class="post-meta">
-          in
-          <a href="http://dustinfarris.com/category/tech.html">
-            tech
+requires you ...</p>
+        </div>
+        <p class="post-meta">
+        in
+        <a href="http://dustinfarris.com/category/tech.html">
+          tech
+        </a>
+        &middot;
+        <span itemprop="datePublished">
+          <time datetime="2012-05-16">
+            16 May 2012
+          </time>
+        </span>
+        </p>
+      </div>
+      <div class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <h2 class="post-title" itemprop="name">
+          <a href="http://dustinfarris.com/2012/05/16/importerror-cannot-import-name-indexes.html" itemprop="url">
+            "ImportError: cannot import name indexes"
           </a>
-          &middot; Wed 16 May 2012
-          </p>
-        </header>
-      </section>
-      <section class="post">
-        <header class="post-header">
-          <h2 class="post-title">
-            <a href="http://dustinfarris.com/2012/05/16/importerror-cannot-import-name-indexes.html">
-              "ImportError: cannot import name indexes"
-            </a>
-          </h2>
-          <div class="summary"><p>I'm certainly not the first person to hit this caveat with django-haystack, as
+        </h2>
+        <div class="summary" itemprop="description">
+          <p>I'm certainly not the first person to hit this caveat with django-haystack, as
 this error has been reported for <a href="https://github.com/toastdriven/django-haystack/issues/315">over a year</a> now. However, I had trouble finding a concise
-and reputable workaround. <a href="https://github.com/toastdriven">Daniel Lindsley</a>, the guy behind django-haystack, has alluded to a <a href="http://django-haystack.readthedocs.org/en/v1.2.7/debugging.html#import-errors-on-start-up-mentioning-handle-registrations">workaround</a> in the haystack docs, but ...</p></div>
-          <p class="post-meta">
-          in
-          <a href="http://dustinfarris.com/category/tech.html">
-            tech
+and reputable workaround. <a href="https://github.com/toastdriven">Daniel Lindsley</a>, the guy behind django-haystack, has alluded to a <a href="http://django-haystack.readthedocs.org/en/v1.2.7/debugging.html#import-errors-on-start-up-mentioning-handle-registrations">workaround</a> in the haystack docs, but ...</p>
+        </div>
+        <p class="post-meta">
+        in
+        <a href="http://dustinfarris.com/category/tech.html">
+          tech
+        </a>
+        &middot;
+        <span itemprop="datePublished">
+          <time datetime="2012-05-16">
+            16 May 2012
+          </time>
+        </span>
+        </p>
+      </div>
+      <div class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <h2 class="post-title" itemprop="name">
+          <a href="http://dustinfarris.com/2012/05/13/site-updates.html" itemprop="url">
+            "Site Updates"
           </a>
-          &middot; Wed 16 May 2012
-          </p>
-        </header>
-      </section>
-      <section class="post">
-        <header class="post-header">
-          <h2 class="post-title">
-            <a href="http://dustinfarris.com/2012/05/13/site-updates.html">
-              "Site Updates"
-            </a>
-          </h2>
-          <div class="summary"><p>I just finished a pretty big round of revisions on dustinfarris.com.
+        </h2>
+        <div class="summary" itemprop="description">
+          <p>I just finished a pretty big round of revisions on dustinfarris.com.
 Included in this makeover:</p>
 <ul>
 <li>Started using <a href="http://sass-lang.com/">SASS</a> for my style edits. Coupled with <a href="https://github.com/jezdez/django_compressor">django-compressor</a>, which has a built-in preprocessor to compile edits on the fly, my CSS is more intuitive than ever.</li>
-<li>Major HTML5 refactoring. Although it may ...</li></ul></div>
-          <p class="post-meta">
-          in
-          <a href="http://dustinfarris.com/category/tech.html">
-            tech
+<li>Major HTML5 refactoring. Although it may ...</li></ul>
+        </div>
+        <p class="post-meta">
+        in
+        <a href="http://dustinfarris.com/category/tech.html">
+          tech
+        </a>
+        &middot;
+        <span itemprop="datePublished">
+          <time datetime="2012-05-13">
+            13 May 2012
+          </time>
+        </span>
+        </p>
+      </div>
+      <div class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <h2 class="post-title" itemprop="name">
+          <a href="http://dustinfarris.com/2012/05/09/fair-and-balanced-and-gay.html" itemprop="url">
+            "Fair and Balanced... and GAY"
           </a>
-          &middot; Sun 13 May 2012
-          </p>
-        </header>
-      </section>
-      <section class="post">
-        <header class="post-header">
-          <h2 class="post-title">
-            <a href="http://dustinfarris.com/2012/05/09/fair-and-balanced-and-gay.html">
-              "Fair and Balanced... and GAY"
-            </a>
-          </h2>
-          <div class="summary"><p>President Obama declared his support for gay marriage today.
+        </h2>
+        <div class="summary" itemprop="description">
+          <p>President Obama declared his support for gay marriage today.
 That's interesting news. What's also
 interesting is how the networks differ from each other when announcing the
 news.</p>
 <p>Perhaps the differences are unnoticeable to some, but as a person who thinks
-critically about webpages for a living, I couldn ...</p></div>
-          <p class="post-meta">
-          in
-          <a href="http://dustinfarris.com/category/tech.html">
-            tech
+critically about webpages for a living, I couldn ...</p>
+        </div>
+        <p class="post-meta">
+        in
+        <a href="http://dustinfarris.com/category/tech.html">
+          tech
+        </a>
+        &middot;
+        <span itemprop="datePublished">
+          <time datetime="2012-05-09">
+            9 May 2012
+          </time>
+        </span>
+        </p>
+      </div>
+      <div class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <h2 class="post-title" itemprop="name">
+          <a href="http://dustinfarris.com/2012/04/13/exporting-auth-fixtures.html" itemprop="url">
+            "Exporting `auth` Fixtures"
           </a>
-          &middot; Wed 09 May 2012
-          </p>
-        </header>
-      </section>
-      <section class="post">
-        <header class="post-header">
-          <h2 class="post-title">
-            <a href="http://dustinfarris.com/2012/04/13/exporting-auth-fixtures.html">
-              "Exporting `auth` Fixtures"
-            </a>
-          </h2>
-          <div class="summary"><p>I've discovered, rather painfully, that setting up auth fixtures for testing
+        </h2>
+        <div class="summary" itemprop="description">
+          <p>I've discovered, rather painfully, that setting up auth fixtures for testing
 requires a little care. Problems result when South
 migrations interfere with fixture permissions.</p>
 <p>The best way to dump auth data is to use natural keys and avoid the permission
 model altogether:</p>
-<div class="highlight"><pre>./manage.py dumpdata -n auth.user auth ...</pre></div></div>
-          <p class="post-meta">
-          in
-          <a href="http://dustinfarris.com/category/tech.html">
-            tech
+<div class="highlight"><pre>./manage.py dumpdata -n auth.user auth ...</pre></div>
+        </div>
+        <p class="post-meta">
+        in
+        <a href="http://dustinfarris.com/category/tech.html">
+          tech
+        </a>
+        &middot;
+        <span itemprop="datePublished">
+          <time datetime="2012-04-13">
+            13 Apr 2012
+          </time>
+        </span>
+        </p>
+      </div>
+      <div class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <h2 class="post-title" itemprop="name">
+          <a href="http://dustinfarris.com/2012/04/12/django-media-cleaning-up-your-mess.html" itemprop="url">
+            "Django Media: Cleaning Up Your Mess"
           </a>
-          &middot; Fri 13 April 2012
-          </p>
-        </header>
-      </section>
-      <section class="post">
-        <header class="post-header">
-          <h2 class="post-title">
-            <a href="http://dustinfarris.com/2012/04/12/django-media-cleaning-up-your-mess.html">
-              "Django Media: Cleaning Up Your Mess"
-            </a>
-          </h2>
-          <div class="summary"><p>Sometimes it's too easy to fire and forget when it comes to setting up
+        </h2>
+        <div class="summary" itemprop="description">
+          <p>Sometimes it's too easy to fire and forget when it comes to setting up
 FileFields in Django. Over time, a lot of media can become stale as objects
 are deleted--wasting storage space. Here is a quick way to keep your waste
-footprint down: Store assets for every object in ...</p></div>
-          <p class="post-meta">
-          in
-          <a href="http://dustinfarris.com/category/tech.html">
-            tech
+footprint down: Store assets for every object in ...</p>
+        </div>
+        <p class="post-meta">
+        in
+        <a href="http://dustinfarris.com/category/tech.html">
+          tech
+        </a>
+        &middot;
+        <span itemprop="datePublished">
+          <time datetime="2012-04-12">
+            12 Apr 2012
+          </time>
+        </span>
+        </p>
+      </div>
+      <div class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <h2 class="post-title" itemprop="name">
+          <a href="http://dustinfarris.com/2012/04/09/django-jquery-and-infinite-scroll.html" itemprop="url">
+            "Django, jQuery, and Infinite Scroll"
           </a>
-          &middot; Thu 12 April 2012
-          </p>
-        </header>
-      </section>
-      <section class="post">
-        <header class="post-header">
-          <h2 class="post-title">
-            <a href="http://dustinfarris.com/2012/04/09/django-jquery-and-infinite-scroll.html">
-              "Django, jQuery, and Infinite Scroll"
-            </a>
-          </h2>
-          <div class="summary"><p><strong>Incomplete</strong>: This post is missing some JavaScript code that got removed
+        </h2>
+        <div class="summary" itemprop="description">
+          <p><strong>Incomplete</strong>: This post is missing some JavaScript code that got removed
 somehow when I <a href="http://dustinfarris.com/2013/06/from-django-to-github-pages/">switched to Octopress</a>.</p>
 <p>As the "next page" button becomes a thing of the past, we look for new ways to
 provide streaming information. Enter infinite scroll. Implementing infinite
-scroll in Django is easy thanks to the ...</p></div>
-          <p class="post-meta">
-          in
-          <a href="http://dustinfarris.com/category/tech.html">
-            tech
-          </a>
-          &middot; Mon 09 April 2012
-          </p>
-        </header>
-      </section>
+scroll in Django is easy thanks to the ...</p>
+        </div>
+        <p class="post-meta">
+        in
+        <a href="http://dustinfarris.com/category/tech.html">
+          tech
+        </a>
+        &middot;
+        <span itemprop="datePublished">
+          <time datetime="2012-04-09">
+            9 Apr 2012
+          </time>
+        </span>
+        </p>
+      </div>
 <div class="pagination-wrapper content-subhead">
     <div class="pagination">
         <div class="pagination-left">
@@ -287,7 +329,7 @@ scroll in Django is easy thanks to the ...</p></div>
   </div>
 </div>
 </div>
-<script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><script>
 var $top = $('.go-top');
 
 // Show or hide the sticky footer button
@@ -310,8 +352,7 @@ $top.click(function(event) {
 $('body').on('click', 'a[href="#"]', function(event) {
     event.preventDefault();
     });
-</script>
-    <script type="text/javascript">
+</script>    <script type="text/javascript">
         var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
         document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
     </script>
@@ -323,4 +364,5 @@ $('body').on('click', 'a[href="#"]', function(event) {
     </script>
 
 </body>
+
 </html>

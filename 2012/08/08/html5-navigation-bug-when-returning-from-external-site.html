@@ -1,17 +1,12 @@
 <!doctype html>
+
 <html lang="en">
+
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Dustin Farris, inveniam viam aut faciam">
+<meta http-equiv="X-UA-Compatible" content="IE=edge;chrome=1">
 <link rel="alternate"  href="http://dustinfarris.com/feeds/all.atom.xml" type="application/atom+xml" title="Dustin Farris Full Atom Feed">
 <title>"HTML5 Navigation Bug When Returning From External Site"</title>
-
-
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="http://dustinfarris.com/theme/css/pure.css">
-<link rel="stylesheet" href="http://dustinfarris.com/theme/css/pygments.css">
 <script>
 WebFontConfig = {
 google: { families: [ 'Dosis:600:latin', 'Open+Sans:400italic,400,700:latin' ] }
@@ -25,63 +20,62 @@ google: { families: [ 'Dosis:600:latin', 'Open+Sans:400italic,400,700:latin' ] }
  var s = document.getElementsByTagName('script')[0];
  s.parentNode.insertBefore(wf, s);
  })();
-</script>
-
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
-<script>
-$(document).ready(function(){
-  $(".content").fitVids();
-});
-</script>
+</script><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="http://dustinfarris.com/theme/css/pure.css"><link rel="stylesheet" href="http://dustinfarris.com/theme/css/pygments.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta
+name="description"
+content="Dustin Farris">
+<link href="http://dustinfarris.com/humans.txt" rel="author">
 </head>
 
-<body>
+<body itemscope itemtype="http://schema.org/WebPage">
 <div class="pure-g-r" id="layout">
-  <div class="sidebar pure-u">
-    <div class="cover-img" style="background-image: url('http://dustinfarris.com/images/beach.jpg')">
-      <!--
-      <div class="cover-header">
+<div class="sidebar pure-u">
+  <div class="cover-img" style="background-image: url('http://dustinfarris.com/images/beach.jpg')">
+    <div class="cover-body">
+      <header class="header">
+        <hgroup>
         <a href="http://dustinfarris.com">
-          <img class="logo" src="http://dustinfarris.com/images/df.png">
+          <img class="avatar" src="http://dustinfarris.com/images/dustin.jpeg">
         </a>
-      </div>
-      -->
-      <div class="cover-body">
-        <header class="header">
-          <hgroup>
-          <a href="http://dustinfarris.com">
-            <img class="avatar" src="http://dustinfarris.com/images/dustin.jpeg">
-          </a>
-          <h1 class="brand-main"><a href="http://dustinfarris.com">Dustin Farris</a></h1>
-          <p class="tagline">inveniam viam aut faciam</p>
-          <p class="social">
-          <a href="https://github.com/dustinfarris/">
-            <i class="fa fa-github fa-3x"></i>
-          </a>
-          <a href="https://twitter.com/dustinfarris">
-            <i class="fa fa-twitter fa-3x"></i>
-          </a>
-          <a href="/feeds/all.atom.xml">
-            <i class="fa fa-rss fa-3x"></i>
-          </a>
-          </p>
-          </hgroup>
-        </header>
-      </div>
+        <h1 class="brand-main"><a href="http://dustinfarris.com">Dustin Farris</a></h1>
+        <p class="tagline">inveniam viam aut faciam</p>
+        <p class="social">
+        <a href="https://github.com/dustinfarris/">
+          <i class="fa fa-github fa-3x"></i>
+        </a>
+        <a href="https://twitter.com/dustinfarris">
+          <i class="fa fa-twitter fa-3x"></i>
+        </a>
+        <a href="/feeds/all.atom.xml">
+          <i class="fa fa-rss fa-3x"></i>
+        </a>
+        </p>
+        </hgroup>
+      </header>
     </div>
   </div>
-<div class="pure-u">
+</div><div class="pure-u">
   <div class="content">
-    <section class="post">
+    <article
+      class="post"
+      role="main"
+      itemscope
+      itemprop="mainContentOfPage"
+      itemtype="http://schema.org/BlogPosting">
       <header class="post-header">
-        <h1>"HTML5 Navigation Bug When Returning From External Site"</h1>
-        <div class="lead"><p>So HTML5 navigation is in full swing, and it's awesome.  If you aren't implementing it yet, start.  I found a bug in Chrome, though, (and possibly other browsers) that resulted in your JSON data being grossly displayed as a webpage if the user visited and returned from an ...</p></div>
+        <h1 itemprop="name">"HTML5 Navigation Bug When Returning From External Site"</h1>
+        <div class="lead" itemprop="description"><p>So HTML5 navigation is in full swing, and it's awesome.  If you aren't implementing it yet, start.  I found a bug in Chrome, though, (and possibly other browsers) that resulted in your JSON data being grossly displayed as a webpage if the user visited and returned from an ...</p></div>
+      </header>
+      <footer>
         <p class="post-meta">
         <a class="post-tag" href="http://dustinfarris.com/tag/html5.html">HTML5</a>
         </p>
-      </header>
-      <p>So HTML5 navigation is in full swing, and it's awesome.  If you aren't implementing it yet, start.  I found a bug in Chrome, though, (and possibly other browsers) that resulted in your JSON data being grossly displayed as a webpage if the user visited and returned from an external site.</p>
+      </footer>
+      <div itemprop="articleBody">
+        <p>So HTML5 navigation is in full swing, and it's awesome.  If you aren't implementing it yet, start.  I found a bug in Chrome, though, (and possibly other browsers) that resulted in your JSON data being grossly displayed as a webpage if the user visited and returned from an external site.</p>
 <p>It appears that Chrome caches the AJAX response from the HTML5 navigation as the complete content for that particular URL.  To overcome this, add a dummy GET parameter:</p>
 <div class="highlight"><pre><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="nx">url</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;href&#39;</span><span class="p">);</span>
@@ -98,7 +92,8 @@ $(document).ready(function(){
 
 
 <p>Of course, if you're already using GET parameters in your link URLs there's the issue of appending parameters to parameters which involves <a href="http://stackoverflow.com/questions/486896/adding-a-parameter-to-the-url-with-javascript">more regex</a> than this post deserves.</p>
-    </section>
+      </div>
+    </article>
     <a href="#" class="go-top">&uparrow;</a>
     <div class="comments">
         <div id="disqus_thread"></div>
@@ -121,7 +116,7 @@ $(document).ready(function(){
 </footer>  </div>
 </div>
 </div>
-<script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><script>
 var $top = $('.go-top');
 
 // Show or hide the sticky footer button
@@ -144,6 +139,12 @@ $top.click(function(event) {
 $('body').on('click', 'a[href="#"]', function(event) {
     event.preventDefault();
     });
+</script><script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js">
+</script>
+<script>
+$(document).ready(function(){
+  $(".content").fitVids();
+});
 </script>
     <script type="text/javascript">
         var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
@@ -157,4 +158,5 @@ $('body').on('click', 'a[href="#"]', function(event) {
     </script>
 
 </body>
+
 </html>

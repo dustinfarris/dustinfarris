@@ -1,16 +1,12 @@
 <!doctype html>
+
 <html lang="en">
+
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Dustin Farris, inveniam viam aut faciam">
+<meta http-equiv="X-UA-Compatible" content="IE=edge;chrome=1">
 <link rel="alternate"  href="http://dustinfarris.com/feeds/all.atom.xml" type="application/atom+xml" title="Dustin Farris Full Atom Feed">
 <title>MacPorts MongoDB tag // Dustin Farris</title>
-
-
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="http://dustinfarris.com/theme/css/pure.css">
 <script>
 WebFontConfig = {
 google: { families: [ 'Dosis:600:latin', 'Open+Sans:400italic,400,700:latin' ] }
@@ -24,74 +20,75 @@ google: { families: [ 'Dosis:600:latin', 'Open+Sans:400italic,400,700:latin' ] }
  var s = document.getElementsByTagName('script')[0];
  s.parentNode.insertBefore(wf, s);
  })();
-</script>
-
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+</script><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="http://dustinfarris.com/theme/css/pure.css"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta
+name="description"
+content="Dustin Farris">
+<link href="http://dustinfarris.com/humans.txt" rel="author">
 </head>
 
-<body>
+<body itemscope itemtype="http://schema.org/WebPage">
 <div class="pure-g-r" id="layout">
-  <div class="sidebar pure-u">
-    <div class="cover-img" style="background-image: url('http://dustinfarris.com/images/beach.jpg')">
-      <!--
-      <div class="cover-header">
+<div class="sidebar pure-u">
+  <div class="cover-img" style="background-image: url('http://dustinfarris.com/images/beach.jpg')">
+    <div class="cover-body">
+      <header class="header">
+        <hgroup>
         <a href="http://dustinfarris.com">
-          <img class="logo" src="http://dustinfarris.com/images/df.png">
+          <img class="avatar" src="http://dustinfarris.com/images/dustin.jpeg">
         </a>
-      </div>
-      -->
-      <div class="cover-body">
-        <header class="header">
-          <hgroup>
-          <a href="http://dustinfarris.com">
-            <img class="avatar" src="http://dustinfarris.com/images/dustin.jpeg">
-          </a>
-          <h1 class="brand-main"><a href="http://dustinfarris.com">Dustin Farris</a></h1>
-          <p class="tagline">inveniam viam aut faciam</p>
-          <p class="social">
-          <a href="https://github.com/dustinfarris/">
-            <i class="fa fa-github fa-3x"></i>
-          </a>
-          <a href="https://twitter.com/dustinfarris">
-            <i class="fa fa-twitter fa-3x"></i>
-          </a>
-          <a href="/feeds/all.atom.xml">
-            <i class="fa fa-rss fa-3x"></i>
-          </a>
-          </p>
-          </hgroup>
-        </header>
-      </div>
+        <h1 class="brand-main"><a href="http://dustinfarris.com">Dustin Farris</a></h1>
+        <p class="tagline">inveniam viam aut faciam</p>
+        <p class="social">
+        <a href="https://github.com/dustinfarris/">
+          <i class="fa fa-github fa-3x"></i>
+        </a>
+        <a href="https://twitter.com/dustinfarris">
+          <i class="fa fa-twitter fa-3x"></i>
+        </a>
+        <a href="/feeds/all.atom.xml">
+          <i class="fa fa-rss fa-3x"></i>
+        </a>
+        </p>
+        </hgroup>
+      </header>
     </div>
   </div>
-<div class="pure-u">
+</div><div class="pure-u">
   <div class="content">
     <!-- A wrapper for all the blog posts -->
-    <div class="posts">
+    <div class="posts" itemscope itemtype="http://schema.org/Blog">
       <h1 class="content-subhead">
 Posts tagged 'MacPorts MongoDB'      </h1>
-      <section class="post">
-        <header class="post-header">
-          <h2 class="post-title">
-            <a href="http://dustinfarris.com/2012/08/30/installing-mongodb-with-macports-on-mountainlion.html">
-              "Installing MongoDB with MacPorts on MountainLion"
-            </a>
-          </h2>
-          <div class="summary"><p>Technically this should be as simple as:</p>
+      <div class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <h2 class="post-title" itemprop="name">
+          <a href="http://dustinfarris.com/2012/08/30/installing-mongodb-with-macports-on-mountainlion.html" itemprop="url">
+            "Installing MongoDB with MacPorts on MountainLion"
+          </a>
+        </h2>
+        <div class="summary" itemprop="description">
+          <p>Technically this should be as simple as:</p>
 <div class="highlight"><pre><span class="go">sudo port install mongodb</span>
 </pre></div>
 
 
-<p>Unfortunately, the mongodb port depends (for now) on devel/boost &lt;= 1.49.  The boost port was recently upgraded to 1.50, so to install db you will have to uninstall boost and explicitly reinstall it at version 1.49 ...</p></div>
-          <p class="post-meta">
-          in
-          <a href="http://dustinfarris.com/category/tech.html">
-            tech
-          </a>
-          &middot; Thu 30 August 2012
-          </p>
-        </header>
-      </section>
+<p>Unfortunately, the mongodb port depends (for now) on devel/boost &lt;= 1.49.  The boost port was recently upgraded to 1.50, so to install db you will have to uninstall boost and explicitly reinstall it at version 1.49 ...</p>
+        </div>
+        <p class="post-meta">
+        in
+        <a href="http://dustinfarris.com/category/tech.html">
+          tech
+        </a>
+        &middot;
+        <span itemprop="datePublished">
+          <time datetime="2012-08-30">
+            30 Aug 2012
+          </time>
+        </span>
+        </p>
+      </div>
 <div class="pagination-wrapper content-subhead">
     <div class="pagination">
         <div class="pagination-left">
@@ -107,7 +104,7 @@ Posts tagged 'MacPorts MongoDB'      </h1>
   </div>
 </div>
 </div>
-<script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><script>
 var $top = $('.go-top');
 
 // Show or hide the sticky footer button
@@ -130,8 +127,7 @@ $top.click(function(event) {
 $('body').on('click', 'a[href="#"]', function(event) {
     event.preventDefault();
     });
-</script>
-    <script type="text/javascript">
+</script>    <script type="text/javascript">
         var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
         document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
     </script>
@@ -143,4 +139,5 @@ $('body').on('click', 'a[href="#"]', function(event) {
     </script>
 
 </body>
+
 </html>

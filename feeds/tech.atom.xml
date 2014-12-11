@@ -1,5 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Dustin Farris</title><link href="http://dustinfarris.com/" rel="alternate"></link><link href="http://dustinfarris.com/feeds/tech.atom.xml" rel="self"></link><id>http://dustinfarris.com/</id><updated>2014-01-01T16:20:00+01:00</updated><entry><title>Solr Start/Stop Script</title><link href="http://dustinfarris.com/2014/01/01/solr-startstop-script.html" rel="alternate"></link><updated>2014-01-01T16:20:00+01:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2014-01-01:2014/01/01/solr-startstop-script.html</id><summary type="html">&lt;p&gt;At some point I'm going to write a much longer post on how to set up Solr on Linux, but for now
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Dustin Farris</title><link href="http://dustinfarris.com/" rel="alternate"></link><link href="http://dustinfarris.com/feeds/tech.atom.xml" rel="self"></link><id>http://dustinfarris.com/</id><updated>2014-12-11T00:00:00+01:00</updated><entry><title>The State of ember-django-adapter</title><link href="http://dustinfarris.com/2014/12/11/the-state-of-ember-django-adapter.html" rel="alternate"></link><updated>2014-12-11T00:00:00+01:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2014-12-11:2014/12/11/the-state-of-ember-django-adapter.html</id><summary type="html">&lt;h2&gt;Current Version (0.4.x)&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://github.com/dustinfarris/ember-django-adapter"&gt;ember-django-adapter&lt;/a&gt; enables users to write applications using Django REST Framework and Ember.js.&lt;/p&gt;
+&lt;h3&gt;ember-cli support&lt;/h3&gt;
+&lt;p&gt;In June, &lt;a href="https://github.com/toranb/ember-data-django-rest-adapter/issues/89"&gt;I decided&lt;/a&gt; to extend @toranb's original &lt;a href="https://github.com/toranb/ember-data-django-rest-adapter"&gt;ember-data-django-rest-adapter&lt;/a&gt; by creating an ember-cli addon.  Basically, this involved grabbing the javascript dist files and bundling them into an npm-installable package.  This now exists as &lt;a href="https://github.com/dustinfarris/ember-django-adapter"&gt;ember-django-adapter&lt;/a&gt; which can be installed in your ember-cli project via:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;npm install --save-dev ember-django-adapter
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;There a few extra perks in the addon, such as blueprints for generating customizable adapter/serializer extensions.&lt;/p&gt;
+&lt;h2&gt;Version 1.0 (in progress)&lt;/h2&gt;
+&lt;p&gt;Since ember-cli &lt;a href="https://github.com/emberjs/rfcs/blob/ember-2.0-rfc/active/0000-the-road-to-ember-2-0.md#big-bets"&gt;is the future&lt;/a&gt; of Ember.js, we decided to move the entire codebase into the addon repository.&lt;/p&gt;
+&lt;p&gt;We are currently working toward a version 1.0 release of the adapter.  I've been working with &lt;a href="https://github.com/benkonrath"&gt;@benkonrath&lt;/a&gt; and &lt;a href="https://github.com/holandes22"&gt;@holandes22&lt;/a&gt; to address outstanding issues and sort out documentation.&lt;/p&gt;
+&lt;p&gt;There are a few notable changes/improvements coming in version 1.0.&lt;/p&gt;
+&lt;h3&gt;New test runner&lt;/h3&gt;
+&lt;p&gt;The new codebase in 1.0 will use the &lt;a href="http://www.ember-cli.com/#testing-the-addon-with-qunit"&gt;addon test framework&lt;/a&gt; provided by ember-cli.&lt;/p&gt;
+&lt;h3&gt;Support Django REST Framework &amp;gt;= 3.0&lt;/h3&gt;
+&lt;p&gt;Some of the changes in DRF 3.0 along with changes in recent versions of Ember Data have simplified a lot of the work that needs to be done by the adapter.  Because ember-cli is still somewhat bleeding edge, we decided to focus on DRF 3.0, and opt out of supporting 2.x.&lt;/p&gt;
+&lt;p&gt;For any users that this affects, I highly recommend upgrading to 3.0 if possible.  @tomchristie put a tremendous amount of work into making the upgrade path as smooth as possible, and the improvements are well worth it.&lt;/p&gt;
+&lt;h3&gt;Pagination&lt;/h3&gt;
+&lt;p&gt;Version 1.0 will support pagination; usage examples to follow.&lt;/p&gt;
+&lt;h2&gt;Roadmap and Contributing&lt;/h2&gt;
+&lt;p&gt;We plan to launch version 1.0 early in 2015.  Please feel free to join the conversation either on GitHub or in IRC (#ember-django-adapter in Freenode).  Testers and pull requests are always welcome.  Check out the &lt;a href="https://github.com/dustinfarris/ember-django-adapter/tree/version-1.0"&gt;version-1.0 branch&lt;/a&gt; for more details.&lt;/p&gt;</summary><category term="Django REST Framework"></category><category term="Ember"></category><category term="ember-django-adapter"></category></entry><entry><title>Solr Start/Stop Script</title><link href="http://dustinfarris.com/2014/01/01/solr-startstop-script.html" rel="alternate"></link><updated>2014-01-01T16:20:00+01:00</updated><author><name>Dustin Farris</name></author><id>tag:dustinfarris.com,2014-01-01:2014/01/01/solr-startstop-script.html</id><summary type="html">&lt;p&gt;At some point I'm going to write a much longer post on how to set up Solr on Linux, but for now
 here's a start/stop script that works well.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#!/bin/sh&lt;/span&gt;
 

@@ -12,7 +12,7 @@ from pelicanconf import *
 
 SITEURL = 'http://dustinfarris.com'
 COVER_IMG_URL = SITEURL + '/images/beach.jpg'
-PROFILE_IMG_URL = SITEURL + '/images/dustin.jpeg'
+PROFILE_IMG_URL = SITEURL + '/images/dustin.jpg'
 LOGO_IMG_URL = SITEURL + '/images/df.png'
 RELATIVE_URLS = False
 

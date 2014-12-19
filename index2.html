@@ -66,6 +66,32 @@ content="Dustin Farris">
       </h1>
       <div class="post" itemscope itemtype="http://schema.org/BlogPosting">
         <h2 class="post-title" itemprop="name">
+          <a href="http://dustinfarris.com/2013/06/21/and-now-octopress.html" itemprop="url">
+            And now, Octopress
+          </a>
+        </h2>
+        <div class="summary" itemprop="description">
+          <p><img alt="Octopress logo" src="/uploads/images/octopress.png" /></p>
+<p>What can top hosting your blog on GitHub Pages using Jekyll?  Wrapping it all together with Octopress.</p>
+<p>Octopress is an open-source blogging framework that wraps the above
+technologies in a nice package complete with automation in a Rakefile, a boilerplate theme, and lots of plugins.</p>
+<p>But I didn't decide ...</p>
+        </div>
+        <p class="post-meta">
+        in
+        <a href="http://dustinfarris.com/category/tech.html">
+          tech
+        </a>
+        &middot;
+        <span itemprop="datePublished">
+          <time datetime="2013-06-21">
+            21 Jun 2013
+          </time>
+        </span>
+        </p>
+      </div>
+      <div class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <h2 class="post-title" itemprop="name">
           <a href="http://dustinfarris.com/2013/06/20/from-django-to-github-pages.html" itemprop="url">
             From Django to GitHub Pages
           </a>
@@ -278,34 +304,6 @@ right, it's important to consider where, why, and how you will write your tests.
         <span itemprop="datePublished">
           <time datetime="2012-10-28">
             28 Oct 2012
-          </time>
-        </span>
-        </p>
-      </div>
-      <div class="post" itemscope itemtype="http://schema.org/BlogPosting">
-        <h2 class="post-title" itemprop="name">
-          <a href="http://dustinfarris.com/2012/10/22/decorating-django-tests.html" itemprop="url">
-            "Decorating Django Tests"
-          </a>
-        </h2>
-        <div class="summary" itemprop="description">
-          <p>Just a quick note: when decorating Django tests you have to take care to name your return function using the same "test_" format otherwise an unmodified TestRunner will not discover it.</p>
-<p>This will work:</p>
-<div class="highlight"><pre><span class="k">def</span> <span class="nf">mydecorator</span><span class="p">():</span>
-  <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">test_func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-      <span class="c"># Do some stuff</span>
-      <span class="n">result</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs ...</span></pre></div>
-        </div>
-        <p class="post-meta">
-        in
-        <a href="http://dustinfarris.com/category/tech.html">
-          tech
-        </a>
-        &middot;
-        <span itemprop="datePublished">
-          <time datetime="2012-10-22">
-            22 Oct 2012
           </time>
         </span>
         </p>

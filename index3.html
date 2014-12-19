@@ -66,6 +66,34 @@ content="Dustin Farris">
       </h1>
       <div class="post" itemscope itemtype="http://schema.org/BlogPosting">
         <h2 class="post-title" itemprop="name">
+          <a href="http://dustinfarris.com/2012/10/22/decorating-django-tests.html" itemprop="url">
+            "Decorating Django Tests"
+          </a>
+        </h2>
+        <div class="summary" itemprop="description">
+          <p>Just a quick note: when decorating Django tests you have to take care to name your return function using the same "test_" format otherwise an unmodified TestRunner will not discover it.</p>
+<p>This will work:</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">mydecorator</span><span class="p">():</span>
+  <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">test_func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+      <span class="c"># Do some stuff</span>
+      <span class="n">result</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs ...</span></pre></div>
+        </div>
+        <p class="post-meta">
+        in
+        <a href="http://dustinfarris.com/category/tech.html">
+          tech
+        </a>
+        &middot;
+        <span itemprop="datePublished">
+          <time datetime="2012-10-22">
+            22 Oct 2012
+          </time>
+        </span>
+        </p>
+      </div>
+      <div class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <h2 class="post-title" itemprop="name">
           <a href="http://dustinfarris.com/2012/10/09/django-a-new-way-to-write-tests.html" itemprop="url">
             "Django: A New Way to Write Tests"
           </a>
@@ -300,28 +328,6 @@ content="Dustin Farris">
         <span itemprop="datePublished">
           <time datetime="2012-09-21">
             21 Sep 2012
-          </time>
-        </span>
-        </p>
-      </div>
-      <div class="post" itemscope itemtype="http://schema.org/BlogPosting">
-        <h2 class="post-title" itemprop="name">
-          <a href="http://dustinfarris.com/2012/09/20/romney-and-mother-jones.html" itemprop="url">
-            "Romney and Mother Jones"
-          </a>
-        </h2>
-        <div class="summary" itemprop="description">
-          <p>I just want to briefly weigh in on the "47%" video published by <a href="http://www.motherjones.com/politics/2012/09/secret-video-romney-private-fundraiser">Mother Jones</a>.  There is nothing shocking about what was said here.  Romney is in a room with his donors explaining his campaign philosophy; not his political views.  As he points out, some voters won't vote for ...</p>
-        </div>
-        <p class="post-meta">
-        in
-        <a href="http://dustinfarris.com/category/life.html">
-          life
-        </a>
-        &middot;
-        <span itemprop="datePublished">
-          <time datetime="2012-09-20">
-            20 Sep 2012
           </time>
         </span>
         </p>

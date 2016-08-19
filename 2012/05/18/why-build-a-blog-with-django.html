@@ -1,82 +1,66 @@
 <!doctype html>
-
 <html lang="en">
-
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge;chrome=1">
-<link rel="alternate"  href="http://dustinfarris.com/feeds/all.atom.xml" type="application/atom+xml" title="Dustin Farris Full Atom Feed">
-<title>"Why Build a Blog with Django?"</title>
-<script>
-WebFontConfig = {
-google: { families: [ 'Dosis:600:latin', 'Open+Sans:400italic,400,700:latin' ] }
-};
-(function() {
- var wf = document.createElement('script');
- wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
- '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
- wf.type = 'text/javascript';
- wf.async = 'true';
- var s = document.getElementsByTagName('script')[0];
- s.parentNode.insertBefore(wf, s);
- })();
-</script><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="http://dustinfarris.com/theme/css/pure.css"><link rel="stylesheet" href="http://dustinfarris.com/theme/css/pygments.css">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta
-name="description"
-content="Dustin Farris">
-<link href="http://dustinfarris.com/humans.txt" rel="author">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dustin Farris, inveniam viam aut faciam">
+
+        <link rel="alternate"  href="http://dustinfarris.com/feeds/all.atom.xml" type="application/atom+xml" title="Dustin Farris Full Atom Feed"/>
+
+        <title>"Why Build a Blog with Django?" // Dustin Farris // inveniam viam aut faciam</title>
+
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://dustinfarris.com/theme/css/pure.css">
+    <link rel="stylesheet" href="http://dustinfarris.com/theme/css/pygments.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".content").fitVids();
+        });
+    </script>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage">
-<div class="pure-g-r" id="layout">
-<div class="sidebar pure-u">
-  <div class="cover-img" style="background-image: url('http://dustinfarris.com/images/beach.jpg')">
-    <div class="cover-body">
-      <header class="header">
-        <hgroup>
-        <a href="http://dustinfarris.com">
-          <img class="avatar" src="http://dustinfarris.com/images/dustin.png">
-        </a>
-        <h1 class="brand-main"><a href="http://dustinfarris.com">Dustin Farris</a></h1>
-        <p class="tagline">inveniam viam aut faciam</p>
-        <p class="social">
-        <a href="https://github.com/dustinfarris/">
-          <i class="fa fa-github fa-3x"></i>
-        </a>
-        <a href="https://twitter.com/dustinfarris">
-          <i class="fa fa-twitter fa-3x"></i>
-        </a>
-        <a href="/feeds/all.atom.xml">
-          <i class="fa fa-rss fa-3x"></i>
-        </a>
-        </p>
-        </hgroup>
-      </header>
-    </div>
-  </div>
-</div><div class="pure-u">
-  <div class="content">
-    <article
-      class="post"
-      role="main"
-      itemscope
-      itemprop="mainContentOfPage"
-      itemtype="http://schema.org/BlogPosting">
-      <header class="post-header">
-        <h1 itemprop="name">"Why Build a Blog with Django?"</h1>
-        <div class="lead" itemprop="description"><p>This question comes up a lot, both in flame wars and in rational discussion.  Why would you take time to build a blog application with Django when there are engines like WordPress that do the same thing out of the box.  Well it depends.</p>
-<p>The number one reason I think ...</p></div>
-      </header>
-      <footer>
-        <p class="post-meta">
-        <a class="post-tag" href="http://dustinfarris.com/tag/django.html">Django</a>
-        </p>
-      </footer>
-      <div itemprop="articleBody">
-        <p>This question comes up a lot, both in flame wars and in rational discussion.  Why would you take time to build a blog application with Django when there are engines like WordPress that do the same thing out of the box.  Well it depends.</p>
+<body>
+    <div class="pure-g-r" id="layout">
+        <div class="sidebar pure-u">
+            <div class="cover-img" style="background-image: url('http://dustinfarris.com/images/beach.jpg')">
+                <div class="cover-body">
+                    <header class="header">
+                        <hgroup>
+                            <img class="avatar" src="http://dustinfarris.com/images/dustin.png">
+                            <h1 class="brand-main"><a href="http://dustinfarris.com">Dustin Farris</a></h1>
+                            <p class="tagline">inveniam viam aut faciam</p>
+                                <p class="social">
+                                    <a href="https://github.com/dustinfarris/">
+                                        <i class="fa fa-github fa-3x"></i>
+                                    </a>
+                                    <a href="https://twitter.com/dustinfarris">
+                                        <i class="fa fa-twitter fa-3x"></i>
+                                    </a>
+                                    <a href="/feeds/all.atom.xml">
+                                        <i class="fa fa-rss fa-3x"></i>
+                                    </a>
+                                </p>
+                        </hgroup>
+                    </header>
+                </div>
+            </div>
+        </div>
+    <div class="pure-u">
+        <div class="content">
+            <section class="post">
+                <header class="post-header">
+                    <h1>"Why Build a Blog with Django?"</h1>
+                        <p class="post-meta">
+                            // under                                 <a class="post-category" href="http://dustinfarris.com/tag/django.html">Django</a>
+                        </p>
+                </header>
+            </section>
+            <p>This question comes up a lot, both in flame wars and in rational discussion.  Why would you take time to build a blog application with Django when there are engines like WordPress that do the same thing out of the box.  Well it depends.</p>
 <p>The number one reason I think people choose Django to build a blog is because they want to learn Django.  Blogs are relatively straight forward animals.  They have an author, a title, and some sort of content.  They usually appear in chronological order on an index page of some kind, and if you're feeling feisty, that might even have "tags."</p>
 <p>But why else?  Yes, I built my blog with Django to learn Django, but I keep it that way because I can literally modify it in any way I please.  I am not dependent on a bucket of "plugins" that may or may not have the functionality I desire.  For example, let's say I have a typical blog model that looks like this:</p>
 <div class="highlight"><pre><span class="k">class</span> <span class="nc">Entry</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
@@ -113,9 +97,7 @@ content="Dustin Farris">
 
 <p>Done, and I have full control over what is going on.  From the RSS feed, to the way my blog is displayed in a list view, and a detail view, to what comment engines I want to use, to how I want my blog to be tagged and/or categorized to collaboration, <em>I am in control.</em></p>
 <p>Of course, that may not appeal to everyone, and I'll grant that no amount of internal control can trump the content you post.  But I say if you have the ability, Django is the way to go.  The learning curve is not as steep as you think, and it gives you a level of intimacy with your blog that you would not otherwise have.</p>
-      </div>
-    </article>
-    <a href="#" class="go-top">&uparrow;</a>
+            <a href="#" class="go-top">Go Top</a>
     <div class="comments">
         <div id="disqus_thread"></div>
         <script type="text/javascript">
@@ -133,50 +115,47 @@ content="Dustin Farris">
         <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
     </div>
 <footer class="footer">
-  <p>&copy; Dustin Farris</p>
-</footer>  </div>
-</div>
-</div>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><script>
-var $top = $('.go-top');
+    <p>&copy; Dustin Farris &ndash;
+        Built with <a href="https://github.com/PurePelicanTheme/pure-single">Pure Theme</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+</footer>        </div>
+    </div>
+    </div>
+    <script>
+        var $top = $('.go-top');
 
-// Show or hide the sticky footer button
-$(window).scroll(function() {
-    if ($(this).scrollTop() > 200) {
-    $top.fadeIn(200);
-    } else {
-    $top.fadeOut(200);
-    }
-    });
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
 
-// Animate the scroll to top
-$top.click(function(event) {
-    event.preventDefault();
-    $('html, body').animate({scrollTop: 0}, 300);
-    })
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
 
-// Makes sure that the href="#" attached to the <a> elements
-// don't scroll you back up the page.
-$('body').on('click', 'a[href="#"]', function(event) {
-    event.preventDefault();
-    });
-</script><script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js">
-</script>
-<script>
-$(document).ready(function(){
-  $(".content").fitVids();
-});
-</script>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-13275015-1', 'auto');
-  ga('send', 'pageview');
-</script>
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+    <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker("UA-13275015-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+    </script>
 
 </body>
-
 </html>

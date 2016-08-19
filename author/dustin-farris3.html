@@ -1,104 +1,85 @@
 <!doctype html>
-
 <html lang="en">
-
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge;chrome=1">
-<link rel="alternate"  href="http://dustinfarris.com/feeds/all.atom.xml" type="application/atom+xml" title="Dustin Farris Full Atom Feed">
-<title>Dustin Farris author // Dustin Farris</title>
-<script>
-WebFontConfig = {
-google: { families: [ 'Dosis:600:latin', 'Open+Sans:400italic,400,700:latin' ] }
-};
-(function() {
- var wf = document.createElement('script');
- wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
- '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
- wf.type = 'text/javascript';
- wf.async = 'true';
- var s = document.getElementsByTagName('script')[0];
- s.parentNode.insertBefore(wf, s);
- })();
-</script><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="http://dustinfarris.com/theme/css/pure.css"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta
-name="description"
-content="Dustin Farris">
-<link href="http://dustinfarris.com/humans.txt" rel="author">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dustin Farris, inveniam viam aut faciam">
+
+        <link rel="alternate"  href="http://dustinfarris.com/feeds/all.atom.xml" type="application/atom+xml" title="Dustin Farris Full Atom Feed"/>
+
+        <title>Dustin Farris author // Dustin Farris // inveniam viam aut faciam</title>
+
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://dustinfarris.com/theme/css/pure.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage">
-<div class="pure-g-r" id="layout">
-<div class="sidebar pure-u">
-  <div class="cover-img" style="background-image: url('http://dustinfarris.com/images/beach.jpg')">
-    <div class="cover-body">
-      <header class="header">
-        <hgroup>
-        <a href="http://dustinfarris.com">
-          <img class="avatar" src="http://dustinfarris.com/images/dustin.png">
-        </a>
-        <h1 class="brand-main"><a href="http://dustinfarris.com">Dustin Farris</a></h1>
-        <p class="tagline">inveniam viam aut faciam</p>
-        <p class="social">
-        <a href="https://github.com/dustinfarris/">
-          <i class="fa fa-github fa-3x"></i>
-        </a>
-        <a href="https://twitter.com/dustinfarris">
-          <i class="fa fa-twitter fa-3x"></i>
-        </a>
-        <a href="/feeds/all.atom.xml">
-          <i class="fa fa-rss fa-3x"></i>
-        </a>
-        </p>
-        </hgroup>
-      </header>
-    </div>
-  </div>
-</div><div class="pure-u">
-  <div class="content">
-    <!-- A wrapper for all the blog posts -->
-    <div class="posts" itemscope itemtype="http://schema.org/Blog">
-      <h1 class="content-subhead">
-Posts by 'Dustin Farris'        &ndash; Page&nbsp;3
-      </h1>
-      <div class="post" itemscope itemtype="http://schema.org/BlogPosting">
-        <h2 class="post-title" itemprop="name">
-          <a href="http://dustinfarris.com/2012/10/22/decorating-django-tests.html" itemprop="url">
-            "Decorating Django Tests"
-          </a>
-        </h2>
-        <div class="summary" itemprop="description">
-          <p>Just a quick note: when decorating Django tests you have to take care to name your return function using the same "test_" format otherwise an unmodified TestRunner will not discover it.</p>
+<body>
+    <div class="pure-g-r" id="layout">
+        <div class="sidebar pure-u">
+            <div class="cover-img" style="background-image: url('http://dustinfarris.com/images/beach.jpg')">
+                <div class="cover-body">
+                    <header class="header">
+                        <hgroup>
+                            <img class="avatar" src="http://dustinfarris.com/images/dustin.png">
+                            <h1 class="brand-main"><a href="http://dustinfarris.com">Dustin Farris</a></h1>
+                            <p class="tagline">inveniam viam aut faciam</p>
+                                <p class="social">
+                                    <a href="https://github.com/dustinfarris/">
+                                        <i class="fa fa-github fa-3x"></i>
+                                    </a>
+                                    <a href="https://twitter.com/dustinfarris">
+                                        <i class="fa fa-twitter fa-3x"></i>
+                                    </a>
+                                    <a href="/feeds/all.atom.xml">
+                                        <i class="fa fa-rss fa-3x"></i>
+                                    </a>
+                                </p>
+                        </hgroup>
+                    </header>
+                </div>
+            </div>
+        </div>
+    <div class="pure-u">
+        <div class="content">
+            <!-- A wrapper for all the blog posts -->
+            <div class="posts">
+                <h1 class="content-subhead">
+Posts by 'Dustin Farris'                        &ndash; Page&nbsp;3
+                </h1>
+                    <section class="post">
+                        <header class="post-header">
+                            <h3><a class="post-title" href="http://dustinfarris.com/2012/10/28/using-google-to-send-mail-in-django.html">"Using Google to Send Mail in Django"</a></h3>
+                            <p class="post-meta"><p>If you have a Gmail account (or a Google Apps account), you can use it to send mail on your behalf just like any other email client.  Remember to use port 587 (not 465), and an "application-specific" password if you use 2-step verification.</p>
+<div class="highlight"><pre><span class="n">EMAIL_HOST</span> <span class="o">=</span> <span class="s">&#39;smtp.gmail.com&#39;</span>
+<span class="n">EMAIL_HOST_USER</span> <span class="o">=</span> <span class="s">&#39;you@gmail ...</span></pre></div></p>
+                            <p class="post-meta">
+                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Sun 28 October 2012
+                            </p>
+                        </header>
+                    </section>
+                    <section class="post">
+                        <header class="post-header">
+                            <h3><a class="post-title" href="http://dustinfarris.com/2012/10/22/decorating-django-tests.html">"Decorating Django Tests"</a></h3>
+                            <p class="post-meta"><p>Just a quick note: when decorating Django tests you have to take care to name your return function using the same "test_" format otherwise an unmodified TestRunner will not discover it.</p>
 <p>This will work:</p>
 <div class="highlight"><pre><span class="k">def</span> <span class="nf">mydecorator</span><span class="p">():</span>
   <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">test_func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
       <span class="c"># Do some stuff</span>
-      <span class="n">result</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs ...</span></pre></div>
-        </div>
-        <p class="post-meta">
-        in
-        <a href="http://dustinfarris.com/category/tech.html">
-          tech
-        </a>
-        &middot;
-        <span itemprop="datePublished">
-          <time datetime="2012-10-22">
-            22 Oct 2012
-          </time>
-        </span>
-        </p>
-      </div>
-      <div class="post" itemscope itemtype="http://schema.org/BlogPosting">
-        <h2 class="post-title" itemprop="name">
-          <a href="http://dustinfarris.com/2012/10/09/django-a-new-way-to-write-tests.html" itemprop="url">
-            "Django: A New Way to Write Tests"
-          </a>
-        </h2>
-        <div class="summary" itemprop="description">
-          <p>Taking a lot of inspiration from Ruby's <a href="http://rspec.info">RSpec</a>, I've established a new way to write my tests when doing TDD in Django.  Using <a href="https://github.com/jbalogh/django-nose">django-nose</a>, <a href="https://github.com/dnerdy/factory_boy">factoryboy</a>, and a few of my own <a href="https://github.com/dustinfarris/dustinfarris/blob/master/tests/support/utilities.py">helpers</a> I have greatly simplified and consolidated test writing.</p>
+      <span class="n">result</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs ...</span></pre></div></p>
+                            <p class="post-meta">
+                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Mon 22 October 2012
+                            </p>
+                        </header>
+                    </section>
+                    <section class="post">
+                        <header class="post-header">
+                            <h3><a class="post-title" href="http://dustinfarris.com/2012/10/09/django-a-new-way-to-write-tests.html">"Django: A New Way to Write Tests"</a></h3>
+                            <p class="post-meta"><p>Taking a lot of inspiration from Ruby's <a href="http://rspec.info">RSpec</a>, I've established a new way to write my tests when doing TDD in Django.  Using <a href="https://github.com/jbalogh/django-nose">django-nose</a>, <a href="https://github.com/dnerdy/factory_boy">factoryboy</a>, and a few of my own <a href="https://github.com/dustinfarris/dustinfarris/blob/master/tests/support/utilities.py">helpers</a> I have greatly simplified and consolidated test writing.</p>
 <p>My file structure:</p>
 <div class="highlight"><pre>project
   |
@@ -108,278 +89,153 @@ Posts by 'Dustin Farris'        &ndash; Page&nbsp;3
   |
   +-- project
   |
-  +-- tests ...</pre></div>
-        </div>
-        <p class="post-meta">
-        in
-        <a href="http://dustinfarris.com/category/tech.html">
-          tech
-        </a>
-        &middot;
-        <span itemprop="datePublished">
-          <time datetime="2012-10-09">
-            9 Oct 2012
-          </time>
-        </span>
-        </p>
-      </div>
-      <div class="post" itemscope itemtype="http://schema.org/BlogPosting">
-        <h2 class="post-title" itemprop="name">
-          <a href="http://dustinfarris.com/2012/10/09/mitt-romney-and-spain.html" itemprop="url">
-            "Mitt Romney and Spain"
-          </a>
-        </h2>
-        <div class="summary" itemprop="description">
-          <p><a href="http://www.salon.com/2012/10/07/spain_quip_adds_to_romneys_foreign_policy_trouble/">Brad Klapper</a>:</p>
+  +-- tests ...</pre></div></p>
+                            <p class="post-meta">
+                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Tue 09 October 2012
+                            </p>
+                        </header>
+                    </section>
+                    <section class="post">
+                        <header class="post-header">
+                            <h3><a class="post-title" href="http://dustinfarris.com/2012/10/09/mitt-romney-and-spain.html">"Mitt Romney and Spain"</a></h3>
+                            <p class="post-meta"><p><a href="http://www.salon.com/2012/10/07/spain_quip_adds_to_romneys_foreign_policy_trouble/">Brad Klapper</a>:</p>
 <blockquote>
-<p>"I don't want to go down the path of Spain," Romney said Wednesday night during the first presidential debate. He argued that government spending under Obama has reached 42 percent of the U.S. economy, a figure comparable with America's NATO ally. "I want to go ...</p></blockquote>
-        </div>
-        <p class="post-meta">
-        in
-        <a href="http://dustinfarris.com/category/life.html">
-          life
-        </a>
-        &middot;
-        <span itemprop="datePublished">
-          <time datetime="2012-10-09">
-            9 Oct 2012
-          </time>
-        </span>
-        </p>
-      </div>
-      <div class="post" itemscope itemtype="http://schema.org/BlogPosting">
-        <h2 class="post-title" itemprop="name">
-          <a href="http://dustinfarris.com/2012/10/09/subject-decorator-for-django-tests.html" itemprop="url">
-            "&quot;subject&quot; Decorator for Django Tests"
-          </a>
-        </h2>
-        <div class="summary" itemprop="description">
-          <p>The Python elite will probably turn their noses up at me, but I just conjured an <em>even</em> better looking way to write my <a href="http://dustinfarris.com/2012/10/django-a-new-way-to-write-tests/">tests</a>.</p>
+<p>"I don't want to go down the path of Spain," Romney said Wednesday night during the first presidential debate. He argued that government spending under Obama has reached 42 percent of the U.S. economy, a figure comparable with America's NATO ally. "I want to go ...</p></blockquote></p>
+                            <p class="post-meta">
+                                in <a href="http://dustinfarris.com/category/life.html">life</a> &middot; Tue 09 October 2012
+                            </p>
+                        </header>
+                    </section>
+                    <section class="post">
+                        <header class="post-header">
+                            <h3><a class="post-title" href="http://dustinfarris.com/2012/10/09/subject-decorator-for-django-tests.html">"&quot;subject&quot; Decorator for Django Tests"</a></h3>
+                            <p class="post-meta"><p>The Python elite will probably turn their noses up at me, but I just conjured an <em>even</em> better looking way to write my <a href="http://dustinfarris.com/2012/10/django-a-new-way-to-write-tests/">tests</a>.</p>
 <p>Using my <a href="https://github.com/dustinfarris/dustinfarris/blob/master/tests/support/utilities.py">utilities.py</a> file I can write the following decorator:</p>
 <div class="highlight"><pre><span class="k">def</span> <span class="nf">subject</span><span class="p">(</span><span class="n">item</span><span class="p">):</span>
   <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">_item</span><span class="o">=</span><span class="n">item</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">test_func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
       <span class="n">item</span> <span class="o">=</span> <span class="n">_item</span>
-      <span class="k">if ...</span></pre></div>
-        </div>
-        <p class="post-meta">
-        in
-        <a href="http://dustinfarris.com/category/tech.html">
-          tech
-        </a>
-        &middot;
-        <span itemprop="datePublished">
-          <time datetime="2012-10-09">
-            9 Oct 2012
-          </time>
-        </span>
-        </p>
-      </div>
-      <div class="post" itemscope itemtype="http://schema.org/BlogPosting">
-        <h2 class="post-title" itemprop="name">
-          <a href="http://dustinfarris.com/2012/10/04/nonrequired-reading.html" itemprop="url">
-            "Nonrequired Reading"
-          </a>
-        </h2>
-        <div class="summary" itemprop="description">
-          <p>Via <a href="http://www.synsecblog.com/2012/10/books.html">Synapse</a>:</p>
+      <span class="k">if ...</span></pre></div></p>
+                            <p class="post-meta">
+                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Tue 09 October 2012
+                            </p>
+                        </header>
+                    </section>
+                    <section class="post">
+                        <header class="post-header">
+                            <h3><a class="post-title" href="http://dustinfarris.com/2012/10/04/nonrequired-reading.html">"Nonrequired Reading"</a></h3>
+                            <p class="post-meta"><p>Via <a href="http://www.synsecblog.com/2012/10/books.html">Synapse</a>:</p>
 <blockquote>
 <p>On my desk stand three books that 2501 was kind enough to let me borrow. 2 psychology, 1 management and 1 rethorics. As I was skimming through them I realized something.</p>
-<p>Imagine this: These are books that contain secret knowledge. Not everyone can get their hands on them ...</p></blockquote>
-        </div>
-        <p class="post-meta">
-        in
-        <a href="http://dustinfarris.com/category/life.html">
-          life
-        </a>
-        &middot;
-        <span itemprop="datePublished">
-          <time datetime="2012-10-04">
-            4 Oct 2012
-          </time>
-        </span>
-        </p>
-      </div>
-      <div class="post" itemscope itemtype="http://schema.org/BlogPosting">
-        <h2 class="post-title" itemprop="name">
-          <a href="http://dustinfarris.com/2012/10/03/mainstream-media-hiding-in-your-closet.html" itemprop="url">
-            "Mainstream Media Hiding in Your Closet"
-          </a>
-        </h2>
-        <div class="summary" itemprop="description">
-          <p>FOX News is ready for the big debate tomorrow.  They've peppered their front page with anti-Obama articles and released <a href="http://video.foxnews.com/v/1873044131001/">this</a> special report on a poll revealing America's new enemy: Mainstream media.</p>
+<p>Imagine this: These are books that contain secret knowledge. Not everyone can get their hands on them ...</p></blockquote></p>
+                            <p class="post-meta">
+                                in <a href="http://dustinfarris.com/category/life.html">life</a> &middot; Thu 04 October 2012
+                            </p>
+                        </header>
+                    </section>
+                    <section class="post">
+                        <header class="post-header">
+                            <h3><a class="post-title" href="http://dustinfarris.com/2012/10/03/mainstream-media-hiding-in-your-closet.html">"Mainstream Media Hiding in Your Closet"</a></h3>
+                            <p class="post-meta"><p>FOX News is ready for the big debate tomorrow.  They've peppered their front page with anti-Obama articles and released <a href="http://video.foxnews.com/v/1873044131001/">this</a> special report on a poll revealing America's new enemy: Mainstream media.</p>
 <p><img alt="FOX News thinks Mainstream media is America's enemy." src="/media/filer_public/2012/10/02/fox-americasenemy.jpg" /></p>
-<p>FOX denounces these evil media outlets as "unfair," and "biased."  I'm sure many Tea-partiers wholeheartedly agree.</p>
-        </div>
-        <p class="post-meta">
-        in
-        <a href="http://dustinfarris.com/category/life.html">
-          life
-        </a>
-        &middot;
-        <span itemprop="datePublished">
-          <time datetime="2012-10-03">
-            3 Oct 2012
-          </time>
-        </span>
-        </p>
-      </div>
-      <div class="post" itemscope itemtype="http://schema.org/BlogPosting">
-        <h2 class="post-title" itemprop="name">
-          <a href="http://dustinfarris.com/2012/10/01/book-review-the-rise-of-theodore-roosevelt.html" itemprop="url">
-            "Book Review: The Rise of Theodore Roosevelt"
-          </a>
-        </h2>
-        <div class="summary" itemprop="description">
-          <p><img alt="The Rise of Theodoore Roosevelt book cover" src="/media/filer_public/2012/10/01/riseoftr.jpg" title="The Rise of Theodore Roosevelt by Edmund Morris" /></p>
+<p>FOX denounces these evil media outlets as "unfair," and "biased."  I'm sure many Tea-partiers wholeheartedly agree.</p></p>
+                            <p class="post-meta">
+                                in <a href="http://dustinfarris.com/category/life.html">life</a> &middot; Wed 03 October 2012
+                            </p>
+                        </header>
+                    </section>
+                    <section class="post">
+                        <header class="post-header">
+                            <h3><a class="post-title" href="http://dustinfarris.com/2012/10/01/book-review-the-rise-of-theodore-roosevelt.html">"Book Review: The Rise of Theodore Roosevelt"</a></h3>
+                            <p class="post-meta"><p><img alt="The Rise of Theodoore Roosevelt book cover" src="/media/filer_public/2012/10/01/riseoftr.jpg" title="The Rise of Theodore Roosevelt by Edmund Morris" /></p>
 <p><em>The Rise of Theodore Roosevelt</em> by Edmund Morris</p>
 <p>This mountain of a biography chronicles the life of Theodore Roosevelt before he became president at the age of 42.  It is inspiring, insightful, and exceedingly well documented (over 100 pages of notes).</p>
-<p>TR was noted for his integrity, personality, and masculinity ...</p>
-        </div>
-        <p class="post-meta">
-        in
-        <a href="http://dustinfarris.com/category/life.html">
-          life
-        </a>
-        &middot;
-        <span itemprop="datePublished">
-          <time datetime="2012-10-01">
-            1 Oct 2012
-          </time>
-        </span>
-        </p>
-      </div>
-      <div class="post" itemscope itemtype="http://schema.org/BlogPosting">
-        <h2 class="post-title" itemprop="name">
-          <a href="http://dustinfarris.com/2012/09/29/a-47-grip-on-reality.html" itemprop="url">
-            "A &#39;47%&#39; Grip on Reality"
-          </a>
-        </h2>
-        <div class="summary" itemprop="description">
-          <p>I still <a href="http://dustinfarris.com/2012/9/romney-and-mother-jones/">hold</a> that Romney's "gaffe" was no more than a simple appeasement to rich Republican donors. I highly doubt that he intended to offend anyone.</p>
+<p>TR was noted for his integrity, personality, and masculinity ...</p></p>
+                            <p class="post-meta">
+                                in <a href="http://dustinfarris.com/category/life.html">life</a> &middot; Mon 01 October 2012
+                            </p>
+                        </header>
+                    </section>
+                    <section class="post">
+                        <header class="post-header">
+                            <h3><a class="post-title" href="http://dustinfarris.com/2012/09/29/a-47-grip-on-reality.html">"A &#39;47%&#39; Grip on Reality"</a></h3>
+                            <p class="post-meta"><p>I still <a href="http://dustinfarris.com/2012/9/romney-and-mother-jones/">hold</a> that Romney's "gaffe" was no more than a simple appeasement to rich Republican donors. I highly doubt that he intended to offend anyone.</p>
 <p>But he made a mistake: he got caught on camera. And now real people are really hurt.</p>
 <p>That matters.</p>
-<p>Especially when you now ...</p>
-        </div>
-        <p class="post-meta">
-        in
-        <a href="http://dustinfarris.com/category/life.html">
-          life
-        </a>
-        &middot;
-        <span itemprop="datePublished">
-          <time datetime="2012-09-29">
-            29 Sep 2012
-          </time>
-        </span>
-        </p>
-      </div>
-      <div class="post" itemscope itemtype="http://schema.org/BlogPosting">
-        <h2 class="post-title" itemprop="name">
-          <a href="http://dustinfarris.com/2012/09/29/setting-up-a-django-server-with-gentoo.html" itemprop="url">
-            "Setting up a Django Server with Gentoo"
-          </a>
-        </h2>
-        <div class="summary" itemprop="description">
-          <p>This is part 3 in a 3 part series I've written on setting up a Django production site on Gentoo.  In the first 2 parts I went over basic boilerplate server setup, and database installation which can be on the same server or separated.</p>
+<p>Especially when you now ...</p></p>
+                            <p class="post-meta">
+                                in <a href="http://dustinfarris.com/category/life.html">life</a> &middot; Sat 29 September 2012
+                            </p>
+                        </header>
+                    </section>
+                    <section class="post">
+                        <header class="post-header">
+                            <h3><a class="post-title" href="http://dustinfarris.com/2012/09/29/setting-up-a-django-server-with-gentoo.html">"Setting up a Django Server with Gentoo"</a></h3>
+                            <p class="post-meta"><p>This is part 3 in a 3 part series I've written on setting up a Django production site on Gentoo.  In the first 2 parts I went over basic boilerplate server setup, and database installation which can be on the same server or separated.</p>
 <p><a id="contents"></a></p>
 <h2>Contents</h2>
 <ul>
 <li><a href="#introduction">Introduction</a></li>
 <li><a href="#postgresql">PostgreSQL</a></li>
-<li><a href="#virtualenv-and-pip">virtualenv and ...</a></li></ul>
-        </div>
-        <p class="post-meta">
-        in
-        <a href="http://dustinfarris.com/category/tech.html">
-          tech
-        </a>
-        &middot;
-        <span itemprop="datePublished">
-          <time datetime="2012-09-29">
-            29 Sep 2012
-          </time>
-        </span>
-        </p>
-      </div>
-      <div class="post" itemscope itemtype="http://schema.org/BlogPosting">
-        <h2 class="post-title" itemprop="name">
-          <a href="http://dustinfarris.com/2012/09/21/ann-defending-mitt.html" itemprop="url">
-            "Ann Defending Mitt"
-          </a>
-        </h2>
-        <div class="summary" itemprop="description">
-          <p>Romney's repetitious campaign fumbles have been the source of amusement for Democrats and frustration for Republicans.  As members of his own party have been distancing themselves, Mrs. Romney jumps to his <a href="http://www.cbsnews.com/8301-503544_162-57517556-503544/ann-romney-to-critics-stop-it-this-is-hard/">defense</a>:</p>
-<blockquote>
-<p>Stop It. This Is Hard.</p>
-</blockquote>
-<p>Does anyone else remember this:</p>
-<iframe frameborder="0" width="480" height="360" src="http://www.dailymotion.com/embed/video/x2yk69"></iframe>
-
-<p>You know what else is hard?  Being ...</p>
-        </div>
-        <p class="post-meta">
-        in
-        <a href="http://dustinfarris.com/category/life.html">
-          life
-        </a>
-        &middot;
-        <span itemprop="datePublished">
-          <time datetime="2012-09-21">
-            21 Sep 2012
-          </time>
-        </span>
-        </p>
-      </div>
+<li><a href="#virtualenv-and-pip">virtualenv and ...</a></li></ul></p>
+                            <p class="post-meta">
+                                in <a href="http://dustinfarris.com/category/tech.html">tech</a> &middot; Sat 29 September 2012
+                            </p>
+                        </header>
+                    </section>
 <div class="pagination-wrapper content-subhead">
     <div class="pagination">
         <div class="pagination-left">
                 <a href="http://dustinfarris.com/author/dustin-farris2.html"><span>&larr; Newer posts</span></a>
         </div>
-        <span>Page 3 / 16</span>
+        <span>Page 3 / 17</span>
         <div class="pagination-right">
                 <a href="http://dustinfarris.com/author/dustin-farris4.html">Older posts&nbsp;&rarr;</a>
         </div>
     </div>
 </div><footer class="footer">
-  <p>&copy; Dustin Farris</p>
-</footer>    </div>
-  </div>
-</div>
-</div>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><script>
-var $top = $('.go-top');
+    <p>&copy; Dustin Farris &ndash;
+        Built with <a href="https://github.com/PurePelicanTheme/pure-single">Pure Theme</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+</footer>            </div>
+        </div>
+    </div>
+    </div>
+    <script>
+        var $top = $('.go-top');
 
-// Show or hide the sticky footer button
-$(window).scroll(function() {
-    if ($(this).scrollTop() > 200) {
-    $top.fadeIn(200);
-    } else {
-    $top.fadeOut(200);
-    }
-    });
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
 
-// Animate the scroll to top
-$top.click(function(event) {
-    event.preventDefault();
-    $('html, body').animate({scrollTop: 0}, 300);
-    })
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
 
-// Makes sure that the href="#" attached to the <a> elements
-// don't scroll you back up the page.
-$('body').on('click', 'a[href="#"]', function(event) {
-    event.preventDefault();
-    });
-</script><script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-13275015-1', 'auto');
-  ga('send', 'pageview');
-</script>
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+    <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker("UA-13275015-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+    </script>
 
 </body>
-
 </html>
